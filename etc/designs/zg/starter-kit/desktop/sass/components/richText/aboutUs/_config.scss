@@ -1,0 +1,23 @@
+$aboutUs: (
+  spacings: common('spacings')
+);
+
+$aboutUs: merge($aboutUs, (
+  text: (
+    font-size: px(18),
+    line-height: 1.44
+  ),
+  box: (
+    background: transparent,
+  ),
+  _holder: (
+    box: (
+      max-width: 730px,
+      background: transparent,
+      padding: (
+        padding-bottom: get($aboutUs, 'spacings.xxl'),
+        padding-top: get($aboutUs, 'spacings.xxl')
+      )
+    )
+  )
+));

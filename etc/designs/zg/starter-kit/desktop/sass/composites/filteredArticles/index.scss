@@ -1,0 +1,88 @@
+@import '../../core/config';
+
+.composite-filtered-articles {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($filteredArticles, $a...);
+  }
+
+  $box: merge((
+    margin: (
+      margin: spacings('xxl') 0
+    )
+  ), g('_main.box'));
+
+  @include box($box, $media);
+
+  .listing-article-list {
+    $listingWrapper: merge((
+      margin: (
+        margin: 0 auto
+      )
+    ), g('_listing-wrapper.box'));
+
+    @include box($listingWrapper, $media);
+
+    .listing-items {
+      $articleList: merge((
+        margin: (
+         margin: breakpoint((tablet-max: spacings('xs') * -1, desktop: spacings('m') * -1 spacings('s') * -1))
+        )
+      ), g('_article-list.box'));
+
+      @include breakpoints() {
+        @include box($articleList, $media);
+      }
+
+      .listing-item {
+        $article: merge((
+          padding: (
+            padding: breakpoint((tablet-max: spacings('xs'), desktop: spacings('m') spacings('s')))
+          )
+        ), g('_article.box'));
+
+        @include breakpoints() {
+          @include box($article, $media);
+        }
+
+        .richText .richText-content {
+          $textWrapper: merge((
+            padding: (
+              padding: breakpoint((tablet-max: 20px 0))
+            )
+          ), g('_article._text-wrapper.box'));
+
+          @include breakpoints() {
+            @include box($textWrapper, $media);
+          }
+
+          h2, h3, h4 {
+            $articleTitle: merge((
+              text: (
+                font-size: breakpoint((tablet-max: px(18)))
+              )
+            ), g('_article._title.paragraph'));
+
+            @include breakpoints() {
+              @include paragraph($articleTitle, $media);
+            }
+          }
+
+          p {
+            $articleDescription: merge((
+              display: breakpoint((tablet-max: none)),
+              margin: (
+                margin-bottom: 0,
+                margin-top: 20px
+              )
+            ), g('_article._description.paragraph'));
+
+            @include breakpoints() {
+              @include paragraph($articleDescription, $media);
+            }
+          }
+        }
+      }
+    }
+  }
+}

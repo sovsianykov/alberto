@@ -1,0 +1,54 @@
+@import '../../core/_config';
+
+.quizCTA {
+  margin-bottom: spacings(m);
+  margin-top: spacings(m);
+  text-align: center;
+  transition: opacity linear 250ms;
+
+  .quizCTA-image {
+    width: 100%;
+  }
+}
+
+a.quizCTA-button {
+  @import 'tertiary/config';
+  @function g($a...) {
+    @return get-last($buttonTertiary, $a...);
+  }
+
+  @include breakpoints() {
+    @include button(g('button'),  $media);
+  }
+}
+
+.quiz-step[data-step="0"] .quizCTA-button {
+  @import '../richText/hyperlinkStyles/buttonPrimary/config';
+  $button: merge((
+    _link: (
+      button: (
+        text: (
+          font-weight: bold
+        )
+      )
+    )
+  ), $buttonPrimary);
+  @function g($a...) {
+    @return get-last($button, $a...);
+  }
+
+  @include breakpoints() {
+    @include button(g('_link.button'), $media);
+  }
+
+  > span {
+    @include button(g('_inner-span.button'), $media);
+  }
+
+  &:hover > span {
+    $pseudo: safetype(g('_inner-span.button.line.side'), 'after');
+    &:#{$pseudo} {
+      @include hover(g('_inner-span.button.line.hover'), $media);
+    }
+  }
+}

@@ -1,0 +1,61 @@
+$bgColor: white;
+.control-tooltip {
+  background-color: $bgColor;
+  box-shadow: 4px 4px 4px rgba(0,0,0,.2);
+  display: none;
+  font-size: 16px;
+  left: 100%;
+  margin-left: 5px;
+  padding: 10px 10px 10px 14px;
+  position: absolute;
+  top: -3px;
+  width: 200px;
+  z-index: 1;
+
+  * {
+    margin-left: 0;
+    margin-top: 0;
+    padding-left: 0;
+  }
+
+  &:after {
+    border: solid transparent;
+    border-right-color: $bgColor;
+    border-width: 5px;
+    content: '';
+    display: inline-block;
+    height: 0;
+    margin-top: -5px;
+    position: absolute;
+    right: 100%;
+    top: 10px;
+    width: 0;
+    z-index: 1;
+  }
+
+  &-container {
+    display: inline-block;
+    margin-left: 8px;
+    position: relative;
+  }
+
+  &-button:hover + &,
+  &:hover,
+  &-button:focus + &,
+  &:focus {
+    display: block;
+  }
+}
+.control-tooltip-button {
+  border-radius: 50%;
+  border: 0 none;
+  background-color: #4d4d4d;
+  color: white;
+  font-size: 12px;
+  height: 16px;
+  line-height: 16px;
+  padding: 0;
+  text-align: center;
+  width: 16px;
+
+}

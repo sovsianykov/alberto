@@ -1,0 +1,12 @@
+.articleList-masonry {
+  .articleList-list {
+    margin: 0 auto;
+  }
+
+  .articleList-article {
+    box-sizing: border-box;
+    max-width: calc(100% - 40px);
+    width: 350px;
+    padding: 0;
+  }
+}

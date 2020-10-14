@@ -1,0 +1,50 @@
+// Normalize the value returned when getting a side of a property.
+// Usage:
+// $d: (
+//   t1: ( margin: 1px ),
+//   t2: ( margin: 1px 2px ),
+//   t3: (
+//     margin: (
+//       margin: breakpoint((
+//         tablet-max: 1px 2px 3px 4px,
+//         desktop: 0
+//       ))
+//     )
+//   ),
+//   t4: (
+//     margin: (
+//       margin-top: breakpoint((
+//         mobile: 1px
+//       ))
+//     )
+//   )
+// );
+// get-side(get($d, t1), 'margin', 'top', 'mobile'); // 1px
+// get-side(get($d, t2), 'margin', 'top', 'mobile'); // 1px
+// get-side(get($d, t3), 'margin', 'top', 'mobile'); // 1px
+// get-side(get($d, t4), 'margin', 'top', 'mobile'); // 1px
+// get-side(get($d, t4), 'margin', 'bottom', 'mobile'); // null
+
+@function get-side($d, $prop, $side, $media) {
+  $side-list: 'top' 'right' 'bottom' 'left';
+
+  // test shortcut, like direct "margin" value
+  $curr: get($d, $prop);
+  @if (type-of($curr) != map) {
+    @return nth(trbl($curr), index($side-list, safetype($side, 'top')));
+  }
+
+  // test prop object with shortcut value, like "margin.margin" / media-query
+  $curr: get-last($curr, $prop, $media);
+  @if (type-of($curr) != map) {
+    @return nth(trbl($curr), index($side-list, safetype($side, 'top')));
+  }
+
+  // test prop object with direct value, like "margin.margin-top" / media-query
+  $curr: get-last($curr, '#{$prop}-#{$side}', $media);
+  @if (type-of($curr) != map) {
+    @return $curr;
+  }
+
+  @return null;
+}

@@ -1,0 +1,28 @@
+.composite-variation-single-featured-content-left {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($singleFeaturedContentLeft, $a...);
+  }
+
+  > .content {
+    $box: merge((
+      display: breakpoint((tablet-max: block, desktop: flex))
+    ), g('box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+  }
+
+  .richText {
+    $sideText: merge((
+      padding: (
+        padding-left: breakpoint((desktop: 95px))
+      )
+    ), g('_side-text.box'));
+
+    @include breakpoints() {
+      @include box($sideText, $media);
+    }
+  }
+}

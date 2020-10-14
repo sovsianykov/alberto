@@ -1,0 +1,11 @@
+@include local-spacings();
+
+$inlineButton: (
+  spacings: spacings(),
+  _buttons: (
+    button: (),
+    _first: (
+      margin: ()
+    )
+  )
+)

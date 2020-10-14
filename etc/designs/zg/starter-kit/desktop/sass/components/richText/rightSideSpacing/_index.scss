@@ -1,0 +1,12 @@
+.richText.richText-right-side-spacing {
+  @import 'config';
+  @function g($a...) { @return get-last($rightSideSpacing, $a...); }
+
+  @include breakpoints() {
+    @include box(g('box'), $media);
+  }
+
+  & + .component {
+    margin-left: 0;
+  }
+}

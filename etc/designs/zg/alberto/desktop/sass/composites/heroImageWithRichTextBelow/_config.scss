@@ -1,0 +1,27 @@
+$heroImageWithRichTextBelow: (
+  spacings: common('spacings'),
+);
+
+$heroImageWithRichTextBelow: merge($heroImageWithRichTextBelow,(
+  _main: (
+    //box: (),
+    _text-wrapper: (
+      box: (
+        margin: (
+          margin-top: breakpoint((tablet-max: -77px, desktop: -65px)),
+          margin-bottom: breakpoint((tablet-max: 16px, desktop: 64px))
+        )
+      ),
+      _wrapper-content: (
+        box: (
+          background: (
+            background-color: color('primary', 'lighter')
+          ),
+          padding: (
+            padding: breakpoint((tablet-max: 26px 16px 32px, desktop: 38px 104px 48px))
+          )
+        )
+      )
+    )
+  )
+));

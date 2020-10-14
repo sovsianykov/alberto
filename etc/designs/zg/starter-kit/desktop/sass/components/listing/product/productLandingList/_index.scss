@@ -1,0 +1,16 @@
+.product-landing-list {
+  @import 'config';
+  @function g($a...) { @return get-last($product-landing-list, $a...); }
+
+  @include breakpoints() {
+    @include box(g('box'), $media);
+  }
+
+  .listing-items {
+    .listing-item {
+      @include box(g('box._product-item'), $media);
+    }
+  }
+
+  @import '../common-product-list';
+}

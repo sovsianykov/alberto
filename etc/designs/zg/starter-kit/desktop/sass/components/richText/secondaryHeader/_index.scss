@@ -1,0 +1,31 @@
+.richText-secondary-header {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($secondaryHeader, $a...);
+  }
+
+  @include box(g('_main.box'), $media);
+
+  img {
+    width: 100%;
+  }
+
+  p:first-child {
+    $paragraph: merge((
+      margin: (
+        margin-top: 20px,
+        margin-bottom: 0
+      )
+    ), g('_main._first-headline.paragraph'));
+
+    @include paragraph($paragraph, $media);
+  }
+
+  h2, h3, h4 {
+    margin: 0;
+
+    @include breakpoints() {
+      @include paragraph(g('_main._second-headline.paragraph'), $media);
+    }
+  }
+}

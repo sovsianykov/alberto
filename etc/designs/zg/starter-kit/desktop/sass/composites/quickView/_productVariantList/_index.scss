@@ -1,0 +1,29 @@
+.productVariantList > .component-content {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($product-variant-list, $a...);
+  }
+
+  .productVariantList-list {
+    $box: merge((
+      display: flex,
+      margin: -20px spacings('xs') * -1 spacings('xs')
+    ), g('_main._list.box'));
+
+    @include box($box, $media);
+  }
+
+  .productVariantList-item {
+    $box: merge((
+      margin: 20px spacings('xs')
+    ), g('_main._item.box'));
+
+    @include box($box, $media);
+  }
+
+  .productVariantList-link {
+    $link: merge((), g('_main._link.button'));
+
+    @include button($link, $media);
+  }
+}

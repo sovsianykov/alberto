@@ -1,0 +1,32 @@
+$common: merge($common, (
+  _base: (
+    input: (
+      background: (
+        background-color: color('white')
+      ),
+      text: extend('text.body', (
+        font-size: px('xxxs')
+      )),
+      border: (
+        border: 1px solid color('neutral', 'light'),
+        border-radius: 3px
+      ),
+      padding: common('spacings.xs'),
+      placeholder: (
+        color: color('neutral', 'light')
+      ),
+      focus: (
+        // default settings for the focus state
+        // for example: outline: none
+      )
+    )
+  ),
+  _base-focus: (
+    input: (
+      focus: (
+        // default settings for the focus state
+        // for example: outline: none
+      )
+    )
+  )
+));

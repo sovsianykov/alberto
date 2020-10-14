@@ -1,0 +1,7 @@
+$buttonTertiary: (
+  spacings: common('spacings')
+);
+
+$buttonTertiary: merge($buttonTertiary, (
+  button: common('_tertiary.button')
+));

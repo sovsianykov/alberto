@@ -1,0 +1,91 @@
+@import '../../core/config';
+
+.reference-newsletter-global {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($newsletterGlobal, $a...);
+  }
+
+  $box: merge((
+    padding: (
+      padding: 60px 0
+    )
+  ), g('box'));
+
+  @include box($box, $media);
+
+  > .inner {
+    @include wrapper;
+  }
+
+  .form {
+    @include paragraph(g('_newsletter-content.paragraph'), $media);
+  }
+
+  .form-heading {
+    $heading: merge((
+      margin: (
+        margin: 0
+      )
+    ), g('_form-heading.paragraph'));
+
+    @include breakpoints() {
+      @include paragraph($heading, $media);
+    }
+  }
+
+  .formContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .richText {
+        flex-basis: 100%;
+
+      p {
+        $newsletterInfo: merge((
+          margin: (
+            margin-bottom: spacings('m')
+          )
+        ), g('_newsletter-info.paragraph'));
+
+        @include paragraph($newsletterInfo, $media);
+      }
+    }
+  }
+
+  .textField {
+    $email: merge((
+      width: 100%,
+      max-width: breakpoint((tablet-min: 350px)),
+      flex: (
+        flex-basis: breakpoint((mobile: calc(100% - 46px), tablet-min: 100%))
+      )
+    ), g('_email.box'));
+
+    @include breakpoints {
+      @include box($email, $media);
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+
+      @include input(g('_email._email-field.input'), $media);
+    }
+  }
+
+  .formButton {
+    .button {
+      $submitButton: merge((
+        flex: (
+          justify-content: center,
+        )
+      ), g('_submit-button.button'));
+
+      @include breakpoints {
+        @include button($submitButton, $media);
+      }
+    }
+  }
+}

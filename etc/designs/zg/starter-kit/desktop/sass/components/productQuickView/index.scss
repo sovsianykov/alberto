@@ -1,0 +1,15 @@
+.productQuickView .quickview-btn {
+  cursor: pointer;
+}
+
+body.has-open-quickView {
+  // to stop the body scrolling under the quickView
+  // whilst keeping the scrollbar (to prevent content shifting to the right)
+  max-height: 100vh;
+  overflow-y: scroll;
+
+  #wrapper {
+    max-height: 100vh;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,28 @@
+// mobile "clear filters" button on Search Page
+
+$clear-filters: (
+  button: (
+    text: (
+      color: color('white'),
+      font-size: px('xxs'),
+      font-family: 'primary'
+    ),
+    border: (
+      border-radius: 15px
+    ),
+    box-sizing: border-box,
+    background: color('secondary', 'base'),
+    width: 100%,
+    max-width: 120px,
+    height: 30px,
+    z-index: $z-index-fixed
+  ),
+  _button-disabled: (
+    button:(
+      background: color('neutral', 'lighter'),
+      text: (
+        color: color('neutral', 'light')
+      )
+    )
+  )
+);

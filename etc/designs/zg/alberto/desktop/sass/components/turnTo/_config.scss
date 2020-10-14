@@ -1,0 +1,684 @@
+@include local-spacings();
+
+// global component styles
+$turnTo: (
+  text: (
+    font-family: 'body',
+    color: color('black')
+  ),
+  _disabled-links: (
+    text: (
+      color: color('neutral', 'light'),
+      font-size: px('xs')
+    ),
+  ),
+);
+
+// input & 'ask a question' Area
+$turnTo: merge($turnTo, (
+  _ask-area-wrapper: (
+    box: (
+      background: (
+        background: color('neutral', 'lighter'),
+      ),
+      padding: (
+        padding: breakpoint(
+          spacings('l') 20px,
+          spacings('l') 20px,
+          spacings('l') 65px
+        ),
+      ),
+      margin: (
+        margin: breakpoint(
+          0 -20px,
+          0 -20px,
+          0
+        )
+      ),
+      border: 0,
+    ),
+    _input-wrapper: (
+      box: (
+        background: (
+          background-color: color('white'),
+        ),
+        border: (
+          border-radius: 3px,
+          border: solid 1px color('neutral', 'light'),
+        ),
+        padding: 10px 10px 10px 35px,
+      ),
+      input: (
+        border: 0,
+        background: transparent,
+        width: calc(100% - 50px),
+        text: (
+          font-size: breakpoint(px(18), px(18), px(22)),
+          color: color('black'),
+          line-height: 1,
+        ),
+        padding: 10px 0 0,
+        min-height: breakpoint(spacings('xl'), spacings('m'), spacings('m'))
+      ),
+      _search-icon: (
+        icon: (
+          content: common('icon.search'),
+          font-size: 15px,
+          side: before,
+          margin: 0 spacings('xs'),
+          color: color('black'),
+        )
+      ),
+      _reset-icon: (
+        icon: (
+          content: common('icon.cross-small'),
+          font-size: 12px,
+          color: color('black'),
+          height: 28px,
+          width: 28px,
+          margin: 0 spacings('xs'),
+          border: (
+            border-radius: 50%,
+            border: 2px solid color('black'),
+          )
+        )
+      ),
+    ),
+    _hint: (
+      paragraph: (
+        text: (
+          font-size: px(18),
+          line-height: 1.33,
+          color: color('black'),
+        ),
+        margin: (
+          margin-top: 15px,
+        )
+      ),
+      button: (
+        text: (
+          color: color('secondary'),
+          text-transform: uppercase,
+          text-decoration: breakpoint(underline, none, none),
+          font-family: 'primary',
+          font-weight: bold,
+          font-size: px('xs'),
+        ),
+        line: (
+          width: 100%,
+          transform: (
+            transform: scaleX(0),
+            transform-origin: 0 0
+          ),
+          hover: (
+            border: (
+              border-top: 2px solid color('secondary')
+            ),
+            transform: (
+              transform: scaleX(1)
+            )
+          )
+        )
+      )
+    ),
+    _how-it-works-box: (
+      box: (
+        box-shadow: none,
+        border: (
+          border: solid 1px color('neutral.light')
+        )
+      ),
+      text: (
+        color: color('black')
+      ),
+      _list-item: (
+        button: (
+          icon: (
+            color: color('primary', 'base'),
+            content: common('icon.list-bullet'),
+            display: inline-block,
+            font-size: px(5),
+            margin: (
+              margin-right: spacings('xxs')
+            ),
+            side: before
+          ),
+        )
+      )
+    ),
+    _ask-question-area: (
+      _title: (
+        paragraph: (
+          text: (
+            font-size: px(18),
+            line-height: 1.33,
+            color: color('black'),
+            font-weight: bold,
+          ),
+        ),
+      ),
+      _instruction-msg: (
+        paragraph: (
+          text: (
+            font-size: px(18),
+            line-height: 1.33,
+            color: color('black'),
+          ),
+          margin: (
+            margin-top: 15px,
+            margin-bottom: breakpoint(spacings('xs'), spacings('xs'), spacings('l'))
+          )
+        ),
+      ),
+      _help-text: (
+        paragraph: (
+          text: (
+            font-size: px(18),
+            color: color('black'),
+          ),
+          margin: (
+            margin-left: spacings('xs'),
+          )
+        ),
+      ),
+      _buttons-row: (
+        box: (
+          box-shadow: none,
+          border: none,
+          background: none,
+          padding: (
+            padding-left: 0,
+            padding-right: 0,
+            padding-top: breakpoint((tablet-max: 0)),
+            padding-bottom: breakpoint((tablet-max: 0)),
+          )
+        ),
+        paragraph: (
+          text: (
+            color: color('black'),
+          ),
+        )
+      )
+    )
+  )
+));
+
+// common overlays styles
+$turnTo: merge($turnTo, (
+  _close-icon: (
+    icon: (
+      content: common('icon.cross-small'),
+      font-size: 10px,
+      color: color('black'),
+      height: 18px,
+      width: 18px,
+      border: (
+        border-radius: 50%,
+        border: 1px solid color('black'),
+      )
+    )
+  )
+));
+
+// product search
+$turnTo: merge($turnTo, (
+  _product-search: (
+    box: (
+      background: color('white'),
+      box-shadow: none,
+    ),
+    _input-wrapper: (
+      box: (
+        background: (
+          background-color: color('white'),
+        ),
+        border: (
+          border-radius: 3px,
+          border: solid 1px color('neutral', 'light'),
+        ),
+      ),
+    ),
+    _clear-search: (
+      icon: (
+        content: common('icon.cross-small'),
+        font-size: 10px,
+        color: color('black'),
+        height: 18px,
+        width: 18px,
+        margin: 0 8px,
+        border: (
+          border-radius: 50%,
+          border: 1px solid color('black'),
+        )
+      )
+    ),
+    _results-message: (
+      paragraph: (
+        text: (
+          font-size: px(12)
+        )
+      )
+    ),
+    _image-caption: (
+      paragraph: (
+        text: (
+          font-size: px(12)
+        )
+      )
+    ),
+    _add-button: (
+      button: (
+        text: (
+          font-size: px(14),
+          color: color('white')
+        ),
+        background: (
+          background-color: transparentize(color('primary', 'base'), 0.2),
+        ),
+        padding: 10px,
+      )
+    ),
+    _added-icon: (
+      icon: (
+        content: common('icon.ok'),
+        font-size: 10px,
+        color: color('white'),
+        background: (
+          background-color: color('primary', 'base')
+        ),
+        border: (
+          border-radius: 50%,
+        ),
+        height: 24px,
+        width: 24px,
+        padding: 1px 0 0 1px
+      ),
+    )
+  )
+));
+
+// question asked
+$turnTo: merge($turnTo, (
+  _questions-asked: (
+    _browse-title: (
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-size: px(18),
+          line-height: px(50),
+          font-weight: normal,
+        )
+      )
+    ),
+    _sort-dropdown: (
+      button:   (
+        background: (
+          background-color: color('white')
+        ),
+        border: (
+          border-radius: 3px,
+          border: 1px solid color('neutral', 'light'),
+        ),
+        padding: 0 42px 0 18px,
+        width: 100%,
+        height: 50px,
+        text: (
+          font-size: px(17),
+          color: color('black'),
+          line-height: px(50),
+        ),
+      ),
+      icon: (
+        content: common('icon.arrow-down'),
+        font-size: 10px,
+        color: color('black')
+      )
+    ),
+    _separator-icon: (
+      icon: (
+        content: "\2022",
+        display: inline-block,
+        font-size: 12px,
+        color: color('black'),
+        padding: (
+          padding: breakpoint((tablet-max: 0 5px))
+        )
+      )
+    ),
+    _expand-icon: (
+      icon: (
+        content: common('icon.plus'),
+        font-size: 13px,
+        color: color('black'),
+        side: before,
+        margin: (
+          margin-right: 4px
+        )
+      )
+    ),
+    _collapse-icon: (
+      icon: (
+        content: common('icon.minus'),
+        font-size: 13px,
+        color: color('black'),
+        side: before,
+        margin: (
+          margin-right: 4px
+        )
+      )
+    ),
+    _item: (
+      box: (
+        border: (
+          border-left: none,
+          border-right: none,
+          border-top: 1px solid color('neutral', 'light')
+        )
+      ),
+      _question-wrapper: (
+        box: (
+          background: none,
+          border: (
+            border: none,
+          ),
+          padding: (
+            padding: breakpoint((
+              mobile-max: spacings('s') 0
+            ))
+          )
+        ),
+      ),
+      _title: (
+        paragraph: (
+          text: (
+            color: color('black'),
+            font-weight: bold,
+            font-size: breakpoint((
+              tablet-max: px('s'),
+              desktop: px('m')
+            )),
+          )
+        )
+      ),
+      _asked-by: (
+        paragraph: (
+          text: (
+            color: color('black'),
+            font-size: px(12)
+          )
+        )
+      ),
+      _user-type: (
+        text: (
+          color: color('black'),
+          font-weight: bold,
+          font-size: px('xxxs'),
+        )
+      ),
+      _timestamp: (
+        text: (
+          color: color('black'),
+          font-weight: normal,
+        )
+      ),
+      _best-answer-label: (
+        paragraph: (
+          text: (
+            color: color('black'),
+            font-weight: bold,
+            font-size: px(18),
+            text-transform: lowercase,
+          )
+        )
+      ),
+      _best-answer: (
+        paragraph: (
+          text: (
+            color: color('black'),
+            font-size: px(18)
+          ),
+          margin: (
+            margin-bottom: 10px,
+          )
+        )
+      ),
+      _answer-links: (
+        button: (
+          text: (
+            font-size: px('xxxs'),
+            text-decoration: none,
+            color: color('black'),
+          ),
+          line: (
+            width: 100%,
+            border: (
+              border-top: 1px solid color('black')
+            ),
+            transform: (
+              transform: scaleX(1)
+            )
+          ),
+          hover: (
+            text: (
+              color: color('neutral', 'dark'),
+            ),
+            line: (
+              border: (
+                border-top: 1px solid color('neutral', 'dark')
+              ),
+            )
+          )
+        )
+      ),
+      _question-links: (
+        box: (
+          margin: (
+            margin-top: 20px,
+          )
+        ),
+        button: (
+          text: (
+            font-size: px('xs'),
+            text-decoration: none,
+            color: color('black'),
+            line-height: 1,
+            font-weight: normal,
+          ),
+        ),
+        _helpful: (
+          button: (
+            text: (
+              text-transform: uppercase,
+              font-family: primary,
+            ),
+            margin: (
+              margin-top: breakpoint((tablet-max: spacings('xxs'))),
+              margin-left: breakpoint((tablet-max: 20px))
+            )
+          )
+        ),
+        _add-answer: (
+          button: (
+            margin: (
+              margin-top: breakpoint((tablet-max: spacings('xxs'))),
+              margin-left: breakpoint((tablet-max: 20px))
+            )
+          )
+        )
+      ),
+      _product-image-caption: (
+        paragraph: (
+          text: (
+            color: color('black')
+          )
+        )
+      ),
+    )
+  ),
+  _show-more: (
+    button: (
+      text: (
+        color: color('black'),
+        text-transform: uppercase,
+        font-family: 'primary',
+        font-weight: bold,
+        font-size: px('xs'),
+        text-align: breakpoint((tablet-min: center))
+      ),
+      margin: (
+        margin-left: 0,
+      ),
+      width: 100%,
+      icon: (
+        content: common('icon.plus'),
+        font-size: 10px,
+        color: color('black'),
+        side: before,
+        margin: (
+          margin-right: spacings('xs'),
+        )
+      )
+    )
+  )
+));
+
+// answers
+$turnTo: merge($turnTo, (
+  _answer: (
+    box: (
+      border: (
+        border-left: none,
+        border-right: none
+      ),
+      padding: (
+        padding: breakpoint((mobile-max: spacings('xs') 0))
+      )
+    )
+  ),
+  _vote-for: (
+    box: (
+      background: (
+        background-color: color('neutral', 'lighter')
+      ),
+      margin: (
+        margin: 10px 0,
+      )
+    ),
+    text: (
+      color: color('black'),
+      font-size: breakpoint(px('xxxs'), px('xs'), px(18)),
+      line-height: 1,
+    ),
+    icon: (
+      content: common('icon.arrow-up'),
+      font-size: 7px,
+      color: color('black'),
+      side: before,
+      border: (
+        border: 1px solid color('black'),
+        border-radius: 50%,
+      ),
+      height: 22px,
+      width: 22px
+    )
+  ),
+  _vote-icons: (
+    _off: (
+      icon: (
+        content: common('icon.ok'),
+        font-size: 8px,
+        color: color('black'),
+        side: before,
+        border: (
+          border: 1px solid color('black'),
+          border-radius: 50%,
+        ),
+        margin: (
+          margin-bottom: spacings('xs'),
+          margin-right: spacings('xs'),
+        ),
+        height: 22px,
+        width: 22px,
+        padding: 1px 0 0 1px
+      )
+    ),
+    _on: (
+      icon: (
+        content: common('icon.ok'),
+        font-size: 8px,
+        color: color('white'),
+        side: before,
+        border: (
+          border: 1px solid color('black'),
+          border-radius: 50%,
+        ),
+        background: (
+          background-color: color('black')
+        ),
+        margin: (
+          margin-bottom: 10px,
+          margin-right: 10px,
+        ),
+        height: 22px,
+        width: 22px,
+        padding: 1px 0 0 1px
+      )
+    )
+  ),
+  _add-answer: (
+    box: (
+      border: (
+        border-width: 0,
+      ),
+      background: (
+        background-color: color('neutral', 'lighter'),
+      ),
+      padding: (
+        padding: spacings('xs'),
+      ),
+      margin: (
+        margin: spacings('xs') 0,
+      )
+    ),
+    input: (
+      text: (
+        font-size: breakpoint((
+          tablet-max: px('xs'),
+          desktop: px(18)
+        )),
+      ),
+      background: (
+        background-color: color('white'),
+      ),
+      border: (
+        //border-radius: 3px,
+        border: solid 1px color('neutral', 'light')
+      ),
+      padding: (
+        padding: 10px,
+      )
+    ),
+    _instruction-msg: (
+      paragraph: (
+        text: (
+          font-size: breakpoint(px('xxxs'), px('xs'), px(18)),
+          line-height: 1.33,
+          color: color('black'),
+        ),
+        margin: (
+          margin-top: spacings('s'),
+          margin-bottom: breakpoint(10px, 10px, 20px)
+        )
+      ),
+    ),
+    _help-text: (
+      paragraph: (
+        text: (
+          font-size: px(18),
+          line-height: 1,
+          color: color('black')
+        )
+      )
+    )
+  )
+));

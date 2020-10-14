@@ -1,0 +1,32 @@
+@import '../../core/config';
+
+.composite-other-option-carousel {
+  @import 'config';
+  @function g($a...) { @return get-last($otherOptionCarousel, $a...); }
+
+  $box: merge((
+    margin: (
+      margin-top: spacings('xxl'),
+      margin-bottom: spacings('xxl')
+    )
+  ), g('_main.box'));
+
+  @include box($box, $media);
+
+  > .content {
+    @include wrapper;
+
+    $box: merge((
+      padding: (
+        padding-left: breakpoint((mobile: 0)),
+        padding-right: breakpoint((mobile: 0))
+      )
+    ), g('_content-wrapper.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+  }
+}
+
+@import '_listing/index';

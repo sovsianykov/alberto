@@ -1,0 +1,16 @@
+$recipeContext: (
+  box: (),
+  _error-message-wrapper: (
+    box: (),
+    _error-message: (
+      paragraph: extend('_primary._title.paragraph', (
+        margin: 0,
+        text: (
+          font-size: px('l'),
+          line-height: 1.3,
+          letter-spacing: normal
+        )
+      ))
+    )
+  )
+);

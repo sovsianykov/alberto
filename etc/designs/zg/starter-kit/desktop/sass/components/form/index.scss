@@ -1,0 +1,679 @@
+@import '../../core/config';
+
+
+.form {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($form, $a...);
+  }
+
+  fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+
+    $box: merge((), g('box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+
+    legend, h2 {
+      display: block;
+      float: left;
+      width: 100%;
+
+      $legend: merge((
+        margin: (
+          margin: breakpoint(
+            0 0 20px,
+            0 0 20px,
+            0 0 30px
+          )
+        ),
+        line: (
+          display: none,
+          margin: (
+            margin-top: 20px
+          )
+        )
+      ), g('_legend.paragraph'));
+
+      @include breakpoints {
+        @include paragraph($legend, $media);
+        // using lh-margin-diff to fix the line height difference for
+        // more commonly larger fonts and avoid the weird-looking
+        // alignment feelling
+        @include lh-margin-diff($legend, $media);
+      }
+    }
+
+    textarea {
+
+      $textarea: merge((), g('_textarea.input'));
+
+      @include input($textarea, $media);
+    }
+  }
+
+  .fieldset-hidden-legend fieldset legend {
+    font: normal 0/0 serif;
+    text-shadow: none;
+    color: rgba(0, 0, 0, 0);
+    margin: 0;
+    padding: 0;
+  }
+
+  .formButton {
+
+    button {
+
+      &:disabled,
+      &:disabled:hover {
+        background: color('neutral','light');
+        cursor: default;
+      }
+
+      @include breakpoints() {
+        @include button(g('_formButton.button'), $media);
+      }
+    }
+  }
+
+  .paragraphSystem {
+    font-size: 0;
+  }
+
+  .fileupload {
+      font-size: 1rem;
+   }
+
+  .textField,
+  .selectField,
+  .radioGroup,
+  .checkboxGroup,
+  .checkboxField,
+  .textArea,
+  .fileupload,
+  .reference-datepicker {
+
+    .component-content {
+
+      $groupFields: merge((
+      ), g('_groupFields.box'));
+
+      @include box($groupFields, $media);
+
+      &:hover {
+        @include hover(g('_groupFields.hover'), $media);
+      }
+
+      .control-label {
+        display: inline-block;
+        position: relative;
+
+        $control-label: merge((
+          margin: (
+            margin-bottom: 10px
+          )
+        ), g('_groupFields._control-label.paragraph'));
+
+        @include paragraph($control-label, $media);
+
+        .required {
+          display: inline-block;
+          position: relative;
+
+          $required-text: merge((
+          ), g('_groupFields._control-label._required.text'));
+
+          $required-icon: merge((
+          ), g('_groupFields._control-label._required.icon'));
+
+          @include breakpoints() {
+            @include text($required-text, $media);
+            @include icon($required-icon, $media);
+          }
+        }
+      }
+
+      input,
+      select,
+      textarea {
+
+        &:focus {
+          box-shadow: 1px 1px 1px color('black');
+          outline: 0;
+        }
+      }
+
+      &.error {
+
+        $error-groupFields: merge((
+        ), g('_error-groupFields.box'));
+
+        @include breakpoints() {
+          @include box($error-groupFields, $media);
+        }
+
+        &:hover {
+          @include hover(g('_error-groupFields.hover'), $media);
+        }
+
+        .control-label {
+          display: inline-block;
+          position: relative;
+
+          $control-label: merge((
+          ), g('_error-groupFields._control-label.paragraph'));
+
+          @include breakpoints() {
+            @include paragraph($control-label, $media);
+          }
+
+          .required {
+            display: inline-block;
+            position: relative;
+
+            $required-text: merge((
+            ), g('_error-groupFields._control-label._required.text'));
+
+            $required-icon: merge((
+              position: relative,
+              top: -0.5em
+            ), g('_error-groupFields._control-label._required.icon'));
+
+            @include breakpoints() {
+              @include text($required-text, $media);
+              @include icon($required-icon, $media);
+            }
+
+            $pseudo: safetype(g('_error-groupFields._control-label._required.icon.side'), 'after');
+            &:#{$pseudo} {
+              position: relative;
+              top: -0.5em;
+            }
+          }
+        }
+
+        .error-msg {
+          position: relative;
+
+          $error-msg-box: merge((
+            margin: (
+              margin-top: 10px
+            ),
+            padding: (
+              padding-left: 1.5em
+            ),
+            width: 100%
+          ), g('_error-msg.box'));
+
+          $error-msg-text: merge((
+          ), g('_error-msg.text'));
+
+          $error-msg-icon: merge((
+          ), g('_error-msg.icon'));
+
+          @include breakpoints() {
+            @include box($error-msg-box, $media);
+            @include text($error-msg-text, $media);
+            @include icon($error-msg-icon, $media);
+          }
+
+          &::before {
+            justify-content: center;
+            left: 0;
+            position: absolute;
+            top: .15em;
+          }
+        }
+
+        input,
+        select,
+        textarea {
+
+          &:focus {
+            box-shadow: 1px 1px 1px color('secondary', 'base');
+            outline: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .textField,
+  .reference-datepicker {
+
+    .component-content {
+
+      .controls {
+
+        input[type="text"],
+        input[type="date"] {
+          box-sizing: border-box;
+          width: 100%;
+
+          $textField: merge((
+          ), g('_textField.input'));
+
+          @include breakpoints() {
+            @include input($textField, $media);
+          }
+        }
+      }
+
+      &.error {
+
+        .controls {
+
+          input[type="text"],
+          input[type="date"] {
+
+            $error-textField: merge((
+            ), g('_error-textField.input'));
+
+            @include breakpoints() {
+              @include input($error-textField, $media);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .textArea {
+
+    .controls {
+
+      textarea {
+        $line-height: 1.36em;
+        box-sizing: border-box;
+        height: calc((#{$gutter} * 2) + (#{$line-height} * 5));
+        max-height: calc((#{$gutter} * 2) + (#{$line-height} * 10));
+        min-height: calc((#{$gutter} * 2) + #{$line-height});
+        resize: vertical;
+      }
+    }
+
+    .error {
+
+      .controls {
+
+        textarea {
+
+          $error-textField: merge((
+          ), g('_error-textField.input'));
+
+          @include breakpoints() {
+            @include input($error-textField, $media);
+          }
+        }
+      }
+    }
+  }
+
+  .selectField {
+
+    .component-content {
+
+      .controls {
+        position: relative;
+
+        $selectField-icon: merge((
+        ), g('_selectField.icon'));
+
+        @include breakpoints() {
+          @include icon($selectField-icon, $media);
+        }
+
+        $pseudo: safetype(g('_selectField.icon.side'), 'after');
+        &:#{$pseudo} {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+          pointer-events: none;
+        }
+
+        select {
+          appearance: none;
+          cursor: pointer;
+          width: 100%;
+
+          $selectField-box: merge((
+          ), g('_selectField.box'));
+
+          $selectField-text: merge((
+          ), g('_selectField.text'));
+
+
+          @include breakpoints() {
+            @include box($selectField-box, $media);
+            @include text($selectField-text, $media);
+          }
+
+          &::-ms-expand {
+            display: none;
+          }
+        }
+      }
+
+      &.error {
+
+        .controls {
+
+          $error-selectField-icon: merge((
+          ), g('_error-selectField.icon'));
+
+          @include breakpoints() {
+            @include icon($error-selectField-icon, $media);
+          }
+
+          select {
+
+            $error-selectField-box: merge((
+            ), g('_error-selectField.box'));
+
+            $error-selectField-text: merge((
+            ), g('_error-selectField.text'));
+
+            @include breakpoints() {
+              @include box($error-selectField-box, $media);
+              @include text($error-selectField-text, $media);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .radioGroup,
+  .checkboxGroup,
+  .checkboxField {
+
+    .component-content {
+
+      .controls {
+
+        label {
+          display: block;
+          font-size: 1rem;
+
+          $radio-checkbox-label: merge((
+            margin: 10px auto
+          ), g('_radio-checkbox-label.box'));
+
+          @include breakpoints() {
+            @include box($radio-checkbox-label, $media);
+          }
+
+          &:first-child {
+            margin-top: 0;
+          }
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          &:focus {
+            outline: none;
+          }
+
+          $size: 1.33em; // Same size of line-height in _radio-checkbox-base
+
+          input[type="radio"],
+          input[type="checkbox"] {
+            opacity: 0;
+            position: absolute;
+            pointer-events: none;
+
+            & ~ span {
+              cursor: pointer;
+              display: inline-block;
+              position: relative;
+
+              $radio-checkbox-base-box: merge((
+                padding: (
+                  padding-left: calc(#{$size} + 10px)
+                )
+              ), g('_radio-checkbox-base.box'));
+
+              $radio-checkbox-base-text: merge((
+              ), g('_radio-checkbox-base.text'));
+
+              @include breakpoints() {
+                @include box($radio-checkbox-base-box, $media);
+                @include text($radio-checkbox-base-text, $media);
+              }
+
+              &::before,
+              &::after {
+                box-sizing: border-box;
+                display: inline-block;
+
+                $common-before-after: merge((
+                  height: $size,
+                  position: absolute,
+                  width: $size
+                ), g('_radio-checkbox-base._common-before-after.box'));
+
+                @include breakpoints() {
+                  @include box($common-before-after, $media);
+                }
+              }
+
+              &::before {
+                content: "";
+                left: 0;
+                top: 0;
+
+                $common-before-border: merge((
+                ), g('_radio-checkbox-base._common-before.border'));
+
+                $common-before-background: merge((
+                ), g('_radio-checkbox-base._common-before.background'));
+
+                @include breakpoints() {
+                  @include border($common-before-border, $media);
+                  @include background($common-before-background, $media);
+                }
+              }
+
+              &::after {
+                font-size: .75em;
+                height: 1em;
+                opacity: 0;
+                transition: opacity .3s $ease-out;
+                width: 1em;
+              }
+            }
+          }
+
+          input[type="radio"] {
+
+            & ~ span {
+
+              &::before {
+                border-radius: 50%;
+              }
+
+              &::after {
+                left: .4em;
+                top: .4em;
+              }
+
+              $afert-radio: merge((
+              ), g('_radio-checkbox-base._afert-radio.icon'));
+
+              @include breakpoints() {
+                @include icon($afert-radio, $media);
+              }
+            }
+          }
+
+          input[type="checkbox"] {
+
+            & ~ span {
+
+              &::before {
+                border-radius: 3px;
+              }
+
+              &::after {
+                left: .2em;
+                top: .4em;
+              }
+
+              $afert-checkbox: merge((
+              ), g('_radio-checkbox-base._after-checkbox.icon'));
+
+              @include breakpoints() {
+                @include icon($afert-checkbox, $media);
+              }
+            }
+          }
+
+          input[type="radio"]:checked,
+          input[type="checkbox"]:checked {
+
+            & ~ span {
+
+              &::after {
+                opacity: 1;
+              }
+            }
+          }
+
+          input[type="radio"]:focus,
+          input[type="checkbox"]:focus {
+
+            & ~ span {
+              text-decoration: underline;
+
+              &::before {
+                box-shadow: 1px 1px 1px color('black');
+              }
+            }
+          }
+        }
+      }
+
+      &.error {
+
+        .controls {
+
+          label {
+
+            input[type="radio"],
+            input[type="checkbox"] {
+
+              ~ span {
+                color: color('secondary', 'base');
+
+                &:before {
+
+                  $error-common-before-border: merge((
+                  ), g('_radio-checkbox-base._error-common-before.border'));
+
+                  $error-common-before-background: merge((
+                  ), g('_radio-checkbox-base._error-common-before.background'));
+
+                  @include breakpoints() {
+                    @include border($error-common-before-border, $media);
+                    @include background($error-common-before-background, $media);
+                  }
+                }
+              }
+            }
+
+            input[type="radio"]:focus,
+            input[type="checkbox"]:focus {
+
+              & ~ span {
+
+                &::before {
+                  box-shadow: 1px 1px 1px color('secondary', 'base');
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .has-tooltip.error .control-group .control-label {
+      display: inline-block;
+    }
+  }
+
+  // Nasty workaround until the component update
+  .checkboxField {
+
+    .control-group {
+      position: relative;
+      padding-left: $gutter;
+
+      .control-label {
+        cursor: pointer;
+        font-weight: normal;
+        margin: 0;
+        text-transform: none;
+
+        $radio-checkbox-base-text: merge((
+        ), g('_radio-checkbox-base.text'));
+
+        @include breakpoints() {
+          @include text($radio-checkbox-base-text, $media);
+        }
+      }
+
+      .controls {
+        font-size: 1rem;
+        left: 0;
+        position: absolute;
+        top: 0;
+
+        input[type="checkbox"] {
+          cursor: pointer;
+          vertical-align: middle;
+
+          &:focus {
+            box-shadow: none;
+            outline: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .error-msg {
+    display: none;
+    &.active {
+      display: inline-block;
+    }
+  }
+
+  @include media-query(desktop, auto) {
+    &.sign-up-form-cw {
+      .field-phone-number {
+        width: 50%;
+        padding-right: 0px;
+      }
+      .reference-datepicker {
+        line-height: unset;
+        float: left;
+        padding-right: spacings("s");
+      }
+    }
+    .field-date-picker.sign-up-form-cw  {
+      padding-left: 0px;
+    }
+  }
+
+  @import 'common-fields';
+  @import 'radioAsButton/index';
+  @import 'default';
+  @import 'config';
+}
+
+@import 'form-tooltip';

@@ -1,0 +1,60 @@
+// todo - to remove
+.default-storelocator-product-item {
+  position: relative;
+  margin-top: 10px;
+
+  .storelocator-toggle {
+    + .storelocator-form-wrapper {
+      display: block;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition-timing-function: ease-out;
+      transition-property: transform, opacity, visibility;
+      transition-delay: 0s, 0s, 0.3s;
+      transition-duration: 0.3s, 0.3s, 0s;
+    }
+  }
+
+  .storelocator-form-wrapper {
+    $arrow-size: 20px;
+    background: color('white');
+    border: 1px solid color('neutral', 'light');
+    box-sizing: border-box;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: $arrow-size + 5px;
+    padding: $gutter;
+    position: absolute;
+    width: 100%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border: $arrow-size solid transparent;
+      border-bottom: 0;
+      border-top: $arrow-size solid rgba(0, 0, 0, 0.2);
+    }
+
+    &:after {
+      border-top-color: color('white');
+      margin-top: -1px;
+    }
+
+    &.is-active {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
+  }
+
+  .storelocator-button-wrapper {
+    text-align: right;
+  }
+}

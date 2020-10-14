@@ -1,0 +1,18 @@
+%btn {
+  display: inline-block;
+  text-decoration: none !important; //consistent appearance in third party elements
+  font-weight: 700;
+  letter-spacing: 0;
+  border-radius: 3px;
+  padding: 1.2em 1.9em;
+  text-transform: uppercase;
+  outline: none;
+  transition: all 0.3s;
+  letter-spacing: 3px;
+  border: 0;
+  cursor: pointer;
+
+  &:hover {
+    transition: all 0.3s;
+  }
+}

@@ -1,0 +1,39 @@
+@mixin box-two-columns($left-selector, $left-cols, $right-selector, $right-cols) {
+
+  @each $label, $value in $wrapper-sizes {
+    @include media-query($label) {
+      $wrapper-size: $value;
+      $left-size: calc((#{$wrapper-size} / 12) * #{$left-cols} - #{$gutter * 2});
+      $right-size: calc((#{$wrapper-size} / 12) * #{$right-cols});
+
+      @if ($label == mobile OR $label == tablet) {
+        flex-direction: column;
+        padding: 0 $gutter;
+      }
+
+      @if ($label == desktop OR $label == wide) {
+        width: $wrapper-size;
+        padding: 0 $gutter;
+      }
+
+      #{$left-selector},
+      #{$right-selector} {
+
+        @if ($label == mobile OR $label == tablet) {
+          width: 100%;
+        }
+      }
+
+      @if ($label == desktop OR $label == wide) {
+
+        #{$left-selector} {
+          width: #{$left-size};
+        }
+
+        #{$right-selector} {
+          width: $right-size;
+        }
+      }
+    }
+  }
+}

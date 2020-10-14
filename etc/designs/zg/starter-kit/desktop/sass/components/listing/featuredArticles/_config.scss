@@ -1,0 +1,66 @@
+$featured-articles: (
+  spacings: common('spacings')
+);
+
+$featured-articles: merge($featured-articles, (
+  box: (),
+  _listing-items: (
+    box: (
+      margin: (
+         margin: breakpoint((
+          mobile: null,
+          tablet-min: 0 get($featured-articles, 'spacings.s') * -1
+        ))
+      )
+    )
+  ),
+  _item: (
+    box: (
+      flex: (
+        flex-basis: breakpoint(null, 0, 0),
+        flex-grow: breakpoint(null, 1, 1)
+      ),
+      padding: (
+        padding: breakpoint((
+          mobile: null,
+          tablet-min: 0 get($featured-articles, 'spacings.s')
+        ))
+      )
+    ),
+    _image: (
+      box: (
+        margin: (
+          margin: breakpoint(0 -20px, null, null)
+        )
+      )
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          font-size: px('m'),
+          line-height: 1.23,
+        ),
+        margin: (
+          margin: breakpoint((
+            mobile: 20px 0,
+            tablet-min: 20px 0 get($featured-articles, 'spacings.s')
+          ))
+        )
+      )
+    ),
+    _desription: (
+      paragraph: (
+        text: (
+          font-size: px(18),
+          line-height: 1.44
+        )
+      )
+    ),
+    _link: (
+      button: (
+        margin: get($featured-articles, 'spacings.s') 0,
+        width: breakpoint(100%, null, null)
+      )
+    )
+  )
+));

@@ -1,0 +1,10 @@
+@import '../../../components/listing/articleList/utils';
+
+.listing.listing-article-list {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($articleListing, $a...);
+  }
+
+  @include common-rules($articleListing);
+};

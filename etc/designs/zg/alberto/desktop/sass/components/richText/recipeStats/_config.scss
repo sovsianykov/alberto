@@ -1,0 +1,26 @@
+$recipeStats: (
+  box: (),
+  _container: (
+    box:(),
+    _item: (
+      box: (),
+      _title: (
+        paragraph:(
+          text: (
+            font-size: px('xxxs'),
+            line-height: 1.33,
+            color: color('primary', 'darker')
+          ),
+        )
+      ),
+      _value: (
+        paragraph:(
+          text: (
+            font-size: px(18),
+            line-height: 1.44,
+          )
+        )
+      )
+    ),
+  )
+);

@@ -1,0 +1,68 @@
+$email-us-form: (
+  box: (),
+  _formContent: (
+    box: ()
+  ),
+  _groupFields: (
+    box: (),
+  ),
+  _formButtonSubmit: (
+    box:(),
+    button: (),
+    _buttonHolder: (
+      box: ()
+    )
+  ),
+  _observations-of-fields: (
+    paragraph: (
+      text: (
+        font-size: px('xxs')
+      )
+    )
+  ),
+  _accordion-extra-info: (
+    box: (
+      background: color('white')
+    ),
+    paragraph: (
+      text: (
+        color: color('black'),
+        font-family: 'body',
+        font-size: px(18),
+        line-height: 1.33
+      )
+    )
+  ),
+  _product-info: (
+    box: (),
+    _legend: (
+      button: (
+        background: color('white'),
+        border: (
+          border-bottom: solid 2px color('black')
+        ),
+        text: (
+          color: color('black'),
+          font-family: 'body',
+          font-size: px('xxs'),
+          font-weight: bold,
+          line-height: 1.33,
+          text-transform: uppercase
+        ),
+        icon: (
+          content: common('icon.arrow-down'),
+          font-size: 10px,
+          side: 'after'
+        )
+      )
+    ),
+    _fields: (
+      box: (
+        background: color('neutral', 'lighter'),
+        border: (
+          border-bottom: solid 2px color('black')
+        )
+      )
+    )
+  )
+);

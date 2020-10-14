@@ -1,0 +1,19 @@
+$shareLabel: (
+  spacings: common('spacings')
+);
+
+$shareLabel: merge($shareLabel, (
+  _share-label: (
+    paragraph: (
+      text: (
+        font-size: px(14),
+        font-weight: bold,
+        line-height: 1.57,
+        letter-spacing: 0.3px
+      ),
+      margin: (
+        margin-right: breakpoint((tablet-max: get($shareLabel, 'spacings.l'), desktop: 20px))
+      )
+    )
+  )
+))

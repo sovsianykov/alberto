@@ -1,0 +1,132 @@
+@function gl($a...) { @return get-last($header, 'main._banner', $a...); }
+
+.box-banner {
+  box-sizing: border-box;
+  @include breakpoints {
+    @include box(gl('box'), $media);
+  }
+
+  @include media-query(auto, notebook) {
+    display: none;
+  }
+
+  @include media-query(tablet, notebook) {
+    display: block;
+
+    .content {
+      display: flex;
+      margin: spacings('s') * -0.5;
+
+      .image-banner {
+        margin: spacings('s') * 0.5;
+      }
+    }
+
+    &.box-banner-tall {
+      display: none;
+    }
+  }
+
+  .image-banner a:focus img {
+    transform: scale(1.1, 1.1);
+  }
+}
+
+// overriding specific mobile rule to put items side-by-side
+.nav-mobile .tabs-main-navigation .tabs-content .tabContent > .content > .box-banner {
+  @include media-query(tablet, notebook) {
+    @include margin(gl('box.margin'), 'tablet');
+    $width: g('main._navigation._mobile._nav-holder.box.max-width', 'tablet');
+    @if (typeof($width) != 'map') {
+      width: 100%;
+      max-width: $width;
+      margin-left: auto !important; // overriding grid imporant
+      margin-right: auto;
+    }
+  }
+
+  .image-banner {
+    width: 50%;
+  }
+}
+
+// overriding specific case for box-banner on desktop version to set width on image
+.header-main .tabs-content .tabContent > .content > .box-banner {
+  width: auto;
+
+  .image-banner {
+    img {
+      @include breakpoints {
+        @include size(gl('_image.button'), $media);
+      }
+    }
+  }
+}
+
+.image-banner {
+  .component-content {
+    @include breakpoints {
+      @include box(gl('_image._wrapper.box'), $media);
+      padding-bottom: 0;
+    }
+  }
+
+  figure {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  figcaption {
+    margin: 0 -2px; // massive workaround for animation in current html structure
+    position: relative;
+    z-index: 2;
+    transform: translateX(0);
+
+    @include breakpoints {
+      @include background(gl('_image._wrapper.box.background'), $media);
+      @include box(gl('_caption.box'), $media);
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+  }
+
+  img {
+    z-index: 1;
+    position: relative;
+    width: 100%;
+
+    @include breakpoints {
+      @include button(gl('_image.button'), $media);
+    }
+  }
+
+  p {
+    margin: 0;
+    display: flex;
+
+    @include breakpoints {
+      @include button(gl('_description.button'), $media);
+    }
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  .banner-title {
+    @include button(gl('_title.button'), $media);
+    @include lh-diff(gl('_title.button.text'), $media);
+  }
+
+  &:hover {
+    img {
+      transform: scale(1.1, 1.1);
+    }
+  }
+
+  @include media-query(desktop, auto) {
+    + .image-banner {
+      margin-top: spacings('xs');
+    }
+  }
+}

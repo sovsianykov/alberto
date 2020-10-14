@@ -1,0 +1,166 @@
+@import '../../core/config';
+
+.virtual-agent-holder {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($virtualAgent, $a...);
+  }
+
+  > .component-content {
+    @include wrapper();
+
+    @include breakpoints() {
+      @include box(g('_main.box'), $media);
+    }
+  }
+
+  .virtual-agent--quick-tip {
+    @include breakpoints() {
+      @include paragraph(g('_main._quick-tip.paragraph'), $media);
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .virtualAgent {
+    .virtualAgent-form-wrapper {
+      position: relative;
+      display: flex;
+
+      @include box(g('_main._form.box'), $media);
+      @include icon(g('_main._form.icon'), $media);
+    }
+
+    .twitter-typeahead {
+      width: 100%;
+    }
+
+    .virtualAgent-input {
+      width: 100%;
+
+      @include breakpoints() {
+        @include input(g('_main._form._input'), $media);
+      }
+    }
+
+    .tt-menu {
+      width: 100%;
+    }
+
+    .tt-dataset {
+      @include breakpoints() {
+        @include box(g('_main._form._suggestions.box'), $media);
+        @include text(g('_main._form._suggestions.text'), $media);
+      }
+    }
+
+    .tt-suggestion {
+      @include breakpoints() {
+        @include box(g('_main._form._suggestion.box'), $media);
+      }
+
+      &:empty {
+        display: none;
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        @include breakpoints() {
+          @include box(g('_main._form._suggestion-active.box'), $media);
+        }
+      }
+    }
+
+    .tt-cursor {
+      @include box(g('_main._form._suggestion-active.box'), $media);
+    }
+
+    .virtualAgent-reset {
+      position: absolute;
+      right: 10px;
+      top: 0;
+      bottom: 2px;
+
+      @include breakpoints() {
+        @include button(g('_main._form._reset.button'), $media);
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    button.virtualAgent-reset {
+      display: none; //handled by js
+    }
+
+    .virtualAgent-submit {
+      display: none;
+    }
+
+    .virtualAgent-results {
+      @include box(g('_main._form._results.box'), $media);
+
+      &.is-loading {
+        @include box(g('_main._form._loading.box'), $media);
+      }
+    }
+
+    .virtualAgent-question {
+      @include paragraph(g('_main._form._results._question.paragraph'), $media);
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    .virtualAgent-answer {
+      @include paragraph(g('_main._form._results._answer.paragraph'), $media);
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    .virtualAgent-related-questions {
+      &:empty {
+        display: none;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        @include margin(g('_main._form._results._related-question.paragraph.margin'), $media);
+      }
+    }
+
+    .virtualAgent-related-question {
+      @include paragraph(g('_main._form._results._related-question.paragraph'), $media);
+    }
+
+    .virtualAgent-noresults {
+      display: none;
+
+      .default-style p {
+        @include paragraph(g('_main._form._noresults.paragraph'), $media);
+      }
+    }
+
+    .virtualAgent-footer {
+      display: none;
+
+      @include paragraph(g('_main._get-in-touch.paragraph'), $media);
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

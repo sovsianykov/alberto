@@ -1,0 +1,29 @@
+.button-clear-filters {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($clear-filters, $a...);
+  }
+  $ignore-button-attrs: (
+    display: ignore
+  );
+
+  display: none;
+  pointer-events: none;
+  text-transform: uppercase;
+
+  @include button(g('button'), $media, $ignore-button-attrs);
+  @include button(g('_button-disabled.button'), $media, $ignore-button-attrs);
+
+  p {
+    margin: 0;
+  }
+
+  .has-filters & {
+    pointer-events: initial;
+    @include button(g('button'), $media, $ignore-button-attrs);
+  }
+
+  @include media-query(mobile, notebook) {
+    display: inline-flex;
+  }
+}

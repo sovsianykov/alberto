@@ -1,0 +1,47 @@
+// clear float technique
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+// create the main wrapper
+$wrapper-sizes: (
+  mobile: $holder-mobile,
+  tablet: $holder-tablet,
+  desktop: $holder-desktop,
+  wide: $holder-wide
+);
+
+@mixin wrapper {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: $gutter;
+  padding-right: $gutter;
+
+  @each $label, $value in $wrapper-sizes {
+    @include media-query($label) {
+      width: $value;
+    }
+  }
+}
+
+// wrapper used to received well aligned absolute elements
+@mixin relative-wrapper {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+
+  @each $label, $value in $wrapper-sizes {
+    @include media-query($label) {
+      width: safesum($value, -($gutter * 2));
+    }
+  }
+}

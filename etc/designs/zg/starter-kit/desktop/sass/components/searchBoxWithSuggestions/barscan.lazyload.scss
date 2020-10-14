@@ -1,0 +1,46 @@
+@import '../../core/config';
+
+.barcodescan {
+  cursor: pointer;
+  font-family: icons;
+  font-size: px(24);
+  position: absolute;
+  right: 60px;
+  top: 26px;
+
+  &:before {
+    content: common('icon.barcode');
+  }
+
+  &:focus {
+    .ua-webkit & {
+      outline: -webkit-focus-ring-color auto 5px;
+    }
+  }
+}
+
+.barscan-container {
+  display: none;
+
+  .barscan-enabled & {
+    display: block;
+  }
+
+  .barscan-video {
+    .barcode-title {
+      font-size: px(24);
+    }
+
+    .barcode-description {
+      font-size: px('xs');
+    }
+
+    #barscan-video-streaming {
+      height: 300px;
+      width: 100%;
+      @include media-query(tablet, wide) {
+          width: 300px;
+      }
+    }
+  }
+}

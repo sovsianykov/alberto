@@ -1,0 +1,331 @@
+@import '../../core/config';
+
+.recipeListing {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($recipeList, $a...);
+  }
+
+  @include listing-cols('.recipeListing-list', '.recipeListing-item', 20px, breakpoint(2, 3, 4));
+
+  > .component-content {
+    @include wrapper;
+
+    $box: merge((
+      margin: (
+        margin-bottom: 60px,
+      )
+    ), g("box"));
+
+    @include box($box, $media);
+  }
+
+  .recipeListing-filters {
+    $filtersWrapper: merge((
+      display: flex,
+      flex: (
+        flex-wrap: wrap,
+        align-items: center
+      ),
+      margin: (
+        margin-bottom: 60px
+      )
+    ), g('_recipes-filters.box'));
+
+    @include breakpoints() {
+      @include box($filtersWrapper, $media);
+      @include text(g('_recipes-filters.text'), $media);
+    }
+
+    select {
+      appearance: none;
+      outline: none;
+      z-index: 1;
+      background: transparent;
+
+      &::-ms-expand {
+        display: none;
+      }
+    }
+  }
+
+  .recipeListing-main-filters {
+    $mainFiltersWrapper: merge((
+      display: flex,
+      flex: (
+        flex-wrap: wrap
+      )
+    ), g('_recipes-filters._main-filters.box'));
+
+    @include box($mainFiltersWrapper, $media);
+
+    .filter-wrapper {
+      $filterWrapper: merge((
+        margin: (
+          margin-right: breakpoint((tablet-max: spacings('xl'), desktop: spacings('xxl'))),
+          margin-top: spacings('xs')
+        )
+      ), g('_recipes-filters._wrapper.box'));
+
+      @include breakpoints() {
+        @include box($filterWrapper, $media);
+      }
+    }
+
+    .filter-select {
+      width: auto;
+
+      @include button(g('_recipes-filters._dropdown-wrapper.button'), $media);
+
+      &:before {
+        top: 93%;
+      }
+
+      &:after {
+        position: relative;
+        right: 10px;
+      }
+
+      select {
+        @include breakpoints() {
+          @include button(g('_recipes-filters._dropdown.button'), $media);
+          @include text(g('_recipes-filters._dropdown.text'), $media);
+        }
+
+        option {
+          @include breakpoints() {
+            @include text(g('_recipes-filters._dropdown-options.text'), $media);
+            @include box(g('_recipes-filters._dropdown-options.box'), $media);
+          }
+        }
+      }
+    }
+  }
+
+  .recipeListing-sort-order {
+    $sortOrder: merge((
+      display: flex,
+      flex: (
+        justify-content: flex-end,
+        align-items: baseline,
+        flex-grow: 1,
+      ),
+      margin: (
+        margin-right: 0
+      )
+    ), g('_recipes-filters._sort-order.box'));
+
+    @include box($sortOrder, $media);
+
+    @include media-query(auto, tablet) {
+      flex-basis: 100%;
+      justify-content: flex-start;
+    }
+
+    label {
+      @include breakpoints() {
+        @include button(g('_recipes-filters._title.button'), $media);
+      }
+      @include media-query(mobile) {
+        display: none;
+      }
+
+      bottom: -3px;
+      margin-right: spacings('xs');
+      position: relative;
+
+      @include media-query(mobile) {
+        display: inline-flex;
+      }
+    }
+
+    .filter-select {
+      $sortOrderDropdown: merge((
+        margin: (
+          margin-top: breakpoint((mobile: spacings('m')))
+        )
+      ), g('_recipes-filters._dropdown-wrapper-last.button'));
+
+      @include breakpoints() {
+        @include button($sortOrderDropdown, $media);
+      }
+      position: relative;
+
+      select {
+        @include button(g('_recipes-filters._dropdown-wrapper-last._dropdown-last.button'), $media);
+
+        option {
+          min-height: 0;
+        }
+      }
+
+      $pseudo: safetype(g('_recipes-filters._dropdown-last.side'), 'after');
+      &:#{$pseudo} {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      $pseudo: safetype(g('_recipes-filters._dropdown-last.side'), 'before');
+      &:#{$pseudo} {
+        display: none;
+      }
+    }
+  }
+
+  &-list {
+    padding: 0;
+    list-style: none;
+  }
+
+  &-item {
+    $listingItem: merge((
+      height: 100%,
+      list-style-type: none,
+      display: flex,
+      flex: (
+        flex-direction: column
+      ),
+      margin: (
+        margin-bottom: 20px
+      )
+    ), g("_recipe-listing-item.box"));
+
+    @include breakpoints() {
+      /*! @important(start)*/
+      @include box($listingItem, $media);
+      /*! @important(stop)*/
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:hover .recipeListing-details {
+      @include breakpoints() {
+        @include hover(g("_recipe-listing-item._details.hover"), $media);
+      }
+    }
+
+    .recipeListing-details {
+      $box: merge((
+        display: flex,
+        flex: (
+          flex-grow: 2,
+          flex-direction: column,
+          justify-content: space-between
+        ),
+      ), g("_recipe-listing-item._details.box"));
+
+       @include box($box, $media);
+
+      .image {
+        height: 100%;
+
+        img{
+          flex-shrink: 0; //IE11 fix - prevent stretching
+        }
+      }
+
+      .richText {
+        max-width: 100%; //prevents overflow on IE11
+
+        h2, h3 {
+          $paragraph: merge((
+            margin: spacings('m') spacings('xxs') spacings('xs')
+          ), g("_recipe-listing-item._details._name.paragraph"));
+
+          @include paragraph($paragraph, $media);
+        }
+
+        p {
+          $paragraph: merge((
+            margin: (
+              margin: breakpoint((mobile: spacings('xs') spacings('xxs'), tablet-min: spacings('xs') spacings('m')))
+            )
+          ), g("_recipe-listing-item._details._description.paragraph"));
+
+          @include breakpoints() {
+            /*! @important(start)*/
+            @include paragraph($paragraph, $media);
+            /*! @important(stop)*/
+          }
+        }
+      }
+    }
+  }
+
+  &-link {
+    text-decoration: none;
+    overflow: auto;
+  }
+
+  .ratingsandreviews {
+    $box: merge((
+      margin: (
+        margin-bottom: breakpoint((mobile: 20px, tablet-min: spacings('m')))
+      )
+    ), g("_recipe-listing-item._details._ratings.box"));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+
+    .bazaarvoice {
+      .bv-stars-container {
+        display: flex !important;   //overriding 3rd party styles
+        justify-content: center;
+
+        @include box(g("_recipe-listing-item._details._ratings._stars-container.box"), $media);
+      }
+
+      .bv-compat .bv-stars-container {
+        .bv-rating-ratio {
+          padding-right: 0 !important;    //overriding 3rd party styles
+        }
+
+        .bv-rating-ratio-number,
+        .bv-rating-ratio-count {
+          display: none !important;   //overriding 3rd party styles
+        }
+      }
+
+      div[data-bv-show="inline_rating"] {
+        text-align: center;
+
+        .bv_averageRating_component_container,
+        .bv_numReviews_component_container {
+          display: none !important;    //overriding 3rd party styles
+        }
+      }
+    }
+
+    .kritique {
+      .rr-widget-container {
+        font-size: 0;
+        text-align: center;
+        
+        img {
+          height: 16px;
+          max-width: initial;
+          width: auto;
+        }
+      }
+
+      span,
+      a {
+        display: none;
+      }
+    }
+  }
+
+  .recipeListing-show-more-btn {
+    cursor: pointer;
+
+    @include button(g("_show-more-btn.button"), $media);
+    display: block;
+  }
+
+  @import 'recipeListAsCarousel/index';
+}

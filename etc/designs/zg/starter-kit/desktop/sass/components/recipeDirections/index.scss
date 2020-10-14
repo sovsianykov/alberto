@@ -1,0 +1,87 @@
+@import '../../core/_config';
+
+.recipeDirections {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($recipeDirections, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  &-title {
+    $paragraph: merge((
+      margin: (
+        margin: 0 0 spacings('m')
+      )
+    ), g('_title.paragraph'));
+
+    @include paragraph($paragraph, $media);
+  }
+
+  &-list {
+    padding-left: 22px;
+  }
+
+  &-item {
+    @include text(g('_item._number.text'), $media);
+
+    p {
+      $paragraph: merge((
+        margin: (
+          margin-left: spacings('m'),
+          margin-bottom: spacings('m')
+        )
+      ), g('_item.paragraph'));
+
+      @include paragraph($paragraph, $media);
+    }
+  }
+
+  pre {
+    background-color: color("neutral", "lighter");
+    padding: spacings('m');
+    white-space: pre-wrap;
+
+    $pre: merge(g('_item.paragraph'),(
+      margin: (
+        margin-left: 0
+      )
+    ));
+    @include paragraph($pre, $media);
+    &:empty {
+      display: none;
+    }
+
+    blockquote,
+    h1,
+    h2,
+    h3,
+    h4,
+    ol,
+    p,
+    ul {
+      margin: spacings('s') 0;
+      padding: 0;
+    }
+    ol li {
+      list-style-position: inside;
+    }
+    ul li {
+      $markerSize: 12px;
+      list-style: none;
+      &::before {
+        background-color: color('primary');
+        border-radius: 50%;
+        content: "";
+        display: inline-block;
+        height: $markerSize;
+        margin-right: $markerSize / 1.5;
+        width: $markerSize;
+      }
+    }
+    :first-child {
+      margin-top: 0;
+    }
+  }
+}
+

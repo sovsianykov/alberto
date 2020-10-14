@@ -1,0 +1,59 @@
+.box.box-recipe-share {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($recipeShare, $a...);
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .richText:first-of-type {
+    $labelWrapper: merge((
+      flex: (
+        flex-basis: breakpoint((tablet-max: 100%))
+      )
+    ), g('_label-wrapper.box'));
+
+    @include breakpoints() {
+      @include box($labelWrapper, $media);
+    }
+
+    p {
+      $label: merge((
+        margin: (
+          margin-right: breakpoint((desktop: 20px)),
+          margin-bottom: breakpoint((tablet-max: spacings('xs')))
+        )
+      ), g('_label-wrapper._label.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($label, $media);
+      }
+    }
+  }
+
+  .addthis_toolbox a {
+    $shareIcon: merge((
+      margin: (
+        margin-top: breakpoint((mobile: spacings('xs'))),
+        margin-bottom: breakpoint((mobile: spacings('xs')))
+      )
+    ), g('_share-icon.button'));
+
+    @include breakpoints() {
+      @include paragraph($shareIcon, $media);
+    }
+  }
+
+  .richText--print {
+
+    @include paragraph(g('_print-wrapper.box'), $media);
+
+    p {
+        @include paragraph(g('_print-wrapper._icon.button'), $media);
+    }
+  }
+}

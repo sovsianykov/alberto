@@ -1,0 +1,13 @@
+.box-inline-elements .content {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($inlineElements, $a...);
+  }
+
+  display: flex;
+  justify-content: flex-start;
+
+  @include breakpoints() {
+    @include box(g('box'), $media);
+  }
+}

@@ -1,0 +1,14 @@
+$darkerBackground: (
+  spacings: common('spacings')
+);
+
+$darkerBackground: merge($darkerBackground, (
+  _main: (
+    box: (
+      padding: (
+        padding-top: get($darkerBackground, 'spacings.xl'),
+        padding-bottom: get($darkerBackground, 'spacings.xxl'),
+      )
+    )
+  )
+));

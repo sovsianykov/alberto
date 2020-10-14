@@ -1,0 +1,44 @@
+@import '../../core/config';
+
+.searchBox[class*=temporary-default-] {
+  input[type=text] {
+    width: 81px;
+  }
+
+  &-title {
+    cursor: default;
+  }
+
+  .form {
+    &-content {
+      .textField {
+        display: inline;
+        float: left;
+        margin-right: 15px;
+      }
+
+      &Button {
+        display: inline;
+        float: left;
+
+        &.section {
+          margin: -1px 0 0;
+        }
+      }
+
+      .section {
+        margin: 0 15px 0 0;
+      }
+    }
+
+    &-search {
+      &.no-box,
+      &.no-box .section {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@import "largeInput/index";

@@ -1,0 +1,15 @@
+.html--coupon-selector {
+  @include media-query(desktop) {
+    iframe {
+      width: 1360px;
+      height: 700px;
+    }
+  }
+
+  @include media-query(auto, tablet) {
+    iframe {
+      width: 375px;
+      height: 500px;
+    }
+  }
+}

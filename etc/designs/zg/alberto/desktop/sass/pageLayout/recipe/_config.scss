@@ -1,0 +1,47 @@
+$default: (
+  _image-and-meta-wrapper: (
+    box: (),
+    _section: (
+      box: ()
+    )
+  ),
+  _top-container: (
+    box: (
+      background: transparent,
+      margin: (
+        margin-top: breakpoint((desktop: 85px))
+      )
+    ),
+    _image-wrapper: (
+      box: (
+        background: transparent
+      ),
+      _image: (
+        box: ()
+      )
+    ),
+    _meta: (
+      box: (
+        background: transparent
+      )
+    )
+  ),
+  _bottom-container: (
+    box: (
+      background: transparent
+    ),
+    _ingredients: (
+      box: (
+        background: transparent
+      )
+    ),
+    _directions: (
+      box: (
+        background: transparent
+      )
+    )
+  ),
+  _recipe-ingredients-wrapper: (
+    box: ()
+  )
+)

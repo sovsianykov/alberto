@@ -1,0 +1,23 @@
+// this will add important to all properties as this module needs to override
+// third party inline styles and !important rules.
+
+@import '../../../core/config';
+
+.ratingsandreviews .bazaarvoice {
+  @import 'config';
+  @function g($a...) { @return get-last($ratings-and-reviews, $a...); }
+
+  .bv_main_container_row_flex:last-of-type {
+    display: block !important;
+    top: -4px;
+  }
+
+  .bazaarvoice .bv_main_container {
+    $box: merge((
+      margin: 0 0 spacings('m'),
+      display: block
+    ), g('_main.box'));
+
+    @include box($box, $media);
+  }
+}

@@ -1,0 +1,256 @@
+@import '../../../core/_config';
+
+.composite-variation-recipe-finder-with-carousel {
+  @import 'config';
+  @function g($a...) { @return get-last($recipeFinderWithCarousel, $a...); }
+
+  > div > .box > .component-content {
+    $box: merge((
+      padding: (
+        padding-top: breakpoint(60px, 60px, spacings("xxxl")),
+        padding-bottom: spacings("xxxl"),
+      )
+    ), g('box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    > .content {
+      $box: merge((
+        padding: (
+          padding: breakpoint((mobile: 0))
+        )
+      ), g('_wrapper.box'));
+
+      @include breakpoints {
+        @include box($box, $media);
+      }
+    }
+
+    .richText-tertiary-header {
+      $box: merge((
+        margin: (
+          margin-bottom: breakpoint((tablet-max: spacings('l'), desktop: 60px)),
+        ),
+      ), g('_text-wrapper.box'));
+
+      @include breakpoints {
+        @include box($box, $media);
+      }
+
+      h2, h3, h4 {
+        @include breakpoints {
+          @include paragraph(g('_text-wrapper._title.paragraph'), $media);
+        }
+      }
+    }
+  }
+
+  .searchBox {
+    $box: merge((
+      margin: (
+        margin: breakpoint((mobile: 0 20px))
+      )
+    ), g('_searchBox'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include paragraph($box, $media);
+      /*! @important(stop) */
+    }
+  }
+
+  @include listing-cols('.recipe-category-carousel > .component-content > .content', '.reference-recipe-category-carousel-item', 0px, breakpoint(1, 3, 3));
+
+  .recipe-category-carousel {
+    user-select: none;
+
+    $box: merge((
+      padding: (
+        padding: breakpoint((tablet-min: 0 64px))
+      ),
+      margin: (
+        margin: breakpoint((mobile: spacings("l") 0, tablet-min: 60px 0))
+      )
+    ), g('_carousel.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    > .component-content {
+      $box: merge((
+        width: breakpoint((mobile: calc(50% - 05px))),
+        overflow: breakpoint((tablet-min: hidden)),
+        margin: (
+          margin: breakpoint(spacings('xs') * -1 auto, spacings('xs') * -1, spacings('s') * -1)
+        )
+      ), g('_carousel-wrapper.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+
+      > div.content {
+        flex-wrap: nowrap; //overwrite listing-col styles
+      }
+    }
+
+    + .richText {
+      p {
+        margin: 0;
+      }
+
+      a {
+        width: auto;
+      }
+    }
+  }
+
+  .reference-recipe-category-carousel-item {
+    $box: merge((
+      flex: (
+        flex-shrink: 0,
+      ),
+      padding: (
+        padding: breakpoint((tablet-max: spacings('xs'), desktop: spacings('s'))),
+      ),
+    ), g('_item-wrapper.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    &.is-hidden {
+      // visibility: hidden is needed to prevent tabbing out of carousel viewport
+      // display: block is needed to calculate carousel width correctly
+      visibility: hidden;
+      display: block! important; // overriding global is-hidden style
+    }
+  }
+
+  .category-link {
+    text-decoration: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    cursor: pointer;
+
+    @include breakpoints {
+      @include box(g('_item.box'), $media);
+    }
+
+    &:hover .category-name {
+      @include breakpoints {
+        @include hover(g('_item.button.hover'), $media);
+      }
+    }
+  }
+
+  .category-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    min-width: 100%;
+    min-height: 100%;
+
+    .mod-objectfit & {
+      min-width: 0;
+      min-height: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @include transition(g('_item._image.transition'), (
+      'transform', 'opacity', 'visibility'
+    ), $media);
+
+    &:hover {
+      @include breakpoints {
+        @include hover(g('_item._image.hover'), $media);
+      }
+    }
+  }
+
+  .category-name {
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    z-index: $z-index-behind;
+    width: 100%;
+
+    @include breakpoints {
+      @include button(g('_item.button'), $media);
+    }
+  }
+
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include breakpoints() {
+      @include box(g('_carousel._carousel-nav.box'), $media);
+    }
+
+    button {
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .previous,
+    .next {
+      position: absolute;
+      border: 0;
+
+      @include breakpoints() {
+        @include button(g('_carousel._carousel-nav._nav-item.button'), $media);
+      }
+
+      @include media-query(auto, mobile) {
+        display: none !important;
+      }
+
+      &.disabled {
+        pointer-events: none;
+
+        @include breakpoints() {
+          @include button(g('_carousel._carousel-nav._nav-item._disabled.button'), $media);
+        }
+      }
+    }
+
+    .previous {
+      left: 0;
+      
+      @include breakpoints() {
+        @include button(g('_carousel._carousel-nav._nav-item._prev.button'), $media);
+      }
+    }
+
+    .next {
+      right: 0;
+
+      @include breakpoints() {
+        @include button(g('_carousel._carousel-nav._nav-item._next.button'), $media);
+      }
+    }
+  }
+  .ua-ie-11 & .component picture img {
+    width:0;
+  }
+}

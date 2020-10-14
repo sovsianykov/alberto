@@ -1,0 +1,23 @@
+$sectionTitle: (
+  spacings: common('spacings')
+);
+
+$sectionTitle: merge($sectionTitle, (
+  paragraph: (
+    text: (
+      font-family: 'primary',
+      font-weight: bold,
+      font-size: breakpoint((
+          mobile: px(38),
+          tablet-min: px(48)
+      )),
+      text-transform: uppercase,
+      text-align: center,
+      line-height: breakpoint((
+        mobile: px(44),
+        tablet-min: px(54)
+      ))
+    ),
+    margin: get($sectionTitle, 'spacings.l') 0 get($sectionTitle, 'spacings.m')
+  )
+));

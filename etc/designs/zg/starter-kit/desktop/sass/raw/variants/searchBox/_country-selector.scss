@@ -1,0 +1,104 @@
+.searchBox--autocomplete {
+  margin: 30px 0 45px;
+
+  .form-search {
+    display: flex;
+    align-items: flex-end;
+    overflow: visible;
+  }
+
+  .searchBox-label {
+    display: inline-block;
+    width: 330px;
+
+    .searchBox-title {
+      display: block;
+      margin-bottom: 20px;
+      font-size: 19px;
+      font-weight: bold;
+      white-space: normal;
+    }
+
+    .twitter-typeahead {
+      .tt-input {
+        line-height: 30px;
+        height: 30px;
+        width: 330px;
+        outline: none;
+
+        &:focus {
+          box-shadow: 0 0 10px lightblue;
+        }
+
+        &::-ms-clear {
+          display: none;
+        }
+      }
+
+      .tt-hint {
+        line-height: 30px;
+        height: 30px;
+        color: #aaa;
+      }
+
+      .tt-menu {
+        border: 1px solid #ccc;
+        width: 100%;
+        box-sizing: border-box;
+
+        &:hover {
+          cursor: pointer;
+        }
+
+        .tt-suggestion {
+          padding: 2px 10px;
+          background: #fff;
+        }
+
+        .tt-cursor {
+          background: #eee;
+        }
+      }
+    }
+  }
+
+  .button {
+    position: static;
+    width: auto;
+    font-size: 16px;
+    padding: 0 10px;
+    color: #fff;
+    text-transform: uppercase;
+    height: 30px;
+
+    &:after {
+      display: none;
+    }
+  }
+}
+
+@include respond-to (phone) {
+  .searchBox--autocomplete {
+    .searchBox-label {
+      width: 100%;
+
+      .twitter-typeahead {
+        display: block !important;
+
+        .search-query {
+          padding: 0 50px 0 10px;
+        }
+
+        .tt-input {
+          width: 100%;
+        }
+      }
+    }
+
+    .button {
+      position: absolute;
+      top: auto;
+      bottom: 0;
+    }
+  }
+}

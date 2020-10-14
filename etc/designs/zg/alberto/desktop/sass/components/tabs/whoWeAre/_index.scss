@@ -1,0 +1,221 @@
+.wrapper-who-we-are-page {
+  .header-main {
+    .paragraphSystem {
+      .image {
+        position: relative;
+        overflow: hidden;
+        @include breakpoints(tablet) {
+          height: 500px;
+        } 
+        @include breakpoints(desktop) {
+          height: 600px;
+        }
+        img {
+          @include breakpoints(mobile) {
+            object-fit: cover;
+            max-height: 275px;
+          }
+          @include breakpoints(tablet, desktop) {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+  }
+}
+.main-content-who-we-are {
+  .richText-content {
+    h1 {
+      text-transform: uppercase;
+      margin: 20px 0 25px;
+      @include breakpoints(tablet) {
+        font-size: px(34);
+        margin: 30px 0 30px;
+        text-align: center;
+      }
+      @include breakpoints(desktop) {
+        font-size: px(40);
+        margin: 60px 0 40px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+.tabs-who-we-are {
+  .tabs-nav-list {
+    display: flex;
+    list-style-type: none;
+    position: relative;
+    border-bottom: 1px solid color('secondary', 'base');
+    padding-left: 0;
+    margin-top: 0;
+    @include breakpoints(tablet) {
+      margin-bottom: 20px;
+    }
+    @include breakpoints(desktop) {
+      margin-bottom: 40px;
+    }
+    > li {
+      width: 50%;
+      text-align: center;
+      padding-bottom: 10px;
+      border-bottom: 4px solid transparent;
+      transition: all 0.3s ease;
+      margin-bottom: -1px;
+      cursor: pointer;
+      font-family: font-family('primary');
+      &.is-active {
+        border-bottom: 4px solid color('primary', 'base');
+        a {
+          font-weight: bold;
+        }
+      }
+      a {
+        text-decoration: none;
+        font-size: px(16);
+        @include breakpoints(tablet) {
+          font-size: px(18);
+        }
+        @include breakpoints(desktop) {
+          font-size: px(19);
+        }
+      }
+    }
+  }
+}
+
+// Philosophy tab content
+.tab-our-philosophy {
+  >.paragraphSystem {
+    text-align: center;
+    > .richText {
+      text-align: initial;
+    }
+    >.box {
+      text-align: initial;
+      @include breakpoints(tablet, desktop) {
+        position: relative;
+        >.component-content {
+          position: relative;
+          z-index: 1;
+          padding: 30px 0 80px;
+          > .paragraphSystem {
+            display: flex;
+            justify-content: space-between;
+            > .box {
+              width: calc(50% - 10px);
+            }
+          }
+        }
+      }
+    }
+  }
+  .richText-content {
+    h2, h3 {
+      font-size: px(20);
+      margin-bottom: 10px;
+      @include breakpoints(tablet) {
+        font-size: px(22);
+      }
+      @include breakpoints(desktop) {
+        font-size: px(24);
+      }
+      ~ p {
+        font-size: px(19);
+        font-family: font-family('primary');
+        @include breakpoints(tablet, desktop) {
+          font-size: px(20);
+          margin: 0;
+        }
+        &:last-child {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  .image {
+    img {
+      border-radius: 10px;
+    }    
+  }
+}
+
+// History tab content
+.tab-our-history {
+  >.paragraphSystem {
+    text-align: center;
+    >.component {
+      text-align: initial;
+      >.component-content {
+        @include breakpoints(tablet, desktop) {
+          padding-bottom: 40px;
+        }
+        >.paragraphSystem {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+          .box {
+            width: 100%;
+            @include breakpoints(tablet) {
+              width: 49%;
+              margin-bottom: 30px;
+            }
+            @include breakpoints(desktop) {
+              width: 32.5%;
+              margin-bottom: 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .richText {
+    h3, h4 {
+      font-size: px(20);
+      margin-bottom: 5px;
+      @include breakpoints(tablet) {
+        font-size: px(22);
+      }
+      @include breakpoints(desktop) {
+        font-size: px(24);
+      }
+      ~ p {
+        font-size: px(19);
+        font-family: font-family('primary');
+        margin-top: 5px;
+        @include breakpoints(tablet, desktop) {
+          font-size: px(20);
+        }
+        &:first-child {
+          margin-top: 0;
+        }
+        &:last-child {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
+  .image {
+    img {
+      border-radius: 10px;
+    }
+  }
+}
+
+// Hide change tab button from tablet and desktop
+.tab-our-philosophy,
+.tab-our-history {
+  >.paragraphSystem {
+    .button-tertiary {
+      font-family: font-family('body');
+      margin-bottom: 50px;
+      @include breakpoints(tablet, desktop) {
+        display: none;
+      }
+    }
+  }
+}

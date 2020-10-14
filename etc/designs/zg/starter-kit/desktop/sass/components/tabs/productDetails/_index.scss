@@ -1,0 +1,101 @@
+.tabs-product-details {
+  @import 'config';
+  @function g($a...) { @return get-last($tabs-product-details, $a...); }
+
+  @include box(g('box'), $media);
+
+  .tabs-nav {
+    @include wrapper;
+  }
+
+  .tabs-nav-list {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+
+    @include breakpoints() {
+      @include box(g('_tabs-nav.box'), $media);
+    }
+  }
+
+  .tabs-nav-item {
+    a {
+      $tabItem: merge((
+        max-height: breakpoint((tablet-max: 55px)),
+        box-sizing: border-box
+      ), g('_tabs-nav._item.button'));
+
+      @include breakpoints() {
+        @include button($tabItem, $media);
+      }
+    }
+
+    &.is-active {
+      a {
+        @include breakpoints {
+          @include button(g('_tabs-nav._item-active.button'), $media);
+        }
+      }
+    }
+
+    .tabItem-smartlabel {
+      a {
+        @include button(g('_tabs-nav._item-smartlabel.button'), $media);
+      }
+
+      > div {
+        display: flex;
+        flex-direction: row-reverse;
+
+        .text-wrapper {
+          @include breakpoints() {
+            @include button(g('_tabs-nav._item-smartlabel._caption.paragraph'), $media);
+          }
+        }
+      }
+
+      .image-wrapper {
+        display: flex;
+        align-items: center;
+        min-width: 66px;
+
+        img {
+          @include box(g('_tabs-nav._item-smartlabel._image.box'), $media);
+        }
+      }
+    }
+  }
+
+  .tabs-content {
+    // Adjust to js DOM manipulations
+    @include media-query(auto, notebook) {
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+
+    @include breakpoints() {
+      @include box(g('_tabs-wrapper.box'), $media);
+    }
+
+    > .tabContent > .content {
+      @include clearfix;
+      @include wrapper;
+    }
+
+    .richText {
+      @include breakpoints() {
+        @include paragraph(g('_tabs-content.paragraph'), $media);
+      }
+
+      h2 {
+        @include breakpoints() {
+          @include paragraph(g('_tabs-content._heading.paragraph'), $media);
+        }
+      }
+
+      p:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

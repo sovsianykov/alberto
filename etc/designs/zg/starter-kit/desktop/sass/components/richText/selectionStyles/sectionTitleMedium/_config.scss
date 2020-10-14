@@ -1,0 +1,16 @@
+$section-title-medium: (
+  spacings: common('spacings')
+);
+
+$section-title-medium: merge($section-title-medium,(
+  paragraph: (
+    text: (
+      color: color('black'),
+      font-weight: bold,
+      text-transform: uppercase,
+      line-height: 1.1,
+      font-family: 'primary',
+      font-size: px('l')
+    )
+  )
+));

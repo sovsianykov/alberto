@@ -1,0 +1,66 @@
+select, input[type=text] {
+  background-color: color('white');
+  border: 1px solid color('neutral','light');
+  border-radius: 3px;
+  box-sizing: border-box;
+  color: color('black');
+  font-size: px(s);
+  font-family: proxima-nova,sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: none;
+}
+select {
+  display: block;
+  height: 50px;
+  margin-top: 1px;
+  width: 100px;
+}
+input[type=text] {
+  border-radius: spacings('xxs');
+  height: 50px;
+  padding: 0 spacings('m')/1.5;
+  text-align: left;
+  width: 100%;
+}
+.form__row {
+  margin-bottom: spacings(s);
+  &:after,
+  &:before {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.form__item--50 {
+  box-sizing: border-box;
+  display: inline-block;
+  float: left;
+  vertical-align: top;
+  width: calc(50% - #{spacings(s)});
+}
+.form__item--50:first-of-type {
+  margin-right: spacings(s);
+}
+.form__item--50:last-of-type {
+  margin-left: spacings(s);
+}
+.form__item--50 select {
+  width: 100%;
+}
+.form__label {
+  display: block;
+  font-size: px(xs);
+  line-height: px(m);
+
+  &[data-remaining-length]:after {
+    content: "(" attr(data-remaining-length) ")";
+    font-size: 80%;
+    margin-left: spacings(xxs);
+    opacity: .5;
+  }
+}

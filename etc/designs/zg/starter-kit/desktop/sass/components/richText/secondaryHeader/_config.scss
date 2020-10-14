@@ -1,0 +1,20 @@
+$secondaryHeader: (
+  spacings: common('spacings')
+);
+
+$secondaryHeader: merge($secondaryHeader, (
+  _main: (
+    box: (),
+    _first-headline: (
+      paragraph: (
+        text: (
+          font-size: px(18),
+          line-height: 1.22
+        )
+      )
+    ),
+    _second-headline: (
+      paragraph: extend('_secondary._title.paragraph', ()),
+    )
+  )
+));

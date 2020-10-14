@@ -1,0 +1,93 @@
+@import '../config';
+
+$article-landing-tag-list: (
+  text: (
+    font-size: px(14),
+    line-height: 1.29
+  ),
+  box: (
+    background: color('neutral', 'lighter'),
+    margin: (
+      margin-bottom: spacings('xxl'),
+      margin-top: spacings('xxl')
+    ),
+  ),
+  _taglist-heading: (
+    paragraph: (
+      text: (
+        color: color('black'),
+        font-family: 'primary',
+        font-size: px(38),
+        font-weight: bold,
+        line-height: breakpoint(
+          1.16,
+          1.16,
+          1.42
+        ),
+        text-align: center,
+        text-transform: uppercase
+      )
+    ),
+    box: (
+      margin: (
+        margin-bottom: spacings('m'),
+        margin-top: breakpoint(
+            spacings('m'),
+            spacings('m'),
+          20px
+        )
+      )
+    )
+  ),
+  _list: (
+    box: (
+      margin: (
+        margin-bottom: 20px,
+        margin-top: spacings('m')
+      )
+    ),
+    _list-item: (
+      button: (
+        background: (
+          background-color: color('neutral', 'light')
+        ),
+        padding: spacings('xs') 20px,
+        text: (
+          font-weight: bold,
+          text-decoration: none,
+          color: color('black'),
+          text-transform: none,
+          font-size: px(16),
+          line-height: 1,
+          text-align: center,
+          letter-spacing: 0
+        ),
+        border: (
+          border-radius: 25px
+        ),
+        margin: (
+          margin-top: spacings('xxs'),
+          margin-bottom: spacings('xxs'),
+          margin-right: spacings('xs'),
+          margin-left: 0
+        ),
+        hover: (
+          background: (
+            background-color: color('neutral', 'base')
+          )
+        )
+      )
+    )
+  ),
+  _tag-holder: (
+    box: (
+      display: inline-block,
+      margin: (
+        margin-bottom: spacings('xs'),
+        margin-left: spacings('xxs'),
+        margin-right: spacings('xxs'),
+        margin-top: 0
+      )
+    )
+  )
+);

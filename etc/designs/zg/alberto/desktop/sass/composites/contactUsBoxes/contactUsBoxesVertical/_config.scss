@@ -1,0 +1,23 @@
+$contact-us-boxes-vertical: (
+  _title: (
+    paragraph: (
+      text: (
+        font-family: 'body',
+        font-size: px('s'),
+        font-weight: normal,
+        line-height: 1.2,
+        text-transform: none
+      ),
+      line: (
+        border: (
+          border-bottom: 4px solid color('primary', 'dark')
+        )
+      )
+    )
+  ),
+  _icons-size: (
+    text: (
+      font-size: 32px
+    )
+  )
+);

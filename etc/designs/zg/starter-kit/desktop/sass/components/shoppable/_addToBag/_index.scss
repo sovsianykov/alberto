@@ -1,0 +1,438 @@
+@import 'config';
+
+.shoppable-lightbox-container {
+  @function g($a...) {
+    @return get-last($add-bag, $a...);
+  }
+
+  top: 0;
+  left: 0;
+
+  $overlayBgBox: merge((
+    position: fixed,
+    display: block,
+    width: 100vw,
+    height: 100vh,
+    z-index: $z-index-modal,
+    overflow: hidden,
+  ), g('_box-overlay.box'));
+
+  @include box($overlayBgBox, $media);
+}
+
+.shoppable-item-top-container {
+  @function g($a...) {
+    @return get-last($add-bag, $a...);
+  }
+
+  z-index: $z-index-modal;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: fixed;
+
+  // spinner
+  div[ng-show=showSpinner] {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .flex > #warning {
+    display: none;
+  }
+
+  #warning {
+    margin: 1em 0;
+
+    @include text(g('_info-box._warning.text'), $media);
+  }
+
+  // reset pre-set values
+  .flex-30,
+  .flex-50,
+  .shoppable-item-image-td {
+    flex: auto;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 1;
+    max-width: none;
+    max-height: none;
+    width: 100%;
+    height: auto;
+
+    @include media-query(mobile, tablet) {
+      width: auto;
+    }
+
+    > .layout-column,
+    > .layout-sm-column {
+      > .flex {
+        flex: none;
+      }
+    }
+  }
+
+  .shoppable-item-info-table {
+
+    @include media-query(mobile, tablet) {
+      flex-direction: column;
+    }
+  }
+
+  .shoppable-item-container {
+    position: fixed;
+    z-index: $z-index-modal;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include media-query(mobile, tablet) {
+      top: 0;
+      left: 0;
+      transform: none;
+      overflow-y: auto;
+    }
+
+    $mainBox: merge((
+      max-width: breakpoint((tablet-max: auto, desktop: 1110px)),
+      max-height: breakpoint((tablet-max: auto)),
+      width: 100%,
+      height: breakpoint((tablet-max: 100%, desktop: auto)),
+      min-height: breakpoint((desktop: 50vh))
+    ), g('_main-box.box'));
+
+    @include breakpoints {
+      @include box($mainBox, $media);
+    }
+  }
+
+  .shoppable-item-close-button {
+    top: -15px;
+    right: -15px;
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+
+    @include media-query(mobile, tablet) {
+      top: 15px;
+      right: 15px;
+    }
+
+    $buttonClose: merge((
+      height: 30px,
+      width: 30px,
+      min-width: 30px, // to override inehit values
+      min-height: 30px, // to override inehit values
+      margin: 0,
+    ), g('_close-button.button'));
+
+    @include button($buttonClose, $media);
+
+    br {
+      display: none;
+    }
+
+    div:empty {
+      display: none;
+    }
+
+    &:focus {
+      .ua-webkit & {
+        outline: -webkit-focus-ring-color auto 5px;
+      }
+    }
+  }
+
+  .shoppable-item-image-container {
+    position: relative;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 1;
+
+    $boxImage: merge((
+      width: breakpoint(255px, 410px, 410px),
+      height: breakpoint(255px, 410px, 410px),
+      margin:(
+        margin: breakpoint(
+          spacings('m') auto spacings('m') auto,
+          spacings('xl') 0 0 spacings('xl'),
+          spacings('xl') 0 0 spacings('xl'))
+      )
+    ), g('_box-image.box'));
+
+    @include breakpoints {
+      @include box($boxImage, $media);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      position: absolute;
+    }
+  }
+
+  .flex-60 {
+    @include media-query(mobile, tablet) {
+      max-width: 100%;
+      padding: 5px;
+    }
+  }
+
+  .flex-50 {
+
+    $textBox: merge((
+      box-sizing: border-box,
+      margin: (
+        margin: breakpoint(
+          spacings('m') spacings('l'),
+          spacings('xl') spacings('xxl'),
+          spacings('xl') spacings('xxl')
+        )
+      )
+    ), g('_info-box.box'));
+
+    @include breakpoints {
+      @include box($textBox, $media);
+    }
+  }
+
+  .shoppable-item-product-description,
+  .shoppable-item-product-brand {
+    display: none;
+  }
+
+
+  .shoppable-item-product-name {
+
+    $title: merge((
+      margin: (
+        margin: spacings('m') spacings('m') spacings('m') 0
+      )
+    ), g('_info-box._title.paragraph'));
+
+    @include paragraph($title, $media);
+  }
+
+  .layout-row {
+    .layout-row {
+      flex-direction: column;
+
+      &.shoppable-merchant-color-container {
+        flex-direction: row;
+      }
+    }
+  }
+  // ======================
+  // resets for selections
+  .md-input-container,
+  .md-input-has-value,
+  .shoppable-item-size-selection-label,
+  .shoppable-item-merchant-group-label,
+  .shoppable-item-qty-selection-label {
+    position: static;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+  }
+
+  .shoppable-item-size-selection-container,
+  .shoppable-item-qty-selection-continer,
+  .md-input-has-placeholder {
+    position: static;
+    margin:0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+
+    ._md-select-value {
+      border: 0;
+    }
+
+    ._md-select-icon,
+    &::after {
+      display: none;
+    }
+  }
+  // ======================
+
+  // label selection
+  .shoppable-item-size-selection-label,
+  .shoppable-item-merchant-group-label,
+  .shoppable-item-qty-selection-label {
+
+    @include paragraph(g('_info-box._dropdown._label.paragraph'), $media);
+  }
+
+  //select
+  .shoppable-item-size-selection-select,
+  .shoppable-item-qty-selection-select,
+  .shoppable-item-merchant-group-select {
+    position: relative;
+
+    $dropdown: merge((
+      box-sizing: border-box,
+      display: block,
+      width: 100%,
+      height: 50px,
+      icon: (
+        margin: (
+          margin-top: -5px
+        )
+      )
+    ), g('_info-box._dropdown._select.button'));
+
+    @include button($dropdown, $media);
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      right: spacings('s');
+    }
+
+    ._md-select-value {
+      margin: spacings('xs') 0 spacings('xs') spacings('s');
+    }
+
+    &:focus{
+      .ua-webkit & {
+        outline: -webkit-focus-ring-color auto 5px;
+      }
+    }
+  }
+
+  .shoppable-item-qty-selection-continer,
+  .shoppable-item-size-selection-container {
+    margin-top: spacings('s');
+  }
+
+  .md-input-has-placeholder,
+  .shoppable-item-size-selection-container,
+  .shoppable-item-qty-selection-continer {
+    padding-right: spacings('s');
+
+    @include media-query(mobile, tablet) {
+      padding-right: 0;
+    }
+  }
+
+  .shoppable-item-price-add-td {
+    display: block;
+
+    + div {
+      display: block;
+      width: 100%;
+    }
+
+    .shoppable-item-price-label {
+      font-size: 0;
+
+      $price: merge((
+        margin: (
+          margin: spacings('m') 0 spacings('m') 0
+        )
+      ), g('_info-box._price.paragraph'));
+
+      .shoppable-item-price-number {
+
+        @include paragraph($price, $media);
+      }
+    }
+  }
+
+  .shoppable-item-add-button {
+    flex: 1 50%;
+
+    $buyButton: merge((
+      display: breakpoint((mobile:inline-block)), // due to inline-flex problems in iOS 10 and <, we had to include this line.
+      max-width: breakpoint(100%, 215px, 215px) ,
+      width: 100%,
+      height: 50px,
+      margin: 25px 0,
+      padding: 17px spacings('xs') 19px spacings('xs'),
+    ), g('_info-box._buy-button.button'));
+
+    @include breakpoints {
+      @include button($buyButton, $media);
+    }
+
+    &.ng-hide {
+      display: none;
+    }
+
+    &:focus {
+      .ua-webkit & {
+        outline: -webkit-focus-ring-color auto 5px;
+      }
+    }
+  }
+
+  .shoppable-out-of-stock-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include media-query(auto, tablet) {
+      transform: translate(0, -50%);
+      left: 0;
+      padding: 0 20px;
+      width: calc(100% - 40px);
+    }
+
+    @include paragraph(g('_out-of-stock._info.paragraph'), $media);
+
+    a {
+      text-decoration: none;
+
+      @include media-query(auto, tablet) {
+        width: 100%;
+        display: block;
+      }
+    }
+
+    .shoppable-out-of-stock-button {
+      cursor: pointer;
+      underline: none;
+
+      $redirect-button: merge((
+        padding: (
+          padding: 0
+        )
+      ), g('_out-of-stock._redirect-button.button'));
+
+      @include breakpoints {
+        @include button($redirect-button, $media);
+      }
+    }
+  }
+}
+
+.ua-ie-11 {
+  .shoppable-item-top-container {
+    left: spacings('m');
+    right: spacings('m');
+    overflow: visible;
+    width: auto;
+
+    .flex-30,
+    .flex-50,
+    .shoppable-item-image-td {
+      width: 50%;
+    }
+  }
+  .shoppable-item-info-table > div {
+    &:nth-child(2) {
+      padding: spacings('m');
+    }
+    > div.layout-row {
+      min-height: 60px;
+    }
+  }
+}

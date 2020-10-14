@@ -1,0 +1,251 @@
+@import '../../core/config';
+
+// CONTACT US MAIN SECTION
+.composite-contact_us_boxes {
+  @import 'config';
+  @function g($a...) { @return get-last($contactUsBoxes, $a...); }
+
+  // main box:
+  $cUB-main-box: merge((
+    padding: (
+      padding-top: breakpoint((mobile: spacings('l'), tablet-min: spacings('xxl'))),
+      padding-bottom: breakpoint((mobile: spacings('l'), tablet-min: spacings('xxl'))),
+      padding-left: breakpoint(null, 89px, null),
+      padding-right: breakpoint(null, 89px, null)
+    )
+  ), g('_main.box'));
+
+  @include breakpoints() {
+    @include box($cUB-main-box, $media);
+  }
+
+  > .content {
+    @include wrapper();
+  }
+
+  .richText-contact-titles {
+    h2, h3 {
+      $cUB-title: merge((
+        margin: (
+          margin-top: 0,
+          margin-bottom: spacings('s')
+        )
+      ), g('_title.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($cUB-title, $media);
+      }
+    }
+
+    p {
+      $cUB-subtitle: merge((
+        margin: (
+          margin-top: 0,
+          margin-bottom: spacings('l')
+        )
+      ), g('_subtitle.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($cUB-subtitle, $media);
+      }
+    }
+  }
+
+  // CONTACT TILES HOLDER
+  .box.tiles-holder {
+    $margin-mobile: safetype(g('_contactTile.box.margin.mobile'), 10px);
+    $margin-tablet: safetype(g('_contactTile.box.margin.tablet'), 20px);
+    $margin-desktop: safetype(g('_contactTile.box.margin.desktop'), 15px);
+
+    $cUB-contactTile-button: merge((
+      padding: 20px get($contactUsBoxes, '_contactTile.box.padding.padding'),
+      icon: (
+        padding: (
+          padding-left: 2px
+        )
+      )
+    ), g('_contactTile.button'));
+
+    > .component-content > .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      margin: $margin-mobile * -1;
+
+      @include media-query(tablet, auto) {
+        margin: $margin-tablet * -1;
+      }
+
+      @include media-query(desktop, auto) {
+        flex-direction: row;
+        margin: $margin-desktop * -1;
+      }
+
+      @include breakpoints() {
+        @include box(g('_main._tiles-wrapper.box'), $media);
+      }
+
+      > a:first-of-type {
+        display: none;
+      }
+    }
+
+    // CONTACT TILE ITEM
+    .richText, .component.livechat {
+      box-sizing: border-box;
+      position: relative;
+      flex-basis: 100%;
+      flex-grow: 1;
+      cursor: pointer;
+
+      $cUB-contactTile: merge((
+        padding: (
+          padding-left: breakpoint(14px, 20px, 20px),
+          padding-right: breakpoint(14px, 20px, 20px),
+          padding-top: 20px,
+          padding-bottom: spacings('xl'),
+        ),
+        min-height: breakpoint(227px, 273px, 273px),
+        min-width: breakpoint((tablet-max: 250px)),
+        margin: (
+          margin: breakpoint(spacings('xs'), 20px, spacings('s'))
+        )
+      ), g('_contactTile.box'));
+
+      @include breakpoints() {
+        @include box($cUB-contactTile, $media);
+        @include link(g('_contactTile.link'), $media);
+      }
+
+      &:hover a.button,
+      &:hover button.btn {
+        @include breakpoints() {
+          @include hover(g('_contactTile.button.hover'), $media);
+
+          $pseudo: safetype(g('_contactTile.button.icon.site'), 'after');
+          &:#{$pseudo} {
+            @include hover(g('_contactTile.button.icon.hover'), $media);
+          }
+        }
+      }
+
+      h2, h3 {
+        $cUB-contactTile-title: merge((
+          margin: (
+            margin-top: 0,
+            margin-bottom: 25px
+          ),
+          line: (
+            margin: (
+              margin-top: spacings('xs')
+            )
+          )
+        ), g('_contactTile._title.paragraph'));
+
+        @include breakpoints() {
+          @include paragraph($cUB-contactTile-title, $media);
+        }
+
+        &:before {
+          margin-bottom: spacings('s');
+        }
+      }
+
+      p {
+        $cUB-contactTile-description: merge((
+          margin: (
+            margin-top: spacings('xs'),
+            margin-bottom: spacings('m')
+          )
+        ), g('_contactTile._description.paragraph'));
+
+        @include breakpoints() {
+          @include paragraph($cUB-contactTile-description, $media);
+        }
+      }
+
+      a.button, button.btn {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        box-sizing: border-box;
+        width: 100%;
+        cursor: pointer;
+        @include breakpoints() {
+          @include button($cUB-contactTile-button, $media);
+        }
+      }
+    }
+
+    // transition to online state
+    .component.livechat.is-online {
+      animation-name: liveagent-pulse;
+      animation-duration: 1s;
+    }
+
+    // DISABLED LIVE CHAT BUTTON
+    .component.livechat .livechat-offline button.btn {
+      cursor: initial;
+
+      $cUB-contactTile-button-disabled: merge($cUB-contactTile-button, g('_contactTile.button-disabled'));
+
+      @include breakpoints() {
+        @include button($cUB-contactTile-button-disabled, $media);
+      }
+    }
+  }
+
+  // DIFFERENT CONTACT TILE VARIANTS:
+  @include breakpoints() {
+    .contact-tile--email {
+      h2, h3 {
+        @include icon(g('_contactTile._title.icon.email'), $media);
+      }
+    }
+
+    .contact-tile--store-locator {
+      h2, h3 {
+        @include icon(g('_contactTile._title.icon.storeLocator'), $media);
+      }
+    }
+
+    .contact-tile--live-agent {
+      h2, h3 {
+        @include icon(g('_contactTile._title.icon.liveAgent'), $media);
+      }
+    }
+
+    .component.livechat {
+      h2, h3 {
+        @include icon(g('_contactTile._title.icon.liveChat'), $media);
+      }
+
+      &.disabled {
+        cursor: default;
+
+        &:hover {
+         @include hover(g('_contactTile.box-disabled.hover'), $media)
+        }
+      }
+      .loading {
+        .livechat-offline {
+          p {
+            visibility: hidden;
+          }
+        }
+      }
+    }
+  }
+
+  @import 'contactUsBoxesVertical/index';
+};
+
+@keyframes liveagent-pulse {
+  from {
+    background-color: color('primary','dark');
+  }
+  to {
+    background-color: color('white');
+  }
+}

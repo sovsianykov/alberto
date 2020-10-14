@@ -1,0 +1,180 @@
+.tabs-product-details {
+  @import 'config';
+  @function g($a...) { @return get-last($tabs-product-details, $a...); }
+
+  @include box(g('box'), $media);
+  .template-product-detail-page & {
+    margin-bottom: 0;
+  }
+  .tabs-nav {
+    @include wrapper;
+  }
+
+  .tabs-nav-list {
+    display: flex;
+    list-style-type: none;
+    position: relative;
+    padding-left: 0;
+    margin-top: 0;
+    flex-direction: column;
+    @include breakpoints(tablet) {
+      margin-bottom: 20px;
+      flex-direction: column;
+    }
+    @include breakpoints(desktop) {
+      margin-bottom: 40px;
+      border-bottom: 1px solid color('secondary', 'base');
+      flex-direction: row;
+    }
+    > li {
+      text-align: center;
+      padding-bottom: 10px;
+      border-bottom: 4px solid transparent;
+      transition: all 0.3s ease;
+      margin-bottom: -1px;
+      cursor: pointer;
+      font-family: font-family('body');
+      span {
+        font-size: px(20);
+        font-weight: 700;
+      }
+      &.is-active {
+        @include breakpoints(mobile, tablet) {
+          &:before {
+            content: url('../../assets/img/minus-accordion.png');
+            position: relative;
+            left: 0px;
+            padding-right: 5px;
+            top: 7px;
+          }
+        }
+      }
+      @include breakpoints(mobile, tablet) {
+        padding-top: 15px;
+        padding-bottom: 15px;
+        &:first-child {
+          border-top: 1px solid color('secondary', 'light');
+        }
+        text-align: left;
+        border-bottom: 1px solid color('secondary', 'light');
+        &:before {
+          content: url('../../assets/img/plus-accordion.png');
+          position: relative;
+          left: 0px;
+          padding-right: 5px;
+          top: 7px;
+        }
+      }
+      @include breakpoints(desktop) {
+        width: 50%;
+      }
+      &.is-active {
+        @include breakpoints(desktop) {
+          border-bottom: 4px solid color('primary', 'base');
+        }
+        a {
+          font-weight: bold;
+        }
+      }
+      a {
+        text-decoration: none;
+        font-size: px(16);
+        @include breakpoints(tablet) {
+          font-size: px(18);
+        }
+        @include breakpoints(desktop) {
+          font-size: px(19);
+        }
+      }
+    }
+  }
+
+  .tabs-nav-item {
+    a {
+      $tabItem: merge((
+        max-height: breakpoint((tablet-max: 55px)),
+        box-sizing: border-box
+      ), g('_tabs-nav._item.button'));
+
+      display: inline-flex;
+      // @include breakpoints() {
+      //   @include button($tabItem, $media);
+      // }
+    }
+
+    // &.is-active {
+    //   a {
+    //     @include breakpoints {
+    //       @include button(g('_tabs-nav._item-active.button'), $media);
+    //     }
+    //   }
+    // }
+
+    .tabItem-smartlabel {
+      a {
+        @include button(g('_tabs-nav._item-smartlabel.button'), $media);
+      }
+
+      > div {
+        display: flex;
+        flex-direction: row-reverse;
+
+        .text-wrapper {
+          @include breakpoints() {
+            @include button(g('_tabs-nav._item-smartlabel._caption.paragraph'), $media);
+          }
+        }
+      }
+
+      .image-wrapper {
+        display: flex;
+        align-items: center;
+        min-width: 66px;
+
+        img {
+          @include box(g('_tabs-nav._item-smartlabel._image.box'), $media);
+        }
+      }
+    }
+  }
+
+  .tabs-content {
+    background: white;
+    // Adjust to js DOM manipulations
+    @include media-query(auto, notebook) {
+      margin-left: -20px;
+      margin-right: -20px;
+    }
+
+    // @include breakpoints() {
+    //   @include box(g('_tabs-wrapper.box'), $media);
+    // }
+
+    > .tabContent > .content {
+      @include clearfix;
+      @include wrapper;
+    }
+
+    .richText {
+      @include breakpoints() {
+        @include paragraph(g('_tabs-content.paragraph'), $media);
+      }
+
+      h2 {
+        @include breakpoints() {
+          @include paragraph(g('_tabs-content._heading.paragraph'), $media);
+        }
+      }
+      p {
+        font-family: font-family('primary');
+        font-size: px(20);
+        line-height: 1.4;
+        font-weight: 400;
+      }
+
+      p:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

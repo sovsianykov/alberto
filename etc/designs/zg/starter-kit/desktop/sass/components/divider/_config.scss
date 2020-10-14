@@ -1,0 +1,13 @@
+$divider: (
+  spacings: common('spacings')
+);
+$divider: merge($divider, (
+  box: (
+    border: (
+      border-bottom: 2px solid color('neutral', 'light')
+    ),
+    margin: (
+      margin: 60px 0
+    )
+  )
+));

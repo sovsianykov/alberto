@@ -1,0 +1,77 @@
+@import '../../core/config';
+@import 'personalisation';
+
+.imageGallery {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($imageGallery, $a...);
+  }
+
+  .imageGallery-view-overlay {
+    display: none;
+  }
+
+  .imageGallery-view {
+    img {
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  .imageGallery-thumbnails {
+    margin: spacings('s') 0;
+  }
+
+  .imageGallery-list {
+    position: relative;
+  }
+
+  .imageGallery-list-inner {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+    width: 100%;
+  }
+
+  .imageGallery-thumbnail {
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    display: block;
+
+    @include breakpoints() {
+      @include button(g('_thumbnail.button'), $media);
+    }
+
+    &.is-active {
+      @include breakpoints() {
+        @include button(g('_thumbnail-active.button'), $media);
+      }
+    }
+
+    a {
+      display: block;
+    }
+
+    img {
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+
+      @include media-query(mobile) {
+        display: none;
+      }
+    }
+  }
+
+  .imageGallery-arrow {
+    display: none;
+  }
+
+}
+
+@import 'imageGalleryWithZoom/index';

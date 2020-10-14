@@ -1,0 +1,30 @@
+$stepTitle: (
+  spacings: common('spacings')
+);
+
+$stepTitle: merge($stepTitle,(
+  _step-title: (
+    paragraph: (
+      text: (
+        color: color('black'),
+        font-weight: bold,
+        text-transform: uppercase,
+        line-height: breakpoint((tablet-max: 1.16, desktop: 1.13)),
+        font-family: 'primary',
+        font-size: breakpoint((tablet-max: px('l'), desktop: px('xl')))
+      ),
+      margin: 0,
+      line: (
+        border: (
+          border-bottom: 4px solid color('primary', 'dark')
+        ),
+        display: block,
+        side: after,
+        width: 30px,
+        margin: (
+          margin: 15px 0 20px
+        )
+      )
+    )
+  )
+))

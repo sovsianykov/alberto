@@ -1,0 +1,71 @@
+.ratingsandreviews .kritique .rr-product-reviews {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($read-panel, $a...);
+  }
+
+  margin: 0;
+
+  @include text(g('text'), $media);
+  @include box(g('box'), $media);
+
+  .averageRingBlock {
+    $box: merge((
+      margin: spacings('l') 0,
+      padding: spacings('m') 0
+    ), g('_average-block.box'));
+
+    @include box($box, $media);
+
+    h3 {
+      @include wrapper;
+
+      @include text(g('_average-block._title.text'), $media);
+    }
+
+    .average-rating {
+      @include wrapper;
+
+      $box: merge((
+        display: flex,
+        flex: (
+          align-items: center,
+          flex-direction: breakpoint(column, null, null)
+        )
+      ), g('_average-block._average-rating.box'));
+
+      @include breakpoints {
+        @include box($box, $media);
+      }
+    }
+
+    .write-review-btn {
+      @include wrapper;
+
+      @include breakpoints {
+        @include button(g('_average-block._write-review.button'), $media);
+      }
+    }
+
+    .agRatingDeSelect img {
+      max-width: initial;
+      width: auto;
+
+      @include box(g('_average-block._average-rating._rating.box'), $media);
+    }
+
+    .aggRtng {
+      @include box(g('_average-block._average-rating._avg.box'), $media);
+    }
+  }
+
+  // Hide unnecessary elements
+  > h2 {
+    display: none;
+  }
+
+  //Inside this div we have got SEO content within <noscript> tag. We don't want this to be displayed when JS is off
+  .kritique-seo {
+    display: none;
+  }
+}

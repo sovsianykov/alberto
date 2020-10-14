@@ -1,0 +1,11 @@
+.searchResults-more {
+  @import 'config';
+  @function g($a...) { @return get-last($showMoreBtn, $a...); }
+
+  appearance: none;
+  cursor: pointer;
+  flex-direction: column;
+  border: 0;
+  @include button(g('button'), $media);
+  display: flex;
+}

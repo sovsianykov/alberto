@@ -1,0 +1,177 @@
+.navigation.side-bar {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($navigation, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  .analytics-navigation-tracking,
+  .navigation-mobile-menu {
+    display: none;
+  }
+
+  .component-content {
+    @include box(g('_content.box'), $media);
+
+    // &::after {
+    //   content: "";
+    //   @include breakpoints {
+    //     @include box(g('_content._separation.box'), $media);
+    //   }
+    // }
+  }
+
+  .navigation-root {
+    font-size: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+
+      a {
+        position: relative;
+        text-decoration: none;
+        z-index: $z-index-content;
+
+        .navigation-item-decoration {
+          display: none;
+        }
+      }
+    }
+
+    &.navigation-level1 {
+      @include box(g('_content._nav-title-wrapper.box'), $media);
+      z-index: 1;
+
+      > .navigation-item {
+        cursor: pointer;
+
+        @include box(g('_content._nav-title-wrapper._navigation-item.box'), $media);
+        // @include icon(g('_content._arrow-button.icon'), $media);
+        ul.navigation-level2 {
+          position: static;
+          li {
+            a {
+              font-size: px(24);
+            }
+          }
+          @include breakpoints(desktop) {
+            display: block!important;
+            height: 0;
+            overflow: hidden;
+          }
+          @include icon(g('_content._arrow-button.icon'), $media);
+          &:before {
+            position: absolute;
+            top: 0;
+            right: 5px;
+          }
+        }
+
+        &.last {
+          border-bottom: none;
+
+          &:before {
+            
+          }
+        }
+
+        &::before {
+          cursor: pointer;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
+        &.is-active,
+        &.has-active-child {
+          // @include icon(g('_content._arrow-button-active.icon'), $media);
+          
+          ul.navigation-level2 {
+            position: static;
+            @include breakpoints(desktop) {
+              height: 100%;
+            }
+            &:before {
+              position: absolute;
+              top: 0;
+              right: 0;
+              transform: rotate(180deg);
+            }
+          }
+          // &::before {
+          //    @include transform(g('_content._arrow-button-active.transform'), $media);
+          // }
+
+          .navigation-item-title {
+            pointer-events: initial;
+          }
+
+          > .navigation-item-title{
+            color: color('primary', 'base');
+          }
+
+          .navigation-level2 {
+            display: block;
+          }
+        }
+
+        > .navigation-item-title {
+          display: inline-block;
+          //pointer-events: none;
+
+          @include button(g('_content._nav-title-wrapper._navigation-item-title.button'), $media);
+
+          > .navigation-item-decoration {
+            display: none;
+
+            @include button(g('_content._nav-title-wrapper._navigation-item-decoration.button'), $media);
+          }
+        }
+      }
+    }
+
+    &.navigation-level2 {
+      display: none;
+      &:before {
+        z-index: -1;
+      }
+
+      @include box(g('_content._nav-item-wrapper.box'), $media);
+
+      > .navigation-item {
+        @include box(g('_content._nav-item-wrapper._navigation-item.box'), $media);
+
+        &.is-active,
+        &:hover {
+          &::before {
+            top: 0;
+          }
+        }
+
+        &.is-active {
+          > .navigation-item-title {
+            @include hover(g('_content._nav-item-wrapper._navigation-item-title.button.hover'), $media);
+          }
+        }
+
+        > .navigation-item-title {
+          display: block;
+
+          @include button(g('_content._nav-item-wrapper._navigation-item-title.button'), $media);
+
+          > .navigation-item-decoration {
+            display: none;
+
+            @include button(g('_content._nav-item-wrapper._navigation-item-decoration.button'), $media);
+          }
+        }
+      }
+    }
+  }
+}

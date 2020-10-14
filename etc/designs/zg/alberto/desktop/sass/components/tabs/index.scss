@@ -1,0 +1,154 @@
+@import '../../core/config';
+@import '../../commons/config-tabs-nav';
+
+.tabs[class*=default-style] {
+  position: relative;
+
+  .tabs-heading {
+    display: block;
+    color: color('neutral','base');
+    font-size: px('s');
+    font-weight: bold;
+    padding-bottom: spacings('xs');
+  }
+
+  .tabs-nav {
+    height: 39px;
+    left: 0;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    width: 100%;
+    z-index: 150;
+
+    &-list {
+      left: 0;
+      list-style: none;
+      margin: 0;
+      overflow: hidden;
+      padding: 0;
+      position: relative;
+      width: 2000px;
+    }
+
+    &-item {
+      background: color('neutral','lighter');
+      border-color: color('neutral','light');
+      border-style: solid;
+      border-width: 2px 2px 0 2px;
+      cursor: pointer;
+      display: inline;
+      font-size: px('xxxs');
+      font-weight: bold;
+      margin-left: 5px;
+      padding: 7px 10px 7px 10px;
+      top: 4px;
+
+      a {
+        color: color('neutral','light');
+      }
+
+      &.is-active,
+      &.is-active a,
+      &.is-active:hover {
+        background: color('white');
+        cursor: default;
+      }
+
+      &.is-active,
+      &.is-active:hover {
+        border-bottom: none;
+        padding-bottom: 9px;
+      }
+
+      &.is-active:hover {
+        a {
+          color: color('black');
+        }
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:hover {
+        background: color('neutral','lighter');
+
+        a {
+          color: color('neutral','dark');
+          text-decoration: none;
+        }
+      }
+    }
+
+    &-switcher {
+      background: color('neutral','lighter');
+      border: 2px solid color('neutral','light');
+      cursor: pointer;
+      height: spacings('xs') * 3.5;
+      position: absolute;
+      top: 0;
+      width: 15px;
+
+      &-right {
+        right: 0;
+      }
+
+      &-left {
+        left: 0;
+
+        &:before {
+          content: common('icon.arrow-left');
+          display: inline-block;
+          font-family: 'icons';
+          margin-left: -4px;
+          position: relative;
+        }
+      }
+
+      &:before {
+        content: common('icon.arrow-right');
+        display: inline-block;
+        font-family: 'icons';
+        font-size: 12px;
+        left: 50%;
+        margin-left: -3px;
+        padding: 7px 0;
+        position: relative;
+      }
+    }
+  }
+
+  .tabs-content {
+    background: color('white');
+    border: solid 2px color('neutral','light');
+    overflow: hidden;
+    padding: 13px;
+    position: relative;
+    top: -2px;
+    z-index: 100;
+  }
+
+  .tabMenuItem {
+    margin-bottom: 0;
+  }
+
+  .no-js & {
+    > .component-content {
+      padding-top: 0;
+    }
+
+    .tabs-nav {
+      display: none;
+    }
+
+    .tabs-content {
+      display: block !important;
+      visibility: visible !important;
+    }
+  }
+}
+
+@import 'productDetails/index';
+@import 'whatCustomersThink/index';
+@import 'whoWeAre/index';

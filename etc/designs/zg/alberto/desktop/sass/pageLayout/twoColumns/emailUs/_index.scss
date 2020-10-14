@@ -1,0 +1,56 @@
+.email-us & {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($email-us, $a...);
+  }
+  @include two-columns-wrapper(7, 5);
+
+  @include breakpoints {
+    @include box(g('box'), $media);
+  }
+
+  &::after {
+
+    @include breakpoints {
+      @include box(g('_separator.box'), $media);
+    }
+  }
+
+  .grid_12 {
+
+    &.left-side-holder {
+
+      @include box(g('_left-side-holder.box'), $media);
+    }
+
+    &.right-side-holder {
+
+      @include box(g('_right-side-holder.box'), $media);
+    }
+
+    .paragraphSystem {
+
+      &.left-side {
+
+        @include box(g('_left-side-holder._left-side.box'), $media);
+      }
+
+      &.right-side {
+
+        $right-side: merge((
+          padding: (
+            padding: breakpoint(
+              60px 0 80px,
+              60px 0 80px,
+              190px 0 0 90px
+            )
+          )
+        ), g('_formContent.box'));
+
+        @include breakpoints {
+          @include box($right-side, $media);
+        }
+      }
+    }
+  }
+}

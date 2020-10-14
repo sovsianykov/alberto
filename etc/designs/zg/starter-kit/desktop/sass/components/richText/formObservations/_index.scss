@@ -1,0 +1,26 @@
+.richText.observations {
+  @import 'config';
+  @function g($a...) { @return get-last($observations, $a...); }
+
+  $box: merge((
+    margin: 1rem 0,
+    padding: (
+      padding-top: 8px
+    )
+  ),g('box'));
+
+  @include box($box, $media);
+
+  p {
+
+    @include paragraph(g('paragraph'), $media);
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

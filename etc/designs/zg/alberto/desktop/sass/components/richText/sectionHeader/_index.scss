@@ -1,0 +1,12 @@
+.richText--section-header {
+  h2, h3 {
+    &:first-child {
+      font-family: font-family('primary');
+      font-size: px('l');
+      line-height: 1.16;
+      margin-top: spacings('xxl');
+      text-align: center;
+      text-transform: uppercase;
+    }
+  }
+}

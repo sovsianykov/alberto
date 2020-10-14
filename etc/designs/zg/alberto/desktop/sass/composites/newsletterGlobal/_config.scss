@@ -1,0 +1,71 @@
+$newsletterGlobal: (
+  box: (
+    background: (
+      background-color: color('neutral', 'lighter')
+    )
+  ),
+  _newsletter-content: (
+    paragraph: (
+      text: (
+        text-align: center
+      )
+    )
+  ),
+  _form-heading: (
+    paragraph: (
+      text: (
+        font-size: breakpoint((mobile: px('m'), tablet-min: px('l'))),
+        line-height: 1.2,
+      )
+    )
+  ),
+  _newsletter-info: (
+    paragraph: ()
+  ),
+  _email: (
+    box: (),
+    _email-field: (
+      input: extend('_base.input', (
+        height: spacings('xl'),
+        text: (
+          font-size: px(17),
+          line-height: 1,
+        ),
+        placeholder: (
+          color: color('neutral', 'light')
+        ),
+        border: (
+          border-top-right-radius: 0,
+          border-bottom-right-radius: 0,
+          border-right: 0
+        ),
+      )),
+    ),
+  ),
+  _submit-button: (
+    button: extend('_base.button', (
+      width: breakpoint(46px, 107px, 125px),
+      height: spacings('xl'),
+      border: (
+        border-top-left-radius: 0,
+        border-bottom-left-radius: 0,
+      ),
+      text: (
+        font-size: breakpoint(0, px('xxs'), px('xxs')),
+        color: breakpoint(transparent, color('white'), color('white')),
+        text-transform: uppercase,
+        letter-spacing: 0.3px
+      ),
+      icon: (
+        spacing: 5px,
+        content: common('icon.arrow-right'),
+        font-size: 16px,
+        color: color('white'),
+        display: breakpoint(block, none, none)
+      ),
+      hover: (
+        background: color('neutral', 'dark')
+      )
+    ))
+  )
+);

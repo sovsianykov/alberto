@@ -1,0 +1,222 @@
+@import '../../core/config';
+@import '../../commons/config-dropdown';
+@import '../../commons/config-product-default-view';
+
+@mixin coverImage {
+  position: relative;
+
+  a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    height: 100%;
+    max-height: none;
+    max-width: none;
+    object-fit: cover;
+    position: absolute;
+    width: 100%;
+  }
+}
+
+.searchResults {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($results, $a...);
+  }
+
+  .searchResults-section-head {
+    h3 {
+      display: inline-block;
+      @include paragraph(g('_category-title.paragraph'), $media);
+    }
+
+    .results-count {
+      @include paragraph(g('_results-count.paragraph'), $media);
+    }
+
+    a.view-all {
+      @include button(g('_view-all.button'), $media);
+    }
+  }
+
+  .searchResults-description,
+  .searchResults-desc p {
+    @include paragraph(g('_section-in-grid-view._result-item._description.paragraph'), $media);
+  }
+
+  .datalayer-search-results-count {
+    display: none; // hide extra counter
+  }
+
+  .searchResults-desc > div > .image .component-content {
+    height: 100%;
+  }
+
+  // default view
+  .searchResults-section-contents {
+    display: flex;
+    flex-wrap: wrap;
+
+    @include box(g('_section-in-grid-view.box'), $media);
+  }
+
+  .searchResults-item {
+    flex-shrink: 0;
+
+    @include breakpoints {
+      @include box(g('_section-in-grid-view._result-item.box'), $media);
+    }
+  }
+
+  .searchResults-desc > div > .image,
+  .searchResults-icon {
+    // search result image
+
+    @include breakpoints {
+      @include box(g('_section-in-grid-view._result-item._image.box'), $media);
+    }
+
+    img {
+      max-height: 100%;
+      max-width: 100%;
+      position: absolute;
+      bottom: 0;
+      width: auto;
+    }
+
+    @include media-query(mobile) {
+      img {
+        position: static;
+      }
+    }
+  }
+
+  .searchResults-desc h4,
+  .searchResults-desc h5  {
+    @include paragraph(g('_section-in-grid-view._result-item._title.paragraph'), $media);
+    a {
+      text-decoration: inherit;
+    }
+  }
+
+  .bazaarvoice {
+    // overwrite !important bazaarvoice styles
+    [data-bv-show=rating_summary] .bv_main_container .bv_main_container_row_flex {
+      display: block !important;
+    }
+    #WAR {
+      display: none !important;
+    }
+  }
+
+  // grid view
+  > .component-content.display-grid {
+    .reference-link_to_tab_item {
+      // overwrite important styles takend from bazaarVoice
+      display: none !important;
+    }
+
+    // Center reviews
+    .ratingsandreviews .bazaarvoice div[data-bv-show="rating_summary"] {
+      > .bv_main_container {
+        margin: 0 !important;
+      }
+    }
+
+    .bv_cta_button {
+      // Hide buttons for grid view
+      display: none !important;
+    }
+
+    .reference-find-in-store-button {
+      display: none;
+    }
+
+    // "find-out-more" links (should be visible only in list view)
+    .link-read-more {
+      display: none;
+    }
+  }
+
+  // list view
+  .display-list {
+    .searchResults-section-contents {
+
+      $list: merge(g('_section-in-list-view.box'), (
+        margin: (
+          margin: 60px 0 0
+        ),
+      ));
+
+      @include box($list, $media);
+    }
+
+    .searchResults-desc > div > .image,
+    .searchResults-icon {
+      $image: merge((
+        flex: (
+          flex-shrink: 0
+        ),
+        width: breakpoint((
+          mobile: 99px,
+          tablet-min: 255px
+        )),
+        margin: (
+          margin-right: spacings('m'),
+        )
+      ), g('_section-in-list-view._result-item._image.box'));
+
+      @include breakpoints {
+        @include box($image, $media);
+      }
+
+    }
+
+    .searchResults-item {
+      display: flex;
+      @include box(g('_section-in-list-view._result-item.box'), $media);
+    }
+
+    .searchResults-desc h5 {
+      @include paragraph(g('_section-in-list-view._result-item._title.paragraph'), $media);
+    }
+
+    .link-read-more {
+      display: block;
+      @include breakpoints {
+        @include button(g('_read-more-link.button'), $media);
+      }
+    }
+
+    .bazaarvoice {
+      // overwrite !important bazaarvoice styles
+      [data-bv-show=rating_summary] .bv_main_container .bv_main_container_row_flex {
+        display: inline-flex !important;
+      }
+
+      #WAR {
+        display: block !important;
+      }
+    }
+  }
+
+  .reference-link_to_tab_item {
+    display: none;
+  }
+}
+
+
+
+
+@import './_viewOptions/index';
+@import './_articles/index';
+@import './_products/index';
+@import './_recipes/index';
+@import './_showMore/index';
+@import './_filterCloud/index';
+

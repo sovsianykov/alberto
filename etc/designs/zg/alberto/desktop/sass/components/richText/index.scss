@@ -1,0 +1,103 @@
+@import '../../core/config';
+@import 'utils';
+
+.richText[class*=default-style] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($richText, $a...);
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .richText-content {
+    ul {
+      li {
+        position: relative;
+
+        &:before {
+          left: 0;
+          position: absolute;
+          top: 0;
+        }
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  @include common-rules($richText);
+}
+
+.richText--newsletter-trigger {
+  display: none;  //hide link to newsletter trigger
+}
+
+.short-description-style {
+  p {
+    font-family: font-family('primary');
+    font-weight: 500;
+    @include breakpoints(mobile) {
+      font-size: px(19);
+    }
+    @include breakpoints(tablet) {
+      font-size: px(24);
+    }
+    @include breakpoints(tablet, desktop) {
+      font-size: px(26);
+    }
+  }
+}
+
+.header-not-uppercase.richText {
+  .richText-content {
+    h1, h2, h3 {
+      text-transform: none;
+    }
+  }
+}
+
+.hide-content {
+  display: none!important;
+  visibility: hidden!important;
+}
+
+@import 'aboutUs/index';
+@import 'buttonClearFilters/index';
+@import 'centeredBigHeader/index';
+@import 'ctaCancel/index';
+@import 'ctaFilterMobile/index';
+@import 'ctaSelectCategory/index';
+@import 'formLegalInfo/index';
+@import 'formObservations/index';
+@import 'leftSideSpacing/index';
+@import 'rightSideSpacing/index';
+@import 'smallLabel/index';
+@import 'secondaryHeader/index';
+@import 'thankYouInfo/index';
+@import 'tertiaryHeader/index';
+@import 'titleComponentFilter/index';
+@import 'underlinedTitle/index';
+@import 'nutrientsTitle/index';
+@import 'print/index';
+@import 'mobileNarrowButton/index';
+@import 'dataQuerystring/index';
+@import 'sectionHeader/index';
+@import 'articles/index';
+
+@import 'hyperlinkStyles/buttonPrimary/index';
+@import 'hyperlinkStyles/buttonSecondary/index';
+@import 'hyperlinkStyles/buttonTertiary/index';
+@import 'hyperlinkStyles/closeButton/index';
+@import 'hyperlinkStyles/inlineButton/index';
+@import 'hyperlinkStyles/socialIcons/index';
+@import 'hyperlinkStyles/desktopOnly/index';
+@import 'hyperlinkStyles/mobileOnly/index';

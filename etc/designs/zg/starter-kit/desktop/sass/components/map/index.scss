@@ -1,0 +1,18 @@
+@import '../../core/config';
+
+.map-canvas {
+  margin-bottom: 10px;
+
+  border: solid 2px color('neutral','light');
+  text-align: center;
+
+  img {
+    width: 100%;
+    max-width: inherit;
+  }
+}
+
+.no-js .map-canvas img {
+  width: 100%;
+  max-width: 640px;
+}

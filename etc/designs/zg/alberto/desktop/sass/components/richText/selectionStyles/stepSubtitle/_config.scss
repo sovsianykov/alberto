@@ -1,0 +1,17 @@
+$stepSubtitle: (
+  spacings: common('spacings')
+);
+
+$stepSubtitle: merge($stepSubtitle,(
+  _step-subtitle: (
+    paragraph: (
+      text: (
+        color: color('black'),
+        font-weight: bold,
+        line-height: breakpoint((tablet-max: 1.23, desktop: 1.16)),
+        font-size: breakpoint((tablet-max: px('m'), desktop: px('l')))
+      ),
+      margin: 0
+    )
+  )
+))

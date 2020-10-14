@@ -1,0 +1,65 @@
+.tabs-where-to-buy {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($whereToBuyTabs, $a...);
+  }
+
+  .tabs-nav-list {
+    @include breakpoints() {
+      @include box(g('_tab-nav-list.box'), $media);
+    }
+  }
+
+  .tabs-nav-item {
+    list-style-type: none;
+
+    @include media-query(mobile) {
+      flex-grow: 1;
+    }
+
+    a {
+      text-decoration: inherit;
+    }
+    .tabMenuItem {
+      @include media-query(mobile) {
+        width: 100%;
+      }
+
+      @include breakpoints {
+        @include button(g('_tab-nav-list._tab-nav-item.button'), $media);
+      }
+
+      &.tab-item--map {
+        @include media-query(tablet, auto) {
+          display: none;
+        }
+      }
+    }
+
+    .tab-item--map-link { // accessibilty: disables focusing on a link containing hidden content
+      @include media-query(tablet, auto) {
+        display: none;
+      }
+    }
+
+    &.is-active .tabMenuItem {
+      @include breakpoints {
+        @include button(g('_tab-nav-list._tab-nav-item-active.button'), $media);
+      }
+    }
+  }
+
+  .tabs-content.is-hidden {
+    // workaround to make hidden tabs still visible and
+    // not have issues with google maps + display: none
+    display: block !important;
+    position: absolute;
+    top: 0;
+    left: 200%;
+    width: 100%;
+  }
+
+  .tabContent {
+    @include box(g('_tab-content.box'), $media);
+  }
+}

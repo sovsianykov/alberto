@@ -1,0 +1,313 @@
+@import '../config';
+$turnToOverlay: (
+  _overlay: (
+    box: (
+      position: fixed,
+      background: (
+        background-color: color('neutral', 'lighter')
+      )
+    ),
+    _close-icon: (
+      icon: merge(get($turnTo, '_close-icon.icon'), (
+        color: color('white'),
+        background: (
+          background-color: color('black')
+        ),
+        height: 24px,
+        width: 24px,
+      ))
+    ),
+    _body: (
+      paragraph: (
+        margin: (
+          margin-left: 0
+        ),
+        padding: (
+          padding-left: 0
+        ),
+        text: (
+          color: color('black'),
+          font-size: px(18),
+          text-align: center
+        )
+      )
+    ),
+    _meta: (
+      paragraph: (
+        margin: (
+          margin-left: 0
+        ),
+        text: (
+          color: color('black'),
+          font-size: px('xxs')
+        )
+      )
+    ),
+    _input: (
+      box: (
+        box-sizing: border-box,
+        height: auto,
+        margin: 0 0 spacings('s') 0,
+        padding: 8px,
+        width: 100%
+      ),
+      paragraph: (
+        background: (
+          background-color: color('white')
+        ),
+        text: (
+          font-size: px('xs'),
+          color: color('black')
+        )
+      )
+    ),
+    _feedback-msg: (
+      paragraph: (
+        text: (
+          font-size: px(18),
+          font-family: 'body'
+        )
+      )
+    ),
+    _heading: (
+      box: (
+        margin: (
+          margin-left: 0,
+          marign-right: 0,
+          marign-top: 0
+        )
+      ),
+      _title: (
+        paragraph: (
+          margin: 0,
+          padding: (
+            padding-top: 0
+          ),
+          text: (
+            text-align: center,
+            font-size: px(22),
+            color: color('black')
+          )
+        )
+      ),
+      paragraph: (
+        margin: 0,
+        padding: spacings('s') 0 (spacings('m')/1.5) 0,
+        text: (
+          text-align: center,
+          font-size: px('xs'),
+          color: color('black')
+        )
+      )
+    ),
+    _buttons-container: (
+      box: ()
+    ),
+    _submit-wrapper: (
+      box: (
+        background: (
+          background-image: none !important
+        ),
+        border-radius: 2px,
+        display: block,
+        padding: 14px 0,
+        margin: (
+          margin-left: breakpoint(auto, 0, 0),
+          margin-right: breakpoint(auto, 0, 0)
+        ),
+        max-width: 100%,
+        width: 250px,
+      )
+    ),
+    _submit: (
+      box: (
+        background: (
+          background-color: color('black')
+        ),
+        border: (
+          border-radius: 3px
+        ),
+        display: block,
+        padding: 14px 0
+      ),
+      paragraph: (
+        display: block,
+        max-width: 100%,
+        width: 250px,
+        padding: (
+          padding: 14px 0
+        ),
+        text: (
+          color: color('white'),
+          text-transform: uppercase,
+          font-family: 'primary',
+          font-weight: bold,
+          font-size: px('xs'),
+          text-align: center
+        ),
+        hover: (
+          text-decoration: underline
+        )
+      )
+    ),
+    _cancel: (
+      button: (
+        border: 1px solid color('neutral', 'light'),
+        hover: (
+          background: (
+            background-color: rgba(color('neutral', 'light'), 0.2)
+          )
+        ),
+        text: (
+          text-transform: uppercase,
+          letter-spacings: 1px
+        )
+      ),
+    ),
+    _link: (
+      button: (
+        text: (
+          color: color('black'),
+          text-transform: uppercase,
+          font-family: 'primary',
+          font-weight: bold,
+          font-size: px('xs')
+        ),
+        hover: (
+          text-decoration: underline
+        )
+      )
+    ),
+  ),
+  _TTregCenter: (
+    box: (
+      padding: (
+        padding-top: breakpoint(spacings('s'), 0 !important, 0 !important)
+      )
+    )
+  ),
+  _main-box: (
+    box: (
+      position: fixed
+    ),
+    paragraph: (
+      text: (
+        font-family: 'body',
+        color: color('black')
+      )
+    )
+  ),
+  _top-links: (
+    paragraph: (
+      text: (
+        font-size: px(14)
+      )
+    ),
+    _logout: (
+      paragraph: (
+        text: (
+          font-size: px(14),
+          color: color('black')
+        )
+      )
+    )
+  ),
+  _find-your-profile: (
+    box: (
+      background: (
+        background-color: color('neutral', 'dark')
+      )
+    )
+  ),
+  _profile-tabs-wrapper: (
+    box: (
+      border: (
+        border-bottom: 2px solid color('neutral', 'light')
+      )
+    )
+  ),
+  _profile-tabs: extend('_tabs-nav', (
+    _item: (
+      button: (
+        background: none,
+        text: (
+          color: color('black')
+        ),
+        line: (
+          border: (
+            border-top: 4px solid color('secondary')
+          ),
+        )
+      )
+    ),
+    _item-active: (
+      button: (
+        text: (
+          color: color('secondary')
+        ),
+        line: (
+          border: (
+            border-top: 4px solid color('secondary')
+          ),
+        )
+      )
+    )
+  )),
+  _about-link: (
+    button: extend('_links._primary-link.button', (
+      text: (
+        text-transform: none,
+        font-weight: normal,
+      )
+    ))
+  ),
+  _form: (
+    box: (),
+    _section-title: (
+      paragraph: (
+        text: (
+          font-size: px(18)
+        )
+      )
+    ),
+    _label: (
+      paragraph: (
+        text: extend('_label.text', (
+          font-size: px(14),
+          font-weight: bold
+        ))
+      )
+    ),
+    _base-text-field: (
+      input: extend('_base.input', (
+        text: (
+          font-size: px(18)
+        )
+      ))
+    ),
+    _dropdown: extend('_dropdown', (
+      box: (),
+      icon: (
+        font-size: px(10)
+      ),
+      text: (
+        font-size: px(18)
+      ),
+      _options: (
+        text: (
+          font-size: px('xs')
+        )
+      )
+    )),
+    _active-links: (
+      button: extend('_links._secondary-link.button', ())
+    ),
+    _email: (
+      paragraph: (
+        text: (
+          font-size: px(16)
+        )
+      )
+    )
+  )
+);

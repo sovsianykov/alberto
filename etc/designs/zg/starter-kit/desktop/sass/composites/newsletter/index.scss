@@ -1,0 +1,165 @@
+@import '../../core/config';
+
+.newsletter-overlay {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($newsletterOverlay, $a...);
+  }
+
+  position: fixed !important;    //overwriting default box position
+  z-index: $z-index-layer;
+
+  @include box(g('_overlay-bg.box'), $media);
+}
+
+.newsletter-container {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($newsletterOverlay, $a...);
+  }
+
+  top: 0;
+  position: absolute;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  z-index: $z-index-fixed;
+
+  .overlay-content {
+    width: 100% !important;
+    min-width: 100%;
+    max-width: 100% !important;
+    height: 100%;
+    top: 0 !important;
+    border: none;
+    background: transparent;
+    position: fixed;
+    padding: 0;
+  }
+
+  .overlay-content-inner {
+    position: absolute !important;    //overwriting default box position
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: visible;
+
+    $box: merge((
+      width: breakpoint((mobile: calc(100% - 40px), tablet-min: 580px)),
+      box-shadow: 0 4px 75px 30px rgba(0, 0, 0, 0.2),
+      box-sizing: border-box,
+      background: (
+        background-color: color('white')
+      ),
+      padding: (
+        padding: breakpoint((mobile: spacings('xl') 20px, tablet-min: spacings('xl')))
+      )
+    ), g('box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    .richText:first-of-type p {    //reset styles for close button
+      margin: 0;
+      line-height: 1;
+    }
+
+    .button-close {
+      $iconPosition: merge((
+        right: -15px,
+        top: -15px
+      ));
+
+      @include attr($iconPosition, ('top','right'), $media);
+      @include button(g('_newsletter-overlay._close-button.button'), $media);
+    }
+
+    h2, h3 {
+      margin-bottom: spacings('xs');
+      margin-top: 0;
+
+      @include breakpoints {
+        @include paragraph(g('_newsletter-overlay._title.paragraph'), $media);
+      }
+    }
+
+    p {
+      $info: merge((
+        margin: (
+          margin-top: spacings('xxs'),
+          margin-bottom: spacings('xxs')
+        )
+      ));
+
+      @include media-query(tablet, auto) {
+        margin-bottom: spacings('xs');
+      }
+
+      @include breakpoints {
+        @include paragraph(g('_newsletter-overlay._info.paragraph'), $media);
+      }
+    }
+
+    .form {
+      $mobileButtonWidth: 46px;
+      $tabletButtonWidth: 107px;
+      $desktopButtonWidth: 125px;
+
+      position: relative;
+
+      .formContent {
+        display: flex;
+        align-items: stretch;
+      }
+
+      .component-content {
+        .textField {
+          flex-grow: 2;
+
+          .control-label {
+            display: none;
+          }
+
+          input {
+            width: 100%;
+            box-sizing: border-box;
+
+            @include input(g('_newsletter-overlay.input'), $media);
+          }
+        }
+
+        &.error {
+          .textField {
+            .control-label {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .formButton {
+        .component-content, .button {
+          height: 100%;
+        }
+
+        .button {
+          min-width: initial;
+          padding: 0;
+
+          .ua-ie & {
+            min-width: 0;
+          }
+
+          $formButton: merge((
+            display: breakpoint((mobile: inline-block)), // due to inline-flex problems in iOS 10 and <, we had to include this line.
+          ), g('_newsletter-overlay.button'));
+
+          @include breakpoints {
+            @include button($formButton, $media);
+          }
+        }
+      }
+    }
+  }
+}

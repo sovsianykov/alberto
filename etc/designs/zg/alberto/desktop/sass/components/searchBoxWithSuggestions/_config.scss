@@ -1,0 +1,85 @@
+$search-box-with-suggestions: (
+  spacings: common('spacings')
+);
+
+$query-background: color('white');
+
+$search-box-with-suggestions: merge($search-box-with-suggestions, (
+  box: (
+    background: transparent
+  ),
+  _searchBox-label: (
+    box: (
+      background: color('white')
+    )
+  ),
+  _submit: (
+    button: (
+      icon: (
+        color: color('black'),
+        content: common('icon.search'),
+        font-size: 20px,
+        side: before,
+        hover: (
+          color: color('primary', 'dark')
+        )
+      )
+    )
+  ),
+  _search-query: (
+    background: (
+      background: $query-background
+    ),
+    input: extend('input.base', (
+      background: $query-background,
+      border: (
+        border: 0,
+        border-radius: 0
+      ),
+      height: 32px,
+      text: (
+        font-size: px(26),
+        font-weight: bold,
+        line-height: 1.15
+      ),
+      width: calc(100% - 80px),
+      placeholder: (
+        font-size: px('xs'),
+        font-weight: normal,
+        line-height: 1.38
+      )
+    )),
+    text: (
+      color: color('black'),
+      font-size: breakpoint(
+        px(18),
+        px(22),
+        px(26)
+      ),
+      font-weight: bold,
+      line-height: 1.15
+    )
+  ),
+  _suggestions: (
+    box: (),
+    _item-holder: (
+      box: ()
+    ),
+    link: (
+      text: (
+        color: color('black'),
+        font-size: px('xs'),
+        line-height: 1.38
+      ),
+      hover: (
+        text: (
+          text-decoration: underline
+        )
+      )
+    ),
+    text: (
+      color: color('black'),
+      font-weight: bold
+    )
+  )
+));

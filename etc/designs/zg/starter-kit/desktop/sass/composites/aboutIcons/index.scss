@@ -1,0 +1,93 @@
+@import '../../core/config';
+
+.composite-about-icons {
+  @import 'config';
+  @function g($a...) { @return get-last($about-icons, $a...); }
+
+  @include wrapper;
+
+  $box: merge((
+    margin: (
+      margin: breakpoint((
+        tablet-max: 60px 0,
+        desktop: spacings('xxl') auto
+      ))
+    )
+  ), g('box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  .box > .component-content > .content {
+    $box: merge((
+      display: flex,
+      flex: (
+        flex-direction: breakpoint(column, column, row),
+        justify-content: space-around,
+        align-items: center
+      ),
+      margin: spacings('m') * -1 0
+    ), g('_tiles-wrapper.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+
+    a {
+      display: none;
+    }
+  }
+
+  .richText {
+    text-align: center;
+
+    $box: merge((
+      flex: (
+        flex-grow: 1,
+      ),
+      margin: spacings('m') 0,
+      max-width: breakpoint(null, 255px, 255px)
+    ), g('_tile.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+
+    img {
+      $box: merge((
+        max-width: breakpoint((tablet-max: 90px, desktop: 132px)),
+        margin: (
+          margin-bottom: breakpoint((
+            tablet-max: spacings('s'),
+            desktop: spacings('m')
+          ))
+        )
+      ), g('_tile._icon.box'));
+
+      @include breakpoints() {
+        @include box($box, $media)
+      }
+    }
+
+    h2, h3, h4 {
+      $paragraph: merge((
+        margin: (
+          margin: 0 0 spacings('xs'),
+        )
+      ), g('_tile._title.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($paragraph, $media)
+      }
+    }
+
+    p {
+      $paragraph: merge((
+        margin: 0
+      ), g('_tile._description.paragraph'));
+
+      @include paragraph($paragraph, $media);
+    }
+  }
+}

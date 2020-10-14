@@ -1,0 +1,96 @@
+.listing--photo-holder {
+  .listing-item {
+    margin-bottom: 0;
+  }
+
+  .image {
+    margin: 0;
+    padding: $gutter;
+    margin-bottom: $gutter;
+    background: linear-gradient(0deg, $gray-lighter, darken($gray-lighter, 5%));
+
+    picture {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    // TODO: remove this rule after there's a review component
+    &:last-child {
+      padding: 0;
+      background: none;
+
+      img {
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .richText-content {
+    padding: 0 $gutter;
+  }
+
+  .richText {
+    margin-bottom: 5px;
+  }
+}
+
+.listing--photo-holder-bleed {
+  @extend .listing--photo-holder;
+
+  .image {
+    $background-offset: 2 * $gutter;
+    $columns: 2;
+    $wrapper-padding: 2 * $gutter;
+    margin-bottom: $background-offset;
+    height: calc((100vw - #{$wrapper-padding}) / #{$columns} - #{$gutter} - #{$background-offset});
+
+    @include respond-to(phone) {
+      height: calc(100vw - #{$wrapper-padding} - #{$gutter} - #{$background-offset});
+    }
+
+    @include respond-to(desktop) {
+      $columns: 3;
+      height: calc((100vw - #{$wrapper-padding}) / #{$columns} - #{$gutter} - #{$background-offset});
+    }
+
+    @media (min-width: $wrapper-width) {
+      height: calc((#{$wrapper-width} - #{$wrapper-padding} - (#{$columns} - 1) * #{$gutter}) / #{$columns} - #{$background-offset});
+    }
+
+    img {
+      position: relative;
+      margin-bottom: $background-offset * -1;
+    }
+
+    &:last-child {
+      margin: 0;
+
+      img {
+        margin: 0;
+      }
+    }
+  }
+
+  .listing-item {
+    .component-content {
+      height: 100%;
+    }
+
+    .paragraphSystem {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      > a {
+        display: none;
+      }
+    }
+  }
+}

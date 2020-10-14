@@ -1,0 +1,135 @@
+$navigation: (
+  spacings: common('spacings')
+);
+
+$navigation: merge($navigation, (
+  // box: (),
+  _content: (
+    // box: (),
+    _arrow-button: (
+      icon: (
+        side: before,
+        content: common('icon.arrow-down'),
+        color: color('black'),
+        font-size: px(8),
+        margin: (
+          margin-top: get($navigation, 'spacings.xs')
+        ),
+        hover: (
+          transform: (
+            transform: rotate(-90deg)
+          )
+        )
+      )
+    ),
+    _arrow-button-active: (
+      transform: rotate(-180deg),
+      icon: (
+        side: before,
+        content: common('icon.arrow-down'),
+        color: color('black'),
+        font-size: px(8),
+        margin: (
+          margin-top: get($navigation, 'spacings.xs')
+        ),
+        hover: (
+          transform: (
+            transform: rotate(-90deg)
+          )
+        )
+      )
+    ),
+    _nav-title-wrapper: (
+      // box: (),
+      _navigation-item: (
+        box: (
+          border: (
+            border-bottom: 1px solid color('neutral', 'light')
+          ),
+          margin: (
+            margin-bottom: get($navigation, 'spacings.xs')
+          ),
+          padding: (
+            padding-bottom: get($navigation, 'spacings.xs')
+          )
+        )
+      ),
+      _navigation-item-title: (
+        button: (
+          display: inline-block,
+          margin: (
+            margin-right: 20px
+          ),
+          text: (
+            color: color('black'),
+            font-family: 'primary',
+            font-size: px(m),
+            font-weight: bold,
+            line-height: 1.23,
+            text-transform: uppercase
+          ),
+          hover: (
+            text: (
+              color: color('secondary', 'base')
+            )
+          )
+        )
+      ),
+      _navigation-item-decoration: (
+        // button:()
+      )
+    ),
+    _nav-item-wrapper: (
+      // box: ()
+      _navigation-item: (
+        box: (
+          background: (
+            background: transparent
+          )
+        ),
+        background: (
+          background: color('black')
+        )
+      ),
+      _navigation-item-title: (
+        button: (
+          background: transparent,
+          display: block,
+          padding: 13px 0 13px get($navigation, 'spacings.xs'),
+          text: (
+            color: color('black'),
+            font-family: 'body',
+            font-size: px(xxs),
+            line-height: 1.29
+          ),
+          hover: (
+            text: (
+              color: color('white')
+            )
+          )
+        )
+      ),
+      _navigation-item-decoration: (
+        // button:()
+      )
+    ),
+    _separation: (
+      box: (
+        display: breakpoint(
+          none,
+          block,
+          block
+        ),
+        border: (
+          border-bottom: 2px solid color('black')
+        ),
+        margin: (
+          margin-bottom: get($navigation, 'spacings.xl'),
+          margin-left: 0,
+          margin-right: 0,
+          margin-top: get($navigation, 'spacings.xl')
+        )
+      )
+    )
+  )
+));

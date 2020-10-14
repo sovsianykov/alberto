@@ -1,0 +1,28 @@
+@import '../../../core/config';
+
+.imageGallery-with-zoom__overlay {
+    .spinner {
+        animation: 1s spin linear infinite;
+        background: transparent;
+        border-radius: 50%;
+        border-right: spacings("xxxs") solid transparent;
+        border-top: spacings("xxxs") solid #000;
+        height: spacings("l");
+        left: 50%;
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: spacings("l");
+        -webkit-animation: 1s spin linear infinite;
+    }
+
+    @keyframes spin {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+    }
+}

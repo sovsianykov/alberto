@@ -1,0 +1,362 @@
+.ratingsandreviews .bazaarvoice div[data-bv-show="reviews"] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($reviews, $a...);
+  }
+
+  // Overriding font-families //
+  .bv-content-title,
+  .bv-author,
+  .bv-content-datetime,
+  .bv-content-summary-body-text p,
+  .bv-content-item .bv-content-feedback-vote .bv-content-feedback-vote-request,
+  .bv-content-data-label,
+  .bv-content-data .bv-content-data-value,
+  .bv-core-container-144 .bv-control-bar,
+  .bv-content-badges-container,
+  .bv-inline-histogram-ratings-score span,
+  .bv-inline-histogram-ratings-star-container .bv-inline-histogram-ratings-star {
+    @include breakpoints {
+      /*! @important(start) */
+      @include text(g('_main.text'), $media);
+      /*! @important(stop) */
+    }
+  }
+
+  @include breakpoints {
+    /*! @important(start) */
+    @include box(g('_main.box'), $media);
+    @include text(g('_main.text'), $media);
+    /*! @important(stop) */
+  }
+
+  .bv-action-bar {
+    $action-bar: merge((
+      padding: (
+        padding: breakpoint((
+          mobile: spacings('m') 0,
+          dekstop: spacings('s') 0 spacings('m')
+        ))
+      )
+    ), g('_main._action-bar.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($action-bar, $media);
+      /*! @important(stop) */
+    }
+
+    .bv-write-review-container .bv-write-review {
+      @include breakpoints {
+        /*! @important(start) */
+        @include button(g('_main._action-bar._write-a-review.button'), $media);
+        /*! @important(stop) */
+      }
+    }
+  }
+
+  .bv-section-summary {
+    $summary: merge((
+      padding: 0,
+      margin: 0
+    ), g('_main._summary.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($summary, $media);
+      /*! @important(stop) */
+    }
+
+    .bv-inline-histogram-ratings table {
+      $histogram: merge((
+        margin: 0 0 spacings('m'),
+        padding: (
+          padding-right: spacings('l')
+        ),
+        border: (
+          border-right: breakpoint(
+            null,
+            null,
+            2px solid color('neutral', 'light')
+          )
+        ),
+        width: calc(100% - 42px)
+      ), g('_main._summary._histogram.box'));
+
+      @include breakpoints {
+        /*! @important(start) */
+        @include box($histogram, $media);
+        /*! @important(stop) */
+      }
+    }
+
+    // Override with higher specifity //
+    .bv-section-summary-inline .bv-secondary-rating-summary .bv-secondary-rating-summary-list .bv-secondary-rating-summary-rating {
+      float: none !important;
+
+      @include breakpoints {
+        /*! @important(start) */
+        @include text(g('_main.text'), $media);
+        @include text(g('_main._summary._average-rating.text'), $media);
+        /*! @important(stop) */
+      }
+    }
+  }
+
+  // Override for summary table width //
+  .bv-cv2-cleanslate .bv-core-container-144 .bv-section-summary .bv-section-summary-table {
+    @include media-query(tablet, auto) {
+      width: auto !important;
+    }
+  }
+
+  // Override for average reviews wrapper //
+  .bv-cv2-cleanslate .bv-core-container-144 .bv-section-summary .bv-section-summary-inline .bv-secondary-rating-summary .bv-secondary-rating-summary-list {
+    $average-rating: merge((
+      margin: (
+        margin: breakpoint(
+          3px 0 spacings('m'),
+          3px 0 spacings('m') spacings('l'),
+          3px 0 spacings('m') spacings('xxl')
+        )
+      )
+    ), g('_main._summary._average-rating.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($average-rating, $media);
+      /*! @important(stop) */
+    }
+  }
+
+  // Override for average reviews wrapper //
+  .bv-cv2-cleanslate .bv-core-container-144 .bv-section-summary .bv-section-summary-inline .bv-secondary-rating-summary .bv-rating-ratio {
+    padding: 0 !important;
+  }
+
+  .bv-control-bar {
+    $control-bar: merge((
+      padding: (
+        padding: breakpoint((
+          mobile: spacings('xxs'),
+          tablet-min: spacings('xs')
+        ))
+      ),
+      flex: (
+        flex-wrap: nowrap
+      )
+    ), g('_main._control-bar.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($control-bar, $media);
+      /*! @important(stop) */
+    }
+
+    // Override mobile align for control bar //
+    .bv-control-bar-count {
+      text-align: left !important;
+
+      @include media-query(mobile) {
+        max-width: 40% !important;
+      }
+    }
+  }
+
+  .bv-content-summary {
+    $content-summary: merge((
+      max-width: 700px
+    ), g('_main._content-summary.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($content-summary, $media);
+      /*! @important(stop) */
+    }
+  }
+
+
+  .bv-content-meta-wrapper {
+    $wrapper: merge((
+      padding: (
+        padding-left: breakpoint(null, null, spacings('l'))
+      )
+    ), g('_main._author-date-wrapper.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($wrapper, $media);
+      /*! @important(stop) */
+    }
+  }
+
+  // Overriding paddings for datetime //
+  .bv-cv2-cleanslate .bv-core-container-144 .bv-content-data-summary .bv-content-meta .bv-content-datetime {
+    $datetime: merge((
+      padding: (
+        padding-left: 20px
+      )
+    ), g('_main._datetime.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($datetime, $media);
+      /*! @important(stop) */
+    }
+  }
+
+  .bv-content-actions-container {
+    $actions-container: merge((
+      margin: 0,
+      padding: 0
+    ), g('_main._actions-container.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($actions-container, $media);
+      /*! @important(stop) */
+    }
+
+    .bv-content-feedback-vote-request {
+      $vote-request: merge((
+        margin: 0,
+        padding: spacings('xxs') 0
+      ), g('_main._actions-container._vote-request.paragraph'));
+
+      @include breakpoints {
+        /*! @important(start) */
+        @include paragraph($vote-request, $media);
+        /*! @important(stop) */
+      }
+    }
+
+    .bv-content-btn-feedback-yes,
+    .bv-content-btn-feedback-no {
+      $feedback-btn: merge((
+        margin: (
+          margin-top: 0
+        ),
+        padding: spacings('xxs') 0
+      ), g('_main._actions-container._feedback-btn.button'));
+
+      // Override bazaarvoice styles //
+      border-right: 0 !important;
+
+      > span {
+        // Override bazaarvoice styles //
+        cursor: pointer !important;
+
+        @include breakpoints {
+          /*! @important(start) */
+          @include button($feedback-btn, $media);
+          /*! @important(stop) */
+        }
+      }
+    }
+
+    .bv-content-report-btn {
+      $report-btn: merge((
+      ), g('_main._actions-container._report-btn.button'));
+
+      // Overriding bazaar voice styles //
+      float: none !important;
+
+      @include breakpoints {
+        /*! @important(start) */
+        @include button($report-btn, $media);
+        /*! @important(stop) */
+      }
+    }
+  }
+
+  .bv-content-title-container {
+    $title: merge((
+      margin: (
+        margin-top: 20px
+      )
+    ), g('_main._review-title.paragraph'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include paragraph($title, $media);
+      /*! @important(stop) */
+    }
+  }
+
+  // Override bazaar voice styles //
+  .bv-cv2-cleanslate .bv-core-container-144 {
+    .bv-content-item .bv-content-btn:hover,
+    .bv-content-item .bv-content-feedback-voted-negative .bv-content-btn-feedback-no,
+    .bv-content-item .bv-content-feedback-voted-positive .bv-content-btn-feedback-no,
+    .bv-content-item .bv-content-feedback-voted-negative .bv-content-btn-feedback-yes,
+    .bv-content-item .bv-content-feedback-voted-positive .bv-content-btn-feedback-yes,
+    .bv-content-item:hover .bv-content-feedback-btn-container .bv-content-btn,
+    .bv-content-item:hover .bv-content-btn:hover .bv-content-btn-count {
+      /*! @important(start) */
+      background: none;
+      box-shadow: none;
+      cursor: pointer;
+      color: color('black');
+      /*! @important(stop) */
+    }
+  }
+
+  // Float review button to the left on mobile //
+  .bv-write-review-container {
+    @include media-query(mobile) {
+      float: left !important;
+    }
+  }
+
+  // Override for feedback button focus during hover on review //
+  .bv-cv2-cleanslate .bv-core-container-144 .bv-content-item .bv-content-btn:focus .bv-content-btn-count, .bv-cv2-cleanslate .bv-core-container-144 .bv-content-item:hover .bv-content-btn:focus .bv-content-btn-count {
+    @include breakpoints {
+      /*! @important(start) */
+      color: color('black');
+      /*! @important(stop) */
+    }
+  }
+
+  // Override review wrapper width //
+  .bv-cv2-cleanslate .bv-core-container-144 .bv-content-details-offset-off {
+    width: 100% !important;
+  }
+
+  // Remove outlines //
+  .bv-cv2-cleanslate .bv-core-container-144 .bv-focusable:focus {
+    outline: none !important;
+  }
+
+  // Last review hide bottom border //
+  .bv-content-list > .bv-content-item:last-of-type {
+    /*! @important(start) */
+    border-bottom: none;
+    /*! @important(stop) */
+  }
+
+  // Hiding unnecessary elements //
+  .bv-action-bar-header,
+  .bv-inline-histogram-header,
+  .bv-secondary-rating-summary-header,
+  .bv-histogram-filter-helper,
+  .bv-secondary-rating-summary-id,
+  .bv-cv2-cleanslate .bv-content-data-summary .bv-content-meta .bv-content-datetime-dot {
+    /*! @important(start) */
+    display: none;
+    /*! @important(stop) */
+  }
+}
+
+// Additional overlays outside ratings and reviews component //
+body .bv-cv2-cleanslate .bv-filters .bv-content-filter-select .bv-dropdown,
+body .bv-cv2-cleanslate .bv-core-container-144 .bv-dropdown-container .bv-dropdown ul .bv-dropdown-item,
+.bv-cv2-cleanslate .bv-core-container-144 .bv-popup-relevancy-link .bv-popup {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($reviews, $a...);
+  }
+
+  /*! @important(start) */
+  @include text(g('_main.text'), $media);
+  /*! @important(stop) */
+}

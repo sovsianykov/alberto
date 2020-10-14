@@ -1,0 +1,40 @@
+.livechat {
+  width: 100%;
+  padding: 40px 30px;
+  box-sizing: border-box;
+  position: relative;
+
+  &.component {
+    // workaround so I can use child element with background
+    // this is just to make the empty node not showing the background color.
+    display: flex;
+  }
+
+  > .component-content {
+  }
+
+  .livechat-title {
+    margin: 0 0 10px;
+
+    a {
+      color: $headings-color;
+    }
+  }
+
+  .btn {
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .livechat-offline {
+    .btn {
+      opacity: 0.5;
+      cursor: default;
+
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+a.desktop-only {
+  @include media-query(auto, notebook) {
+    display: none;
+  }
+}

@@ -1,0 +1,42 @@
+$showMoreBtn: (
+  spacings: common('spacings'),
+);
+
+$showMoreBtn: merge($showMoreBtn, (
+  button: (
+    margin: 20px auto,
+    text: (
+      text-transform: uppercase,
+      font-size: px('xxs'),
+      font-family: 'primary',
+      font-weight: bold
+    ),
+    background: transparent,
+    hover: (
+      text: (
+        color: color('neutral', 'dark')
+      )
+    ),
+    flex: (
+      justify-content: center,
+    ),
+    icon: (
+      content: common('icon.plus'),
+      font-size: px(15),
+      color: color('white'),
+      background: color('black'),
+      width: 35px,
+      height: 35px,
+      margin: (
+        margin-bottom: 10px,
+      ),
+      side: before,
+      border: (
+        border-radius: 50%,
+      ),
+      hover: (
+        background: color('primary', 'base')
+      )
+    ),
+  )
+))

@@ -1,0 +1,93 @@
+$reviews: (
+  _main: (
+    box: (),
+    text: (
+      font-family: 'body'
+    ),
+    _action-bar: (
+      box: (),
+      _write-a-review: (
+        button: (
+          text: (
+            font-family: 'primary',
+            line-height: 1.57
+          ),
+          hover: (
+            text: (
+              font-family: 'primary',
+              line-height: 1.57,
+              color: color('neutral', 'dark')
+            )
+          )
+        )
+      )
+    ),
+    _summary: (
+      box: (),
+      _average-rating: (
+        box: (),
+        text: (
+          font-weight: bold,
+          font-size: px(18),
+          text-align: left
+        )
+      ),
+      _histogram: (
+        box: ()
+      )
+    ),
+    _control-bar: (
+      box: ()
+    ),
+    _content-summary: (
+      box: ()
+    ),
+    _author-date-wrapper: (
+      box: ()
+    ),
+    _datetime: (
+      box: ()
+    ),
+    _review-title: (
+      paragraph: ()
+    ),
+    _actions-container: (
+      box: (),
+      _vote-request: (
+        paragraph: (
+          text: (
+            font-size: px('xxxs')
+          )
+        )
+      ),
+      _feedback-btn: (
+        button: (
+          text: (
+            font-family: 'primary',
+            font-size: px('xxxs'),
+            line-height: 1.33,
+            text-transform: uppercase,
+            text-decoration: underline,
+            color: color('black')
+          ),
+          hover: (
+            text: (
+              color: color('neutral', 'base')
+            )
+          )
+        )
+      ),
+      _report-btn: (
+        button: (
+          text: (
+            font-family: 'primary',
+            font-size: px('xxxs'),
+            line-height: 1.33,
+            text-transform: uppercase,
+            text-decoration: underline
+          )
+        )
+      )
+    )
+  )
+);

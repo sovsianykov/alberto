@@ -1,0 +1,49 @@
+$metaDetails: (
+  spacings: common('spacings')
+);
+
+$metaDetails: merge($metaDetails, (
+  _main: (
+    paragraph: (
+      text: (
+        font-size: breakpoint((mobile: px(18), tablet-min: px(14))),
+        line-height: breakpoint((mobile: 1.22, tablet-min: 1.43))
+      )
+    ),
+    box: (
+      margin: (
+        margin-left: 0
+      ),
+      padding: (
+        padding-left: breakpoint((tablet: 30px, desktop: 65px))
+      )
+    ),
+    _header: (
+      paragraph: (
+        text: (
+          line-height: breakpoint((tablet-max: 1, desktop: 1.13))
+        ),
+        margin: (
+          margin-top: breakpoint(20px, 0, 0),
+          margin-bottom: 20px
+        )
+      )
+    ),
+    _buttons-wrapper: (
+      _find-in-store: (
+        box: (
+          flex: ()
+        ),
+        button: (
+          margin: (
+            margin-top: breakpoint((mobile: 0, tablet-min: 25px)),
+            margin-bottom: breakpoint((mobile: 10px, tablet-min: 20px))
+          ),
+          padding: 22px 30px,
+          min-width: breakpoint((mobile: 100%, tablet-min: 178px)),
+          box-sizing: border-box
+        )
+      )
+    )
+  )
+));

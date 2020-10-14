@@ -1,0 +1,63 @@
+@import '../../core/config';
+
+.table {
+  &-heading {
+    color: color('neutral','base');
+    display: block;
+    font-size: px('s');
+    font-weight: bold;
+    padding-bottom: spacings('xs');
+  }
+
+  .button {
+    display: none;
+
+    @include respond-to(mobile) {
+      display: block;
+      margin: 20px;
+    }
+  }
+
+  &-caption {
+    background-color: color('neutral','light');
+    border-bottom: none;
+    border: solid 2px color('primary', 'base');
+    padding: 13px;
+
+    .button {
+      display: block;
+      margin: 10px 0 0 5px;
+
+      @include respond-to(mobile) {
+        display: none;
+      }
+    }
+  }
+
+  th, td {
+    border: solid 2px color('primary', 'base');
+    padding: 5px;
+  }
+
+  td {
+    vertical-align: middle;
+  }
+
+  th {
+    background-color: color('neutral','light');
+    font-weight: bold;
+    text-align: center;
+  }
+
+  table {
+    border-collapse: collapse;
+    border: solid 2px color('primary', 'base');
+    width: 100%;
+  }
+}
+
+.no-js {
+  .table .button {
+    display: none;
+  }
+}

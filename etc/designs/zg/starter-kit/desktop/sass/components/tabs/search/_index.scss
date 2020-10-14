@@ -1,0 +1,52 @@
+.tabs.search-tabs {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($searchTabs, $a...);
+  }
+
+  > .component-content {
+    @include wrapper;
+  }
+
+  // TABS NAVIGATION
+  .tabs-nav-list {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tabs-nav-item {
+    flex-grow: 1;
+    flex-basis: 0;
+    text-align: center;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
+  .tabMenuItem {
+    @include breakpoints() {
+      @include button(g('tabItem.inactive'), $media);
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+
+  .is-active .tabMenuItem {
+    @include breakpoints() {
+      @include button(g('tabItem.active'), $media);
+      border-top: 0;
+      border-left: 0;
+      border-right: 0;
+    }
+  }
+
+  // TABS CONTENT
+  .tabContent > .content {
+    display: flex;
+    padding-top: g('spacings.xl');
+  }
+}

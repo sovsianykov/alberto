@@ -1,0 +1,62 @@
+#bv-mbox-overlay-id {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($review-overlay, $a...);
+  }
+
+  // All !importants are needed to overwrite bazaarvoice !important styles
+  @include breakpoints() {
+    /*! @important(start) */
+    @include box(g('_overlay-bg.box'), $media);
+    /*! @important(stop) */
+  }
+
+  opacity: .8 !important;
+}
+
+#bv-mboxzone-lightbox  {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($review-overlay, $a...);
+  }
+
+  #bv-mbox-lightbox-list {
+    $overlayBox: merge((
+      padding: 0
+    ), g('box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($overlayBox, $media);
+      /*! @important(stop) */
+    }
+  }
+
+  .bv-mbox-close {
+    /*! @important(start) */
+    top: 10px;
+    right: 10px;
+    /*! @important(stop) */
+  }
+
+  button.bv-submission-button-submit.bv-form-actions-submit {
+    $submitButton: merge((
+      display: breakpoint((mobile: block))
+    ), g('_submit-button.button'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include button($submitButton, $media);
+      /*! @important(stop) */
+    }
+  }
+
+  button.bv-cancel {
+    @include breakpoints {
+      /*! @important(start) */
+      @include button(g('_cancel-button.button'), $media);
+      /*! @important(stop) */
+    }
+  }
+}
+

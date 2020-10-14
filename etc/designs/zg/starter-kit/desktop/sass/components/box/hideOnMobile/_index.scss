@@ -1,0 +1,5 @@
+.box.hide-on-mobile {
+  @include media-query(mobile) {
+    display: none;
+  }
+}

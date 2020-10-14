@@ -1,0 +1,12 @@
+@include local-spacings();
+
+$carousel-slick: (
+  spacings: spacings(),
+  _carousel-slides: (
+    box: (),
+    _carousel-slide: (
+      box: ()
+    )
+  ),
+  _carousel-nav: common('carousel._nav')
+);

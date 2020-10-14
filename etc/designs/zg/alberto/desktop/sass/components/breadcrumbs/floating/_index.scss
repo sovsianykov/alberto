@@ -1,0 +1,55 @@
+.breadcrumbs.breadcrumbs-floating {
+  @import 'config';
+  @function g($a...) { @return get-last($breadcrumbs-floating, $a...); }
+
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: $z-index-content;
+
+  @include media-query(mobile) {
+    display: none;
+  }
+
+  @include box(g('_main.box'), $media);
+
+  .component-content {
+      @include wrapper;
+      @include box(g('_main._content.box'), $media);
+  }
+
+  .breadcrumbs-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    @include box(g('_main._content._list.box'), $media);
+
+    li {
+      display: inline-block;
+      @include link(g('_main._content._link.link'), $media);
+      &:hover {
+        text-decoration: none;
+        a {
+          text-decoration: underline;
+        }
+      }
+
+      &.is-current {
+        @include link(g('_main._content._link-current.link'), $media);
+
+        a {
+          @include link(g('_main._content._link-current.link'), $media);
+        }
+      }
+
+      a {
+        @include link(g('_main._content._link.link'), $media);
+      }
+    }
+  }
+
+  .breadcrumbs-separator {
+    display: inline-block;
+    @include icon(g('_main.icon'), $media);
+  }
+}

@@ -1,0 +1,67 @@
+$articleList: (
+  _outer-wrapper: (
+    box: ()
+  ),
+  _listing: (
+    box: (),
+    _item: (
+      box: (),
+      _details-wrapper: (
+        box: (),
+        hover: (
+          background: (
+            background-color: breakpoint((
+                tablet-min: rgba(color('neutral', 'light'), 0.2)
+            ))
+          )
+        ),
+        _title: (
+          paragraph: (
+            text: (
+              font-size: px('m'),
+              line-height: breakpoint((tablet-max: 1.23, desktop: 1.3)),
+              font-weight: bold,
+              text-decoration: none
+            )
+          )
+        ),
+        _title-small: (
+          paragraph: (
+            text: (
+              font-size: px(20),
+              line-height: breakpoint((tablet-max: 1.23, desktop: 1.3)),
+              font-weight: bold,
+              text-decoration: none
+            )
+          )
+        ),
+        _description: (
+          paragraph: (
+            text: (
+              font-size: px(18),
+              font-weight: normal
+            )
+          )
+        )
+      ),
+      _image-wrapper: (
+        box: (),
+        _image: (
+          transition: (
+            speed: 1s
+          ),
+          hover: (
+            transform: (
+              transform: breakpoint((
+                tablet-min: scale(1.1, 1.1)
+              ))
+            )
+          )
+        )
+      )
+    )
+  ),
+  _seeAllButton: (
+    button: ()
+  )
+);

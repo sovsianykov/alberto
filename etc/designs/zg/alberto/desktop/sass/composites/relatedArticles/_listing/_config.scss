@@ -1,0 +1,33 @@
+$articleListing: (
+  _outer-wrapper: (
+    box: (),
+  ),
+  _listing: (
+    box: (),
+    _item: (
+      box: (),
+      _details-wrapper: (
+        box: (),
+        hover: (),
+        _title: (
+          paragraph: ()
+        ),
+        _title-small: (
+          paragraph: ()
+        ),
+        _description: (
+          paragraph: ()
+        )
+      ),
+      _image-wrapper: (
+        box: (),
+        _image: (
+          transition: (
+            speed: 1s
+          ),
+          hover: ()
+        )
+      )
+    )
+  )
+);

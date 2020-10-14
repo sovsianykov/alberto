@@ -1,0 +1,87 @@
+---
+
+exclude:
+  - 'sass/core/normalize.scss'
+  - 'sass/libs/*'
+
+linters:
+  BangFormat:
+    enabled: true
+  BorderZero:
+    enabled: false
+  CapitalizationInSelector:
+    enabled: false
+  ColorKeyword:
+    enabled: true
+  Comment:
+    enabled: true
+  DeclarationOrder:
+    enabled: true
+  DuplicateProperty:
+    enabled: false
+  EmptyLineBetweenBlocks:
+    enabled: true
+  EmptyRule:
+    enabled: true
+  FinalNewline:
+    enabled: false
+  HexLength:
+    enabled: true
+  HexNotation:
+    enabled: true
+  HexValidation:
+    enabled: true
+  Indentation:
+    enabled: true
+    character: space
+    width: 2
+  LeadingZero:
+    enabled: false
+  MergeableSelector:
+    enabled: true
+    force_nesting: true
+  SelectorFormat:
+    enabled: true
+    convention: ^[a-z]+([A-Z]?[a-z0-9])*(--?[a-z0-9]+([A-Z]?[a-z0-9])*)*$
+  NestingDepth:
+    enabled: true
+    max_depth: 4
+  PlaceholderInExtend:
+    enabled: true
+  PropertySortOrder:
+    enabled: false
+  PropertySpelling:
+    enabled: true
+  SelectorDepth:
+    enabled: true
+    max_depth: 4
+  Shorthand:
+    enabled: true
+  SingleLinePerSelector:
+    enabled: true
+  SpaceAfterPropertyColon:
+    enabled: true
+  SpaceAfterPropertyName:
+    enabled: true
+  SpaceAfterComma:
+    enabled: true
+  SpaceBeforeBrace:
+    enabled: true
+  SpaceBetweenParens:
+    enabled: true
+  StringQuotes:
+    enabled: false
+  TrailingSemicolon:
+    enabled: true
+  UrlQuotes:
+    enabled: true
+  UrlFormat:
+    enabled: true
+  UnnecessaryMantissa:
+    enabled: true
+  UnnecessaryParentReference:
+    enabled: true
+  VendorPrefix:
+    enabled: true
+  ZeroUnit:
+    enabled: true

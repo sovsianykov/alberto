@@ -1,0 +1,28 @@
+$sign-up-form: (
+  box: (),
+  _formContent: (
+    box: ()
+  ),
+  _groupFields: (
+    box: (),
+  ),
+  _formButtonSubmit: (
+    box:(),
+    button: (),
+    _buttonHolder: (
+      box: ()
+    )
+  ),
+  _datePicker: (
+    box:(
+      padding: (
+        padding-right: 0,
+      )
+    )
+  ),
+  _iOS-datepicker-controls: (
+    text: (
+      font-size: breakpoint((tablet-max: px(18)))   //the smallest allowed font size for input controls on small devices with iOS is 16px, otherwise when click on input, whole page is zoomed in
+    )
+  )
+);

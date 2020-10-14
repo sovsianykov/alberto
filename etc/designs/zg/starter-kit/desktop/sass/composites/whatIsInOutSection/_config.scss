@@ -1,0 +1,38 @@
+$whatIsInOut: (
+  _main: (
+    box: (
+      background: (
+        background-color: color('neutral', 'lighter')
+      )
+    ),
+    _items-wrapper: (
+      box: ()
+    ),
+    _item: (
+      box: (),
+      _image: (
+        box: ()
+      ),
+      _text-wrapper: (
+        paragraph: (
+          text: (
+            text-align: center
+          )
+        ),
+        _heading: (
+          paragraph: (
+            text: (
+              font-size: breakpoint((tablet-max: px(24), desktop: px(32))),
+              font-weight: normal,
+              line-height: breakpoint((tablet-max: 1.33, desktop: 1.25)),
+              letter-spacing: 1px
+            )
+          )
+        ),
+        _description: (
+          paragraph: ()
+        )
+      )
+    )
+  )
+);

@@ -1,0 +1,45 @@
+// title for filters column on search page
+
+$title-component-filter: (
+  spacings: common('spacings')
+);
+
+$title-component-filter: merge($title-component-filter, (
+  box: (
+    background: transparent
+  ),
+  _content: (
+    // box: (),
+    _title: (
+      box: (
+        margin: (
+          margin: breakpoint(
+            0 0 0,
+            0 0 30px,
+            0 0 50px
+          )
+        )
+      ),
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-family: 'primary',
+          font-size: px(26),
+          font-weight: bold,
+          line-height: 1.15,
+          text-transform: uppercase
+        )
+      )
+    ),
+    icon: (
+      color: color('black'),
+      content: common('icon.cross'),
+      display: inline-flex,
+      font-size: px(16px),
+      side: before,
+      margin: (
+        margin-right: 20px
+      )
+    )
+  )
+));

@@ -1,0 +1,106 @@
+#TTmiqBubble,
+.TTmiqaBubble {
+  top: 0 !important; //overrite inline top styles added by TurnTo default JS
+
+  @include breakpoints {
+    @include box(g('_product-search.box'), $media);
+  }
+
+  // overlay close icon
+  .TT4closeIcon {
+    background: none;
+    height: auto;
+    width: auto;
+
+    @include breakpoints {
+      @include icon(g('_close-icon.icon'), $media);
+    }
+  }
+
+  // input wrapper
+  .TT3searchDiv-srchTrm {
+    @include breakpoints {
+      @include box(g('_product-search._input-wrapper.box'), $media);
+    }
+  }
+
+  // clear search icon
+  .TT3clearSearchMiqa {
+    background: none;
+    height: 100%;
+    margin: 0;
+    width: auto;
+    top: 0;
+    right: 0;
+    @include breakpoints {
+      @include icon(g('_product-search._clear-search.icon'), $media);
+    }
+
+    $pseudo: safetype(g('_product-search._clear-search.icon', $media), 'after');
+    &:#{$pseudo} {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  // results information message
+  .TT3miqaRsltsCnt {
+    @include breakpoints {
+      @include paragraph(g('_product-search._results-message.paragraph'), $media);
+    }
+  }
+
+  // results
+  .TT3miqaRslts {
+    width: 100%;
+
+    .TT3miqaItem {
+      width: calc(20% - 8px);
+    }
+
+    .TT3miqaItemTitle {
+      @include breakpoints {
+        @include paragraph(g('_product-search._image-caption.paragraph'), $media);
+      }
+    }
+
+    .TT3add {
+      margin: 0;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .TT3add {
+      @include breakpoints {
+        @include button(g('_product-search._add-button.button'), $media);
+      }
+    }
+
+    .TT3added {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+
+      .TT3addedText {
+        margin: 0;
+        background: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        @include breakpoints {
+          @include icon(g('_product-search._added-icon.icon'), $media);
+        }
+      }
+
+      .TT3transparent {
+        padding: 0;
+      }
+    }
+  }
+}

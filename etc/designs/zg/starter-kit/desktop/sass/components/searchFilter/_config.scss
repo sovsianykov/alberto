@@ -1,0 +1,171 @@
+$searchFilter: (
+  spacings: common('spacings')
+);
+
+$searchFilter: merge($searchFilter, (
+  box: (
+    background: transparent,
+    padding: 0
+  ),
+  _content: (
+    _wrapper: (
+      // box: ()
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-size: breakpoint(
+            px(18),
+            px(14),
+            px(18)
+          ),
+          font-weight: bold,
+          line-height: breakpoint(
+            1.33,
+            1.29,
+            1.22
+          )
+        )
+      ),
+      box: (
+        background: transparent,
+        margin: (
+          margin-bottom: 20px,
+          margin-left: 0,
+          margin-right: 0,
+          margin-top: 0
+        )
+      ),
+      // This icon exist only in mobile
+      icon: (
+        content: common('icon.arrow-down'),
+        font-size: px(10),
+        color: color('black'),
+        display: inline-flex,
+        margin: (
+          margin-top: 6px
+        )
+      )
+    ),
+    _filters-items: (
+      // box: ()
+    ),
+    _checkbox: (
+      box: (
+        background: transparent,
+        margin: (
+          margin-bottom: 20px,
+          margin-left: 0,
+          margin-right: 0,
+          margin-top: 20px
+        )
+      ),
+      _filter-label: (
+        button: (
+          background: transparent,
+          icon: (
+            background: color('white'),
+            border: (
+              border: 1px solid color('black'),
+              border-radius: 18%
+            ),
+            content: "",
+            height: breakpoint(
+              25px,
+              20px,
+              20px
+            ),
+            margin: 0,
+            side: before,
+            width: breakpoint(
+              25px,
+              20px,
+              20px
+            ),
+            hover: (
+              background: color('neutral', 'light')
+            )
+          ),
+          text: (
+            font-size: px(14),
+            line-height: 1.29
+          )
+        )
+      ),
+      _filter-label-checked: (
+        button: (
+          icon: (
+            background: color('black'),
+            side: before,
+            hover: (
+              background: color('neutral', 'light')
+            )
+          )
+        )
+      ),
+      _link: (
+        paragraph: (
+          margin: (
+            margin: breakpoint(
+              3px 0 0 35px,
+              2px 0 0 30px,
+              2px 0 0 30px
+            )
+          ),
+          text: (
+            color: color('black'),
+            font-size: px(14),
+            line-height: 1.29
+          )
+        )
+      ),
+      _quantity: (
+        // box: ()
+        text: (
+          color: color('black'),
+          font-size: px(14),
+          line-height: 1.29
+        )
+      )
+    ),
+    _toggle-filters-link: (
+      button: (
+        background: transparent,
+        border: 0,
+        display: breakpoint((
+          mobile: none,
+          tabled: inline-flex
+        )),
+        text: (
+          color: color('black'),
+          font-size: px(12),
+          font-weight: bold,
+          line-height: 1.33,
+          text-transform: uppercase,
+          text-decoration: underline
+        ),
+        hover: (
+          text: (
+            text-decoration: none
+          )
+        )
+      )
+    ),
+    _separation: (
+      box: (
+        display: block,
+        border: (
+          border-bottom: 1px solid color('neutral', 'light')
+        ),
+        margin: (
+          margin: breakpoint(
+            20px 0,
+            50px 0,
+            50px 0
+          )
+        )
+      )
+    )
+  )
+));

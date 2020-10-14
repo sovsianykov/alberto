@@ -1,0 +1,63 @@
+@import '../../core/config';
+
+.buyitnow.initialized {
+  visibility: visible;
+}
+
+.buyitnow {
+  width: auto;
+
+  .addtobag-btn,
+  .shopalyst-btn,
+  .btn-primary {
+    align-items: center;
+    background-color: color('primary', 'base');
+    border: 0;
+    border-radius: spacings('xxxs');
+    box-sizing: border-box;
+    color: color('black');
+    cursor: pointer;
+    font-family: din-condensed,Franklin Gothic,Avenir Next Condensed,sans-serif;
+    font-size: 1.125rem;
+    font-weight: 700;
+    height: 52px;
+    justify-content: center;
+    line-height: 1.22;
+    margin-top: spacings('xl') / 2;
+    padding: 0;
+    text-decoration: none;
+    text-transform: uppercase;
+    width: 180px;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+
+    @include media-query(mobile) {
+      margin-bottom: spacings('xs');
+      margin-right: 0;
+      max-width: 100%;
+      min-width: 100%;
+    }
+
+    @include media-query(tablet) {
+      margin-right: spacings('l') / 2;
+      margin-bottom: spacings('l') / 2;
+      max-width: 100%;
+    }
+
+    @include media-query(notebook, wide) {
+      max-width: 100%;
+    }
+
+    @include media-query(wide) {
+      margin-right: spacings('l') / 2;
+    }
+
+    .display-list & {
+      margin-top: 0;
+    }
+  }
+}
+
+@import 'shopalystBuyItNow/index';

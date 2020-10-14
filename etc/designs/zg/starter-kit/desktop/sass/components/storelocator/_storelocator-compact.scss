@@ -1,0 +1,43 @@
+.default-storelocator-compact {
+  .storelocator-toggle {
+    display: none;
+    + .storelocator-form-wrapper {
+      display: block;
+    }
+  }
+
+  .storelocator-form {
+    display: flex;
+    flex-wrap: wrap;
+
+    > .storelocator-title {
+      width: 100%;
+    }
+
+    .storelocator-wrapper {
+      margin-bottom: 0;
+      width: 200px;
+    }
+
+    .storelocator-prefix {
+      display: none;
+    }
+
+    .storelocator-button-wrapper {
+      margin-left: 5px;
+    }
+
+    .storelocator-button {
+      border: none;
+      background: color('secondary');
+      color: color('white');
+      padding-top: 9px;
+      padding-bottom: 9px;
+      height: 40px;
+
+      &:hover {
+        background: darken(color('secondary'), 10%);
+      }
+    }
+  }
+}

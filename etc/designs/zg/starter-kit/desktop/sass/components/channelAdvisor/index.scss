@@ -1,0 +1,81 @@
+@import '../../core/config';
+
+.channelAdvisor {
+	@import 'config';
+
+	@function g($a...) {
+    @return get-last($channelAdvisor, $a...);
+	}
+
+	@include box(g('box'), $media);
+
+	&.component-content {
+		// high specificity is needed here to override other rules
+		.channelAdvisor-buy-it-now-btn.addtobag-btn {
+			@include box(g('_buy-it-now-btn.box'), $media);
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			display: block;
+		}
+	}
+
+	&-popup {
+		@include box(g('_popup.box'), $media);
+
+		transform: translate(-50%, -100%);
+		left: 50%;
+
+		&::after {
+			@include box(g('_arrow-decorator.box'), $media);
+      @include transform(g('_arrow-decorator.transform'), $media);
+
+			content: "";
+			bottom: 0;
+			right: 50%;
+		}
+
+		&.position-bottom {
+			transform: translate(-50%, 0);
+
+			&::after {
+				box-shadow: none;
+				bottom: auto;
+				top: -35px;
+			}
+		}
+	}
+
+	&-retailers-list {
+		@include box(g('_retailer-list.box'), $media);
+
+		overflow: auto;
+		list-style: none;
+	}
+
+	&-item {
+		@include box(g('_retailer-item.box'), $media);
+    @include text(g('_retailer-item.text'), $media);
+	}
+
+	&-item-unavailable {
+		.channelAdvisor-currency-symbol,
+		.channelAdvisor-currency-code {
+			display: none;
+		}
+	}
+
+	&-close-btn {
+		@include button(g('_close-btn.button'), $media);
+
+		&:hover {
+			cursor: pointer;
+		}
+
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+};

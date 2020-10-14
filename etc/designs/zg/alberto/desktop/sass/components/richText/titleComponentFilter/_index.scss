@@ -1,0 +1,35 @@
+.title-component-filter {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($title-component-filter, $a...);
+  }
+
+  @include breakpoints {
+    @include box(g('box'), $media);
+  }
+
+  // .component-content {}
+
+  .richText-content {
+    @include box(g('_content.box'), $media);
+
+    h2, h3, h4 {
+      @include paragraph(g('_content._title.paragraph'), $media);
+      @include breakpoints {
+        @include box(g('_content._title.box'), $media);
+      }
+
+      @include media-query(mobile, notebook) {
+        border-bottom: solid 2px color('neutral', 'light');
+        margin: -spacings('l')/2 -spacings('l')/2 spacings('l')/2;
+        padding: spacings('s') spacings('l')*4 spacings('s') spacings('l')/2;
+        @include icon(g('_content.icon'), $media);
+      }
+      @include media-query(desktop, auto) {
+        border-bottom: 0;
+        margin: 0 0 spacings('xl');
+        padding: 0;
+      }
+    }
+  }
+}

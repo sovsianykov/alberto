@@ -1,0 +1,84 @@
+.listing.listing-featured-articles {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($featured-articles, $a...);
+  }
+
+   @include box(g('box'), $media);
+
+  .listing-items {
+    $listing-items: merge((
+      margin: (
+        margin: breakpoint((mobile: null, tablet-min: 0 spacings('s') * -1))
+      )
+    ), g('_listing-items.box'));
+
+    @include breakpoints() {
+      @include box($listing-items, $media);
+    }
+  }
+
+  .listing-item {
+    $listing-item: merge((
+      flex: (
+        flex-basis: breakpoint(null, 0, 0),
+        flex-grow: breakpoint(null, 1, 1)
+      ),
+      padding: (
+        padding: breakpoint((mobile: null, tablet-min: 0 spacings('s')))
+      )
+    ), g('_item.box'));
+
+    @include breakpoints() {
+      @include box($listing-item, $media);
+    }
+  }
+
+  .image {
+    $image: merge((
+      margin: (
+        margin: breakpoint(0 -20px, null, null)
+      )
+    ), g('_item._image.box'));
+
+    @include breakpoints() {
+      @include paragraph($image, $media);
+    }
+
+    img {
+      width: 100%;
+    }
+
+    position: relative;
+  }
+
+  .richText {
+    h2, h3 {
+      $title: merge((
+        margin: (
+          margin: breakpoint((
+            mobile: 20px 0,
+            tablet-min: 20px 0 spacings('s')
+          ))
+        )
+      ), g('_item._title.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($title, $media);
+      }
+    }
+
+    @include paragraph(g('_item._description.paragraph'), $media);
+
+    .button-secondary {
+      $button: merge((
+        // margin: spacings('s') 0,
+        width: breakpoint(100%, null, null)
+      ), g('_item._link.button'));
+
+      @include breakpoints() {
+        @include button($button, $media);
+      }
+    }
+  }
+}

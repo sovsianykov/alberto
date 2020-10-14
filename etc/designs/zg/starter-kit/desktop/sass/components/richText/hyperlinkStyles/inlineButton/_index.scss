@@ -1,0 +1,29 @@
+.richText .inline-button {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($inlineButton, $a...);
+  }
+
+  $inlineButtons: merge((
+    min-width: breakpoint((tablet-max: 100%, desktop: 160px)),
+    height: 50px,
+    padding: 18px 0,
+    margin: (
+      margin-top: spacings('xs')
+    )
+  ), g('_buttons.button'));
+
+  @include breakpoints() {
+    @include button($inlineButtons, $media);
+  }
+
+  &:first-of-type {
+    $firstButton: merge((
+      margin-right: breakpoint((desktop: 30px))
+    ), g('_buttons._first.margin'));
+
+    @include breakpoints() {
+      @include margin($firstButton, $media);
+    }
+  }
+}

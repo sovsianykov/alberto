@@ -1,0 +1,64 @@
+{
+  // Full list of options available at: http://jshint.com/docs/options/
+
+  "bitwise": true, // Prohibit bitwise operators (&, |, ^, etc.)
+  "curly": true, // Require {} for every new block or scope
+  "eqeqeq": true, // Require triple equals i.e. `===`
+  "es3": true, // Disallow trailing commas and other es3 related stuff
+  "forin": true, // Tolerate `for in` loops without `hasOwnPrototype`
+  "freeze": true, // Prohibit overwriting prototypes of native objects
+  "latedef": false, // Prohibit variable use before definition.
+  "undef": true, // Require all non-global variables be declared before they are used.
+  "unused": true, // Prohibit the use of explicitly undeclared variables
+  "strict": true, // Require `use strict` pragma in every file
+  "loopfunc": true, // Allow functions to be defined within loops
+  "newcap": true, // Require capitalization of all constructor functions e.g. `new F()`.
+  "maxcomplexity": 10, // Cyclomatic complexity
+  "maxparams": 4, // Maximum number of function parameters
+
+  "browser": true, // Standard browser globals e.g. `window`, `document`.
+  "jquery": true, // Enable globals exposed by jQuery JavaScript library.
+
+  "globals": {
+    "window": true,
+    "console": true,
+    "JSON": false,
+    "Cog": true,
+    "CryptoJS": true,
+    "_": false,
+    "Modernizr": false,
+    "enquire": false,
+    "google": false, // Required by map component
+    "MediaElementPlayer": false, // Required by video and videoGallery components,
+    "bowser": false, // external lib
+    "doT": false,
+    "$BV": false, // Bazaar Voice,
+    "Bloodhound": false,
+    "Cart": false, // Shoppable object
+    "Product": false, // Shoppable object
+    "ShoppableApi": false, //Shoppable object
+    "_shopalyst": false, // Shopalyst object
+    "IScroll": false,
+    "olapicRequireCheckoutScript": false,
+    "olapicCheckout": false,
+    "Hammer": false,
+    "isDigitalDataActive": true, // Analytics object
+    "digitalData": true, // Analytics object
+    "PubSub": true, // Analytics object
+    "Masonry": false, // Analytics object
+    "allProducts": true, // Analytics object
+    "grecaptcha": true, // GoogleCaptcha Object
+    "ratingReview": false, // Kritique
+    "c2bWidget" : true, // Clic2Buy Object
+    "Scrambled" : true, // Scrambled Object
+    "PriceSpider" : true, // PriceSpider Object
+    "shopalyst" : true, // Shopalyst global object
+    "gigya": true, //gigya object
+    "swipeDetector": true,
+    "mboxDefine": true, //mbox object (target related)
+    "mboxUpdate": true, //mbox object (target related)
+    "mboxArgs": true, //mbox object (target related)
+    "FB": true, //Facebook Customer Chat SDK
+    "adobe": true //Personalisation related
+  }
+}

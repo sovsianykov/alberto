@@ -1,0 +1,75 @@
+.listing.listing-product-list {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($productList, $a...);
+  }
+
+  .listing-item {
+    > .component-content > .content {
+      position: relative;
+
+      $pseudo: safetype(g('_listing-item._select-icon.icon.side'), 'after');
+      &:#{$pseudo} {
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        position: absolute;
+      }
+    }
+
+    .box-heading {
+      display: none;
+    }
+
+    @include media-query(desktop, auto) {
+      > .component-content {
+        height: 100%;
+        > .content {
+          height: 100%;
+        }
+      }
+    }
+
+    @include breakpoints {
+      > .component-content > .content {
+        @include box(g('_listing-item.box'), $media);
+        @include icon(g('_listing-item._select-icon.icon'), $media);
+
+        &:hover {
+          @include box(g('_listing-item-hover.box'), $media);
+        }
+      }
+      p {
+        @include paragraph(g('_listing-item._title.paragraph'), $media);
+      }
+    }
+
+    &.is-selected {
+      @include breakpoints {
+        > .component-content > .content {
+          @include box(g('_listing-item-selected.box'), $media);
+          @include icon(g('_listing-item-selected._select-icon.icon'), $media);
+        }
+      }
+    }
+
+    .image {
+      flex-shrink: 0;
+
+      @include breakpoints() {
+        @include box(g('_listing-item._image.box'), $media);
+      }
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+
+    // todo: change styles for ratings / bazaarVoice
+    .image:nth-of-type(2) {
+      // temporary placeholder styles
+      max-width: 110px;
+    }
+  }
+}

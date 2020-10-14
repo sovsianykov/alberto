@@ -1,0 +1,203 @@
+$listingCheckBoxesFilter: (
+  spacings: common('spacings')
+);
+
+$listingCheckBoxesFilter: merge($listingCheckBoxesFilter, (
+  // box: (),
+  _content: (
+    // box: (),
+    _title: (
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-family: breakpoint(
+            'body',
+            'primary',
+            'primary'
+          ),
+          font-size: breakpoint(
+            px(18),
+            px(14),
+            px(26)
+          ),
+          font-weight: bold,
+          line-height: breakpoint(
+            1.33,
+            1.29,
+            1.23
+          ),
+          text-transform: breakpoint(
+            none,
+            uppercase,
+            uppercase
+          )
+        )
+      ),
+      box: (
+        margin: (
+          margin: breakpoint(
+            0 0 20px,
+            0 0 get($listingCheckBoxesFilter, 'spacings.s'),
+            0 0 get($listingCheckBoxesFilter, 'spacings.s')
+          )
+        )
+      ),
+      icon: (
+        color: color('black'),
+        content: common('icon.arrow-down'),
+        font-size: px(10),
+        side: 'before',
+        margin: (
+          margin-top: 7px
+        )
+      )
+    ),
+    _items: (
+      box: (
+        display: breakpoint(
+          none,
+          block,
+          block
+        )
+      )
+    ),
+    _items-active: (
+      box: (
+        display: breakpoint(
+          block,
+          block,
+          block
+        )
+      )
+    ),
+    _item: (
+      box: (
+        background: transparent,
+        margin: (
+          margin-bottom: 20px,
+          margin-left: 0,
+          margin-right: 0,
+          margin-top: 20px
+        )
+      ),
+      _label: (
+        button: (
+          background: transparent,
+          icon: (
+            background: (
+              background: breakpoint(
+                transparent,
+                color('white'),
+                color('white')
+              )
+            ),
+            border: (
+              border: 1px solid color('black'),
+              border-radius: 50%
+            ),
+            content: "",
+            height: breakpoint(
+              25px,
+              20px,
+              20px
+            ),
+            side: before,
+            width: breakpoint(
+              25px,
+              20px,
+              20px
+            ),
+            hover: (
+              background: breakpoint(
+                  transparent,
+                  color('neutral', 'light'),
+                  color('neutral', 'light')
+              )
+            )
+          ),
+          text: (
+            font-size: px(14),
+            line-height: 1.29
+          )
+        )
+      ),
+      _label-checked: (
+        button: (
+          icon: (
+            background: color('black'),
+            side: before,
+            hover: (
+              background: breakpoint(
+                  transparent,
+                  color('neutral', 'light'),
+                  color('neutral', 'light')
+              )
+            )
+          )
+        )
+      ),
+      _link: (
+        paragraph: (
+          margin: (
+            margin: breakpoint(
+              3px 0 0 35px,
+              2px 0 0 30px,
+              2px 0 0 30px
+            )
+          ),
+          text: (
+            color: color('black'),
+            font-size: breakpoint(
+              px(18),
+              px(14),
+              px(14)
+            ),
+            line-height: breakpoint(
+              1.33,
+              1.29,
+              1.29
+            )
+          )
+        )
+      )
+    ),
+    _separation: (
+      box: (
+        display: block,
+        border: (
+          border-bottom: 1px solid color('neutral', 'light')
+        ),
+        margin: (
+          margin: breakpoint(
+            20px 0 20px,
+            get($listingCheckBoxesFilter, 'spacings.m') 0 get($listingCheckBoxesFilter, 'spacings.m'),
+            get($listingCheckBoxesFilter, 'spacings.m') 0 get($listingCheckBoxesFilter, 'spacings.m')
+          )
+        )
+      )
+    ),
+    _toggle-filters-link: (
+      button: (
+        background: transparent,
+        border: 0,
+        display: breakpoint((
+          mobile: none,
+          tabled: inline-flex
+        )),
+        text: (
+          color: color('black'),
+          font-size: px(12),
+          font-weight: bold,
+          line-height: 1.33,
+          text-transform: uppercase,
+          text-decoration: underline
+        ),
+        hover: (
+          text: (
+            text-decoration: none
+          )
+        )
+      )
+    )
+  )
+));

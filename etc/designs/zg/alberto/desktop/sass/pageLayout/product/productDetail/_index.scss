@@ -1,0 +1,428 @@
+@import '../../core/config';
+
+.template-product-detail-page {
+  /* Hide start addthisblock until it will be fixed */
+  .listing-item {
+    .box-meta-details {
+      .component.box-product-share {
+        .richText-content {
+          p {
+            @include breakpoints(mobile) {
+              font-size: px(19);
+            }
+            @include breakpoints(tablet, desktop) {
+              font-size: px(20);
+            }
+          }
+        }
+      }
+    }
+  }
+  /* Hide finish addthisblock until it will be fixed */
+  .richText-tertiary-header {
+    h2 {
+      font-size: px(26);
+      font-family: font-family("body");
+      @include breakpoints(tablet) {
+        font-size: px(29);
+      }
+      @include breakpoints(desktop) {
+        font-size: px(32);
+      }
+    }
+  }
+  .box-meta-details {
+    .richText {
+      ul {
+        list-style-type: disc;
+        @include breakpoints(mobile) {
+          padding-left: 25px;
+          padding-right: 15px;
+        }
+       li {
+        padding-left: 5px;
+        font-size: px(20);
+        font-family: font-family("primary");
+        font-weight: 500;
+        &:before {
+          content: none;
+        }
+       } 
+      }
+    }
+    .ratingsandreviews {
+      .kritique {
+        .rr-widget-container.rr-star-percentage {
+          .aggregateRating {
+            @include breakpoints(mobile, desktop) {
+              padding-right: 200px;
+              margin-right: -200px;
+            }
+          }
+          .agRatingSelect {
+            @include breakpoints(mobile) {
+              position: relative;
+              top: -20px;
+            }
+            @include breakpoints(desktop) {
+              position: relative;
+              top: -24px;
+            }
+          }
+          @media screen and (min-width: 819px) and (max-width: 979px ) {
+            .aggregateRating {
+              padding-right: 200px;
+              margin-right: -200px;
+            }
+            .agRatingSelect {
+              position: relative;
+              top: -22px;
+            }
+          }
+          @media screen and (min-width: 768px) and (max-width: 818px ) {
+            .aggregateRating {
+              padding-right: 170px;
+              margin-right: -170px;
+              padding-bottom: 32px;
+              margin-bottom: -32px;
+            }
+            .agRatingSelect {
+              position: relative;
+              top: -22px;
+            }
+          }
+        }
+        .rr-widget-container.rr-inline-widget {
+          font-size: 19px;
+          font-family: font-family("primary");
+          font-weight: normal;
+          @include breakpoints(tablet, desktop) {
+            font-size: 20px;
+          }
+          .aggRtng,
+          .tRtng {
+            font-weight: normal;
+          }
+          a {
+            display: block;
+            font-size: px(19);
+            font-family: font-family(primary);
+            font-weight: normal;
+            padding-left: 0;
+            margin-left: 0;
+            text-transform: none;
+            @include breakpoints(tablet, desktop) {
+              font-size: px(20);
+            }
+          }
+          .aggregateRating {
+            img {
+              height: 20px;
+              @include breakpoints(tablet) {
+                height: 22px;
+              }
+              @include breakpoints(desktop) {
+                height: 24px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .box[class*='buy-it-now'] {
+    iframe {
+      margin: 0!important;
+      left: 0!important;
+    }    
+  }
+  .product-details-image {
+    img {
+      display: block;
+      margin: auto;
+      @include breakpoints(mobile) {
+        max-height: 290px;
+      }
+      @include breakpoints(tablet) {
+        max-height: 400px;
+      }
+      @include breakpoints(desktop) {
+        max-height: 505px;
+      }
+    }
+  }
+  
+  .rr-product-image {
+    @include breakpoints(mobile) {
+      display: block!important;
+      margin-top: 0;
+    }
+    img {
+      max-width: 220px!important;
+    }
+  }
+  .ratingsandreviews {
+    .kritique {
+      .paging.rr-loadmore-pagingnav {
+        a.rr-loadmore-btn {
+          cursor: pointer;
+          border: 0;
+          background: transparent;
+          color: color('primary', 'base');
+          font-size: 1.125rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          font-family: font-family('primary');
+          display: inline-block;
+          border: 1px solid color('primary', 'base');
+          border-radius: 5px;
+          padding: 8.52px 50px 7.26px;
+          margin: 20px auto;
+          align-items: center;
+          &:hover {
+            background-color: rgba(177,191,202,.2);
+            color: color('primary', 'dark');
+          }
+        }
+      }
+      .rr-product-reviews {
+        .review-block {
+          @include breakpoints(desktop) {
+            padding: 38px 40px 14px!important;
+          }
+        }
+        .averageRingBlock {
+          background: rgba(0, 169, 79, 0.1);
+          padding-top: 25px;
+          padding-bottom: 25px;
+          @include breakpoints(tablet) {
+            padding: 30px 60px;
+          }
+          @include breakpoints(desktop) {
+            padding: 50px 120px;
+          }
+          .agRatingDeSelect,
+          .agRatingSelect {
+            img {
+              @include breakpoints(mobile) {
+                height: 20px;
+              }
+              @include breakpoints(tablet) {
+                height: 25px;
+              }
+              @include breakpoints(desktop) {
+                height: 28px;
+              }
+            }
+          }
+          .write-review-btn {
+            @include breakpoints(desktop) {
+              right: 120px;
+              top: 80px;
+            }
+          }
+          h3 {
+            font-family: font-family(body);
+            @include breakpoints(mobile) {
+              display: none;
+            }
+            @include breakpoints(tablet) {
+              font-size: px(25);
+            }
+            @include breakpoints(desktop) {
+              font-size: px(31);
+            }
+          }
+          .total-reviews {
+            font-size: px(20);
+            font-family: font-family("body");
+          }
+          .write-review-btn {
+              border: solid 1px color("primary", "base");
+              background: inherit;
+              color: color("primary", "base");
+              font-family: font-family("body");
+              font-size: px(15);
+              font-weight: bold;
+          }
+        }
+        .review-block {
+          @include breakpoints(mobile) {
+            border-top: none;
+          }
+        }
+        .review-leftBlock {
+          @include breakpoints(tablet, desktop) {
+            min-height: 115px;
+          }
+          h3 {
+            font-family: font-family("body");
+            @include breakpoints(tablet) {
+              font-size: px(20);
+            }
+            @include breakpoints(tablet) {
+              font-size: px(22);
+            }
+            @include media-query(notebook, desktop) {
+              position: absolute;
+              top: 105px;
+              max-width: 230px;
+            }
+            @include breakpoints(desktop) {
+              font-size: px(24);
+              position: absolute;
+              top: 105px;
+              max-width: 230px;
+            }
+          }
+          @media screen and (min-width: 768px) and (max-width: 768px) {
+            h3 {
+              position: absolute;
+              top: 105px;
+              max-width: 230px;
+            }
+          }
+          .reviewer-name {
+            font-family: font-family("primary");
+            font-size: px(19);
+            color: #000000;
+            @include media-query(notebook, desktop) {
+              position: absolute;
+              top: 75px;
+            }
+            @include breakpoints(desktop) {
+              font-size: px(20);
+              position: absolute;
+              top: 75px;
+            }
+          }
+          @media screen and (min-width: 768px) and (max-width: 768px) {
+            .reviewer-name {
+              position: absolute;
+              top: 75px;
+            }
+          }
+          @media screen and (min-width: 670px) and (max-width: 767px) {
+            .reviewer-name {
+              position: absolute;
+              top: 80px;
+            }
+          }
+          .reviewDate {
+            font-family: font-family("primary");
+            border-left: none;
+            color: black;
+            @include breakpoints(tablet) {
+              font-size: px(19);
+            }
+            @include breakpoints(tablet) {
+              font-size: px(20);
+            }
+            @include breakpoints(desktop) {
+              font-size: px(20);
+            }
+          }
+          .rating-container {
+            @include media-query(notebook, desktop) {
+              position: absolute;
+              top: 40px;
+            }
+            @include breakpoints(tablet, desktop) {
+              position: absolute;
+              top: 40px;
+            }
+            .aggRtng,
+            .tRtng {
+              display: none;
+            }
+            .agRatingDeSelect,
+            .agRatingSelect {
+              img {
+                @include breakpoints(mobile) {
+                  height: 16px;
+                }
+                @include breakpoints(tablet) {
+                  height: 18px;
+                }
+                @include breakpoints(desktop) {
+                  height: 20px;
+                }
+              }
+            }
+          }
+          @media screen and (min-width: 670px) and (max-width: 767px) {
+            .rating-container {
+              position: absolute;
+              top: 46px;
+            }
+          }
+        }
+        .review-rightBlock {
+          .rr-comments {
+            font-family: font-family("primary");
+            @include breakpoints(mobile) {
+              font-size: px(19);
+            }
+            @include breakpoints(tablet) {
+              font-size: px(20);
+            }
+            @include breakpoints(desktop) {
+              font-size: px(20);
+            }
+          }
+          .feedback-container {
+            display: none;
+          }
+          .socialBtn {
+            //display: none!important; // only for uat
+          }
+        }
+      }
+    }
+  }
+  .kritique-with-faq-link {
+    >.component-content {
+      >.paragraphSystem {
+        position: relative;
+      }
+    }
+  }
+  .faq-link-product-page {
+    position: absolute;
+    @include breakpoints(mobile) {
+      left: 175px;
+      bottom: -17px;
+    }
+    @include breakpoints(tablet) {
+      left: 175px;
+      bottom: -10px;
+    }
+    @include breakpoints(desktop) {
+      left: 175px;
+      bottom: -10px;
+    }
+    a {
+      font-family: font-family('primary');
+      font-weight: 400;
+      text-decoration: none;
+      &:hover {
+        font-weight: 700;
+      }
+      @include breakpoints(mobile) {
+        font-size: px(19);
+      }
+      @include breakpoints(tablet) {
+        font-size: px(20);
+      }
+      @include breakpoints(desktop) {
+        font-size: px(20);
+      }
+    }
+  }
+  @media screen and (min-width: 320px) and (max-width: 669px) {
+    .faq-link-product-page {
+      left: 175px;
+      bottom: -17px;
+    }
+  }
+}

@@ -1,0 +1,149 @@
+// search results - category header
+$results: (
+  _category-title: (
+    paragraph: (
+      text: (
+        font-size: px('m'),
+        text-transform: uppercase,
+        font-family: primary,
+        font-weight: bold
+      ),
+      margin: spacings('m') spacings('xs') 0 0
+    )
+  ),
+  _results-count: (
+    paragraph: (
+      text: (
+        font-size: px('xs'),
+      ),
+      margin: 0 spacings('xs') 0 0
+    )
+  ),
+  _view-all: (
+    button: (
+      text: (
+        font-size: px(18),
+        text-transform: uppercase,
+        text-decoration: none,
+        font-family: primary,
+        font-weight: bold
+      ),
+      border: (
+        border: solid 1px color('neutral', 'light'),
+        border-radius: 3px
+      ),
+      height: 30px,
+      padding: 0 10px,
+      hover: (
+        background: (
+          background-color: rgba(color('neutral', 'light'), 0.2)
+        )
+      )
+    )
+  )
+);
+
+// search results common styles:
+$results: merge($results, (
+  _read-more-link: (
+      button: extend('_links._secondary-link.button', (
+        text: (
+          font-size: breakpoint((mobile: px('xs'), tablet-min: px(18)))
+        )
+      ))
+    )
+));
+
+// search results section
+$results: merge($results, (
+  _section-in-grid-view: (
+    box: (
+      margin: 0 spacings('s') * -1,
+      padding: (
+        padding-bottom: spacings('m')
+      ),
+      border: (
+        border-bottom: solid 2px color('neutral', 'lighter')
+      )
+    ),
+    _result-item: (
+      box: (
+        width: breakpoint((
+          mobile: calc(#{percentage(1/2)} - #{spacings('m')}),
+          tablet-min: calc(#{percentage(1/3)} - #{spacings('m')})
+        )),
+        padding: spacings('s')
+      ),
+      _image: (
+        box: (
+          height: breakpoint(155px, 300px, 300px)
+        )
+      ),
+      _title: (
+        paragraph: (
+          text: (
+            font-size: px('s'),
+            text-decoration: none,
+            line-height: 1.2
+          ),
+          margin: 20px 0
+        )
+      ),
+      _description: (
+        paragraph: (
+          text: (
+            font-size: px('xxs'),
+            line-height: 1.43,
+          ),
+          margin: 0 0 20px,
+        )
+      )
+    )
+  ),
+));
+
+// search results section in list view only
+$results: merge($results, (
+  _section-in-list-view: (
+    box: (
+      margin: (
+        margin: breakpoint((
+          mobile: 0 spacings('s') * -1,
+          tablet-min: 0
+        ))
+      )
+    ),
+    _result-item: (
+      box: (
+        width: 100%,
+        margin: spacings('m') 0,
+      ),
+      _image: (
+        box: ()
+      ),
+      _details: (
+        box: (
+          max-width: breakpoint((
+            mobile: calc(100vw - 160px)
+          ))
+        )
+      ),
+      _title: (
+        paragraph: (
+          text: (
+            font-size: px('s'),
+          ),
+          margin: 0 0 20px
+        )
+      ),
+      _description: (
+        paragraph: (
+          text: (
+            font-size: px('xxs'),
+          ),
+          margin: 0
+        )
+      )
+    )
+  ),
+));

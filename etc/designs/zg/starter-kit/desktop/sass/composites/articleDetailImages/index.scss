@@ -1,0 +1,34 @@
+@import '../../core/config';
+
+.composite-article-images .content {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($articleImages, $a...);
+  }
+
+  @include breakpoints {
+    @include box(g('_main.box'), $media);
+  }
+
+  .image {
+    @include box(g('_main._image.box'), $media);
+
+    &:first-of-type {
+      margin-right: g('spacings.m');
+
+      @include media-query(auto, notebook) {
+        margin-right: 0;
+      }
+    }
+
+    figcaption p {
+      @include breakpoints {
+        @include paragraph(g('_main._image._title.paragraph'), $media);
+      }
+
+      @include media-query(auto, notebook) {
+        text-align: left;
+      }
+    }
+  }
+}

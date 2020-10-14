@@ -1,0 +1,27 @@
+@import 'config';
+
+@function g($a...) {
+  @return get-last($thankYouInfo, $a...);
+}
+
+.richText.thank-you-info {
+  $box: merge((
+    margin: (
+      margin-top: breakpoint(
+          60px,
+          60px,
+          96px
+      ),
+      margin-right: breakpoint((mobile: 0)),
+      margin-bottom: breakpoint((mobile: 96px))
+    )
+  ), g('box'));
+
+  @include breakpoints {
+    @include box($box, $media);
+  }
+
+  h1,h2,h3 {
+    @include paragraph(g('_title.paragraph'), $media);
+  }
+}

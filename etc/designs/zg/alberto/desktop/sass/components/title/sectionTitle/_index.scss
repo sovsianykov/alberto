@@ -1,0 +1,10 @@
+.title.title-section {
+  @import 'config';
+  @function g($a...) { @return get-last($sectionTitle, $a...); }
+
+  h2 {
+    @include breakpoints() {
+      @include paragraph(g('paragraph'), $media);
+    }
+  }
+}

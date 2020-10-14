@@ -1,0 +1,78 @@
+@import '../../core/config';
+
+.sitemap {
+  @import 'config';
+  @function g($a...) { @return get-last($sitemap, $a...); }
+  @include wrapper();
+  @include box(g('box'), $media);
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      h3 {
+        @include paragraph(g('_parent-list-item.paragraph'), $media);
+
+        a {
+          @include link(g('_parent-list-item.link'), $media);
+        }
+      }
+
+      > a {
+        @include button(g('_children-list-item.button'), $media);
+      }
+
+      ul {
+        li {
+          @include box(g('_children-list-item.box'), $media);
+        }
+      } 
+    }
+  }
+  
+  > .component-content {
+    // specific logic for sitemap component. 
+    // Class .sitemap-columns-N should work only for desktop
+    display: flex;
+    flex-wrap: wrap;
+    margin: $gutter * -0.5;
+
+    @for $i from 1 through 4 {
+      &.sitemap-columns-#{$i}{
+        .sitemap-column {
+          width: calc(#{percentage(1/$i)} - #{$gutter});
+        }
+      }
+
+      @include media-query(auto, tablet) {
+        &.sitemap-columns-#{$i}{
+          .sitemap-column {
+            @if $i < 2 {
+              width: 100%;
+            } @else {
+              width: calc(50% - #{$gutter});
+            }
+          }
+        }
+      }
+
+      @include media-query(mobile) {
+        &.sitemap-columns-#{$i}{
+          .sitemap-column {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .sitemap-column {
+    box-sizing: border-box;
+    margin: $gutter * 0.5;
+  }
+}
+
+
+

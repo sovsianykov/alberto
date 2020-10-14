@@ -1,0 +1,562 @@
+@import 'config';
+
+@function g($a...) {
+  @return get-last($mini-cart, $a...);
+}
+
+// BUTTON
+.shoppable-cart-open-button {
+
+  @function gl($a...) {
+    @return get-last($mini-cart, '_cart-handler', $a...);
+  }
+
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: color('black');
+  height: 24px;
+  line-height: 24px;
+  min-height: 0;
+  min-width: 0;
+  overflow: visible;
+  padding: 0;
+  width: 20px;
+  zoom: 1;
+
+  &:hover,
+  &:focus,
+  .pdp_open & {
+    color: color('secondary');
+  }
+
+  > span {
+    color: currentColor;
+    left: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    width: 100%;
+
+    @include button(gl('_quantity.button'), $media);
+
+    //overwrite disappering 0 when removing element from bag
+    &:empty::before {
+      content: '0';
+    }
+  }
+
+  // hide unecessary elements
+  .cart-tab {
+    display: none;
+  }
+
+}
+
+// BUTTON when added as a child of the body
+body > .shoppable-cart-open-button {
+
+  @function gl($a...) {
+    @return get-last($mini-cart, '_cart-handler', $a...);
+  }
+
+  position: absolute;
+  top: 0;
+  z-index: $z-index-layer - 1;
+
+  @include media-query(auto, notebook) {
+    right: 0;
+    left: auto;
+  }
+
+  @include media-query(desktop) {
+    right: calc(50% - #{$holder-desktop * 0.5 - $gutter});
+    left: auto;
+  }
+
+  @include media-query(wide) {
+    right: calc(50% - #{$holder-wide * 0.5 - $gutter});
+    left: auto;
+  }
+
+  @include breakpoints {
+    @include button(gl('_bag-icon-in-body.button'), $media);
+  }
+}
+
+// BUTTON when child of body and header is sticky
+body.has-sticky-header > .shoppable-cart-open-button {
+  margin-top: 35px !important;
+  position: fixed;
+
+  @include breakpoints(mobile, tablet) {
+    margin-top: 14px !important;
+    z-index: $z-index-layer;
+  }
+}
+
+ // BUTTON when added as a child of placeholder
+#shoppable_button_parent .shoppable-cart-open-button {
+
+  @function gl($a...) {
+    @return get-last($mini-cart, '_cart-handler', $a...);
+  }
+
+  position: relative;
+  z-index: 1;
+
+  @include button(gl('_bag-icon-in-parent.button'), $media);
+}
+
+// shoppable application.css overrides
+body.pdp_open #shoppable_button_parent .shoppable-cart-open-button.md-button {
+  margin: 0 0 0 0;
+  pointer-events: none;
+}
+
+.shoppable-checkout-close-button:focus {
+  opacity: .5;
+  .ua-webkit & {
+    opacity: 1;
+    outline: -webkit-focus-ring-color auto 5px !important;
+  }
+}
+
+
+
+// OVERLAY
+
+// "body" as a workaround to override based on !important and inheritance
+body .shoppable-cart-top-container {
+  @function gl($a...) {
+    @return get-last($mini-cart, '_cart-overlay', $a...);
+  }
+
+  // reset
+  max-width: 540px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: $z-index-layer;
+
+  @include media-query(auto, notebook) {
+    left: auto;
+    margin-left: $gutter;
+    margin-right: $gutter;
+    right: 0;
+    width: auto;
+  }
+
+  @include media-query(desktop) {
+    right: calc(50% - #{$holder-desktop * 0.5 - $gutter});
+    left: auto;
+  }
+
+  @include media-query(wide) {
+    right: calc(50% - #{$holder-wide * 0.5 - $gutter});
+    left: auto;
+  }
+
+  @include breakpoints {
+    @include box(merge((
+      position: ''
+    ), gl('box')), $media);
+  }
+
+  .md-ripple-container {
+    display: none;
+  }
+
+  .shoppable-checkout-container {
+    // reset
+    right: 0;
+    transition: none;
+  }
+
+  // "HEADING"
+  .shoppable-checkout-close-button-container {
+    $heading: merge((
+      display: flex,
+      flex: (
+        align-items: center,
+        justify-content: flex-end,
+        flex: 1 1 auto
+      ),
+      padding: (
+        padding-left: breakpoint((mobile: spacings('xs'), tablet-min: $gutter)),
+        padding-right: breakpoint((mobile: spacings('xs'), tablet-min: $gutter))
+      )
+    ), gl('_heading.box'));
+
+    @include breakpoints {
+      @include box($heading, $media);
+    }
+
+    .shoppable-checkout-close-button-x-text {
+      display: none;
+    }
+
+    .shoppable-checkout-close-button-close-text {
+      position: static; // reset
+    }
+
+    .shoppable-checkout-close-button {
+      // reset
+      line-height: 1;
+      margin: 0;
+      min-height: 0;
+      min-width: 0;
+      position: static;
+
+      @include button(gl('_heading.button'), $media);
+    }
+  }
+
+  .shoppable-checkout-item-retailer-header {
+    display: none;
+  }
+
+  .shoppable-checkout-items-container-cover {
+    // reset
+    border: 0;
+    order: 0;
+    overflow-x: hidden;
+
+    @include media-query(auto, notebook) {
+      max-height: none;
+    }
+  }
+
+  // product item
+  .shoppable-checkout-items-container-sub .layout-row {
+    $productInfo: merge((
+      flex: (
+        flex-wrap: wrap,
+      ),
+      padding: (
+        padding: breakpoint((mobile: 0 spacings('xs'), tablet-min: 0 20px))
+      )
+    ), gl('_product-item.box'));
+
+    @include breakpoints {
+      @include box($productInfo, $media);
+    }
+
+    .shoppable-checkout-items-name {
+      position: static;
+    }
+
+    .shoppable-checkout-items-brand {
+      display: none;
+    }
+  }
+
+  .shoppable-checkout-items-image-container {
+    $productImgBox: merge((
+      max-height: 110px,
+      max-width: breakpoint((mobile: 30%, tablet-min: 25%)),
+      flex: (
+        flex-basis: breakpoint((mobile: 30%, tablet-min: 25%))
+      )
+    ), gl('_product-item._product-image-box.box'));
+
+    @include breakpoints() {
+      @include box($productImgBox, $media)
+    }
+
+    img {
+      // reset
+      width: auto;
+
+      .mod-objectfit & {
+        object-fit: contain;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+
+  .shoppable-checkout-items-container,
+  .shoppable-checkout-price-remove-container {
+    // we need fixed values to make this layout
+    width: calc(100% - #{safetype(gl('_product-item._image.box.width'), 110px)});
+  }
+
+  .shoppable-checkout-price-remove-container {
+    $priceBox: merge((
+      flex: (
+        flex-basis: 100%,
+        flex-direction: row,
+        align-items: center
+      ),
+      padding: (
+        padding-left: breakpoint((mobile: 30%, tablet-min: 25%))
+      )
+    ), gl('_product-item._price-box.box'));
+
+    @include breakpoints {
+      @include box($priceBox, $media);
+    }
+  }
+
+  .shoppable-checkout-items-container {
+    $descriptionBox: merge((
+      max-width: breakpoint((mobile: 70%, tablet-min: 75%)),
+      flex: (
+        flex-basis: breakpoint((mobile: 70%, tablet-min: 75%))
+      ),
+      margin: (
+        margin-bottom: spacings('s')
+      )
+    ), gl('_product-item._description-box.box'));
+
+    @include breakpoints {
+      @include box($descriptionBox, $media);
+    }
+
+    .flex {
+      // reset
+      flex: 0 0 auto;
+    }
+
+    .shoppable-checkout-items-name {
+      margin: 0;
+
+      @include breakpoints {
+        @include paragraph(gl('_product-item._name.paragraph'), $media);
+      }
+    }
+
+    > .flex:last-child { // quantity and size holder
+      align-items: center;
+      display: flex;
+      margin-top: spacings('s');
+
+      @include breakpoints {
+        @include paragraph(gl('_product-item._size-and-quantity.paragraph'), $media);
+      }
+
+      // size holder
+      > .flex:first-child {
+        display: block;
+      }
+
+      .shoppable-checkout-items-color {
+        // reset
+        font-size: 1em;
+        line-height: 1;
+        margin: 0;
+        position: static;
+
+        @include breakpoints {
+          @include text(gl('_product-item._size-and-quantity._size.text'), $media);
+        }
+      }
+
+      .shoppable-checkout-items-qty-container {
+        // reset
+        margin: 0 0 0 5px;
+        padding: 0 0 0 5px;
+
+        @include button(gl('_product-item._size-and-quantity._quantity.button'), $media);
+
+        .shoppable-checkout-items-qty-label {
+          // reset
+          padding: 0;
+          position: static;
+          transform: none;
+          width: auto;
+          line-height: 1;
+
+          &:after {
+            content: ':';
+            margin-right: 4px;
+          }
+        }
+
+        .shoppable-checkout-items-qty-select {
+          // reset
+          width: auto;
+        }
+
+        .shoppable-checkout-items-qty-label,
+        .shoppable-checkout-items-qty-select {
+          // reset
+          line-height: 1;
+        }
+
+        ._md-select-value {
+          // reset
+          border: 0;
+          display: block;
+          max-width: none;
+          min-height: 0;
+          min-width: 0;
+          padding: 0;
+          width: auto;
+
+          span {
+            transform: none;
+            display: flex;
+          }
+
+          ._md-select-icon {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .shoppable-checkout-price-remove-container {
+    .flex:first-child {
+      display: none;
+    }
+
+    .shoppable-checkout-items-remove-button {
+      // reset
+      line-height: 1;
+      margin: 0;
+      min-height: auto;
+      min-width: auto;
+      padding: 0;
+      position: static;
+
+      @include breakpoints {
+        @include button(gl('_product-item._remove.button'), $media);
+      }
+
+      .ng-scope {
+        // reset
+        color: inherit;
+      }
+    }
+
+    .shoppable-checkout-items-price {
+      text-align: right;
+      order: 2;
+
+      @include breakpoints {
+        @include paragraph(gl('_product-item._price.paragraph'), $media);
+      }
+    }
+  }
+
+  // hiding the top cart information
+  .shoppable-checkout-cart-info-container {
+    $priceInfo: merge((
+      display: block,
+      flex: (
+        order: 1,
+        flex: 1 1 auto
+      ),
+      margin: 0,
+      padding: (
+        padding: breakpoint((
+          mobile: $gutter spacings('xs') 0 $gutter,
+          tablet-min: $gutter $gutter 0 $gutter
+        )),
+      )
+    ), gl('_summary.box'));
+
+    @include breakpoints {
+      @include box($priceInfo, $media);
+      @include text(gl('_summary.text'), $media);
+    }
+
+    .shoppable-checkout-cart-info-your-cart-text {
+      display: none;
+    }
+
+    .shoppable-checkout-cart-info-total-text {
+      max-width: 100%;
+
+      @include paragraph(gl('_summary._price.paragraph'), $media);
+    }
+
+    .shoppable-checkout-cart-info-items-text {
+
+      @include breakpoints {
+        @include paragraph(gl('_summary._title.paragraph'), $media);
+      }
+    }
+  }
+
+  .shoppable-checkout-view-buttons-container {
+    $viewCartBox: merge((
+      display: flex,
+      flex: (
+        align-items: center,
+        justify-content: breakpoint((mobile: stretch, tablet-min: flex-end)),
+        order: 3
+      ),
+      padding: (
+        padding: breakpoint((mobile: 0 spacings('xs') spacings('xs'), tablet-min: 0 $gutter $gutter))
+      )
+    ), gl('_view-cart-box.box'));
+
+    @include breakpoints {
+      @include box($viewCartBox, $media);
+    }
+
+    .shoppable-view-cart-href {
+      // reset
+      text-decoration: none;
+
+      $buttonBox: merge((
+        width: breakpoint((mobile: 100%)),
+      ), gl('_view-cart-box._btn-box.box'));
+
+      @include breakpoints {
+        @include box($buttonBox, $media);
+      }
+    }
+
+    .shoppable-view-cart-button {
+      // reset
+      left: 0;
+      margin: 0;
+      position: relative;
+      text-decoration: none;
+      top: 0;
+
+      $viewCartButton: merge((
+        display: breakpoint((mobile: block)),
+        width: breakpoint((mobile: 100%))
+      ), gl('_view-cart-btn.button'));
+
+      @include breakpoints {
+        @include button($viewCartButton, $media);
+      }
+
+      .ng-scope {
+        @include breakpoints {
+          @include lh-diff(gl('_view-cart-btn.button.text'), $media)
+        }
+      }
+    }
+
+    .shoppable-checkout-href {
+      display: none;
+    }
+  }
+
+  .shoppable-checkout-cart-info-total-container {
+    flex-basis: 99px;
+    order: 2;
+    @include breakpoints {
+      @include box(gl('_info.box'), $media);
+      @include paragraph(gl('_info.paragraph'), $media);
+    }
+  }
+  .shoppable-checkout-cart-info-total-text {
+    @include breakpoints {
+      @include paragraph(gl('_info.paragraph._total'), $media);
+    }
+  }
+}
+
+body.has-sticky-header .shoppable-cart-top-container {
+  position: fixed;
+}

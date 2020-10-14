@@ -1,0 +1,51 @@
+@import '../../core/config';
+
+.image[class*=default-style] {
+  .right {
+    text-align: right;
+  }
+
+  .left {
+    text-align: left;
+  }
+
+  .middle {
+    text-align: center;
+  }
+
+  figure {
+    margin: 0;
+  }
+
+  img {
+    display: block;
+  }
+
+  @include media-query(auto, mobile) {
+    .component-content {
+      text-align: center;
+    }
+  }
+}
+
+.image-full-width {
+  img {
+    width: 100%;
+  }
+}
+
+.header-main {
+  .image-full-width {
+    img {
+      pointer-events: none;
+    }
+  }
+}
+
+.grid-aem {
+  .image.fixed-width {
+    img {
+      width: 100%;
+    }
+  }
+}

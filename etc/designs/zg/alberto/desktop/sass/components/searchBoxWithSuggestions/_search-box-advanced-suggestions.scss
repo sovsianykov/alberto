@@ -1,0 +1,228 @@
+@include local-spacings();
+
+.searchBox-advanced-suggestions {
+  @import 'config-search-box-advanced-suggestions';
+  @function g($a...) { @return get-last($advanced-suggestions, $a...); }
+
+  $box: merge((
+    margin: spacings('m') 0
+  ), g('box'));
+
+  @include box($box, $media);
+
+  .suggestions-section-products,
+  .suggestions-section-articles {
+    overflow: hidden;
+
+    h3,
+    span.results-count,
+    span.view-all {
+      display: inline-block;
+    }
+
+    span.view-all {
+      float: right;
+      margin-top: 6px;
+
+      @include media-query(mobile) {
+        margin-top: 0;
+      }
+    }
+
+    h3 {
+
+      @include media-query(mobile) {
+        display: block;
+      }
+
+      $title: merge((
+        margin: (
+          margin: breakpoint(
+            0 0 spacings('xxs'),
+            0 0 $gutter,
+            0 0 $gutter
+          )
+        )
+      ), g('_title.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($title, $media);
+      }
+    }
+
+    span.results-count {
+
+      $results-count: merge((
+        margin: (
+          margin-left: breakpoint(
+            0,
+            $gutter,
+            $gutter
+          )
+        )
+      ), g('_results-count.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($results-count, $media);
+      }
+    }
+
+     a.view-all {
+
+      $view-all: merge((
+      ), g('_view-all.link'));
+
+      @include link($view-all, $media);
+    }
+  }
+
+  .suggestions-section-contents {
+    display: flex;
+    flex-direction: row;
+
+    @include media-query(mobile) {
+      flex-direction: column;
+    }
+
+    $box: merge((
+      margin: (
+        margin: breakpoint(
+          spacings('m') 0,
+          0 0 spacings('m'),
+          0 0 spacings('m')
+        )
+      ),
+      padding: $gutter 0 0
+    ), g('_suggestions-section-contents.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+
+    .suggestions-item {
+      box-sizing: border-box;
+
+      @include media-query(tablet) {
+        max-width: 86px;
+
+        img {
+
+          .mod-objectfit & {
+            height: 76px;
+            object-fit: cover;
+          }
+        }
+        .ua-ie-11 & .suggestions-picture {
+          max-width: 86px;
+        }
+      }
+
+      @include media-query(desktop, auto) {
+        max-width: 150px;
+
+        img {
+
+          .mod-objectfit & {
+            height: 140px;
+            object-fit: cover;
+          }
+
+          .mod-no-objectfit & {
+            max-width: 140px;
+          }
+        }
+        .ua-ie-11 & .suggestions-picture {
+          max-width: 150px;
+        }
+      }
+
+      $box: merge((
+        margin: (
+          margin: breakpoint(
+            $gutter 0,
+            0 $gutter,
+            0 $gutter
+          )
+        ),
+        padding: spacings('xxs')
+      ), g('_suggestions-item.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+
+      &:hover {
+
+        $hover: merge((
+        ), g('_suggestions-item.hover'));
+
+        @include hover($hover, $media);
+      }
+
+      @include media-query(mobile) {
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      @include media-query(tablet, auto) {
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      .suggestions-picture {
+        box-sizing: border-box;
+        font-size: 0;
+
+        $suggestions-picture: merge((
+        ), g('_suggestions-item._suggestions-picture.box'));
+
+        @include breakpoints() {
+          @include box($suggestions-picture, $media);
+        }
+
+        a {
+          display: block;
+
+          $suggestions-picture: merge((
+          ), g('_suggestions-item._suggestions-picture._holder-image.box'));
+
+          @include box($suggestions-picture, $media);
+        }
+      }
+
+      .suggestions-title {
+        box-sizing: border-box;
+
+        $suggestions-title-box: merge((
+          margin: $gutter 0 0
+        ), g('_suggestions-item._suggestions-title.box'));
+
+        $suggestions-title-paragraph: merge((
+        ), g('_suggestions-item._suggestions-title.paragraph'));
+
+        @include box($suggestions-title-box, $media);
+        @include paragraph($suggestions-title-paragraph, $media);
+
+        a {
+
+          $suggestions-title-link: merge((
+          ), g('_suggestions-item._suggestions-title.link'));
+
+          @include link($suggestions-title-link, $media);
+        }
+      }
+    }
+  }
+}

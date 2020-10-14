@@ -1,0 +1,96 @@
+@import '../../core/config';
+
+.accordion.initialized {
+  visibility: visible;
+}
+
+// RAW styles
+.accordion-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.accordion-title {
+  font-size: 1.6rem;
+  line-height: 1.3;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+.accordion-slide {
+  border-bottom: 1px solid darken(color('neutral', 'lighter'), 5%);
+  padding: 10px 0;
+  width: 100%;
+
+  &.is-active {
+    > .accordion-head a {
+      &:after {
+        content: '-';
+      }
+    }
+  }
+}
+
+.accordion-content {
+  padding-top: 20px;
+}
+
+.accordion-head {
+  position: relative;
+  margin: 0;
+  white-space: nowrap;
+  cursor: pointer;
+  float: none;
+
+  img {
+    float: right;
+    max-height: 20px;
+    padding-left: 10px;
+  }
+
+  a {
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+
+    &:after {
+      position: absolute;
+      right: 0;
+      content: '+';
+      width: 20px;
+      height: 20px;
+      background: color('neutral', 'dark');
+      color: #fff;
+      text-align: center;
+      line-height: 20px;
+    }
+  }
+}
+
+.accordion-head-link {
+  display: block;
+}
+
+.accordion-content-wrapper {
+  visibility: hidden;
+  height: 0;
+  position: relative;
+  top: -999999px;
+  left: -999999px;
+  overflow: hidden;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.accordion-slide.is-active > .accordion-content-wrapper {
+  visibility: visible;
+  position: relative;
+  top: auto;
+  left: auto;
+  height: auto;
+  overflow: hidden;
+}

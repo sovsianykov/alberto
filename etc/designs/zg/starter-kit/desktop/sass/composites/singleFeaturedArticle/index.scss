@@ -1,0 +1,84 @@
+@import '../../core/config';
+
+.composite-single-featured-article {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($singleFeaturedArticle, $a...);
+  }
+
+  $box: merge((
+    margin: (
+      margin: spacings('xxl') 0
+    )
+  ), g('_main.box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  > .content {
+    @include wrapper;
+  }
+
+  .listing-item .content {
+    $wrapper: merge((
+      display: flex,
+      flex: (
+        flex-direction: breakpoint((tablet-max: column))
+      )
+    ), g('_article-content.box'));
+
+    @include breakpoints() {
+      @include box($wrapper, $media);
+    }
+  }
+
+  .richText {
+    $textWrapper: merge((
+      margin: (
+        margin-bottom: spacings('s') * -1
+      )
+    ), g('_article-content._text-wrapper.box'));
+
+    @include box($textWrapper, $media);
+
+    h2, h3, h4 {
+      $heading: merge((
+        margin: (
+          margin-top: breakpoint((tablet-max: 20px, desktop: 0)),
+          margin-bottom: breakpoint((mobile: 20px, tablet-min: spacings('s')))
+        )
+      ), g('_article-content._text-wrapper._heading.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($heading, $media);
+      }
+    }
+
+    p {
+      @include paragraph(g('_article-content._text-wrapper._description.paragraph'), $media);
+    }
+  }
+
+  .image {
+    @include breakpoints() {
+      @include box(g('_article-content._image.box'), $media);
+    }
+  }
+
+  a[class*=button] {
+    $cta: merge((
+      margin: (
+        margin-top: spacings('s')
+      ),
+      width: breakpoint((mobile: 100%))
+    ), g('_article-content._cta.button'));
+
+    @include breakpoints() {
+      @include button($cta, $media);
+    }
+  }
+}
+
+@import 'singleFeaturedArticleLeft/index';
+@import 'singleFeaturedArticleRight/index';

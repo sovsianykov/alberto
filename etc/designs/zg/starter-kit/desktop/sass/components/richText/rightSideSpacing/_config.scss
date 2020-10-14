@@ -1,0 +1,10 @@
+$rightSideSpacing: (
+  spacing: common('spacings')
+);
+$rightSideSpacing: merge($rightSideSpacing,(
+  box: (
+    padding: (
+      padding-right: breakpoint((desktop: 95px))
+    )
+  )
+));

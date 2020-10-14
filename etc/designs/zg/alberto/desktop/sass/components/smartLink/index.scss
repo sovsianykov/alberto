@@ -1,0 +1,44 @@
+@import '../../core/config';
+
+.smart-link {
+  margin: 10px 0;
+
+  &-previous:before,
+  &-next:after {
+    color: color('black');
+    display: inline-block;
+    font-size: px('xs') / 2;
+    height: spacings('xs') * 1.4;
+    position: relative;
+    top: -1px;
+    width: 6px;
+  }
+
+  &-next:after {
+    content: common('icon.arrow-right');
+    display: inline-block;
+    font-family: 'icons';
+    margin-left: 10px;
+    position: relative;
+  }
+
+  &-previous:before {
+    content: common('icon.arrow-left');
+    display: inline-block;
+    font-family: 'icons';
+    margin-right: 10px;
+    position: relative;
+  }
+
+  &-list {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+
+    li {
+      display: inline-block;
+    }
+  }
+}

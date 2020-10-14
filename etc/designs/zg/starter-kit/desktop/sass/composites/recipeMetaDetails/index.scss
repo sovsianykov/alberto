@@ -1,0 +1,57 @@
+@import '../../core/_config';
+
+.composite-recipe-meta-details {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($recipeMetaDetails, $a...);
+  }
+
+   @include box(g('box'), $media);
+
+  .richText--recipe-title {
+    h1, h2, h3 {
+      $title: merge((
+        margin: (
+          margin-top: breakpoint((tablet-max: spacings('l'))),
+          margin-bottom: spacings('l')
+        )
+      ), g('_title.paragraph'));
+
+      @include breakpoints {
+        @include paragraph($title, $media);
+      }
+    }
+  }
+
+  .richText.richText--recipe-description {
+    @include breakpoints {
+      @include paragraph(g('_description.paragraph'), $media);
+    }
+  }
+
+  .ratingsandreviews .bv_main_container .bv_numReviews_text,
+  .ratingsandreviews .bv_main_container .bv_avgRating {
+    @include paragraph(g('_ratings._count.paragraph'), $media);
+  }
+
+  .richText.richText--recipe-stats {
+    $stats: merge((
+      margin: (
+        margin-top: spacings('s'),
+        margin-bottom: spacings('l')
+      )
+    ), g('_stats.box'));
+
+    @include box($stats, $media);
+  }
+
+  .box-recipe-share {
+    .addthis-toolbox {
+      @include box(g('_share._addthis.box'), $media);
+    }
+
+    .richText--print .richText-content {
+      @include button(g('_share._print.button'), $media);
+    }
+  }
+}

@@ -1,0 +1,13 @@
+.listing--product-variants {
+  > .component-content {
+    display: block;
+
+    .listing-item {
+      display: block;
+
+      &.is-hidden {
+        display: none;
+      }
+    }
+  }
+}

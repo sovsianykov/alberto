@@ -1,0 +1,98 @@
+@import '../../core/config';
+@import 'shopifyCart/index';
+@import 'shopifyBasket/index';
+@import 'deliveryOption/index';
+@import 'shopifyBagView/index';
+@import 'orderSummary/index';
+@import 'inline-form';
+
+.shopify {
+
+  &__product-name {
+    font-size: px(l);
+    line-height: 1.1;
+    margin: spacings(s) 0 spacings(m) 0;
+    &:after {
+      content: attr(data-size);
+      display: block;
+      font-size: px(m);
+      opacity: .5;
+      padding-top: spacings(xxxs);
+    }
+  }
+
+  &__sub-heading {
+    font-size: px(m);
+    margin: 0;
+  }
+
+  &__image img {
+    height: auto;
+    max-height: 100%;
+    width: 100%;
+  }
+
+  [data-personalisation-text] {
+    position: relative;
+
+    &:before {
+      color: white;
+      content: attr(data-personalisation-text);
+      font-size: 3.3vw;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: font-size 250ms;
+      z-index: 1;
+    }
+  }
+
+  // use placeholder text on mobile and normal label for larger devices
+  &__form__personalisation {
+    .form__label {
+      width: auto;
+    }
+    @include media-query(tablet, wide) {
+      [placeholder]::placeholder {
+        color: transparent;
+      }
+    }
+  }
+
+
+  @include media-query(small, mobile) {
+    // stating at the smallest font size with 11 chars and going up
+    @for $i from 1 through 11 {
+      [data-personalisation-length="#{12 - $i}"]:before {
+        font-size: #{((33 + $i*4) / 10)}vw;
+      }
+    }
+  }
+  @include media-query(tablet, notebook) {
+    // stating at the smallest font size with 11 chars and going up
+    @for $i from 1 through 11 {
+      [data-personalisation-length="#{12 - $i}"]:before {
+        font-size: #{((6 + $i*1.2) / 10)}rem;
+      }
+    }
+  }
+  @include media-query(desktop, wide) {
+    // stating at the smallest font size with 11 chars and going up
+    @for $i from 1 through 11 {
+      [data-personalisation-length="#{12 - $i}"]:before {
+        font-size: #{((10 + $i*1.5) / 10)}rem;
+      }
+    }
+  }
+
+}
+
+[data-personalisation-text] {
+  &:before {
+    display: none;
+    .personalisation-text-enabled & {
+      display: block;
+    }
+  }
+}

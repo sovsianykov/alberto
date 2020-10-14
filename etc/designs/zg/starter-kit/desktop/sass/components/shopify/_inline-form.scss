@@ -1,0 +1,106 @@
+
+// Inline from version for PDP page
+.shopify__form--inline {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-column-gap: spacings('s');
+  grid-row-gap: 0;
+
+  @include media-query(tablet, wide) {
+    grid-column-gap: spacings('m');
+  }
+
+  @include media-query(notebook, wide) {
+    grid-column-gap: spacings('s');
+  }
+
+  .form__row .shopify__add-to-cart-btn.btn-primary {
+    margin: 0;
+
+    @include media-query(notebook, wide) {
+      width: 100%;
+    }
+  }
+  .form__row.shopify__form__price {
+    .shopify__sub-heading {
+      margin: spacings('xs') 0;
+    }
+  }
+
+  .shopify__form__price {
+    grid-column: 1 / -1;
+    grid-row: 1;
+  }
+
+  // PDP page, WITH personalisation
+  &.shopify__form--personalisation-true {
+    // personalisation is at the top on mobile so it will be as close as possible to the product image
+    // for all other views price is above the form controls
+    .shopify__form__button {
+      grid-column: 1;
+      justify-self: stretch;
+    }
+    @include media-query(notebook, desktop, -2) {
+      .shopify__form__price { // price goes up to top when form is side by side with product image
+        grid-row: 1;
+      }
+      .shopify__form__personalisation {
+        grid-row: 2;
+      }
+      .shopify__form__quantity {
+        grid-row: 3;
+      }
+      .shopify__form__button {
+        grid-row: 4;
+      }
+    }
+    @include media-query(desktop, wide) {
+      grid-template-columns: 65% 35%;
+      .shopify__form__price {
+        grid-row: 1;
+      }
+      .shopify__form__personalisation {
+        grid-column: 1;
+        grid-row: 2;
+      }
+      .shopify__form__quantity {
+        grid-column: 2;
+        grid-row: 2;
+      }
+      .shopify__form__button {
+        grid-column: 1;
+        grid-row: 3;
+      }
+    }
+  }
+
+  // PDP page, WITH OUT personalisation
+  &.shopify__form--personalisation-false {
+    @include media-query(notebook, wide) {
+      grid-template-columns: 35% 65%;
+      .shopify__form__button {
+        grid-column: 2;
+        grid-row: 2;
+        &:before {
+          content: "\00a0";
+          display: block;
+          line-height: px('m');
+        }
+        .shopify__add-to-cart-btn {
+          padding-left: 0;
+          padding-right: 0;
+        }
+      }
+      .shopify__form__quantity {
+        grid-column: 1;
+        grid-row: 2;
+      }
+    }
+  }
+
+  .shopify__form--product-unavailable {
+    min-width: 210px;
+  }
+}
+
+

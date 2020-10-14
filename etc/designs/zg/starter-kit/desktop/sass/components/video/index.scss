@@ -1,0 +1,111 @@
+.video {
+  $ratio: percentage(9/16);
+  position: relative;
+  overflow: hidden;
+
+  .component-content {
+    // this will define the ratio for players
+    // without specific sizes defined
+    padding-top: $ratio;
+    box-sizing: border-box;
+    position: relative;
+    visibility: hidden;
+    overflow: hidden;
+  }
+
+  .video-holder,
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .video-content {
+    height: auto;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    // instead of putting 100% width and height, this will be used
+    // by the js to get the initial ratio of the video
+    // in case the parent has a fixed size.
+    padding-top: $ratio;
+    box-sizing: border-box;
+
+    &.cover-ready { // to avoid fouc
+      visibility: visible;
+    }
+  }
+
+  .video-holder {
+    height: calc(100% + 2px);
+    margin-left: -1px;
+    margin-top: -1px;
+    opacity: 0;
+    transition-delay: 0.3s, 0s;
+    transition-duration: 0s, 0.3s;
+    transition-property: visibility, opacity;
+    transition-timing-function: ease-out;
+    user-select:  none;
+    visibility: hidden;
+    width: calc(100% + 2px);
+    z-index: 2;
+
+    &.video-ready { // to avoid fouc
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s;
+    }
+    
+    .ua-ie-11 & {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  img {
+    left: 50%;
+    max-width: none;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    min-width: 100%;
+    min-height: 100%;
+
+    .mod-objectfit & {
+      height: 100%;
+      left: 0;
+      object-fit: cover;
+      top: 0;
+      transform: none;
+      width: 100%;
+    }
+  }
+
+  &.as-background {
+    .video-holder {
+      &:before { // to avoid click
+        background: rgba(0,0,0,0);
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 3;
+      }
+    }
+  }
+
+  &.full-screen {
+    &,
+    .component-content {
+      height: 100vh;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100vw;
+    }
+  }
+}

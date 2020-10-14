@@ -1,0 +1,27 @@
+$recipeMetaDetails: (
+  box: (),
+  _title: extend('_tertiary._title', ()),
+  _ratings: (
+    _count: (
+      paragraph: ()
+    ),
+  ),
+  _description: (
+    paragraph: (
+      text: (
+        font-size: breakpoint((mobile: px(18), tablet-min: px('xs')))
+      )
+    )
+  ),
+  _stats: (
+    box: ()
+  ),
+  _share: (
+    _addthis: (
+      box: ()
+    ),
+    _print: (
+      button: ()
+    )
+  )
+)

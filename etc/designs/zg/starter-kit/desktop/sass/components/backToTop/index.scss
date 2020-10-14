@@ -1,0 +1,57 @@
+@import '../../core/config';
+
+.reference-icon-link .back-to-top {
+  align-items: center;
+  border: none;
+  display: inline-flex;
+  float: right;
+  font-family: font-family('primary');
+  font-weight: bold;
+  justify-content: space-between;
+  margin: 20px 0;
+  position: relative;
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: transparent;
+
+  &:before {
+    border-top: 2px solid color('black');
+    content: "";
+    display: block;
+    left: 0;
+    margin-top: -3px;
+    position: absolute;
+    top: 100%;
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    width: calc(100% - 25px);
+
+    &:hover {
+      transform: scaleX(1);
+    }
+  }
+
+  &:after {
+    border-color: color('black');
+    border-radius: 50%;
+    border-style: solid;
+    border-width: px(1);
+    color: color('black');
+    content: common('icon.arrow-up');
+    display: block;
+    font-family: icons;
+    font-size: px(5);
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    height: px(14);
+    line-height: px(14);
+    margin-left: px(10);
+    speak: none;
+    text-align: center;
+    text-transform: none;
+    width: px(14);
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+}

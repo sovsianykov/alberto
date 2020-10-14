@@ -1,0 +1,33 @@
+$twoColumns: (
+  box: (
+    background: transparent
+  ),
+  _separator: (
+    box: (
+      box-shadow: 0px 0px 10px 2px transparentize(transparent, .5)
+    )
+  ),
+  _left-side-holder: (
+    box: (
+      background: transparent
+    ),
+    _left-side: (
+      box: (
+        background: transparent
+      ),
+      _image: (
+        box: ()
+      )
+    )
+  ),
+  _right-side-holder: (
+    box: (
+      background: transparent
+    ),
+    _right-side: (
+      box: (
+        background: transparent
+      )
+    )
+  )
+);

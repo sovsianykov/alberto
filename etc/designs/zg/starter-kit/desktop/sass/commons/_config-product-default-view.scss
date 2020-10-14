@@ -1,0 +1,89 @@
+$common: () !default;
+
+$common: merge($common, (
+  _product-default-view: (
+    box: (
+      padding: 0 common('spacings.s')
+    ),
+    _image-wrapper: (
+      box: (
+        height: breakpoint(180px, 220px, 260px),
+        min-height: breakpoint(180px, 220px, 260px)
+      ),
+      focus: ()
+    ),
+    _content-box: (
+      box: (
+        background: (
+          background-color: color('neutral', 'lighter')
+        ),
+        margin: (
+          margin-top: -90px
+        ),
+        padding: (
+          padding: breakpoint(
+              90px common('spacings.xs') common('spacings.m'),
+              90px common('spacings.s') common('spacings.m'),
+              90px common('spacings.m') common('spacings.m')
+          )
+        )
+      ),
+      transition: (
+        speed: 'base'
+      ),
+      hover: (
+        background: (
+          background-color: color('neutral', 'light')
+        ),
+      ),
+      _title: (
+        paragraph: (
+          margin: 17px 0 common('spacings.xs') 0,
+          text: (
+            color: color('black'),
+            font-size: px(18),
+            font-weigth: bold,
+            line-height: 1.22,
+            text-align: center,
+            text-decoration: none
+          )
+        )
+      ),
+      _description: (
+        paragraph: (
+          margin: 0 0 common('spacings.xs') 0,
+          text: (
+            color: color('black'),
+            font-size: px(12),
+            line-height: 1.5,
+            text-align: center
+          )
+        )
+      )
+    ),
+    _quick-view: (
+      button: extend('_base.button', (
+        min-width: 70%,
+        padding: common('spacings.s') common('spacings.l'),
+        text: (
+          color: color('black'),
+          font-size: px(18),
+          line-height: px(22)
+        ),
+        background: (
+          background-color: rgba(color('white'), 0.55)
+        ),
+        hover: (
+          background: (
+            background-color: rgba(color('black'), 1)
+          ),
+          text: (
+            color: color('white')
+          )
+        ),
+        focus: ()
+      ))
+    )
+  )
+
+));

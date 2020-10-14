@@ -1,0 +1,46 @@
+$heroImage: (
+  // composite outer box
+  box: (),
+  // the rich text content box
+  _content: (
+    box: ()
+  ),
+  // the first paragraph before the title
+  _pretitle: (
+    paragraph: (
+      text: (
+        color: color('black'),
+        font-weight: bold,
+        line-height: 1,
+        font-size: breakpoint(px('s'), px('s'), px('m'))
+      )
+    )
+  ),
+  _title: extend('_primary._title.paragraph', (
+    text: (
+      font-size: breakpoint(px('xl'), px('xxxl'), px('xxxl'))
+    ),
+    margin: 0,
+    line: (
+      display: inline-block,
+      margin: (
+        margin-left: 5px
+      )
+    )
+  )),
+  // all paragraphs after pretitle and title
+  _description: (
+    paragraph: (
+      text: (
+        color: color('black'),
+        line-height: 1.44,
+        font-size: px('xs')
+      )
+    )
+  ),
+  // If there's a need to override <a> style in the richtext.
+  // Usually selection styles are used, defined in /components/richText/hyperlinkStyles
+  _cta: (
+    button: ()
+  )
+);

@@ -1,0 +1,334 @@
+@import '../../core/config';
+
+.email-us-form, .shopify-customer-form {
+  $gap: spacings('m');
+
+  @import 'config';
+  @function g($a...) {
+    @return get-last($email-us-form, $a...);
+  }
+
+  $box: merge((), g('box'));
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  form {
+    $formContent: merge((
+      padding: (
+        padding: breakpoint(
+          60px 0 spacings('xxl'),
+          60px 0 spacings('xxl'),
+          100px 90px 60px 0
+        )
+      )
+    ), g('_formContent.box'));
+
+    @include breakpoints() {
+      @include box($formContent, $media);
+    }
+
+    fieldset {
+      .textField,
+      .selectField,
+      .radioGroup,
+      .reference-checkbox-item,
+      .checkboxField,
+      .textArea {
+        > .component-content {
+          $groupFields: merge((
+            margin: (
+              margin: $gap auto
+            )
+          ), g('_groupFields.box'));
+
+          @include breakpoints() {
+            @include box($groupFields, $media);
+          }
+        }
+      }
+
+      .radioGroup {
+        .component-content {
+          .controls {
+
+            label {
+              box-sizing: border-box;
+              display: inline-block;
+              margin: 0 spacings('m') 0 0;
+              vertical-align: top;
+
+              @include media-query(mobile) {
+                margin: 0;
+                width: 50%;
+              }
+
+              &:first-child {
+
+                @include media-query(mobile) {
+                  padding-right: calc(#{$gap} / 2);
+                }
+              }
+
+              &:last-child {
+                margin-right: 0;
+
+                @include media-query(mobile) {
+                  padding-left: calc(#{$gap} / 2);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .field-group-1 {
+
+      &.field-phone-number,
+      &.field-phone-number-ext {
+
+        .component-content {
+          margin: 0 0 calc(#{$gap} / 2);
+        }
+      }
+    }
+
+    .field-group-2 {
+
+      &.field-phone-number,
+      &.field-phone-number-ext {
+
+        .component-content {
+          margin: calc(#{$gap} / 2) 0 0;
+        }
+      }
+    }
+
+    .fieldset-accordion {
+      $product-info: merge((
+        margin: spacings('l') 0
+      ), g('_product-info.box'));
+
+      @include breakpoints() {
+        @include box($product-info, $media);
+      }
+
+      legend, h2 {
+        cursor: pointer;
+        margin: 0;
+        padding-bottom: $gutter;
+        position: relative;
+        z-index: $z-index-content;
+
+        $product-info-legend: merge((
+        ), g('_product-info._legend.button'));
+
+        @include breakpoints() {
+          @include button($product-info-legend, $media);
+        }
+
+        &::after {
+          border: 0;
+          display: inline-block;
+          margin: 0;
+          position: absolute;
+          right: 0;
+          top: 4px;
+          transform: rotate(0deg);
+          transition: transform .3s $ease-out;
+        }
+
+        span {
+          display: block;
+          margin-bottom: spacings('xs');
+        }
+
+        @include media-query(desktop, auto) {
+
+          &:hover {
+
+            &::after {
+              transform: rotate(-90deg);
+            }
+          }
+        }
+
+        &.is-active {
+
+          @include media-query(desktop, auto) {
+
+            &:hover {
+
+              &::after {
+                transform: rotate(-90deg);
+              }
+            }
+          }
+
+          &::after {
+            transform: rotate(-180deg);
+          }
+        }
+      }
+
+      .fields {
+        display: none;
+
+        $product-info-fields: merge((
+          padding: (
+            padding: breakpoint(
+              0 spacings('xs') spacings('xs'),
+              0 spacings('m') $gutter,
+              0 spacings('m') $gutter
+            )
+          )
+        ), g('_product-info._fields.box'));
+
+        @include breakpoints() {
+          @include box($product-info-fields, $media);
+        }
+
+        &.is-active {
+          display: block
+        }
+      }
+
+      .textField {
+        .component-content {
+          $groupFields: merge((
+            margin: (
+              margin: $gap auto spacings('xs')
+            )
+          ), g('_groupFields.box'));
+
+          @include breakpoints() {
+            @include box($groupFields, $media);
+          }
+        }
+      }
+
+      .richText {
+        p {
+          $observations-of-fields: merge((
+            margin: (
+              margin: 0 auto
+            )
+          ), g('_observations-of-fields.paragraph'));
+
+          @include breakpoints() {
+            @include paragraph($observations-of-fields, $media);
+          }
+        }
+
+        &.accordion-extra-info {
+
+          $accordion-extra-info-box: merge((
+            margin: (
+              margin: breakpoint(
+                0 -10px,
+                0 -30px,
+                0 -30px
+              )
+            ),
+            padding: $gutter 0
+          ), g('_accordion-extra-info.box'));
+
+          @include breakpoints() {
+            @include box($accordion-extra-info-box, $media);
+          }
+
+          p {
+
+            $accordion-extra-info-paragraph: merge((
+            ), g('_accordion-extra-info.paragraph'));
+
+            @include breakpoints() {
+              @include paragraph($accordion-extra-info-paragraph, $media);
+            }
+          }
+        }
+      }
+    }
+
+    .formButton {
+      $formButtonSubmit: merge((
+        margin: (
+          margin-top: $gutter
+        )
+      ), g('_formButtonSubmit.box'));
+
+      @include breakpoints() {
+        @include box($formButtonSubmit, $media);
+      }
+
+      .component-content {
+        $formButtonSubmit: merge((
+        ), g('_formButtonSubmit._buttonHolder.box'));
+
+        @include breakpoints() {
+          @include box($formButtonSubmit, $media);
+        }
+
+        .button {
+          $formButtonSubmit: merge((
+            display: breakpoint((mobile: inline-block)), // *** quickfix for inline-flex issues in iOS 10.0.
+          ), g('_formButtonSubmit.button'));
+
+          @include breakpoints() {
+            @include button($formButtonSubmit, $media);
+          }
+
+        }
+      }
+    }
+
+    @include media-query(desktop, auto) {
+
+      .fieldSet {
+
+        .form-element {
+
+          &.field-given-name,
+          &.field-family-name {
+            .component-content {
+              margin: 0;
+            }
+          }
+          &.field-zip-code {
+            .component-content {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.shopify-customer-form {
+  &.form {
+      form {
+        overflow:hidden;
+
+        .formButton {
+          text-align: center;
+
+          @include media-query(desktop, auto) {
+            float: right;
+            margin-top: 0;
+            text-align: left;
+          }
+        }
+      }
+  }
+
+  .reference-icon-link {
+    padding: spacings("s") 0;
+    text-align: center;
+
+    @include media-query(desktop, auto) {
+      float: left;
+    }
+  }
+}

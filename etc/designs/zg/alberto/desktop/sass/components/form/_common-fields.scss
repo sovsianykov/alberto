@@ -1,0 +1,122 @@
+$gap: spacings('m');
+
+.field-phone-number {
+  box-sizing: border-box;
+  display: inline-block;
+  padding-right: calc(#{$gap} / 2);
+  vertical-align: top;
+  width: 80%;
+  margin-top: -$gap;
+
+  &.even {
+    margin-top: 0px;
+  }
+
+  &.odd {
+    margin-top: 0px;
+  }
+
+  @include media-query(mobile) {
+    width: 70%;
+  }
+}
+
+.field-phone-number-ext {
+  box-sizing: border-box;
+  display: inline-block;
+  padding-left: calc(#{$gap} / 2);
+  vertical-align: top;
+  width: 20%;
+  margin-top: -$gap;
+
+  &.even {
+    margin-top: 0px;
+  }
+
+  &.odd {
+    margin-top: 0px;
+  }
+
+  &.field-group-1 {
+    + .radio-as-button {
+      margin-top: -$gap;
+    }
+  }
+
+  @include media-query(mobile) {
+    width: 30%;
+
+    &.field-group-1 {
+      + .reference-datepicker {
+        margin-top: -$gap;
+      }
+    }
+  }
+
+  @include media-query(tablet) {
+    &.field-group-1 {
+      + .reference-datepicker {
+        margin-top: -$gap;
+      }
+    }
+  }
+
+  @include media-query(notebook) {
+    &.field-group-1 {
+      + .reference-datepicker {
+        margin-top: -$gap;
+      }
+    }
+  }
+}
+
+@include media-query(desktop, auto) {
+
+  .field-given-name,
+  .field-family-name,
+  .field-date-picker,
+  .field-zip-code {
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+
+    .component-content {
+      margin: 0;
+    }
+  }
+
+  .field-given-name,
+  .field-zip-code {
+    padding-right: calc(#{$gap} / 2);
+  }
+
+  .field-family-name,
+   .field-date-picker {
+    padding-left: calc(#{$gap} / 2);
+  }
+
+  .reference-datepicker {
+    box-sizing: border-box;
+    display: inline-block;
+    line-height: 1;
+    padding-right: calc(#{$gap} / 2);
+    vertical-align: top;
+    width: 50%;
+
+    + .form-element {
+      box-sizing: border-box;
+      display: inline-block;
+      padding-left: calc(#{$gap} / 2);
+      vertical-align: top;
+      width: 60%;
+    }
+
+    + .checkboxField {
+      width: 100%;
+      padding-left: 0;
+      margin: #{$gap} 0;
+      display: block;
+    }
+  }
+}

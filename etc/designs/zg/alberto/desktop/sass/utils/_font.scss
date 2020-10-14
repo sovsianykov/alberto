@@ -1,0 +1,63 @@
+$common: () !default;
+@function font-family($label: 'primary') {
+  @return common('font-family', $label, 'name');
+}
+
+@function get-lh-diff($d, $side, $screen, $unit: null) {
+  $family: safetype(get-last($d, 'font-family', $screen), get-last($common, 'text.body.font-family', $screen));
+  $line-height: safetype(get-last($d, 'line-height', $screen), get-last($common, 'text.body.line-height', $screen));
+  $font-size: safetype(get-last($d, 'font-size', $screen), get-last($common, 'text.body.font-size', $screen));
+
+  @if (unit($line-height) == 'px') {
+    $line-height: ($line-height / $font-size) / 1px;
+  }
+
+  $lh: ($line-height - 1) * 0.5;
+  $diff: common('font-family', $family, 'diff', $side) + $lh;
+
+  @if ($unit == 'px') {
+    @return $diff * $font-size;
+  } @else {
+    @return $diff * -1em;
+  }
+}
+
+// $d must be a paragraph
+@function get-lh-margin-diff($d, $side, $media) {
+  $margin: safetype(get-side($d, 'margin', $side, $media), 0px);
+  $margin-diff: get-lh-diff(get($d, 'text'), $side, $media, 'px');
+  @return $margin - $margin-diff;
+}
+@mixin lh-margin-diff($d, $media) {
+  margin-top: get-lh-margin-diff($d, 'top', $media);
+  margin-bottom: get-lh-margin-diff($d, 'bottom', $media);
+}
+
+@mixin lh-diff($d, $screen) {
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+
+  &:before {
+    margin-top: get-lh-diff($d, 'top', $screen);
+  }
+
+  &:after {
+    margin-bottom: get-lh-diff($d, 'bottom', $screen);
+  }
+}
+
+@mixin lh-padding($value, $d, $screen) {
+  $value: get-last($value, $screen);
+  @if (type-of($value) != 'map' AND $value != null) {
+    $value: trbl($value);
+    $pt: max(0, nth($value, 1) - get-lh-diff($d, 'top', $screen, 'px'));
+    $pb: max(0, nth($value, 3) - get-lh-diff($d, 'bottom', $screen, 'px'));
+
+    padding: $pt nth($value, 2) $pb nth($value, 4);
+  }
+}

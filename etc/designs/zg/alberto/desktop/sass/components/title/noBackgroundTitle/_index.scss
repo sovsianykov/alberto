@@ -1,0 +1,31 @@
+.title.title-no-background {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($noBackgroundTitle, $a...);
+  }
+
+  $wrapper: merge((
+    margin: (
+      margin-top: breakpoint((mobile: 60px, tablet-min: 96px)),
+      margin-bottom: spacings('m')
+    )
+  ), g('_outer-wrapper.box'));
+
+  @include breakpoints() {
+    @include box($wrapper, $media);
+  }
+
+  > .component-content {
+    @include wrapper;
+  }
+
+  h1, h2, h3 {
+    $title: merge((
+      margin: 0
+    ), g('_title.paragraph'));
+
+    @include breakpoints() {
+      @include paragraph($title, $media);
+    }
+  }
+}

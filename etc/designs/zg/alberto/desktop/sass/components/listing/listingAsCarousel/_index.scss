@@ -1,0 +1,132 @@
+@import 'utils';
+
+.listing--as-carousel {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($listingAsCarousel, $a...);
+  }
+
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+
+  $box: merge((
+    margin: spacings('s') 0,
+    padding: (
+      padding: 0
+    )
+  ), g('box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  .listing-carousel {
+
+    $box: merge((
+      width: breakpoint((mobile: calc(100% - 5px))),
+      overflow: breakpoint((mobile-min: hidden)),
+      margin: (
+        margin: breakpoint((mobile: 0 auto))
+      )
+    ), g('_carousel.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+  }
+
+  &.listing {
+    .listing-items {
+      flex-wrap: nowrap;
+
+      & a {
+        text-decoration: none;
+      }
+    }
+
+    &.listing-product-default-view .listing-item {
+      @include media-query(mobile) {
+        padding: 0 5px;
+      }
+    }
+  }
+
+  .listing-header {
+    h2, h3 {
+      $paragraph: merge((
+        margin: (
+          margin: 0 0 spacings('m')
+        )
+      ), g('_header.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($paragraph, $media);
+      }
+    }
+  }
+
+  .listing-item {
+    flex-shrink: 0;
+
+    &.is-hidden {
+      // visibility: hidden is needed to prevent tabbing out of carousel viewport
+      // display: block is needed to calculate carousel width correctly
+      visibility: hidden;
+      display: block! important; // overriding global is-hidden style
+    }
+  }
+
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+
+    .indicators {
+      list-style: none;
+      display: flex;
+      width: auto;
+      padding: 0;
+      margin: 0;
+
+      @include media-query(auto, notebook) {
+        //display: none !important;
+      }
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+
+      &:focus {
+        opacity: .8;
+      }
+    }
+
+    .indicator {
+      font-size: 0;
+      background-color: color("primary", "base") !important;
+      opacity: .3;
+
+      &.is-active {
+        background-color: color("primary", "base") !important;
+        opacity: 1;
+      }
+    }
+
+    .previous,
+    .next {
+      border: 0;
+      display: none !important;
+
+
+      &.disabled {
+        pointer-events: none;
+      }
+    }
+  }
+
+  @include common-rules($listingAsCarousel);
+}

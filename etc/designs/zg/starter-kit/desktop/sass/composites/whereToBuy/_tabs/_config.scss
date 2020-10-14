@@ -1,0 +1,62 @@
+$whereToBuyTabs: (
+  _tab-nav-list: (
+    box: (
+      background: (
+        background-color: color('neutral', 'lighter')
+      ),
+      padding: (
+        padding: breakpoint(
+          spacings('xs') 0 0,
+          spacings('xs') 22px 0,
+          spacings('xs') 60px 0
+        ),
+      ),
+      margin: 0,
+      display: flex,
+    ),
+    _tab-nav-item: (
+      button: (
+        text: (
+          text-transform: uppercase,
+          text-decoration: none,
+          font-weight: bold,
+          line-height: 1,
+          font-family: primary,
+          font-size: px(16),
+        ),
+        border: (
+          border-top-right-radius: 3px,
+          border-top-left-radius: 3px,
+        ),
+        padding: breakpoint(spacings('xs'), 20px, 20px),
+        min-width: breakpoint(null, 125px, 180px),
+        box-sizing: border-box,
+        height: 50px,
+      )
+    ),
+    _tab-nav-item-active: (
+      button: (
+        background: (
+          background-color: color('primary', 'base')
+        ),
+        text: (
+          line-height: 1,
+          font-family: primary,
+          font-size: px(16),
+        ),
+        padding: breakpoint(spacings('xs'), 20px, 20px),
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16)
+      )
+    )
+  ),
+  _tab-content: (
+    box: (
+      background: (
+        background-color: color('white')
+      ),
+      padding: (
+        padding: 0 spacings('xs'),
+      )
+    )
+  )
+);

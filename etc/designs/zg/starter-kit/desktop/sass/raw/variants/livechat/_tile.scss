@@ -1,0 +1,22 @@
+.livechat-tile {
+
+  > .component-content {
+    min-height: 350px;
+  }
+
+  .btn {
+    position: absolute;
+    bottom: 40px;
+    left: 30px;
+    width: calc(100% - 60px);
+  }
+
+  @include respond-to(tablet-portrait) {
+    min-height: 0;
+
+    .btn {
+      position: static;
+      width: 100%;
+    }
+  }
+}

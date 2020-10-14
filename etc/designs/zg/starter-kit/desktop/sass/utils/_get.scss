@@ -1,0 +1,110 @@
+// utils
+@function slice($list, $index: 0, $max: length($list)) {
+  $ret: ();
+  $index: max($index, 0);
+  $max: min(length($list), $max);
+
+  @if ($max <= 0) {
+    @return $ret;
+  }
+
+  @if $index >= 0 {
+    @for $i from ($index + 1) through $max {
+      $ret: append($ret, nth($list, $i));
+    }
+  }
+
+  @return $ret;
+}
+
+@function split($string, $dem) {
+  $list: ();
+  $sum: str-length($string);
+
+  @for $i from 1 through $sum {
+      $str: str-index($string, $dem);
+
+      @if str-length($string) >= 1 and $str == null {
+          $list: append($list, $string);
+          $string: "";
+      }
+
+      @if type-of($str) == number {
+          $each: str-slice($string, 0, ($str - 1));
+          $list: append($list, $each);
+          $string: str-slice($string, ($str + 1), $sum);
+      }
+  }
+
+  @return $list;
+}
+
+// get the hability to pass "a.b.c" as multiple parameters
+@function normalize-args($args...) {
+  $ret: ();
+  $has-dot: false;
+
+  @if (str-index($args + "", ".") != null) {
+    $has-dot: true;
+  }
+
+  @if ($has-dot) {
+    @each $item in $args {
+      @if $item != null {
+        @if str-index($item + "", ".") != null {
+          $ret: join($ret, split($item, "."));
+        } @else {
+          $ret: join($ret, $item);
+        }
+      }
+    }
+  } @else {
+    $ret: $args;
+  }
+
+  @return $ret;
+}
+
+// abstract way to get items recursivelly
+@function get($list, $args...) {
+  $args: normalize-args($args...);
+  $ret: $list;
+
+  @each $item in $args {
+    @if type-of($ret) == "map" {
+      $ret: map-get($ret, $item);
+    } @else {
+      $ret: null;
+    }
+  }
+
+  @return $ret;
+}
+
+@function get-last($list, $args...) {
+  $args: normalize-args($args...);
+  $ret: get($list, $args...);
+
+  @while ($ret == null AND length($args) > 0) {
+    $args: slice($args, 0, length($args) - 1);
+    $ret: get($list, $args...);
+  }
+
+  @return $ret;
+}
+
+@function merge($parent-map, $child-map: ()) {
+  @if ($parent-map == null) {
+    @return $child-map;
+  }
+  $result: $parent-map;
+  @each $key, $value in $child-map {
+    @if (not map-has-key($result, $key)) or (type-of(map-get($result, $key)) != type-of($value)) or (not (type-of(map-get($result, $key)) == map and type-of($value) == map)) {
+      $result: map-merge($result, ($key: $value));
+    }
+    @else {
+      $result: map-merge($result, ($key: merge(map-get($result, $key), $value)));
+    }
+  }
+  @return $result;
+}

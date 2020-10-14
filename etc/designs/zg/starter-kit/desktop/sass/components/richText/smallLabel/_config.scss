@@ -1,0 +1,13 @@
+@include local-spacings();
+
+$small-label: (
+  _main: (
+    paragraph: (
+      text: (
+        font-size: px('xxxs'),
+        line-height: 1.5,
+        color: color('neutral', 'dark')
+      )
+    ),
+  )
+);

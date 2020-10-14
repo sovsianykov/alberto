@@ -1,0 +1,332 @@
+// // We are overriding bloated 3rd party CSS here in order
+// // - that's why some importants have been used (usually in order to override inline styles).
+
+// .shoppable-item-top-container {
+//   z-index: 11;
+//   top: 0;
+//   left: 50%;
+//   max-width: 530px;
+//   max-height: 100vh;
+//   width: 100vw;
+//   height: 100vh;
+//   overflow: auto;
+//   overflow-x: hidden;
+// }
+
+// .shoppable-item-top-container {
+//   position: fixed;
+//   transform: translate(-50%, 0);
+
+//   @include respond-to(desktop) {
+//     height: auto;
+//     top: 50%;
+//     transform: translate(-50%, -50%);
+//   }
+// }
+
+// #warning {
+//   margin-right: 60px;
+// }
+
+// .shoppable-item-product-name {
+//   margin: 0;
+// }
+
+// .shoppable-item-product-brand,
+// .shoppable-item-product-description {
+//   display: none;
+// }
+
+// #shoppableController.shoppable-item-container {
+//   .shoppable-item-add-button {
+//     @extend %btn;
+//     background: $brand-primary;
+//     color: $white;
+
+//     &:focus,
+//     &:hover {
+//       background: darken($brand-primary, 5%);
+//     }
+//   }
+
+//   .flex {
+//     flex: none;
+//   }
+// }
+
+// .shoppable-item-container h3 {
+//   font-size: 1.8rem;
+
+//   @include respond-to(desktop) {
+//     font-size: 2.2rem;
+//   }
+// }
+
+
+// .shoppable-item-info-table {
+//   padding-top: 40px;
+
+//   // this is awful but prevents two identical warnings
+//   // from being displayed at the same time
+//   > div > div > div > #warning {
+//     display: none;
+//   }
+// }
+
+// /* item popup spefic elments  */
+
+// // tag name added to increase specificity
+// #shoppableController button.shoppable-item-close-button {
+//   position: absolute;
+//   top: -30px;
+//   right: -10px;
+//   padding: 5px 8px;
+//   cursor: pointer;
+//   color: black;
+//   z-index: 6;
+
+//   &::after {
+//     @include font-awesome($fa-var-times);
+//     font-size: 2.4rem;
+//   }
+
+//   .shoppable-item-closeButton-X-text,
+//   .shoppable-item-closeButton-close-text {
+//     font-size: 0;
+//   }
+
+//   &:hover,
+//   &:focus {
+//     color: $brand-primary;
+//     background: transparent;
+//   }
+// }
+
+// #shoppableController {
+//   md-progress-circular { //hide spinner
+//     display: none !important;
+//   }
+
+//   .shoppable-item-list-container {
+//     min-height: 0;
+//     max-height: 685px;
+//     overflow: auto;
+//     background-color: white;
+
+//     .shoppable-item-info-table {
+//       .shoppable-merchant-color-container.layout-row {
+//         display: block;
+//       }
+//     }
+//   }
+
+//   .shoppable-merchant-color-container {
+//     .shoppable-merchant-color-select,
+//     .shoppable-item-size-selection-select,
+//     .shoppable-item-qty-selection-select {
+//       width: 200px;
+//       display: block;
+//     }
+//   }
+// }
+
+// .shoppable-item-image-container {
+//   width: 100%;
+// }
+
+// .shoppable-item-merchant-group-select {
+//   width: 200px;
+// }
+
+// .shoppable-color-merchant-select {
+//   width: 130px;
+//   display: block
+// }
+
+// .shoppable-item-price-add-td {
+//   margin-left: -60px;
+//   padding: 10px;
+// }
+
+// .shoppable-checkout-container {
+//   transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) .6s;
+//   position: relative;
+//   right: 0px;
+//   top: 0px;
+//   background-color:white;
+//   border: 1px $gray-light-2 solid;
+// }
+
+// .shoppable-lightbox-container {
+//   position:fixed;
+//   top: 0px;
+//   bottom: 0px;
+//   left: 0px;
+//   right: 0px;
+//   width: 100%;
+//   height: 100%;
+//   z-index: 11;
+//   background-color: #252525;
+//   opacity: .8;
+// }
+
+// #shoppableCartController button.shoppable-checkout-close-button {
+//   left: auto;
+//   position: absolute;
+//   right: -16px;
+//   padding: 5px 0 0 0;
+//   margin: 0;
+//   cursor: pointer;
+//   color: black;
+//   z-index: 6;
+
+//   &::after {
+//     @include font-awesome($fa-var-times);
+//     font-size: 2rem;
+//   }
+
+//   .shoppable-checkout-close-button-x-text,
+//   .shoppable-checkout-close-button-close-text {
+//     font-size: 0;
+//   }
+
+//   br {
+//     display: none;
+//   }
+
+//   .md-ripple-container {
+//     display: none;
+//   }
+// }
+
+// // nesting used to increase specificity
+// .shoppable-checkout-container {
+//   .pdp_open &.layout-column {
+//     display: block;
+//   }
+
+//   .shoppable-checkout-close-button {
+//     &:hover,
+//     &:focus {
+//       color: $brand-primary !important;
+//       background: transparent;
+//     }
+//   }
+// }
+
+// .shoppable-checkout-close-button-close-text {
+//   display: none;
+// }
+
+// .shoppable-checkout-cart-info-container {
+//   margin: 15px 0 15px 15px;
+// }
+
+// div.shoppable-checkout-items-container-cover {
+//   max-height: 500px;
+//   overflow-y: auto;
+//   overflow-x: hidden;
+// }
+
+// .shoppable-checkout-items-container-sub {
+//   margin-top: 15px;
+//   margin-bottom: 15px;
+// }
+
+// .shoppable-checkout-items-image {
+//   width: 85px;
+// }
+
+// .shoppable-checkout-items-brand {
+//   font-size:.75em;
+//   font-weight: 400;
+//   margin: 0;
+// }
+
+// #shoppableCartController div.shoppable-checkout-items-container {
+//   display: block
+// }
+
+// .flex {
+//   .shoppable-checkout-items-name {
+//     font-size: .8em;
+//     font-weight: 600;
+//     position: static;
+//     margin: 3px 0;
+//   }
+
+//   .shoppable-checkout-items-color {
+//     font-size: .75em;
+//     font-weight: 400;
+//     position: static;
+//   }
+
+//   .shoppable-checkout-items-qty-select {
+//     width: 130px;
+//   }
+// }
+
+// button.shoppable-checkout-items-remove-button {
+//   font-size: .75em;
+//   right: 28px;
+//   top: -8px;
+
+//   @include respond-to(desktop) {
+//     right: 120px;
+//   }
+// }
+
+// #shoppableCartController button.shoppable-checkout-button {
+//   color: black;
+//   display: block;
+//   font-weight: bold;
+//   left: 0;
+//   margin: 10px auto;
+// }
+
+// .shoppable-checkout-href:hover {
+//   text-decoration: none;
+// }
+
+// #shoppable_magic_v1_pdp_container .shoppable-view-cart-button.md-button {
+//   margin-top: 10px;
+//   left: 20%;
+//   position: static;
+// }
+
+// /* cart animations */
+
+// .shoppable-checkout-container.ng-hide-add,
+// .shoppable-checkout-container.ng-hide-remove {
+//   display: block !important;
+// }
+
+// .shoppable-checkout-container.ng-hide {
+//   right: 0 !important;
+//   top: -100%;
+// }
+
+// .shoppable-out-of-stock-container {
+//   padding: 30px;
+//   background: $white;
+//   font-size: 1.2rem;
+
+//   p >.shoppable-out-of-stock-button {
+//     @extend %btn;
+//     background: $brand-primary;
+//     color: $white;
+//     outline: none;
+//     box-shadow: 0 1px 1px rgba($gray-base, 0.2);
+//     display: block !important;
+//     margin: auto !important;
+
+//     &:hover,
+//     &:active,
+//     &:focus {
+//       background: darken($brand-primary, 5%);
+//       color: $white;
+//       border: 0;
+//       box-shadow: none;
+//     }
+//   }
+// }

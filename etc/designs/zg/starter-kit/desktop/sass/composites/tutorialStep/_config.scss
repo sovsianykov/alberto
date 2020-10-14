@@ -1,0 +1,54 @@
+$tutorial-step: (
+  _outer-wrapper: (
+    box: ()
+  ),
+  _step-content: (
+    _text-wrapper: (
+      box: ()
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-weight: bold,
+          text-transform: uppercase,
+          line-height: breakpoint((tablet-max: 1.16, desktop: 1.13)),
+          font-family: 'primary',
+          font-size: breakpoint((tablet-max: px('l'), desktop: px('xl')))
+        ),
+        line: (
+          border: (
+            border-bottom: 4px solid color('primary', 'base')
+          )
+        )
+      )
+    ),
+    _subtitle: (
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-weight: bold,
+          font-family: 'body',
+          text-transform: initial,
+          line-height: breakpoint((tablet-max: 1.23, desktop: 1.16)),
+          font-size: breakpoint((tablet-max: px('m'), desktop: px('l')))
+        )
+      )
+    ),
+    _cta: (
+      button: ()
+    ),
+    _image-container: (
+      box: (),
+      _image: (
+        box: ()
+      )
+    ),
+    _first-grid-item: (
+      box: ()
+    ),
+    _last-grid-item: (
+      box: ()
+    )
+  )
+);

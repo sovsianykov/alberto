@@ -1,0 +1,51 @@
+$sign-up-info: (
+  _main: (
+    paragraph: (
+      margin: (
+        margin-right: breakpoint((desktop: $gutter))
+      )
+    ),
+    _list: (
+      _item: (
+        box: (
+          padding: (
+            padding-left: breakpoint(
+              $gutter,
+              $gutter,
+              spacings('m')
+            )
+          )
+        ),
+        icon: (
+          content: common('icon.ok'),
+          margin: (
+            margin-top: breakpoint(
+              7px,
+              7px,
+              9px
+            )
+          ),
+          side: before
+        ),
+        paragraph: (
+          text: (
+            font-size: breakpoint(
+              px(14),
+              px(14),
+              px(18)
+            )
+          )
+        )
+      )
+    )
+  ),
+  _title: extend('_primary._title.paragraph', (
+    text: (
+      font-size: breakpoint(
+        px('l'),
+        px('xl'),
+        px('xl')
+      )
+    )
+  ))
+);

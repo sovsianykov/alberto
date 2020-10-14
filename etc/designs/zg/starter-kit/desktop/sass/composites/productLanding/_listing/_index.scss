@@ -1,0 +1,60 @@
+.listing.product-landing-list {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($product-landing-list, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  // default to hidden with low specificity
+  // they get shown after they are moved
+  .reference-link_to_tab_item {
+    display: none;
+  }
+
+  .listing-items {
+    margin-top: spacings('xxl') * -1;
+
+    .listing-item {
+      $box: merge((
+        margin: (
+          margin-top: spacings('xxl')
+        )
+      ), g('_product-item.box'));
+
+      @include box($box, $media);
+
+      //hide elements on grid view
+      .box:last-of-type {
+        .bv_main_container {
+          margin-bottom: 0 !important;
+        }
+
+        .bv_main_container_row_flex {
+          .bv_avgRating_component_container,
+          .bv_numReviews_component_container {
+            display: none !important;
+          }
+
+          .bv_stars_button_container {
+            margin-right: 0 !important;
+          }
+
+          &:last-of-type {
+            display: none !important;
+          }
+        }
+
+        .reference-find-in-store-button {
+          display: none;
+        }
+
+        .richText:last-of-type {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+

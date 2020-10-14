@@ -1,0 +1,39 @@
+$common: () !default;
+
+$common: merge($common, (
+  _load-more: (
+    button: (
+      background: none,
+      border: 0,
+      display: inline-block,
+      text: (
+        font-family: 'primary',
+        font-size: px('xs'),
+        text-transform: uppercase,
+        color: color('black')
+      ),
+      icon: (
+        side: before,
+        content: common('icon.plus'),
+        color: color('white'),
+        font-size: 11px,
+        display: block,
+        margin: 0 auto 6px,
+        background: color('black'),
+        width: 33px,
+        height: 33px,
+        border: (
+          border-radius: 50%
+        ),
+        hover: (
+          background: color('neutral', 'dark')
+        )
+      ),
+      hover: (
+        text: (
+          color: color('neutral', 'dark')
+        )
+      )
+    )
+  )
+));

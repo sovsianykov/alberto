@@ -1,0 +1,10 @@
+.richText-content {
+  @import 'config';
+  @function g($a...) { @return get-last($titleLineBelow, $a...); }
+
+  .title-line-below {
+    @include breakpoints() {
+      @include button(g('_header.button'), $media);
+    }
+  }
+}

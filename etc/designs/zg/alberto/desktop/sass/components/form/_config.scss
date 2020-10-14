@@ -1,0 +1,190 @@
+$error-color: color('secondary', 'base');
+
+$form: (
+  _fieldset: (
+    box:()
+  ),
+  _legend: extend('_primary._title.paragraph', (
+    text: (
+      font-size: breakpoint(
+        px('l'),
+        px('xl'),
+        px('xl')
+      )
+    )
+  )),
+  _formButton: (
+    button: extend('_primary.button', (
+      width: breakpoint((mobile: 100%))
+    ))
+  ),
+  _textarea: (
+    input: extend('_base.input', (
+      text: (
+        font-size: px('xxs'),
+        line-height: 1.36
+      ),
+      padding: $gutter,
+      width: 100%,
+      placeholder: (
+        color: color('neutral', 'base')
+      )
+    ))
+  ),
+  _groupFields: (
+    box: (),
+    hover: (),
+    _control-label: (
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-family: 'body',
+          font-size: px('xxs'),
+          font-weight: bold,
+          line-height: 1.36,
+          text-transform: uppercase
+        )
+      ),
+      _required: (
+        text: (),
+        icon: ()
+      )
+    )
+  ),
+  _error-groupFields: (
+    box: (),
+    hover: (),
+    _control-label: (
+      paragraph: (),
+      _required: (
+        text: (),
+        icon: ()
+      )
+    )
+  ),
+  _error-msg: (
+    box: (),
+    text: (
+      color: $error-color,
+      font-family: 'body',
+      font-size: px(18),
+      line-height: 1.28
+    ),
+    icon: (
+      background: $error-color,
+      border: (
+        border-radius: 50%
+      ),
+      color: color('white'),
+      content: "!",
+      display: inline-flex,
+      font-family: 'body',
+      font-size: .75em,
+      font-weight: bold,
+      line-height: 1.25em,
+      height: 1.25em,
+      side: 'before',
+      width: 1.25em
+    )
+  ),
+  _textField: (
+    input: extend('_base.input', (
+      text: (
+        font-size: px(18),
+        line-height: 1.5
+      ),
+      padding: 18px 20px,
+      placeholder: (
+        color: color('neutral', 'base')
+      )
+    ))
+  ),
+  _error-textField: (
+    input: extend('_base.input', (
+      background: color('secondary', 'lighter'),
+      border: (),
+      text: (
+        font-size: px(18),
+        line-height: 1.5
+      ),
+      padding: 18px 20px,
+      placeholder: ()
+    ))
+  ),
+  _selectField: extend('_dropdown', (
+    box: (
+      height: 50px,
+      padding: 0 46px 0 20px
+    ),
+    icon: (
+      font-size: px(10)
+    ),
+    text: (
+      font-size: px(18),
+      line-height: 1.5
+    )
+  )),
+  _error-selectField: extend('_dropdown', (
+    box: (
+      border: (
+        border-color: $error-color
+      ),
+      height: 50px,
+      padding: 0 46px 0 20px
+    ),
+    icon: (
+      color: $error-color,
+      font-size: px(10)
+    ),
+    text: (
+      color: $error-color,
+      font-size: px(18),
+      line-height: 1.5
+    )
+  )),
+  _radio-checkbox-label: (
+    box: ()
+  ),
+  _radio-checkbox-base: (
+    box: (),
+    text: (
+      color: color('black'),
+      font-family: 'body',
+      font-size: px(18),
+      line-height: 1.33
+    ),
+    _common-before-after: (
+      box: ()
+    ),
+    _common-before: (
+      background: (
+        background: transparent
+      ),
+      border: (
+        border: solid 1px color('neutral', 'light')
+      )
+    ),
+    _error-common-before: (
+      background: (
+        background: transparent
+      ),
+      border: (
+        border: solid 1px $error-color
+      )
+    ),
+    _afert-radio: (
+      icon: (
+        color: color('black'),
+        content: common('icon.list-bullet'),
+        side: after
+      )
+    ),
+    _after-checkbox: (
+      icon: (
+        color: color('black'),
+        content: common('icon.ok'),
+        side: after
+      )
+    )
+  )
+);

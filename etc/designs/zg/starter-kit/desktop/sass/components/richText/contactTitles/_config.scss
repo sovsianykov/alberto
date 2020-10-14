@@ -1,0 +1,36 @@
+$contactTitles: (
+  spacings: common('spacings')
+);
+
+// CONTACT US BOXES TITLES
+$contactTitles: merge($contactTitles, (
+  _title: (
+    paragraph: (
+      text: (
+        font-size: px('xl'),
+        color: color('black'),
+        font-weight: bold,
+        text-transform: uppercase,
+        line-height: 1,
+        font-family: 'primary',
+      ),
+      margin: (
+        margin-top: 0,
+        margin-bottom: get($contactTitles, 'spacings.s')
+      )
+    )
+  ),
+  _subtitle: (
+    paragraph: (
+      text: (
+        font-size: px(18),
+        line-height: 1.22,
+        letter-spacing: 0.4px,
+      ),
+      margin: (
+        margin-top: 0,
+        margin-bottom: get($contactTitles, 'spacings.l')
+      )
+    )
+  )
+));

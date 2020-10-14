@@ -1,0 +1,28 @@
+.richText.richText--print {
+  @import 'config';
+  @function g($a...) { @return get-last($print, $a...); }
+
+  $box: merge((
+    height: breakpoint((mobile: 43px, tablet-min: 36px)),
+    margin: (
+      margin-left: spacings('m'),
+    ),
+  ), g('box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  .richText-content {
+    //vertical alignment on iphone
+    position: absolute;
+    top: 0;
+
+    p, button {
+      cursor: pointer;
+      @include breakpoints() {
+        @include button(g('_print.button'), $media);
+      }
+    }
+  }
+}

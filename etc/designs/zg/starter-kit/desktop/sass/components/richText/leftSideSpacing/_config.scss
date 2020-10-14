@@ -1,0 +1,13 @@
+$leftSideSpacing: (
+  spacing: common('spacings')
+);
+$leftSideSpacing: merge($leftSideSpacing,(
+  box: (
+    margin: (
+      margin-left: 0
+    ),
+    padding: (
+      padding-left: breakpoint((desktop: 95px))
+    )
+  )
+));

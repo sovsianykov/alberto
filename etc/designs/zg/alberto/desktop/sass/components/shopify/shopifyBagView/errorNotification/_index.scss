@@ -1,0 +1,21 @@
+@import '../../../../core/config';
+
+.shopify-error {
+    background: color('neutral', 'lighter');
+    color: color('secondary', 'base');
+    justify-content: space-between;
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 1000;
+
+    &__msg-container {
+       display: flex;
+       padding: spacings('xxs') spacings('xs');
+       justify-content: space-between;
+    }
+
+    &__close {
+      cursor: pointer;
+    }
+}

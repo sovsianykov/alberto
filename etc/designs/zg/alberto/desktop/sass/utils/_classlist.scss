@@ -1,0 +1,16 @@
+$curr: null !global;
+@mixin classlist($d) {
+  $list: get($d, 'items');
+  $defaults: get($d, 'defaults');
+
+  $curr: $defaults !global;
+  @content;
+
+  @each $label, $v in $list {
+    &.#{$label} {
+      $curr: merge($defaults, get($list, $label)) !global;
+      @content;
+    }
+  }
+  $curr: null !global;
+}

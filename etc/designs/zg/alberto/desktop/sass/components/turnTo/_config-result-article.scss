@@ -1,0 +1,34 @@
+// Turn to single article
+$turnTo: merge($turnTo, (
+  _result-article: (
+    box: (
+      border: (
+        border-top: 1px solid color('neutral', 'light')
+      ),
+      margin: (
+        margin-top: 30px,
+      )
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          font-size: px('m')
+        ),
+        margin: (
+          margin-bottom: 20px,
+          margin-top: 30px,
+        )
+      )
+    ),
+    _content: (
+      box: (
+        border: none,
+      ),
+      paragraph: (
+        text: (
+          font-size: px(18)
+        )
+      )
+    )
+  )
+));

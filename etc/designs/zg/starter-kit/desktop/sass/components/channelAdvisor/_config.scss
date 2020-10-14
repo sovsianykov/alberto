@@ -1,0 +1,82 @@
+$close-btn-size: 50px;
+
+$channelAdvisor: (
+	spacings: common('spacings'),
+	box: (),
+	_buy-it-now-btn: (
+		box: (
+			margin: (
+				margin-left: auto,
+				margin-right: auto
+			)
+		)
+	),
+	_popup: (
+		box: (
+			background: color('neutral', 'lighter'),
+			position: absolute,
+			height: 270px,
+			width: 330px,
+			padding: (
+				padding-top: $close-btn-size
+			),
+			box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+			z-index: $z-index-fixed
+		)
+	),
+	_retailer-list: (
+		box: (
+			background: color('neutral', 'lighter'),
+			padding: (
+				padding: 0
+			),
+			margin: (
+				margin: 0
+			),
+			display: flex,
+			flex: (
+				flex-wrap: wrap
+			),
+			max-height: 100%
+		)
+	),
+	_retailer-item: (
+		box: (
+			padding: (
+				padding: 0 25px 25px
+			),
+			width: 50%,
+			box-sizing: border-box
+		),
+		text: (
+			text-align: center
+		)
+	),
+	_close-btn: (
+		button: (
+			icon: (
+				content: common("icon.cross"),
+				color: color('black'),
+				margin: auto,
+				font-size: px(20px)
+			),
+			height: $close-btn-size,
+			width: $close-btn-size,
+			border: none,
+			background: transparent
+		)
+	),
+	_arrow-decorator: (
+		box: (
+			background: color('neutral', 'lighter'),
+			width: 35px,
+			height: 35px,
+			position: absolute,
+			box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16),
+			z-index: -1
+		),
+		transform: (
+			transform: translate(50%, 50%) rotate(45deg)
+		)
+	)
+);

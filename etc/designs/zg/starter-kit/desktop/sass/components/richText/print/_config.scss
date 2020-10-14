@@ -1,0 +1,30 @@
+$print: (
+  box: (
+    border: (
+      border-left: 1px solid color('neutral', 'light')
+    )
+  ),
+  _print: (
+    button: (
+      background: none,
+      border: 0,
+      padding: 0,
+      margin: (
+        margin-left: spacings('m'),
+      ),
+      text: (
+        font-size: 0
+      ),
+      icon: (
+        content: common('icon.printer'),
+        color: color('black'),
+        font-size: breakpoint((mobile: 22px, tablet-min: 15px)),
+        side: after,
+        height: breakpoint((mobile: 43px, tablet-min: 36px)),
+        hover: (
+          color: color('neutral', 'dark')
+        )
+      ),
+    )
+  )
+);

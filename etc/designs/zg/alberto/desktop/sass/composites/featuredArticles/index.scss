@@ -1,0 +1,27 @@
+@import '../../core/config';
+
+.composite-featured_articles {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($featured-articles, $a...);
+  }
+
+  $fA-mainBox: merge((
+    margin: (
+      margin: breakpoint((
+        mobile: spacings('l') 0,
+        tablet-min: spacings('xxl') 0,
+      ))
+    )
+  ), g('box'));
+
+  @include breakpoints() {
+    @include box($fA-mainBox, $media);
+  }
+
+  > .content {
+    @include wrapper();
+  }
+}
+
+@import '_listing/index';

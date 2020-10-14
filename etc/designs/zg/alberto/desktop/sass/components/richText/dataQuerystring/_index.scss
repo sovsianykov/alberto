@@ -1,0 +1,15 @@
+.richText .data-querystring {
+  opacity: .3;
+  transition: opacity .5s;
+
+  [class] {
+    opacity: .3;
+    transition: opacity .5s;
+  }
+
+  &.processed,
+  &.processed [class] {
+    opacity: 1;
+  }
+
+}

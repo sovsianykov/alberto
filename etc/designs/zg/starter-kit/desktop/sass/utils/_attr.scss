@@ -1,0 +1,256 @@
+@mixin attr($d, $attr-list, $screen) {
+  // first item from attr-list is would be the shorthand,
+  // eg.: "background" against "background-color".
+  // verify if value is a "shorthand" and write only the main property
+  @if ($d != null) {
+    @if (type-of($d) != 'map') {
+      #{nth($attr-list, 1)}: $d;
+    } @else {
+      @each $attr in $attr-list {
+        $val: get($d, $attr, $screen);
+        @if ($val) {
+          #{$attr}: $val;
+        } @else {
+          $val: get($d, $attr);
+
+          @if (type-of($val) != 'map') {
+            #{$attr}: $val;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin background($d, $screen) {
+  @include attr($d, (
+    'background', 'background-color', 'background-image',
+    'background-repeat', 'background-size', 'background-position'
+  ), $screen);
+}
+
+@mixin border($d, $screen) {
+  @include attr($d, (
+    'border',
+    'border-top', 'border-left', 'border-right', 'border-bottom',
+    'border-width', 'border-style', 'border-color',
+    'border-image',
+    'border-image-source', 'border-image-slice', 'border-image-width',
+    'border-image-outset', 'border-image-repeat',
+    'border-radius',
+    'border-top-left-radius', 'border-top-right-radius',
+    'border-bottom-left-radius', 'border-bottom-right-radius'
+  ), $screen);
+}
+
+@mixin margin($d, $screen) {
+  @include attr($d, (
+    'margin', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left'
+  ), $screen);
+}
+
+@mixin padding($d, $screen) {
+  @include attr($d, (
+    'padding', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left'
+  ), $screen);
+}
+
+@mixin flex($d, $screen) {
+  @include attr($d, (
+    'flex', 'flex-flow', 'align-content', 'align-items', 'align-self', 'flex-basis',
+    'flex-direction', 'flex-grow', 'flex-shrink', 'flex-wrap',
+    'justify-content', 'order'
+  ), $screen);
+}
+
+@mixin size($d, $screen) {
+  @include attr($d, (
+    'width', 'height', 'min-width', 'min-height', 'max-width', 'max-height'
+  ), $screen);
+}
+
+@mixin text($d, $screen) {
+  @include attr($d, (
+    'color', 'font-size', 'font-weight', 'line-height', 'text-align',
+    'text-transform', 'font-style', 'letter-spacing', 'text-decoration',
+    'text-shadow', 'white-space'
+  ), $screen);
+
+  @if (safetype(get-last($d, 'font-family', $screen), '') != '') {
+    font-family: font-family(get-last($d, 'font-family', $screen));
+  }
+}
+
+@mixin line($d, $screen) {
+  $pseudo: safetype(get-last($d, 'side', $screen), 'after');
+
+  &:#{$pseudo} {
+    content: '';
+    @include border(get($d, 'border'), $screen);
+    @include margin(get($d, 'margin'), $screen);
+    @include transform(get($d, 'transform'), $screen);
+    @include size($d, $screen);
+    @include attr($d, ('display', 'vertical-align'), $screen);
+  }
+
+  @if(get($d, 'hover')) {
+    &:hover:#{$pseudo} {
+      @include hover(get($d, 'hover'), $screen);
+    }
+  }
+}
+
+@mixin transform($d, $screen) {
+  @include attr($d, (
+    'transform', 'transform-origin', 'transform-style', 'backface-visibility',
+    'perspective', 'perspective-origin'
+  ), $screen);
+}
+
+// Extension types
+@mixin paragraph($d, $screen) {
+  @include text(get($d, 'text'), $screen);
+  @include margin(get($d, 'margin'), $screen);
+  @include attr($d, ('display'), $screen);
+
+  @if (get($d, 'line')) {
+    @include line(get($d, 'line'), $screen);
+  }
+}
+
+@mixin box($d, $screen) {
+  $position: get-last($d, 'position', $screen);
+  @if ($position != '') {
+    position: safetype($position, relative);
+  }
+  @include flex(get($d, 'flex'), $screen);
+  @include background(get($d, 'background'), $screen);
+  @include border(get($d, 'border'), $screen);
+  @include padding(get($d, 'padding'), $screen);
+  @include margin(get($d, 'margin'), $screen);
+  @include size($d, $screen);
+  @include attr($d, ('z-index', 'box-shadow', 'display', 'overflow', 'box-sizing'), $screen);
+}
+
+@mixin link($d, $screen) {
+  @include text(get($d, 'text'), $screen);
+  @include attr($d, ('display'), $screen);
+
+  @if (get($d, 'hover')) {
+    &:hover {
+      @include hover(get($d, 'hover'), $screen);
+    }
+  }
+
+  @if (get($d, 'focus')) {
+    &:focus {
+      @include focus(get($d, 'focus'), $screen);
+    }
+  }
+
+  @if (get($d, 'line')) {
+    position: relative;
+    $pseudo: safetype(get-last($d, 'line.side', $screen), after);
+
+    &:#{$pseudo} {
+      position: absolute;
+      top: 100%;
+      left: 0;
+    }
+
+    @include line(get($d, 'line'), $screen);
+  }
+}
+
+@mixin button($d, $screen, $ignore: ()) {
+  @include background(get($d, 'background'), $screen);
+  @if map-has-key($ignore, display) {
+    @include link($d, $screen);
+  }
+  @else {
+    @include link(merge((
+      display: inline-flex
+    ), $d), $screen);
+  }
+  @include border(get($d, 'border'), $screen);
+  @include lh-padding(get($d, 'padding'), get($d, 'text'), $screen);
+  @include margin(get($d, 'margin'), $screen);
+  @include flex(merge((
+    align-items: center,
+    justify-content: if(safetype(get-last($d, 'icon.content', $screen), '') != '', space-between, center)
+  ), get($d, 'flex')), $screen);
+  @include size($d, $screen);
+  @include attr($d, ('z-index', 'box-shadow', 'box-sizing', 'vertical-align', 'cursor'), $screen);
+
+  @if (get($d, 'icon')) {
+    @include icon(get($d, 'icon'), $screen);
+  }
+}
+
+@mixin input($d, $screen) {
+  @include button($d, $screen); // basically input is just like button
+
+  &::placeholder {
+    @include text(get($d, 'placeholder'), $screen);
+  }
+
+  @if (get($d, 'focus')) {
+    &:focus {
+      @include focus(get($d, 'focus'), $screen);
+    }
+  }
+}
+
+@mixin hover($d, $screen) {
+  @include background(get($d, 'background'), $screen);
+  @include text(get($d, 'text'), $screen);
+  @include border(get($d, 'border'), $screen);
+  @include transform(get($d, 'transform'), $screen);
+  @include attr($d, ('opacity'), $screen);
+}
+
+@mixin focus($d, $screen) {
+  @include background(get($d, 'background'), $screen);
+  @include text(get($d, 'text'), $screen);
+  @include border(get($d, 'border'), $screen);
+  @include transform(get($d, 'transform'), $screen);
+  @include attr($d, ('outline', 'box-shadow'), $screen);
+}
+
+@mixin icon($d, $screen) {
+  $pseudo: safetype(get-last($d, 'side', $screen), 'after');
+
+  &:#{$pseudo} {
+    @include box(merge($d, (position: '')), $screen);
+    @include margin($d, $screen);
+    @include attr($d, ('content', 'font-size', 'color', 'opacity'), $screen);
+    display: safetype(get-last($d, 'display', $screen), block);
+
+    @if (get($d, 'content')) {
+      font-family: 'icons';
+      speak: none;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      text-align: safetype(get-last($d, 'text-align', $screen), center);
+      line-height: safetype(get-last($d, 'height', $screen), 1);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+
+  @if(get($d, 'hover')) {
+    &:hover:#{$pseudo} {
+      @include attr(get($d, 'hover'), ('color'), $screen);
+      @include hover(get($d, 'hover'), $screen);
+    }
+  }
+
+  @if(get($d, 'focus')) {
+    &:focus:#{$pseudo} {
+      @include attr(get($d, 'focus'), ('color'), $screen);
+      @include hover(get($d, 'focus'), $screen);
+    }
+  }
+}

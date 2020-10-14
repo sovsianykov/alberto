@@ -1,0 +1,181 @@
+.searchResults {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($recipes, $a...);
+  }
+
+  // default view
+  .item-recipe {
+    .bv_writeAReview_buttonMinimalist.bv_ffs_hover {
+      display: none !important; //overwrite ratings important styles
+    }
+
+    .ratingsandreviews .bv_main_container .bv_numReviews_text,
+    .ratingsandreviews .bv_main_container .bv_avgRating {
+      @include breakpoints {
+        /*! @important(start) */
+        @include paragraph(g('_ratings._count.paragraph'), $media);
+        /*! @important(stop) */
+      }
+    }
+    .searchResults-desc > div > .image,
+    .searchResults-icon {
+      @include coverImage;
+    }
+  }
+
+  .recipe-find-out-more,
+  .recipe-portions,
+  .recipe-cooking-time,
+  .recipe-difficulty-level {
+    display: none;
+  }
+
+  // grid view
+  .display-grid .item-recipe {
+    // BazaarVoice reviews (overwrite BV styles)
+    .ratingsandreviews .bazaarvoice div[data-bv-show="rating_summary"] {
+      /*! @important(start) */
+      text-align: left;
+      margin-top: 10px;
+      /*! @important(stop) */
+    }
+
+    .ratingsandreviews .bazaarvoice .bv_main_container .bv_numReviews_text,
+    .ratingsandreviews .bazaarvoice .bv_main_container .bv_avgRating,
+    .ratingsandreviews .bazaarvoice .bv_main_container .bv_numReviews_component_container {
+      @include breakpoints {
+        /*! @important(start) */
+        display: none;
+        /*! @important(stop) */
+      }
+    }
+    [data-bv-show=rating_summary] .bv_main_container {
+      .bv_main_container_row_flex {
+        /*! @important(start) */
+        padding-right: 0;
+        /*! @important(stop) */
+      }
+
+      .bv_stars_button_container {
+        /*! @important(start) */
+        margin-right: 0;
+        /*! @important(stop) */
+      }
+    }
+    .searchResults-desc p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  // list view
+  .display-list {
+    .item-recipe {
+      $listItem: merge((
+        box-sizing: border-box,
+        padding: (
+          padding: breakpoint((mobile: 20px spacings('s') 0, tablet-min: 0))
+        )
+      ), g('_list-item.box'));
+
+      @include breakpoints() {
+        @include box($listItem, $media);
+      }
+
+      .searchResults-desc {
+        flex-basis: 100%;
+      }
+      .searchResults-desc > div {
+        display: flex;
+      }
+
+      .searchResults-icon {
+        $box: merge((
+          margin-right: breakpoint((tablet-min: spacings('m')))
+        ), g('_list-item._image.box'));
+
+        @include breakpoints() {
+          @include box($box, $media);
+        }
+      }
+
+      .searchResults-desc {
+          .richText {
+            h3, h4, h5, h6 {
+              $productName: merge((
+                margin: 0
+              ), g('_list-item._title.paragraph'));
+
+              @include breakpoints() {
+                @include paragraph($productName, $media);
+              }
+            }
+          }
+
+        p {
+          $recipeDesc: merge((
+            margin: (
+              margin-top: breakpoint((tablet-max: 20px, desktop: spacings('s'))),
+              margin-bottom: breakpoint((tablet-max: spacings('xs'), desktop: 15px))
+            )
+          ), g('_list-item._description.paragraph'));
+
+          @include breakpoints() {
+            @include paragraph($recipeDesc, $media);
+          }
+
+          span {
+            @include breakpoints() {
+              $recipeDetails: merge((
+                margin: (
+                  margin-right: spacings('s'),
+                  margin-top: spacings('s')
+                )
+              ), g('_list-item._recipe-details.paragraph'));
+
+              @include paragraph($recipeDetails, $media);
+            }
+          }
+        }
+
+        .recipe-portions {
+          @include breakpoints() {
+            @include button(g('_list-item._recipe-portions.button'), $media);
+          }
+        }
+
+        .recipe-cooking-time {
+          @include breakpoints() {
+            @include button(g('_list-item._cooking-time.button'), $media);
+          }
+        }
+
+        .recipe-difficulty-level {
+          $dificultyLevel: merge((
+            padding: 6px 16px
+          ), g('_list-item._cooking-dificulty-level.button'));
+
+          @include breakpoints() {
+            @include button($dificultyLevel, $media);
+          }
+        }
+      }
+
+      .ratingsandreviews {
+        display: none;
+      }
+
+      .recipe-find-out-more,
+      .recipe-portions,
+      .recipe-cooking-time {
+        display: inline;
+      }
+    }
+  }
+
+  .recipe-portions:empty,
+  .recipe-cooking-time:empty,
+  .recipe-difficulty-level:empty {
+    display: none !important; // to overwrite any thirdparty inline styles
+  }
+}

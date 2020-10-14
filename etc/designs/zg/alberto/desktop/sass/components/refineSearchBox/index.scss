@@ -1,0 +1,124 @@
+@import '../../core/config';
+
+.refineSearchBox[class*=default-style] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($refineSearchBox, $a...);
+  }
+
+  @include text(g('text'), $media);
+  @include box(g('box'), $media);
+
+  .component-content {
+    @include wrapper;
+  }
+
+  p {
+    &.refineSearchHeader {
+      display: none;
+
+      @include breakpoints {
+        @include paragraph(g('_content._refine-search-header.paragraph'), $media);
+      }
+
+      &.is-visible {
+        display: block;
+      }
+    }
+  }
+
+  form {
+    position: relative;
+
+    // This is for >>> X Including results for "Potato Salad" <<< Is not implemented yet
+    p {
+      @include paragraph(g('_content._suggestion.paragraph'), $media);
+    }
+  }
+
+  input {
+    &.refineSearchInput {
+      box-sizing: border-box;
+      @include breakpoints {
+        @include input(g('_content._refine-search-input.input'), $media);
+      }
+    }
+  }
+
+  button {
+    cursor: pointer;
+
+    &.refineSearchSubmitButton,
+    &.refineSearchClearButton {
+      font-size: 0;
+    }
+
+    &.refineSearchClearButton,
+    &.refineSearchSubmitButton {
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      @include breakpoints {
+        @include button(g('_content._refine-search-clear-button.button'), $media);
+      }
+    }
+    &.refineSearchSubmitButton {
+      @include button(g('_content._refine-search-submit-button.button'), $media);
+    }
+
+    &.refineSearchClearButton {
+      cursor: pointer;
+      font-size: 0;
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      height: 24px;
+      width: 24px;
+      background-color: inherit;
+      border: none;
+      background: url("../../assets/img/close_button.png")!important;
+
+      &::before {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      // $close: merge((
+      // ), g('_close.button'));
+
+      // @include button($close, $media);
+      // background: color("primary", "base");
+
+      &:hover:before {
+        //color: color("white");
+      }
+
+      &:hover {
+        background: none;
+      }
+
+      &:focus{
+        .ua-webkit & {
+          outline: -webkit-focus-ring-color auto 5px;
+        }
+      }
+      background: inherit;
+      @include breakpoints(desktop) {
+        display: none;
+      }
+    }
+
+    &.refineSearchSubmitButton {
+      // clear button is not implemented
+      @include breakpoints(mobile, tablet) {
+        visibility: hidden;
+        opacity: 0;
+        z-index: -100;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+@include local-spacings();
+
+$observations: (
+  box: (
+    border: (
+      border-top: solid 1px color('neutral', 'light')
+    )
+  ),
+  paragraph: (
+    text: (
+      color: color('black'),
+      font-family: 'body',
+      font-size: px(xxs),
+      line-height: 1.36
+    )
+  )
+);

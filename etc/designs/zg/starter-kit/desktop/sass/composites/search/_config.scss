@@ -1,0 +1,24 @@
+$search: (
+  box: (),
+  _content-wrapper: (
+     box: (),
+    _filters-column: (
+      box: (
+        background: color('white'),
+        border: (
+          border-right: breakpoint(
+            0,
+            solid 1px color('neutral', 'light'),
+            solid 1px color('neutral', 'light')
+          )
+        )
+      )
+    ),
+    _button-clear-filters: (
+      margin: ()
+    ),
+    _results-wrapper: (
+      box: ()
+    )
+  )
+);

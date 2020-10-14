@@ -1,0 +1,166 @@
+$storeLocator: (
+  spacings: common('spacings')
+);
+
+$storeLocator: merge($storeLocator, (
+  _form: (
+    box: (
+      background: (
+        background-color: color('neutral', 'lighter'),
+      ),
+      display: flex,
+      flex: (
+        justify-content: breakpoint(null, null, space-between),
+        flex-direction: breakpoint(column, column, row),
+        flex-wrap: breakpoint(null, wrap, wrap)
+      ),
+      margin: (
+        margin: breakpoint(0, 0, 23px 0),
+      ),
+      padding: (
+        padding: breakpoint(30px 20px, 30px 20px, 30px),
+      ),
+      border: (
+        border-color: transparent transparent color('neutral', 'lighter') transparent,
+      )
+    ),
+    _label: (
+      paragraph: (
+        text: (
+          font-weight: bold,
+          font-size: breakpoint(px('xxs'), px('xxs'), px('xxxs'))
+        ),
+        margin: (
+          margin-bottom: get($storeLocator, 'spacings.xxs'),
+          margin-top: breakpoint(get($storeLocator, 'spacings.m'), get($storeLocator, 'spacings.m'), 20px)
+        )
+      )
+    ),
+    _size: (
+      box: (),
+      _label: (
+        paragraph: (
+          text: (
+            font-size: px('xxs')
+          ),
+          margin: (
+            margin-bottom: 0,
+            margin-right: 10px
+          )
+        )
+      ),
+      _radio: (
+        button: (
+          width: 20px,
+          height: 20px,
+          border: (
+            border: 1px solid color('black'),
+            border-radius: 1000px
+          ),
+          margin-right: 4px,
+          display: block
+        ),
+        paragraph: (
+          font-size: px('xxs'),
+          margin: 0 10px
+        )
+      ),
+      _radio-active: (
+        button: (
+          background: (
+            background-color: color('black')
+          )
+        )
+      )
+    ),
+    _zipcode: (
+      input: extend('_base.input', (
+        text: (
+          font-size: px(17),
+          line-height: px(50),
+        ),
+        padding: 0 42px 0 18px,
+        width: breakpoint(100%, 100%, 224px),
+        box-sizing: border-box,
+        placeholder: color('black')
+      )),
+      icon: (
+        content: common('icon.map'),
+        font-size: 18px,
+      ),
+      _placeholder: (
+        text: (
+          color: color('neutral', 'light')
+        )
+      )
+    ),
+
+    _zipcode-with-error: (
+      input: (
+        padding: 0 42px 0 18px,
+        border: (
+          border: 1px solid color('error'),
+          border-radius: 3px
+        ),
+      ),
+      _error-message: (
+        paragraph: (
+          text: (
+            color: color('error'),
+            line-height: 1,
+            font-size: px('xxxs')
+          ),
+          margin: (
+            margin-top: get($storeLocator, 'spacings.xxs')
+          )
+        )
+      )
+    ),
+    _dropdown: (
+      box: (
+        background: (
+          background-color: color('white')
+        ),
+        border: (
+          border-radius: 3px,
+          border: 1px solid color('neutral', 'light'),
+        ),
+        padding: (
+          padding: 0 42px 0 18px,
+        ),
+        width: breakpoint(100%, 100%, 147px),
+        height: 50px,
+      ),
+      text: (
+        font-size: px(17),
+        color: color('black'),
+        line-height: px(50),
+        font-weight: bold
+      ),
+      icon: (
+        content: common('icon.arrow-down'),
+        font-size: 10px,
+      ),
+    ),
+    _find-button: (
+      button: extend('_base.button', (
+        background: (
+          background-color: color('primary', 'dark')
+        ),
+        text: (
+          color: color('black'),
+          font-size: px(18),
+          font-weight: bold,
+        ),
+        height: 50px,
+        width: breakpoint(100%, 100%, 125px),
+        margin: (
+          margin-top: breakpoint(get($storeLocator, 'spacings.m'), get($storeLocator, 'spacings.m'), null)
+        ),
+        hover: (
+          // todo, tbd
+        )
+      )),
+    )
+  )
+));

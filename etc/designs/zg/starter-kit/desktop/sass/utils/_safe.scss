@@ -1,0 +1,35 @@
+// If $d is not the same type as $default, returns $default
+@function safetype($d, $default) {
+  @if (type-of($d) != type-of($default)) {
+    @return $default;
+  }
+  @return $d;
+}
+
+// guarantee that sum with string will return just string.
+@function safesum($args...) {
+  $result: 0;
+  @each $item in $args {
+    @if (type_of($result) == "number") {
+      @if (type_of($item) != "number") {
+        $result: $item;
+      } @else {
+        $result: $result + $item;
+      }
+    }
+  }
+
+  @return $result;
+}
+
+@mixin safepadding($tag: '*') {
+  > #{$tag} {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

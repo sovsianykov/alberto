@@ -1,0 +1,31 @@
+.richText.richText-mobile-narrow-button {
+  @import 'config';
+  @function g($a...) { @return get-last($mobileNarrowButton, $a...); }
+
+  @include breakpoints() {
+    @include box(g('box'), $media);
+  }
+
+  p {
+    $box: merge((
+      margin: (
+        margin-top: 0,
+        margin-bottom: 60px
+      )
+    ), g('_wrapper.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+  }
+
+  a {
+    $box: merge((
+      width: auto
+    ), g('_wrapper._button.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+  }
+}

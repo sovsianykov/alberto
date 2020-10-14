@@ -1,0 +1,6 @@
+body .olapic a.olapic-nav-button {
+  &:link,
+  &:visited {
+    z-index: $z-index-content;
+  }
+}

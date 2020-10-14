@@ -1,0 +1,28 @@
+// cancel button in the "select category" mobile menu on Product Landing Page 
+
+$cta-cancel: (
+  spacings: common('spacings')
+);
+
+$cta-cancel: merge($cta-cancel, (
+  // box: (),
+  button: (
+    text: (
+      color: color('black'),
+      font-family: 'primary',
+      font-size: px(18),
+      font-weight: bold,
+      line-height: 1,
+      text-transform: uppercase
+    ),
+    icon: (
+      color: color('black'),
+      content: common('icon.cross'),
+      font-size: px(13),
+      side: 'before',
+      margin: (
+        margin-right: get($cta-cancel, 'spacings.xs')
+      )
+    )
+  )
+));

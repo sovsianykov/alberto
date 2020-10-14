@@ -1,0 +1,13 @@
+$product-landing-list: (
+  spacings: common('spacings')
+);
+
+$product-landing-list: merge($product-landing-list, (
+  box: (
+    _product-item : (
+      margin: (
+        margin-top: 20px
+      )
+    )
+  ),
+));

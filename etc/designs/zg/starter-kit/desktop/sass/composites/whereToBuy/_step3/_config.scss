@@ -1,0 +1,213 @@
+// product item
+$storeLocator-results: (
+  _product-item: (
+    box: (
+      display: flex,
+      flex: (
+        flex-wrap: nowrap,
+        justify-content: flex-start,
+        align-items: flex-start
+      ),
+      padding: breakpoint(
+        spacings('m') spacings('xs'),
+        spacings('m') spacings('s'),
+        spacings('m')
+      ),
+    ),
+    _image: (
+      size: (
+        width: 130px,
+      )
+    ),
+    _details: (
+      box: (
+        padding: 0 spacings('m'),
+      ),
+      _title: (
+        paragraph: (
+          text: (
+            font-size: px(18),
+            font-weight: bold,
+            line-height: 1.22,
+          )
+        )
+      ),
+      _product-size: (
+        paragraph: (
+          margin: spacings('xxs') 0
+        )
+      )
+    )
+  )
+);
+
+// location results
+$storeLocator-results: merge($storeLocator-results, (
+  _results-message: (
+    paragraph: (
+      text: (
+        font-size: px(14),
+        text-align: left,
+        letter-spacing: 0.2px,
+      ),
+      margin: (
+        margin: 20px,
+      ),
+    )
+  ),
+  _result-item: (
+    box:(
+      padding: (
+        padding: spacings('xs') 20px spacings('xs') 50px,
+      ),
+      margin: (
+        margin-bottom: spacings('xs'),
+      )
+    ),
+    text: (
+      font-size: px('xxs'),
+      line-height: 1.57,
+    ),
+    _counter: (
+      box: (
+        position: absolute,
+        background: (
+          background-color: color('neutral', 'light'),
+        ),
+        border: (
+          border-radius: 50%,
+        ),
+        display: flex,
+        flex: (
+          justify-content: center,
+          align-items: center,
+        ),
+        width: 25px,
+        height: 25px,
+      ),
+      text: (
+        font-weight: bold,
+      )
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          font-weight: bold,
+          line-height: 1,
+          font-size: breakpoint(px(18), px(18), px('s')),
+        ),
+        margin: (
+          margin-top: 0,
+          margin-bottom: spacings('xs'),
+        )
+      )
+    ),
+    _distance: (
+      paragraph: (
+        margin: (
+          margin: breakpoint(
+            0,
+            0,
+            spacings('xxs') 0
+          )
+        )
+      )
+    ),
+    _address: (
+      paragraph: (
+        margin: (
+          margin: breakpoint(
+            0 0 spacings('xxs'),
+            0 0 spacings('xxs'),
+            spacings('xxs') 0 spacings('s')
+          )
+        )
+      )
+    ),
+    _phone-number: (
+      button: (
+        text: (
+          font-weight: bold,
+          font-size: breakpoint(px(14), px(14), px(18)),
+          text-decoration: none,
+          line-height: 1,
+          font-family: primary,
+        ),
+        margin: (
+          margin-right: spacings('l'),
+        ),
+        line: (
+          border: (
+            border-bottom: 2px solid color('black')
+          ),
+          width: 100%,
+          margin: (
+            margin-top: -3px,
+          )
+        )
+      )
+    ),
+    _directions: (
+      button: (
+        text: (
+          font-weight: bold,
+          font-size: breakpoint(px(14), px(14), px(18)),
+          text-transform: uppercase,
+          text-decoration: none,
+          line-height: 1,
+          font-family: primary
+        ),
+        line: (
+          border: (
+            border-bottom: 2px solid color('black')
+          ),
+          width: 100%,
+          margin: (
+            margin-top: -3px,
+          )
+        )
+      )
+    )
+  ),
+  _result-item-active: (
+    box:(
+      background: (
+        background-color: color('neutral', 'lighter'),
+      )
+    ),
+    _counter: (
+      box: (
+        position: absolute,
+        background: (
+          background-color: color('primary', 'base'),
+        )
+      )
+    )
+  ),
+  _results-load-more: (
+    button: common('_load-more.button')
+  )
+));
+
+// "buy it now" tab
+$storeLocator-results: merge($storeLocator-results, (
+  _buy-now: (
+    _message: (
+      paragraph: (
+        text: (
+          text-align: center,
+          font-weight: bold,
+          font-size: px(18),
+        ),
+        margin: (
+          margin: spacings('xl') 0 spacings('s'),
+        )
+      )
+    ),
+    _buy-button: (
+      button: extend('_primary.button', (
+        width: breakpoint(100%, 100%, 215px)
+      ))
+    )
+  )
+));

@@ -1,0 +1,9 @@
+.box-transparent-background {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($darkerBackground, $a...);
+  }
+
+  // main box:
+  @include box(g('_main.box'), $media);
+}

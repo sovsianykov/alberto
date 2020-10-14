@@ -1,0 +1,84 @@
+@import '../../../core/config';
+
+#update-delivery-method.disable-continue-cart-button {
+  background-color: color('neutral','light');
+  pointer-events: none;
+}
+
+.shopify-delivery-option {
+  padding: 0 spacings('m');
+
+  &__delivery-method {
+    &--heading {
+      font-size: px('s');
+      font-weight: 600;
+    }
+  }
+
+  &__delivery-address {
+    font-size: px('s');
+    overflow: hidden;
+
+    &--heading {
+      float: left;
+      font-weight: 600;
+    }
+
+    &--change-link {
+      float: right;
+    }
+  }
+
+  &__customer-details {
+    margin: 0;
+  }
+
+  &__email-value {
+    margin-top: spacings('m')/1.5;
+  }
+
+  .delivery-method {
+    border-top: 1px solid color('neutral','darker');
+    margin-top: spacings('m');
+  }
+
+  &__select-delivery-method {
+    margin: 0 spacings('xxs');
+
+    &--radio {
+      display: inline-block;
+      margin-right: spacings('xxs');
+    }
+
+    &--price {
+      float: right;
+    }
+  }
+
+  &__select-delivery-method {
+    margin: spacings('xxs') 0;
+  }
+
+  &__navigation {
+    margin: spacings('l') 0 spacings('xxl') 0;
+    overflow: hidden;
+    text-align: center;
+
+    &--link {
+      display: inline-block;
+      padding: spacings('xs') 0;
+
+      @include media-query(desktop, auto) {
+        float: left;
+      }
+    }
+
+    &--complete-order {
+      cursor: pointer;
+
+      @include media-query(desktop, auto) {
+        float: right;
+      }
+    }
+  }
+}

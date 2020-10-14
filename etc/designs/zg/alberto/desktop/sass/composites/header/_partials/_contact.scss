@@ -1,0 +1,73 @@
+.navigation-contact {
+  display: flex;
+  align-items: stretch;
+
+  @include media-query(auto, notebook) {
+    display: block;
+    width: 100%;
+  }
+
+  @include media-query(tablet, notebook) {
+    flex-grow: 2;
+    width: auto;
+  }
+
+  @include media-query(desktop, auto) {
+    justify-content: center;
+  }
+
+  > .component-content {
+    @include breakpoints {
+      @include box(g('supplementary._contact.box'), $media);
+    }
+  }
+
+  .navigation-root {
+    display: flex;
+
+    @include media-query(auto, notebook) {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    @include media-query(tablet, notebook) {
+      justify-content: space-between;
+    }
+
+    @include media-query(desktop, auto) {
+      align-items: center;
+    }
+  }
+
+  .navigation-item {
+    + .navigation-item {
+      position: relative;
+
+      @include breakpoints {
+        $side: if($media == 'desktop', left, bottom);
+        margin-#{$side}: safetype(g('supplementary._contact._space-between', $media), 0);
+      }
+
+      &:before {
+        content: '';
+
+        @include breakpoints {
+          @include box(g('supplementary._contact._separator.box'), $media);
+        }
+
+        @include media-query(desktop, auto) {
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+      }
+    }
+  }
+
+  .navigation-item-title {
+    @include breakpoints {
+      @include button(g('supplementary._contact.button'), $media);
+    }
+  }
+}

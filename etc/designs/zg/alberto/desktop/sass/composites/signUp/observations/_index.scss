@@ -1,0 +1,21 @@
+.richText.observations {
+  @import 'config';
+  @function g($a...) { @return get-last($sign-up-observations, $a...); }
+
+  .sign-up & {
+
+    $box: merge((
+      margin: (
+        margin: breakpoint(
+          spacings('xl') 0 spacings('xl'),
+          spacings('xl') 0 spacings('xl'),
+          spacings('s') $gutter 60px 0
+        )
+      )
+    ),g('box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+  }
+}

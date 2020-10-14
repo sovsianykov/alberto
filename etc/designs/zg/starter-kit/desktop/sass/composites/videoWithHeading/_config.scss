@@ -1,0 +1,22 @@
+$videoWithHeading: (
+  _main: (
+    box: (),
+    _heading-wrapper: (
+      box: ()
+    ),
+    _heading: (
+      paragraph: (
+        text: (
+          font-size: breakpoint((tablet-max: px('m'), desktop: px('xl'))),
+          font-weight: bold,
+          text-transform: uppercase,
+          font-family: 'primary',
+          line-height: 1.2
+        )
+      )
+    ),
+    _video: (
+      box: ()
+    )
+  )
+);

@@ -1,0 +1,91 @@
+@import '../config'; // import general results config
+
+// search result recipes item
+$recipes: (
+  _ratings: (
+    _count: (
+      paragraph: (
+        text: (
+          color: black,
+          line-height: 1.5,
+          letter-spacing: 0.3px,
+          font-weight: bold,
+          text-decoration: none,
+        )
+      )
+    )
+  )
+);
+
+
+$recipes: merge($recipes, (
+  _list-item: (
+    box: (
+      padding: (
+        padding: breakpoint(0)
+      )
+    ),
+    _image: (
+      box: ()
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          text-align: left,
+          font-size: breakpoint((mobile: px('s'), tablet-min: px('m')))
+        )
+      )
+    ),
+    _description: (
+      paragraph: (
+        text: (
+          font-size: px(18)
+        )
+      )
+    ),
+    _recipe-details: (
+      paragraph: (
+        text: (
+          font-size: px('xs')
+        )
+      )
+    ),
+    _recipe-portions: (
+      button: (
+        icon: (
+          content: common('icon.person'),
+          color: color('black'),
+          font-size: 15px,
+          side: before,
+          margin-right: spacings('xxs'),
+          margin-bottom: spacings('xxs')
+        ),
+      ),
+    ),
+    _cooking-dificulty-level: (
+      button: (
+        background: (
+          background-color: color('primary', 'base')
+        ),
+        text: (
+          line-height: 1
+        ),
+        border: (
+          border-radius: 2px
+        )
+      )
+    )
+  )
+));
+
+$recipes: merge($recipes, (
+  _list-item: (
+    _cooking-time: (
+      button: merge(get($recipes, '_list-item._recipe-portions.button'), (
+        icon: (
+          content: common('icon.timer')
+        )
+      ))
+    )
+  )
+))

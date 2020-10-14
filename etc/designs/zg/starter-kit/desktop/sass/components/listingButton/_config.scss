@@ -1,0 +1,28 @@
+@include local-spacings();
+$showMoreBtn: (
+  spacings: spacings(),
+  _main: (
+    box: ()
+  ),
+  _load-more: extend('_load-more', (
+    button: (
+      margin: 40px auto 0,
+      text: (
+        font-size: px('xxs'),
+        font-weight: bold
+      ),
+      background: transparent,
+      flex: (
+        justify-content: center,
+      ),
+      icon: (
+        font-size: 15px,
+        width: 35px,
+        height: 35px,
+        margin: (
+          margin: 0 auto 10px,
+        )
+      )
+    )
+  )
+));

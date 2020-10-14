@@ -1,0 +1,80 @@
+@import '../../core/config';
+
+// This file is for reference only (do not include the resulting css in the css.txt file)
+// Recommendations:
+// Use BEM syntax where possible.
+// Use classnames for styles only if possible. (separate styles should be added for javascript with js- prefix e.g. js-close-button)
+// Avoid unnecessary nesting;
+//   * one level should be enough for all block level elements e.g.
+//        .componentName__blockLevelElement__subElement {...}
+//   * two levels should be enough for all scope and variant declarations e.g.
+//        .componentName element {...}
+//        .componentName--variant .componentName__blockLevelElement {...}
+//   * three levels should be enough for variant and scope combinations e.g.
+//        .componentName--variant .componentName__blockLevelElement element {...}
+
+// !!! Note on the usage of the @include media-query(){} mixin !!!
+// This mixin should always be used with 'wide' as the upper limit. e.g. @include media-query(tablet, wide) {...}
+// using it without an upper limit e.g. @include media-query(tablet) {...} will result in a
+// range media query; (min-width: ...) and (max-width: ...)
+// these should only be used in very specific circumstances,
+// when you REALLY only want to apply a style to a specific range,
+// and should not be generally used as they add complexity and duplication
+
+.componentName {
+  // define component styles (in alphabetical order) for mobile view port first
+  background-color: color('white');
+
+  // override + additional styles for other view ports
+  // this section comes directly after the default mobile styles
+  @include media-query(tablet, wide) {
+    background-color: color('primary','dark');
+    margin: spacings(m);
+  }
+
+  // define styles for block level elements
+  &__blockLevelElement {
+    // define element styles for mobile
+    width: 100%;
+
+    // override + additional styles for other view ports
+    @include media-query(tablet, wide) {
+      margin: 0 auto;
+      width: 80%;
+    }
+    @include media-query(desktop, wide) {
+      width: 60%;
+    }
+
+    &__subElement {
+      // styles...
+      &__subSubElement {
+        // styles...
+        font-size: px(s);
+      }
+    }
+  }
+
+  // states e.g. is-hidden, has-some-child
+  &.is-loading {
+    opacity: .5;
+  }
+
+  // scope e.g if there is a need to style child elements that don't have a class name
+  // often necessary if the element contains rich-text or some other content
+  // that can't have styles added in the HTML
+  input::placeholder {
+    color: color('neutral', 'light');
+  }
+}
+
+
+// variants
+.componentName--large-text {
+  text-size: 200%;
+}
+
+// user-agent fixes
+.ua-webkit .componentName__close-button:focus {
+  outline: -webkit-focus-ring-color auto 5px;
+}

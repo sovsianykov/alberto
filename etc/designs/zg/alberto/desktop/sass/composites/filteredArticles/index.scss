@@ -1,0 +1,288 @@
+@import '../../core/config';
+
+.composite-filtered-articles {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($filteredArticles, $a...);
+  }
+
+  $box: merge((
+    // margin: (
+    //   margin: spacings('xxl') 0
+    // )
+  ), g('_main.box'));
+
+  @include box($box, $media);
+
+  .listing-article-list {
+    $listingWrapper: merge((
+      margin: (
+        margin: 0 auto
+      )
+    ), g('_listing-wrapper.box'));
+
+    @include box($listingWrapper, $media);
+
+    .listing-items {
+      margin-left: 0!important; // negative margin breaks carousel
+      margin-right: 0!important; // remove negative margin or think of better solution
+      $articleList: merge((
+        margin: (
+         margin: breakpoint((tablet-max: spacings('xs') * -1, desktop: spacings('m') * -1 spacings('s') * -1))
+        )
+      ), g('_article-list.box'));
+
+      @include breakpoints() {
+        @include box($articleList, $media);
+      }
+
+      .listing-item {
+        $article: merge((
+          padding: (
+            padding: breakpoint((tablet-max: spacings('xs'), desktop: spacings('m') spacings('s')))
+          )
+        ), g('_article.box'));
+
+        @include breakpoints() {
+          @include box($article, $media);
+        }
+
+        .richText .richText-content {
+          $textWrapper: merge((
+            padding: (
+              padding: breakpoint((tablet-max: 20px 0))
+            )
+          ), g('_article._text-wrapper.box'));
+
+          @include breakpoints() {
+            @include box($textWrapper, $media);
+          }
+
+          h2, h3, h4 {
+            $articleTitle: merge((
+              text: (
+                font-size: breakpoint((tablet-max: px(20)))
+              )
+            ), g('_article._title.paragraph'));
+
+            @include breakpoints() {
+              @include paragraph($articleTitle, $media);
+            }
+          }
+
+          p {
+            $articleDescription: merge((
+              //display: breakpoint((tablet-max: none)),
+              margin: (
+                margin-bottom: 0,
+                margin-top: 10px
+              )
+            ), g('_article._description.paragraph'));
+
+            @include breakpoints() {
+              @include paragraph($articleDescription, $media);
+            }
+          }
+          p {
+            >a {
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-home {
+  .composite-filtered-articles {
+    .listing-article-list {
+      .listing-items {
+        .listing-item  {
+          .paragraphSystem {
+            >.richText {
+              display: flex;
+              flex-grow: 1;
+              >.component-content {
+                display: flex;
+                flex-grow: 1;
+                height: auto;
+                width: 100%;
+                >.richText-content {
+                  width: 100%;
+                  @include breakpoints(tablet, desktop) {
+                    display: flex;
+                    flex-direction: column;
+                    height: auto;
+                  }
+                  p:last-child {
+                    margin-top: auto;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .carousel-controls {
+      @include breakpoints(tablet) {
+        top: 50px;
+      }
+      @include breakpoints(desktop) {
+        top: 20px;
+      }
+    }
+  }
+}
+
+// Modified listing
+.composite-variation-filtered-articles1 {
+  .paragraphSystem {
+    .listingFilters {
+      margin-top: 15px;
+      margin-bottom: 30px;
+      @include breakpoints(tablet) {
+        margin-bottom: 40px;
+      }
+      @include breakpoints(desktop) {
+        margin-bottom: 70px;
+      }
+      .filter-form {
+        justify-content: center;
+        >:not(.filter-category) {
+          display: none;
+        }
+        .filter-wrapper {
+          text-align: center;
+          width: inherit;
+        }
+        .filter-category {
+          select {
+            font-weight: bold;
+            max-width: 90%;
+            font-family: font-family('body');
+            background: url('../../assets/img/dropdown-arrow.png') no-repeat #fff;
+            background-position: 95% 22px;
+            background-size: 24px;
+            @include breakpoints(mobile) {
+              width: 310px;
+              margin-bottom: 40px;
+              padding: 14px;
+              height: 52px;
+              border: solid 1px color("primary", "base");
+              background-position: 95% 15px;
+              font-size: px(18);
+              background-size: 19px;
+            }
+            @include breakpoints(tablet, desktop) {
+              width: 415px;
+              padding-top: 20px;
+              padding-bottom: 20px;
+              height: 70px;
+              border-left: none;
+              border-right: none;
+              font-size: px(24);
+            }
+          }
+        }
+      }
+      +.listingFilters {
+        display: none;
+      }
+    }
+    .listing-item.component {
+      @include breakpoints(mobile) {
+        margin-bottom: 30px!important;
+      }
+
+      @include breakpoints(tablet) {
+        margin-bottom: 30px!important;
+      }
+
+      @include breakpoints(desktop) {
+        margin-bottom: 20px!important;
+      }
+      .richText {
+        .richText-content {
+          h2, h3 {
+            font-size: px(20);
+            @include breakpoints(tablet) {
+              font-size: px(20);
+            }
+            @include breakpoints(desktop) {
+              font-size: px(24);
+            }
+            + p {
+              font-size: px(12);
+              color: color("secondary", "light");
+              font-family: font-family('primary');
+              margin-top: 0;
+              margin-bottom: 5px;
+              display: block;
+              @include breakpoints(tablet, desktop) {
+                font-size: px(14);
+                margin-bottom: 10px;
+              }
+              + p {
+                font-size: px(12);
+                margin-top: 0px;
+                font-family: font-family('primary');
+                display: block;
+                margin-bottom: 20px;
+                @include breakpoints(tablet) {
+                  font-size: px(16);
+                }
+                @include breakpoints(desktop) {
+                  font-size: px(18);
+                }
+              }
+            }
+          }
+          p {
+            display: block;
+          }
+          .button-secondary {
+            margin-top: -5px;
+            font-family: font-family('body');
+          }
+        }
+      }
+    }
+    .listing-items {
+      @include breakpoints(mobile) {
+        margin-bottom: 50px;
+      }
+      @include breakpoints(tablet) {
+        margin-bottom: 75px;
+      }
+      @include breakpoints(desktop) {
+        margin-bottom: 100px;
+      }
+    }
+    .listingButton {
+      text-align: center;
+      @include breakpoints(mobile) {
+        margin-bottom: 40px;
+      }
+      @include breakpoints(tablet) {
+        margin-bottom: 70px;
+      }
+      @include breakpoints(desktop) {
+        margin-bottom: 90px;
+      }
+      .show-more {
+        @include breakpoints(mobile) {
+          width: 320px;
+          max-width: 90%;
+        }
+        @include breakpoints(tablet) {
+          width: 380px;
+        }
+        @include breakpoints(desktop) {
+          width: 460px;
+        }
+      }
+    }
+  }
+}

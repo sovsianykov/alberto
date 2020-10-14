@@ -1,0 +1,19 @@
+$noBackgroundTitle: (
+  _wrapper: (
+    box: (),
+  ),
+  _title: (
+    paragraph: extend('_primary._title.paragraph', (
+      text: (
+        font-size: breakpoint((tablet-max: px('l'), desktop: px('xxxl'))),
+        letter-spacing: none
+      ),
+      line: (
+        display: inline-block,
+        margin: (
+          margin-left: 5px
+        )
+      )
+    ))
+  )
+);

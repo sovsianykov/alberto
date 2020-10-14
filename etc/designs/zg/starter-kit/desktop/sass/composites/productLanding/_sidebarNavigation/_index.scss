@@ -1,0 +1,149 @@
+.navigation.side-bar {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($navigation, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  .analytics-navigation-tracking,
+  .navigation-mobile-menu {
+    display: none;
+  }
+
+  .component-content {
+    @include box(g('_content.box'), $media);
+
+    &::after {
+      content: "";
+      @include breakpoints {
+        @include box(g('_content._separation.box'), $media);
+      }
+    }
+  }
+
+  .navigation-root {
+    font-size: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      box-sizing: border-box;
+      overflow: hidden;
+      position: relative;
+
+      a {
+        position: relative;
+        text-decoration: none;
+        z-index: $z-index-content;
+
+        .navigation-item-decoration {
+          display: none;
+        }
+      }
+    }
+
+    &.navigation-level1 {
+      @include box(g('_content._nav-title-wrapper.box'), $media);
+
+      > .navigation-item {
+        cursor: pointer;
+
+        @include box(g('_content._nav-title-wrapper._navigation-item.box'), $media);
+        @include icon(g('_content._arrow-button.icon'), $media);
+
+        &.last {
+          border-bottom: none;
+        }
+
+        &::before {
+          cursor: pointer;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+
+        &.is-active,
+        &.has-active-child {
+          @include icon(g('_content._arrow-button-active.icon'), $media);
+
+          &::before {
+             @include transform(g('_content._arrow-button-active.transform'), $media);
+          }
+
+          .navigation-item-title {
+            pointer-events: initial;
+          }
+
+          .navigation-level2 {
+            display: block;
+          }
+        }
+
+        > .navigation-item-title {
+          display: inline-block;
+          pointer-events: none;
+
+          @include button(g('_content._nav-title-wrapper._navigation-item-title.button'), $media);
+
+          > .navigation-item-decoration {
+            display: none;
+
+            @include button(g('_content._nav-title-wrapper._navigation-item-decoration.button'), $media);
+          }
+        }
+      }
+    }
+
+    &.navigation-level2 {
+      display: none;
+
+      @include box(g('_content._nav-item-wrapper.box'), $media);
+
+      > .navigation-item {
+        @include box(g('_content._nav-item-wrapper._navigation-item.box'), $media);
+
+        &::before {
+          background: color('black');
+          content: "";
+          display: block;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          top: 100%;
+          transition: top .25s $ease-out;
+          width: 100%;
+          z-index: $z-index-behind;
+
+          @include background(g('_content._nav-item-wrapper.background'), $media);
+        }
+
+        &.is-active,
+        &:hover {
+          &::before {
+            top: 0;
+          }
+        }
+
+        &.is-active {
+          > .navigation-item-title {
+            @include hover(g('_content._nav-item-wrapper._navigation-item-title.button.hover'), $media);
+          }
+        }
+
+        > .navigation-item-title {
+          display: block;
+
+          @include button(g('_content._nav-item-wrapper._navigation-item-title.button'), $media);
+
+          > .navigation-item-decoration {
+            display: none;
+
+            @include button(g('_content._nav-item-wrapper._navigation-item-decoration.button'), $media);
+          }
+        }
+      }
+    }
+  }
+}

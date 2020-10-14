@@ -1,0 +1,38 @@
+@import '../../core/config';
+
+.taglist.initialized {
+   visibility: visible;
+}
+
+.taglist[class*=default-style] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($tagList, $a...);
+  }
+
+  .taglist-heading {
+    display: none;
+  }
+
+  .taglist-list {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    @include box(g('_list.box'), $media);
+
+    .taglist-tag {
+      margin: 0;
+
+      &:last-of-type .taglist-tag-link {
+        margin-right: 0;
+      }
+
+      .taglist-tag-link {
+        @include button(g('_list._list-item.button'), $media);
+      }
+    }
+  }
+}
+
+@import 'articleLanding/index';

@@ -1,0 +1,88 @@
+$what-customers-think-tabs: (
+  spacings: common('spacings')
+);
+
+$what-customers-think-tabs: merge($what-customers-think-tabs, (
+  box: (),
+  _tabs-nav: (
+    box: (
+      margin: (
+        margin-top: get($what-customers-think-tabs, 'spacings.s'),
+        margin-bottom: 0
+      ),
+      padding: 0,
+      border: (
+        border-bottom: 2px solid color('neutral', 'light')
+      )
+    ),
+    _item: (
+      button: extend('_tabs-nav._item.button', (
+        padding: breakpoint((
+          tablet-max: get($what-customers-think-tabs, 'spacings.xs') get($what-customers-think-tabs, 'spacings.m'),
+          desktop: 0 get($what-customers-think-tabs, 'spacings.m')
+        )),
+        margin: (
+          margin: breakpoint((
+            tablet-max: get($what-customers-think-tabs, 'spacings.s') 0,
+            desktop: get($what-customers-think-tabs, 'spacings.xs') 0,
+          ))
+        ),
+        border: (
+          border-left: 1px solid color('neutral', 'light')
+        ),
+        text: (
+          text-align: center
+        ),
+        hover: (
+          text: (
+            color: color('neutral', 'dark')
+          )
+        ),
+        line: (
+          side: before,
+          width: calc(100% - 40px),
+          margin: (
+            margin-top: breakpoint((
+              tablet-max: get($what-customers-think-tabs, 'spacings.s'),
+              desktop: get($what-customers-think-tabs, 'spacings.xs'),
+            )),
+            margin-left: 20px
+          ),
+          border: (
+            border-top: 3px solid color('secondary', 'base')
+          )
+        )
+      ))
+    )
+  )
+));
+
+$what-customers-think-tabs: merge($what-customers-think-tabs, (
+  _tabs-nav: (
+    _item-first: (
+      button: merge(get($what-customers-think-tabs, '_tabs-nav._item.button'), (
+        border: (
+          border-left: 0
+        )
+      ))
+    ),
+    _item-active: (
+      button: merge(get($what-customers-think-tabs, '_tabs-nav._item.button'), (
+        text: (
+          color: color('secondary', 'base')
+        ),
+        hover: (
+          text: (
+            color: color('secondary', 'base')
+          )
+        ),
+        line: (
+          transform: common('_tabs-nav._item-active.button.line.transform')
+        )
+      ))
+    )
+  ),
+  _tabs-content: (
+    box: ()
+  )
+));

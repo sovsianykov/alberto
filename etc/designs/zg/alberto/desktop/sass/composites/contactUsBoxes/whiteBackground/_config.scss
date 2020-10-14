@@ -1,0 +1,15 @@
+$contactUsBoxes: (
+  spacings: common('spacings')
+);
+
+$contactUsBoxes: merge($contactUsBoxes, (
+  _main: (
+    box: (
+      padding: (
+        padding-top: get($contactUsBoxes, 'spacings.l'),
+        padding-left: breakpoint(null, 89px, null),
+        padding-right: breakpoint(null, 89px, null)
+      )
+    )
+  )
+));

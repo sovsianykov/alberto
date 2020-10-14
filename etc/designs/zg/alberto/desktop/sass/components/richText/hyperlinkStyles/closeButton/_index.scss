@@ -1,0 +1,13 @@
+a.button-close {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($closeButton, $a...);
+  }
+
+  font-size: 0;
+  position: absolute;
+  box-sizing: border-box;
+  text-decoration: none;
+
+  @include button(g('button'),  $media);
+}

@@ -1,0 +1,38 @@
+.mobile-buttons-and-sort-by-wrapper {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($mobile-buttons-and-sort-by-wrapper, $a...);
+  }
+
+  box-sizing: border-box;
+  font-size: 0;
+
+  z-index: 1;
+  @include breakpoints {
+    @include box(g('box'), $media);
+  }
+
+  > .component-content > .content {
+    $innerWrapper: merge((
+      display: flex,
+      flex: (
+        flex-wrap: wrap
+      ),
+      margin: (
+        margin-bottom: breakpoint((mobile: spacings('xs') * -1))
+      )
+    ), g('inner-wrapper.box'));
+
+    @include breakpoints {
+      @include box($innerWrapper, $media);
+    }
+
+    @include media-query(auto, tablet) {
+      justify-content: space-between;
+    }
+
+    @include media-query(notebook, auto) {
+      justify-content: flex-end;
+    }
+  }
+}

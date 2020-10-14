@@ -1,0 +1,85 @@
+@import '../../core/config';
+
+.accordion.accordion-faq {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($faq-section, $a...);
+  }
+
+  @include breakpoints() {
+    @include box(g('box'), $media);
+  }
+
+  > .component-content {
+    @include wrapper;
+  }
+
+  .accordion-slide {
+    @include breakpoints() {
+      @include box(g('_accordion-item.box'), $media);
+    }
+    &.is-active > .accordion-head h3 a:after {
+      transform: rotate(180deg) translateY(50%);
+    }
+  }
+
+  .accordion-head {
+    @include breakpoints() {
+      @include box(g('_accordion-item._panel-title.box'), $media);
+    }
+
+    h3 {
+      a {
+        @include breakpoints() {
+          @include paragraph(g('_accordion-item._panel-title.paragraph'), $media);
+        }
+
+        @include breakpoints() {
+          @include icon(g('_accordion-item._panel-title.icon'), $media);
+        }
+
+        &:after {
+          top: 50%;
+          transform: translateY(-50%);
+          transition: transform, linea, 200ms;
+        }
+
+        .accordion-title-text {
+          // this is to offset the din-condensed & uppercase combination
+          display: inline-block;
+          position: relative;
+          top: 2px;
+        }
+      }
+
+      .wf-loading & {
+        visibility: hidden;
+      }
+    }
+  }
+
+  .accordion-content {
+    @include breakpoints() {
+      @include box(g('_accordion-item._panel-content.box'), $media);
+    }
+    .richText-content :first-child {
+      margin-top: 0;
+    }
+  }
+
+  .accordion-slide.is-active > .accordion-head {
+    @include breakpoints() {
+      @include box(g('_accordion-item._panel-title-open.box'), $media);
+    }
+
+    h3 a {
+      @include breakpoints() {
+        @include paragraph(g('_accordion-item._panel-title-open.paragraph'), $media);
+      }
+
+      @include breakpoints() {
+        @include icon(g('_accordion-item._panel-title-open.icon'), $media);
+      }
+    }
+  }
+}

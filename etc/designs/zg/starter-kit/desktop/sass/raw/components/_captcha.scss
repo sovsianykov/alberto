@@ -1,0 +1,56 @@
+$catpcha-background: #f9f9f9;
+$captcha-border: 1px solid #c1c1c1;
+
+.captcha {
+  @include wrapped;
+  margin-top: $component-spacing;
+
+  .g-recaptcha-response {
+    width: 250px;
+    height: 40px;
+    border: $captcha-border;
+    margin: 10px 25px;
+    padding: 0px;
+    resize: none;
+  }
+
+  .deepblue-captcha {
+    height: 83px;
+  }
+
+  .deepblue-captcha img {
+    width: auto;
+  }
+
+  .g-recaptcha-iframe-outer-box {
+    width: 302px;
+    height: 422px;
+    position: relative;
+  }
+
+  .g-recaptcha-iframe-inner-box {
+    width: 302px;
+    height: 422px;
+    position: absolute;
+  }
+
+  .g-recaptcha-iframe-inner-box iframe {
+    width: 302px;
+    height:422px;
+    border-style: none;
+  }
+
+  .g-recaptcha-response-box {
+    width: 300px;
+    height: 60px;
+    border-style: none;
+    bottom: 12px;
+    left: 25px;
+    margin: 0px;
+    padding: 0px;
+    right: 25px;
+    background: $catpcha-background;
+    border: $captcha-border;
+    border-radius: 3px;
+  }
+}

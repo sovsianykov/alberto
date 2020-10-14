@@ -1,0 +1,37 @@
+///////////
+// UNITS //
+///////////
+
+// breakpoints
+$bp-tablet-min: 670px;
+$bp-notebook-min: 769px;
+$bp-desktop-min: 980px;
+$bp-desktop-middle-min: 1140px;
+$bp-wide-min: 1480px;
+
+$bp-small-max: 374px;
+$bp-mobile-max: $bp-tablet-min - 1;
+$bp-tablet-max: $bp-notebook-min - 1;
+$bp-notebook-max: $bp-desktop-min - 1;
+$bp-desktop-middle-max: $bp-desktop-middle-min - 1;
+$bp-desktop-max: $bp-wide-min - 1;
+
+// main wrappers
+$holder-mobile: auto;
+$holder-tablet: auto;
+$holder-desktop: 960px;
+$holder-desktop-middle: 1140px;
+$holder-wide: 1480px;
+
+// grid related
+$gutter: 20px;
+
+// depths
+$z-index-behind: 5;
+$z-index-content: 10;
+$z-index-layer: 15;
+$z-index-fixed: 20;
+$z-index-modal: 25;
+
+// transition
+$ease-out: cubic-bezier(0.55, 0, 0.1, 1); // material design ease out calculation

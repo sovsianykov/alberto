@@ -1,0 +1,138 @@
+$common: () !default;
+
+$common: merge($common, (
+  _primary: (
+    _title: (
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-weight: bold,
+          text-transform: uppercase,
+          line-height: 1,
+          letter-spacing: 2px,
+          font-family: 'primary',
+        ),
+        line: (
+          border: (
+            border-bottom: 4px solid color('primary', 'base')
+          ),
+          side: after,
+          width: 30px
+        )
+      )
+    )
+  ),
+  _secondary: (
+    _title: (
+      paragraph: (
+        text: (
+          font-size: breakpoint((tablet-max: px('m'), tablet-min: px('xl'))),
+          line-height: 1.22,
+          font-family: 'primary',
+          text-transform: uppercase
+        ),
+        line: (
+          border: (
+            border-bottom: 4px solid color('primary', 'base')
+          ),
+          text: (
+            text-align: center
+          ),
+          display: inline-block,
+          side: after,
+          width: 24px,
+          margin: (
+            margin-top: common('spacings.xs') * -1,
+            margin-left: 9px
+          )
+        )
+      )
+    )
+  ),
+  _tertiary: (
+    _title: (
+      paragraph: (
+        text: (
+          font-family: 'primary',
+          font-weight: bold,
+          font-size: breakpoint((
+            mobile: px('l'),
+            tablet-min: px('xl')
+          )),
+          text-transform: uppercase,
+          white-space: normal,
+          line-height: breakpoint((
+            mobile: px(44),
+            tablet-min: px(54)
+          ))
+        ),
+        margin: (
+          margin: 0,
+        )
+      )
+    ),
+  ),
+  _small: (
+    paragraph: (
+      text: (
+        font-size: px('xs'),
+        font-weight: bold,
+      ),
+    )
+  ),
+  _subtitle: (
+    paragraph: (
+      text: (
+        font-size: breakpoint((tablet-max: px(18), desktop: px('s'))),
+        font-weight: bold
+      )
+    )
+  ),
+  _label: (
+    text: (
+      font-size: breakpoint(px('xxs'), px('xxxs'), px('xxxs')),
+      text-transform: uppercase
+    )
+  ),
+  _underlined-title: (
+    paragraph: (
+      text: (
+        font-size: breakpoint((tablet-max: px('l'), desktop: px('xl'))),
+        line-height: breakpoint((tablet-max: 1.16, desktop: 1.13))
+      ),
+      line: (
+        border: (
+          border: breakpoint((tablet-max: 2px solid color('black'), desktop: 3px solid color('black')))
+        ),
+        display: block,
+        side: after,
+        width: 65px,
+        margin: (
+          margin-top: breakpoint((tablet-max: 28px, desktop: 58px)),
+        )
+      )
+    )
+  ),
+  _underlined-hero-title: (
+    paragraph: (
+      text: (
+        font-size: breakpoint((tablet-max: px('xl'), desktop: px('xxxl'))),
+        font-family: 'primary',
+        text-transform: uppercase,
+        line-height: 1.1
+      ),
+      line: (
+        border: (
+          border-bottom: 6px solid color('primary', 'base')
+        ),
+        display: block,
+        side: after,
+        width: 30px,
+        margin: (
+          margin-top: 25px,
+          margin-bottom: spacings('m')
+        )
+      )
+    )
+  )
+));

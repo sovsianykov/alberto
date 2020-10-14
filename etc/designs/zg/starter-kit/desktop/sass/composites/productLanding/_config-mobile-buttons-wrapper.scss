@@ -1,0 +1,24 @@
+$mobile-buttons-wrapper: (
+  spacings: common('spacings')
+);
+
+$mobile-buttons-wrapper: merge($mobile-buttons-wrapper, (
+  box: (
+    background: color('white'),
+    border: (
+      border-bottom: solid 2px color('neutral', 'light')
+    ),
+    margin: 0 -20px 20px -20px,
+    padding: 20px
+  ),
+  _button-clear-filters: (
+    margin: (
+      margin: 14px 20px 0 0
+    )
+  ),
+  _show-filter-cta-cancel: (
+    padding: (
+      padding-right: 140px
+    )
+  )
+));

@@ -1,0 +1,41 @@
+$tagList: (
+  _list: (
+    box: (
+      margin: (
+        margin: spacings('s') 0
+      )
+    ),
+    _list-item: (
+      button: (
+        background: (
+          background-color: color('neutral', 'lighter')
+        ),
+        padding: spacings('xs') 20px,
+        text: (
+          font-weight: bold,
+          text-decoration: none,
+          color: color('black'),
+          text-transform: none,
+          font-size: px(16),
+          line-height: 1,
+          text-align: center,
+          letter-spacing: 0
+        ),
+        border: (
+          border-radius: 25px
+        ),
+        margin: (
+          margin-top: spacings('xxs'),
+          margin-bottom: spacings('xxs'),
+          margin-right: spacings('xs'),
+          margin-left: 0
+        ),
+        hover: (
+          background: (
+            background-color: color('neutral', 'light')
+          )
+        )
+      )
+    )
+  )
+);

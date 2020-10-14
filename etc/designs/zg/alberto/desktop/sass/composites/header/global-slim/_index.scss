@@ -1,0 +1,57 @@
+// The global headers inherit all the CSS of NASK header,
+// here is only overlap changes of CSS to achieve the
+// specific behaviours of the global headers.
+
+@import '../../../core/config';
+
+.reference-header-global-slim {
+  @import 'config';
+  @import '../_partials/skip-to-content';
+  @function g($a...) { @return get-last($header-slim, $a...); }
+
+  .header-supplementary {
+
+   $header-slim-box: merge((
+      margin: (
+        margin-left: spacings('s')
+      )
+    ), g('box'));
+
+    @include box($header-slim-box, $media);
+
+    > .component-content {
+
+      @include media-query(desktop, auto) {
+        background: transparent
+      }
+
+      > .content {
+
+        @include media-query(tablet) {
+          flex-direction: column;
+        }
+
+        @include media-query(desktop, auto) {
+          margin: 0;
+          padding: 0;
+          width: auto;
+        }
+      }
+    }
+  }
+
+  .box-language-selector {
+
+    .navigation-item {
+
+      .navigation-item-title {
+        padding: 0;
+
+        @include media-query(desktop, auto) {
+          @include text(g('_language.text'), $media);
+          @include icon(g('_language.icon'), $media);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+@import '../../core/config';
+
+.box-topic-list {
+  @import 'config';
+  @function g($a...) { @return get-last($topicList, $a...); }
+
+  $box: merge((
+    margin: (
+      margin-bottom: spacings('xxl')
+    )
+  ), g('box'));
+
+  @include box($box, $media);
+
+  > .component-content > .content {
+    @include wrapper;
+  }
+
+  .richText {
+    h2, h3 {
+      @include paragraph(g('_title.paragraph'), $media);
+    }
+  }
+
+  .navigation {
+    @include listing-cols(".navigation-root", "li", 30px, breakpoint(2, 3, 3));
+
+    .navigation-mobile-menu {
+      display: none;
+    }
+
+    .navigation-root {
+      display: none;
+      list-style-type: none;
+      padding: 0;
+
+      @include breakpoints {
+        $gutter: get-last(g('_list-gutter'), $media);
+        margin: $gutter * -0.5;
+
+        li {
+          margin: $gutter * 0.5;
+        }
+      }
+
+      &.navigation-level1 {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      li {
+        box-sizing: border-box;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        cursor: pointer;
+
+        @include breakpoints {
+          @include box(g('_item.box'), $media);
+        }
+
+        &:hover {
+          .navigation-item-title {
+            @include breakpoints {
+              @include hover(g('_item.button.hover'), $media);
+            }
+          }
+          img {
+            @include breakpoints {
+              @include hover(g('_item._image.hover'), $media);
+            }
+          }
+        }
+      }
+
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: scale(1.01) translate(-50%, -50%);
+        transform-origin: left;
+        display: block;
+        min-width: 100%;
+        min-height: 100%;
+
+        .mod-objectfit & {
+          min-width: 0;
+          min-height: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        @include transition(g('_item._image.transition'), (
+          'transform', 'opacity', 'visibility'
+        ), $media);
+      }
+
+      .navigation-item-title {
+        box-sizing: border-box;
+        display: flex;
+        position: relative;
+        justify-content: space-between;
+        z-index: 1;
+        width: 100%;
+
+        &:after,
+        &:before {
+          flex-shrink: 0;
+          flex-grow: 0;
+        }
+
+        @include breakpoints {
+          @include button(g('_item.button'), $media);
+        }
+      }
+    }
+  }
+}

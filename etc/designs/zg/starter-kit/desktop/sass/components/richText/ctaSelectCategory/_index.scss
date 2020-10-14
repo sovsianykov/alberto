@@ -1,0 +1,27 @@
+.cta-select-category {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($cta-select-category, $a...);
+  }
+  position: relative;
+  justify-content: flex-start;
+
+  &:after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  @include breakpoints() {
+    @include button(g('button'), $media);
+  }
+
+  @include media-query(desktop, auto) {
+    display: none
+  }
+
+  p {
+    margin: 0;
+  }
+}

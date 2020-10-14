@@ -1,0 +1,71 @@
+@import '../../core/config';
+
+.refineSearchBox[class*=default-style] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($refineSearchBox, $a...);
+  }
+
+  @include text(g('text'), $media);
+  @include box(g('box'), $media);
+
+  .component-content {
+    @include wrapper;
+  }
+
+  p {
+    &.refineSearchHeader {
+      display: none;
+
+      @include breakpoints {
+        @include paragraph(g('_content._refine-search-header.paragraph'), $media);
+      }
+
+      &.is-visible {
+        display: block;
+      }
+    }
+  }
+
+  form {
+    position: relative;
+
+    // This is for >>> X Including results for "Potato Salad" <<< Is not implemented yet
+    p {
+      @include paragraph(g('_content._suggestion.paragraph'), $media);
+    }
+  }
+
+  input {
+    &.refineSearchInput {
+      box-sizing: border-box;
+      @include breakpoints {
+        @include input(g('_content._refine-search-input.input'), $media);
+      }
+    }
+  }
+
+  button {
+    cursor: pointer;
+
+    &.refineSearchSubmitButton,
+    &.refineSearchClearButton {
+      font-size: 0;
+    }
+
+    &.refineSearchSubmitButton {
+      position: absolute;
+      right: 0;
+      top: 0;
+
+      @include breakpoints {
+        @include button(g('_content._refine-search-submit-button.button'), $media);
+      }
+    }
+
+    &.refineSearchClearButton {
+      // clear button is not implemented
+      display: none;
+    }
+  }
+}

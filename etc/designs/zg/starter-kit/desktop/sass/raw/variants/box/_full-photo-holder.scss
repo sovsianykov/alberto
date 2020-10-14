@@ -1,0 +1,132 @@
+.full-photo-holder,
+.full-photo-holder-bleed {
+  position: relative;
+
+  .listing {
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+
+    > .component-content {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      margin: 0;
+    }
+
+    .listing-item {
+      flex-shrink: 0;
+      padding: 0;
+      margin-bottom: 0;
+      position: relative;
+      width: 100%;
+    }
+
+    .image {
+      margin: 0 0 $gutter;
+      padding: $gutter;
+
+      img {
+        display: block;
+        max-width: 100%;
+        max-height: 50vh;
+        margin-left: auto;
+        margin-right: auto;
+        min-height: 200px;
+      }
+    }
+  }
+
+  // ZOOM
+  .zoom-in-icon,
+  .zoom-out-icon {
+    position: absolute;
+  }
+
+  //enable author interaction, prevent being covered by footer
+  .reference-zoom-icon {
+    height: 25px;
+  }
+
+  .zoom-in-icon {
+    left: 50%;
+  }
+
+  .zoom-out-icon {
+    padding: 10px;
+    font-size: 20px;
+    line-height: 1;
+    height: 40px;
+    width: 40px;
+    right: $gutter;
+    top: $gutter;
+
+    &:before {
+      @include font-awesome($fa-var-times);
+    }
+  }
+
+  .zoom-holder {
+    background: $white;
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    transition-delay: 0.3s, 0s;
+    transition-duration: 0s, 0.3s;
+    transition-property: visibility, opacity;
+    transition-timing-function: $ease-out;
+    visibility: hidden;
+    width: 100%;
+    z-index: $zindex-overlay;
+
+    &.active {
+      visibility: visible;
+      opacity: 1;
+      transition-delay: 0s, 0s;
+    }
+  }
+
+  .zoom-photo {
+    align-items: center;
+    box-sizing: border-box;
+    display: block;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - #{$gutter * 2});
+    padding: $gutter;
+    position: relative;
+    transform: translateZ(0);
+    width: 100%;
+
+    img {
+      max-width: none;
+    }
+  }
+
+  // CAROUSEL
+  @include carousel-arrows;
+
+  .previous {
+    left: 50%;
+    margin-left: ($wrapper-width * -0.5) + $gutter;
+  }
+
+  .next {
+    right: 50%;
+    margin-right: ($wrapper-width * -0.5) + $gutter;
+  }
+
+  @media screen and (max-width: $wrapper-width) {
+    .previous {
+      left: $gutter;
+      margin-left: 0;
+    }
+
+    .next {
+      right: $gutter;
+      margin-right: 0;
+    }
+  }
+}

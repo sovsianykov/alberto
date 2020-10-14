@@ -1,0 +1,14 @@
+@import '../../core/config';
+@import 'config';
+
+@function g($a...) {
+  @return get-last($pageBackground, $a...);
+}
+
+body {
+  @include breakpoints() {
+    @include classlist(g('_page-backgrounds.classlist')) {
+      @include box(get($curr, 'box'), $media);
+    }
+  }
+}

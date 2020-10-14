@@ -1,0 +1,73 @@
+@import '../../core/config';
+
+.composite-secondary_header_section {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($secondaryHeaderSection, $a...);
+  }
+
+  $box: merge((
+    margin: (
+      margin-top: spacings('m'),
+      margin-bottom: breakpoint((tablet-max: spacings('xxl'), tablet-min: 96px))
+    )
+  ), g('_main.box'));
+
+  @include wrapper;
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  .box > .component-content > .content {
+    $box: merge((
+      display: breakpoint((tablet-min: flex)),
+      flex: (
+        justify-content: center,
+        flex-wrap: wrap
+      ),
+      margin: (
+        margin-top: 0,
+        margin-right: breakpoint((tablet-min: spacings('s') * -1)),
+        margin-bottom: breakpoint((tablet-max: spacings('l') * -1)),
+        margin-left: breakpoint((tablet-min: spacings('s') * -1))
+      )
+    ), g('_main._wrapper.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+  }
+
+  .richText-secondary-header {
+    $box: merge((
+      flex: (
+        flex-basis: 0,
+        flex-grow: 1
+      ),
+      margin: (
+        margin: breakpoint((tablet-min: 0 spacings('s')))
+      )
+    ), g('_main._wrapper._headline-item.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+  }
+
+  * ~ p {
+    margin: 0;
+  }
+
+  .button-secondary {
+    $button: merge((
+      margin: (
+        margin-top: breakpoint((tablet-max: 20px, desktop: spacings('m'))),
+        margin-bottom: breakpoint((tablet-max: spacings('l')))
+      )
+    ), g('_main._wrapper._headline-item._button-secondary.button'));
+
+    @include breakpoints() {
+      @include button($button, $media);
+    }
+  }
+}

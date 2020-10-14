@@ -1,0 +1,25 @@
+@import '../../core/_config';
+
+.recipeIngredients {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($recipeIngredients, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  &-list {
+    list-style: none;
+    padding-left: 0;
+
+    @include box(g('_list.box'), $media);
+  }
+
+  &-item {
+    @include box(g('_list._item.box'), $media);
+  }
+
+  &-text {
+    @include text(g('_list._item.text'), $media);
+  }
+}

@@ -1,0 +1,135 @@
+@import '../../core/config';
+
+// CONTACT US SECTION WITH PHONE NUMBERS
+.composite-contact_phone_numbers {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($contactPhoneNumbers, $a...);
+  }
+
+  // main box:
+  $cPN-main-box: merge((
+    padding: (
+      padding-top: breakpoint(
+          spacings('l'),
+          spacings('xl'),
+          spacings('xl')
+      ),
+      padding-bottom: breakpoint(
+          spacings('l'),
+          spacings('xl'),
+          spacings('xxl')
+      ),
+      padding-left: breakpoint(null, 89px, null),
+      padding-right: breakpoint(null, 89px, null)
+    )
+  ), g('_main.box'));
+
+  @include breakpoints() {
+    @include box($cPN-main-box, $media);
+  }
+
+  > .content {
+    @include wrapper();
+    @include clearfix;
+  }
+
+  @include media-query(mobile) {
+    .richText {
+      display: none !important; // overwriting grid system
+    }
+  }
+
+  @include media-query(tablet) {
+    .richText.grid_6 {
+      width: 48.95833%;
+      float: left;
+
+      &:nth-of-type(2) {
+        margin-left: 2.08333% !important; //overwriting grid system
+      }
+    }
+  }
+
+  // titles
+  h2, h3 {
+    $cPN-phone-title: merge((
+      margin: (
+        margin-top: 0,
+        margin-bottom: spacings('m')
+      ),
+      line: (
+        margin: (
+          margin-top: 25px
+        )
+      )
+    ), g('_phone-title.paragraph'));
+
+    @include paragraph($cPN-phone-title, $media);
+  }
+
+  p {
+    $cPN-details: merge((
+      margin: (
+        margin: 0,
+      )
+    ), g('_details.paragraph'));
+
+    @include paragraph($cPN-details, $media);
+  }
+
+  // phone numbers
+  .richText .phone-number {
+    display: block;
+
+    $cPN-phone-number: merge((
+      margin: (
+        margin-top: 0,
+        margin-bottom: 20px,
+        margin-right: (null, null, 20px)
+      )
+    ), g('_phone-number.paragraph'));
+
+    @include paragraph($cPN-phone-number, $media);
+
+    @include media-query(desktop, auto) {
+      float: left;
+    }
+  }
+
+  // mobile phone links
+  .reference-phone-link {
+    display: none;
+    margin-bottom: spacings('s');
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    @include breakpoints(mobile) {
+      display: block;
+
+      .phone-link {
+        $cPN-mobile-phone-link: merge((
+          padding: 0 spacings('s')
+        ), g('_mobile-phone-link.button'));
+
+        @include button($cPN-mobile-phone-link, mobile);
+        align-items: center;
+        display: flex;
+      }
+
+      .phone-label {
+        margin-right: spacings('s');
+        @include text(g('_mobile-phone-link._phone-label.text'), $media);
+      }
+
+      .phone-number {
+        @include text(g('_mobile-phone-link._phone-number.text'), $media);
+        flex-grow: 2;
+      }
+    }
+  }
+
+  @import 'contactPhoneNumbersVertical/index';
+}

@@ -1,0 +1,373 @@
+.carousel-hero {
+  @import 'config';
+  @function g($a...) { @return get-last($carousel-hero, $a...); }
+
+  .carousel-slides {
+
+    //height: 800px!important;
+    //    top: 0;
+  //img {
+                //min-height: 800px;
+               //min-width: 1200px;
+
+
+              //}
+
+    $box: merge((
+
+    overflow: hidden,
+      margin: 0,
+      padding: 0
+    ), g('_carousel-slides.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    // max-height: 50vh; // Assure that page title is visible in viewport
+    list-style: none;
+
+    .carousel-content {
+      .box {
+        width: 100%;
+        position: absolute;
+        top: 40px;
+        text-align: left;
+        @include breakpoints(tablet, desktop) {
+          top: 80px;
+        }
+
+        h1, h2 {
+          font-size: 48px;
+          text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+          font-size: 48px;
+          font-weight: bold;
+          font-stretch: normal;
+          font-style: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #ffffff;
+          text-transform: uppercase;
+          margin: 0;
+          margin-bottom: 55px;
+          //text-align: left;
+          //margin-left:80px ;
+          .step-title {
+            display: block;
+          }
+        }
+
+        h2 {
+          font-size: 30px;
+          text-transform: none;
+          font-family: font-family('body');
+
+          @include media-query(mobile) {
+            font-weight: 500;
+            &:first-child {
+              margin-top: 160px;
+            }
+            &:nth-child(2) {
+              margin-bottom: 0px;
+            }
+          }
+
+           & + h2 {
+            @include media-query(mobile) {
+              margin-bottom: 25px;
+            }
+            margin-bottom: 50px;
+
+            + p {
+              text-align: center;
+            }
+          }
+        }
+
+        a.button-primary {
+          font-size: 18px;
+          @include media-query(mobile) {
+
+          }
+        }
+
+
+        @include media-query(mobile) {
+          h1 {
+             font-size: 32px;
+          }
+          h2 {
+            font-size: 22px;
+            margin-top: 40px;
+            + h2 {
+              margin-top: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &.is-ready {
+    .composite-hero-image .box > .component-content {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .carousel-slide {
+      position: static;
+    }
+  }
+
+  .carousel-slide {
+    $carousel-slide: merge((
+      width: 100%,
+      position: absolute
+    ),g('_carousel-slides._carousel-slide.box'));
+
+    @include breakpoints {
+      @include box($carousel-slide, $media);
+    }
+
+    &.is-active {
+      display: block;
+    }
+
+    .image-and-content {
+      overflow: hidden;
+    }
+
+    .no-content .carousel-cover,
+    .no-image .carousel-content {
+      float: none;
+      width: 100%;
+    }
+    .carousel-cover {
+      float: none;
+      width: 100%;
+    }
+  }
+
+  .carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+    position: absolute;
+    bottom: 160px;
+    z-index: 3;
+
+    @include media-query(auto, notebook) {
+      bottom: 75px;
+    }
+
+    @include breakpoints(mobile) {
+      bottom: 60px;
+    }
+
+    @include breakpoints {
+      @include box(g('_carousel-nav.box'), $media);
+    }
+
+    .carousel-nav-item {
+      a {
+        @include breakpoints {
+          @include button(g('_carousel-nav._item.button'), $media);
+        }
+
+        font-size: 0;
+        box-sizing: border-box;
+         border: 0;
+        background: white;
+      }
+
+      &.is-active a {
+        @include breakpoints {
+          @include button(g('_carousel-nav._item-active.button'), $media);
+        }
+      }
+    }
+
+    .carousel-nav-prev,
+    .carousel-nav-next {
+      @include media-query(auto, notebook) {
+        display: none;
+      }
+
+      display: none;
+
+      a {
+        @include breakpoints {
+          @include button(g('_carousel-nav._nav-item.button'), $media);
+        }
+
+        color: transparent;
+        position: relative;
+
+        $pseudo: safetype(g('_carousel-nav._nav-item.button'), 'after');
+        &:#{$pseudo} {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    .carousel-nav-prev a {
+      @include breakpoints {
+        @include button(g('_carousel-nav._nav-item._prev.button'), $media);
+      }
+
+      [dir="rtl"] & {
+        @include breakpoints {
+          @include button(g('_carousel-nav._nav-item._next.button'), $media);
+        }
+      }
+    }
+
+    .carousel-nav-next a {
+      @include breakpoints {
+        @include button(g('_carousel-nav._nav-item._next.button'), $media);
+      }
+
+      [dir="rtl"] & {
+        @include breakpoints {
+          @include button(g('_carousel-nav._nav-item._prev.button'), $media);
+        }
+      }
+    }
+  }
+
+  // patch to help lazysizes know these slides do not need to be loaded up front
+
+  // pre load state
+  .carousel-slide:nth-child(n+2) .component {
+    display: none;
+  }
+  .carousel-slides {
+    $size : 70px;
+    min-height: $size * 3;
+    transition: height .3s linear;
+    &:before {
+      animation: sl-rotate 1s infinite linear;
+      border: 1px solid color("neutral","light");
+      border-left: 1px solid transparent;
+      border-radius: 50%;
+      content: " ";
+      height: $size;
+      left: 50%;
+      margin-left: $size * -0.5;
+      margin-top: $size * -0.5;
+      position: absolute;
+      top: 50%;
+      width: $size;
+    }
+  }
+
+  // post load state
+  &.is-ready {
+    .carousel-slide:nth-child(n+2) .component {
+      display: block;
+    }
+    .carousel-slides {
+      min-height: 0;
+      &:before {
+        display: none;
+      }
+    }
+  }
+}
+
+.show-hide-desk {
+  display: block;
+}
+
+.show-hide-mob {
+  display: none;
+}
+
+ @include media-query(mobile) {
+   .show-hide-desk {
+      display: none;
+    }
+
+    .show-hide-mob {
+      display: block;
+    }
+ }
+
+.page-home {
+  .carousel-hero {
+    .carousel-slides {
+      @include breakpoints(mobile) {
+        min-height: 400px;
+      }
+      @include breakpoints(tablet) {
+          height: 500px;
+      }
+      @include media-query(desktop) {
+          height: 600px;
+      }
+        
+      @include media-query(desktop, wide) {
+        height: 800px;
+      }
+    }
+    .carousel-nav {
+      @include breakpoints(desktop) {
+        bottom: 50px;
+        z-index: 1;
+      }
+    }
+    .carousel-slide {
+      .image-and-content {
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(0,0,0,0.15);
+          z-index: 1;
+        }
+          height: 400px;
+        @include breakpoints(tablet) {
+          height: 500px;
+        }
+        @include media-query(desktop,wide) {
+            height: 600px;
+        }
+        @include media-query(wide) {
+          height: 800px;
+        }
+        .carousel-content {
+          .richText {
+            position: relative;
+            z-index: 2;
+            h1, h2 {
+              text-shadow: 2px 2px 16px rgba(0,0,0,0.5);
+            }
+          }
+        }
+      }
+      img {
+        pointer-events: none;
+        @include breakpoints(mobile) {
+          object-fit: cover;
+          height: 400px;
+        }
+        @include breakpoints(tablet, desktop) {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+  }
+}

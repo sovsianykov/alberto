@@ -1,0 +1,57 @@
+@mixin common-rules($d) {
+
+  @include breakpoints() {
+    @include box(get($d, 'box'), $media);
+  }
+
+  .listing-header {
+    h2, h3 {
+      @include breakpoints() {
+        @include paragraph(get($d, '_header.paragraph'), $media);
+      }
+    }
+  }
+
+  .carousel-controls {
+    @include breakpoints() {
+      @include box(get($d, '_carousel-nav.box'), $media);
+    }
+
+    .indicator {
+      @include breakpoints() {
+        @include button(get($d, '_carousel-nav._item.button'), $media);
+      }
+
+      &.is-active {
+        @include breakpoints() {
+          @include button(get($d, '_carousel-nav._item-active.button'), $media);
+        }
+      }
+    }
+
+    .previous,
+    .next {
+      @include breakpoints() {
+        @include button(get($d, '_carousel-nav._nav-item.button'), $media);
+      }
+
+      &.disabled {
+        @include breakpoints() {
+          @include button(get($d, '_carousel-nav._nav-item._disabled.button'), $media);
+        }
+      }
+    }
+
+    .previous {
+      @include breakpoints() {
+        @include button(get($d, '_carousel-nav._nav-item._prev.button'), $media);
+      }
+    }
+
+    .next {
+      @include breakpoints() {
+        @include button(get($d, '_carousel-nav._nav-item._next.button'), $media);
+      }
+    }
+  }
+}

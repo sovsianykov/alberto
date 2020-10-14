@@ -1,0 +1,12 @@
+@include local-spacings();
+
+$carousel-hero: (
+  spacings: spacings(),
+  _carousel-slides: (
+    box: (),
+    _carousel-slide: (
+      box: ()
+    )
+  ),
+  _carousel-nav: common('carousel._nav')
+);

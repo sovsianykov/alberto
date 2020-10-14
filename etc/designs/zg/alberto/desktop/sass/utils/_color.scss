@@ -1,0 +1,52 @@
+$common: () !default;
+$colors-range: null !default;
+@function color($val: "primary", $variation: "base") {
+  $color: common('colors', $val);
+
+  @if (get($color, $variation) != null) {
+    $ret: get($color, $variation);
+
+    @if ($ret != null) {
+      @return $ret;
+    }
+  }
+
+  @if (type-of($color) == "map") {
+    $color: get($color, "base");
+  }
+
+  $range: get($colors-range, $val);
+  $lightness: lightness($color);
+
+  @if ($range == null) {
+    $range: 0.25 0.25 0.25 0.25;
+  }
+
+  @if (length($range) == 2) {
+    $range: (nth($range, 1), nth($range, 1), nth($range, 2), nth($range, 2));
+  }
+
+  @if (length($range) == 1) {
+    $range: ($range, $range, $range, $range);
+  }
+
+  @if ($variation == "darker") {
+    $lightness: lightness($color) * nth($range, 1);
+  }
+
+  @if ($variation == "dark") {
+    $lightness: lightness($color) * (1 - nth($range, 2));
+  }
+
+  @if ($variation == "light") {
+    $negative: (100 - lightness($color));
+    $lightness: lightness($color) + $negative * nth($range, 3);
+  }
+
+  @if ($variation == "lighter") {
+    $negative: (100 - lightness($color));
+    $lightness: lightness($color) + $negative * (1 - nth($range, 4));
+  }
+
+  @return hsl(hue($color), saturation($color), $lightness);
+}

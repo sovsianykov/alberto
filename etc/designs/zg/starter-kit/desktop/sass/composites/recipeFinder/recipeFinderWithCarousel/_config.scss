@@ -1,0 +1,94 @@
+$recipeFinderWithCarousel: (
+  box: (),
+  _wrapper: (
+    box: ()
+  ),
+  _text-wrapper: (
+    box: (),
+    _title: (
+      paragraph: (
+        text: (
+          font-size: breakpoint((desktop: px(65)))
+        )
+      ),
+    )
+  ),
+  _searchBox: (
+    box: (),
+  ),
+  _carousel-wrapper: (
+    box:()
+  ),
+  _carousel: (
+    box: (),
+    _carousel-nav: extend('carousel._nav', (
+      box: (
+        position: absolute,
+        margin: 0
+      ),
+      _nav-item: (
+        button: (
+          icon: (
+            font-size: 9px
+          )
+        ),
+        _prev: (
+          margin: 0,
+          button: (
+            width: 26px,
+            height: 26px,
+          )
+        ),
+        _next: (
+          margin: 0,
+          button: (
+            width: 26px,
+            height: 26px,
+          )
+        ),
+      )
+    ))
+  ),
+  _item-wrapper: (
+    box: ()
+  ),
+  _item: (
+    box: (
+      height: breakpoint(136px, 200px, 270px),
+    ),
+    _image: (
+      hover: (
+        transform: (
+          transform: breakpoint((tablet-min: scale(1.1, 1.1)))
+        )
+      ),
+      transition: (
+        speed: 1s
+      )
+    ),
+    button: (
+      margin: 0,
+      padding: breakpoint((
+        mobile: spacings('xxs') spacings('xs'),
+        tablet-min: spacings('xs')
+      )),
+      min-height: breakpoint(29px, 40px, 40px),
+      background: (
+        background-color: color('neutral', 'lighter')
+      ),
+      text: (
+        font-family: 'primary',
+        text-transform: uppercase,
+        text-decoration: none,
+        font-size: breakpoint(px('xxs'), px('s'), px('s')),
+        line-height: 1.1,
+        color: color('black')
+      ),
+      hover: (
+        background: (
+          background-color: color('neutral', 'light')
+        )
+      )
+    )
+  )
+);

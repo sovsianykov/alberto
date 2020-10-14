@@ -1,0 +1,110 @@
+$common: () !default;
+
+$common: merge($common, (
+  carousel: (
+    _nav: (
+      box: (
+        padding: 0,
+        margin: (
+          margin: breakpoint((tablet-max: 10px 0 0, desktop: 20px 0 0)),
+        )
+      ),
+      _item: (
+        button: (
+          display: block,
+          margin: (
+            margin: 0 5px
+          ),
+          background: (
+            background-color: transparent
+          ),
+          width: 10px,
+          height: 10px,
+          padding: 0,
+          border: (
+            border: 1px solid color('black'),
+            border-radius: 50%
+          ),
+          hover: (
+            background: (
+              background-color: breakpoint((
+                tablet-min: color('neutral', 'dark')
+              ))
+            )
+          )
+        )
+      ),
+      _item-active: (
+        button: (
+          display: block,
+          background: (
+            background-color: color('black')
+          )
+        )
+      ),
+      _nav-item: (
+        button: (
+          display: inline-block,
+          width: 16px,
+          height: 16px,
+          border: (
+            border-radius: 50%
+          ),
+          background: (
+            background-color: color('black')
+          ),
+          icon: (
+            color: color('white'),
+            font-size: 6px,
+            margin: (
+              margin-top: -1px
+            )
+          ),
+          hover: (
+            background: (
+              background-color: breakpoint((
+                tablet-min: color('neutral', 'dark')
+              ))
+            )
+          )
+        ),
+        _prev: (
+          button: (
+            margin: (
+              margin-right: 28px
+            ),
+            flex: (
+              justify-content: center,
+            ),
+            icon: (
+              content: common('icon.arrow-left')
+            )
+          )
+        ),
+        _next: (
+          button: (
+            margin: (
+              margin-left: 28px
+            ),
+            flex: (
+              justify-content: center,
+            ),
+            icon: (
+              content: common('icon.arrow-right')
+            )
+          )
+        ),
+        _disabled: (
+          button: (
+            background: (
+              background-color: color('neutral', 'lighter')
+            ),
+            flex: (
+              justify-content: center,
+            ),
+          )
+        )
+      )
+    )
+  )
+));

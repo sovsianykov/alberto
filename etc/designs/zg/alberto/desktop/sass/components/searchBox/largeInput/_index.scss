@@ -1,0 +1,46 @@
+.searchBox.large-input {
+  @import 'config';
+  @function g($a...) { @return get-last($searchInput, $a...); }
+
+  margin-top: g('spacings.xxs');
+  margin-bottom: g('spacings.l');
+
+  @include background(g('background'), $media);
+
+  > .component-content {
+    @include wrapper;
+  }
+
+  .form-search {
+    border-bottom: g('border-bottom');
+    position: relative;
+  }
+
+  input.search-query {
+    width: 100%;
+    box-sizing: border-box;
+
+    @include breakpoints {
+      @include input(g('input'), $media);
+    }
+  }
+
+  button {
+    @include button(g('search-button'), $media);
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-indent: -99999px;
+    width: 30px;
+
+    &:after {
+      @include icon(g('search-icon'), $media);
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      text-indent: 0;
+    }
+  }
+}

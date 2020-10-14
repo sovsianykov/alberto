@@ -1,0 +1,49 @@
+$socialIcons: (
+  spacings: common('spacings')
+);
+
+$socialIcons: merge($socialIcons, (
+  _main: (
+    box: (
+      margin: (
+        margin: 47px 0 42px
+      )
+    ),
+    _icons: (
+      text: (
+        link: (
+          text: (
+            font-size: 0,
+            text-decoration: none
+          )
+        )
+      ),
+      classlist: (
+        defaults: (
+          font-size: px(23),
+          color: color('black'),
+          hover: (
+            color: color('neutral', 'dark')
+          )
+        ),
+        items: (
+          icon-facebook: (
+            content: common('icon.facebook')
+          ),
+          icon-twitter: (
+            content: common('icon.twitter')
+          ),
+          icon-pinterest: (
+            content: common('icon.pinterest')
+          ),
+          icon-instagram: (
+            content: common('icon.instagram')
+          ),
+          icon-youtube: (
+            content: common('icon.youtube')
+          )
+        )
+      )
+    ),
+  )
+))

@@ -1,0 +1,133 @@
+@import '../../core/_config';
+
+.composite-recipe-ingredients-details {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($recipeIngredientsDetails, $a...);
+  }
+
+  @include breakpoints() {
+    $box: merge((
+      margin: (
+        margin-bottom: breakpoint((tablet-max: 60px))
+      )
+    ), g('box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+  }
+
+  .richText {
+    h1, h2, h3 {
+      $title: merge((
+        margin: (
+          margin: breakpoint((tablet-max: spacings('m') 0, desktop: 0 0 spacings('m')))
+        )
+      ), g('_title.paragraph'));
+
+      @include breakpoints {
+        @include paragraph($title, $media);
+      }
+    }
+  }
+
+  .accordion {
+    @include box(g('_accordion.box'), $media);
+
+    .accordion-slide {
+      $box: merge((
+        padding: 0
+      ), g('_accordion._slide.box'));
+
+      @include box($box, $media);
+
+      + .accordion-slide {
+        border-top: 0;
+      }
+
+      &.is-active .accordion-title-link:after {
+        content: common('icon.arrow-up');
+      }
+    }
+
+    .accordion-head {
+      $box: merge((
+        padding: spacings('xs') 0
+      ), g('_accordion._head.box'));
+
+      @include box($box, $media);
+    }
+
+    .accordion-title {
+      line-height: 1;
+    }
+
+    .accordion-title-link {
+      $button: merge((
+        text: (
+          text-decoration: none
+        ),
+        icon: (
+          content: common('icon.arrow-down'),
+          side: after,
+          font-size: px(10),
+          color: color('black'),
+          display: block,
+          margin: spacings('xxs') 0 0
+        )
+      ), g('_accordion._head.box'));
+
+      @include button($button, $media);
+
+      &:after {
+        background: transparent;
+      }
+    }
+
+    .accordion-title-text {
+      $paragraph: merge((
+        text: (
+          font-size: px(18),
+          line-height: 1.22
+        )
+      ), g('_accordion._title.paragraph'));
+
+      @include button($paragraph, $media);
+    }
+
+    .accordion-content {
+      $box: merge((
+        padding: spacings('xs') spacings('xs') 20px
+      ), g('_accordion._content.box'));
+
+      @include box($box, $media);
+    }
+
+    .listing-items {
+      $itemsWrapper: merge((
+        margin: (
+          margin: 0 spacings('s') * -1
+        )
+      ), g('_accordion._items-wrapper.box'));
+
+      @include box($itemsWrapper, $media);
+
+      .listing-item {
+        $item: merge((
+          width: calc(50% - 30px),
+          padding: 0,
+          margin: (
+            margin: spacings('s')
+          )
+        ), g('_accordion._items-wrapper._item.box'));
+
+        @include box($item, $media);
+
+        > .component-content:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

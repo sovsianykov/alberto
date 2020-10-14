@@ -1,0 +1,25 @@
+@import '../../core/config';
+@import '../../commons/config-carousel';
+
+.no-js {
+  .carousel {
+    &-slide {
+      position: static;
+
+      &:first-child {
+        margin-top: 0;
+
+        border-top: none;
+      }
+    }
+
+    &-nav {
+      li {
+        display: none;
+      }
+    }
+  }
+}
+
+@import 'hero/index';
+@import 'slick/index';

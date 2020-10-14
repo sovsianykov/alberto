@@ -1,0 +1,148 @@
+@import '../utils/all';
+
+$common: () !default;
+
+// global units //
+$common: merge($common, (
+  colors: (
+    primary: (
+      darker: #142121,
+      dark: #4dd0e1,
+      base: #89e0e3,
+      light: #dbf5f6,
+      lighter: #f5fcfc
+    ),
+    secondary: (
+      darker: #4a051e,
+      dark: #790b32,
+      base: #bd0d4c,
+      light: #f1ceda,
+      lighter: #fbf2f5
+    ),
+    neutral: (
+      darker: #000000,
+      dark: #323b42,
+      base: #6e7f8d,
+      light: #b1bfca,
+      lighter: #f2f4f6
+    ),
+    'white': #fff,
+    'black': #000,
+    'error': #ff0101,
+  ),
+  font-family: (
+    primary: (
+      name: unquote('din-condensed, Franklin Gothic, Avenir Next Condensed, sans-serif'),
+      diff: (top: 0.11, bottom: 0.18)
+    ),
+    body: (
+      name: unquote('proxima-nova, sans-serif'),
+      diff: (top: 0.14, bottom: 0.19)
+    )
+  ),
+  font-ratio: 1,
+  font-sizes: (
+    xxxs: 12px,
+    xxs: 14px,
+    xs: 16px,
+    s: 20px,
+    m: 26px,
+    l: 38px,
+    xl: 48px,
+    xxl: 65px,
+    xxxl: 72px
+  ),
+  spacings: (
+    xxxs: 3px,
+    xxs: 5px,
+    xs: 10px,
+    s: 15px,
+    m: 30px,
+    l: 40px,
+    xl: 50px,
+    xxl: 80px,
+    xxxl: 120px
+  ),
+  icon: (
+    ad-choices-logo: '\e911',
+    arrow-down: '\e908',
+    arrow-left: '\e90c',
+    arrow-right: '\e90d',
+    arrow-up: '\e90e',
+    barcode: '\e937',
+    button-bag: '\e900',
+    cross-small: '\e901',
+    cross: '\e902',
+    email: '\e914',
+    facebook: '\e90a',
+    FAQ: '\e91f',
+    filter: '\e91b',
+    grid-view: '\e919',
+    hamburguer: '\e90f',
+    headset: '\e913',
+    heart: '\e9da',
+    instagram: '\e90b',
+    link: '\e9cb',
+    linkedin: '\eac9',
+    list-bullet: '\e91a',
+    list-view: '\e918',
+    map-location: '\e903',
+    map: '\e909',
+    minus: '\e916',
+    ok: '\e915',
+    pause: '\ea16',
+    person: '\e91c',
+    phone: '\e910',
+    pinterest: '\e904',
+    play: '\ea15',
+    plus: '\e917',
+    printer: '\e91d',
+    search: '\e905',
+    speach: '\e912',
+    star-empty: '\e9d7',
+    star-full: '\e9d9',
+    timer: '\e91e',
+    tumblr: '\eaba',
+    twitter: '\e906',
+    unilever-logo: '\e907',
+    whatsapp: '\ea93',
+    youtube: '\ea9d',
+    zoom: '\e920'
+  ),
+  transitions: (
+    speed: (
+      slow: 0.6s,
+      base: 0.3s,
+      fast: 0.15s
+    ),
+    stagger: (
+      slow: 0.12s,
+      base: 0.08s,
+      fast: 0.04s
+    ),
+    ease: cubic-bezier(0.55, 0, 0.1, 1) // material design ease out calculation
+  )
+));
+
+// base configurations //
+$common: merge($common, (
+  background: (
+    body: (
+      background-color: color('white')
+    )
+  ),
+  text: (
+    body: (
+      text-transform: none,
+      font-style: normal,
+      text-align: left,
+      color: color('black'),
+      font-family: 'body',
+      font-size: px('xxs'),
+      font-weight: normal,
+      line-height: 1.5
+    )
+  )
+));
+
+@import '../commons/all';

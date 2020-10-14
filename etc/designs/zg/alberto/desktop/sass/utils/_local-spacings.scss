@@ -1,0 +1,26 @@
+// local function for getting spacings by extending global values
+// usage in config file. This will create a temporary global
+// var for current file. Usage:
+//
+// @include local-spacings((s: 8px));
+// $myComponent: (
+//   spacings: spacings(), // can be created to be called directly inside the css
+//   _label: (
+//     paragraph: (
+//       margin: spacings('s') 0 0 0
+//     )
+//   )
+// )
+
+$curr-spacings: () !global;
+@mixin local-spacings($map: ()) {
+  $curr-spacings: extend('spacings', $map) !global;
+}
+
+@function spacings($size: null) {
+  $result: get-last($curr-spacings, $size);
+  @if (type-of($result) == 'list') {
+    @return common('spacings', $size);
+  }
+  @return get-last($curr-spacings, $size);
+}

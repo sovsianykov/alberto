@@ -1,0 +1,143 @@
+.searchResults {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($viewOptions, $a...);
+  }
+
+  .searchResults-options-container {
+    $filtersContainer: merge((
+      display: flex,
+      flex: (
+        align-items: flex-start,
+        justify-content: space-between,
+        flex-wrap: wrap,
+      )
+    ), g('_filters-container.box'));
+
+    &.search-results-ui-hidden {
+      display: none;
+    }
+
+    @include breakpoints {
+      @include box($filtersContainer, $media);
+    }
+
+    .displayModeSwitches {
+      $iconsBox: merge((
+        height: 100%,
+        display: flex,
+        flex: (
+          align-items: center
+        ),
+        margin: (
+          margin: breakpoint((mobile: 0 -6px))
+        )
+      ), g('_icons-box.box'));
+
+      @include breakpoints {
+        @include box($iconsBox, $media);
+      }
+    }
+
+    .sortOrderDiv {
+      order: 1;
+
+      @include breakpoints {
+        @include margin(g('_dropdown.margin'), $media);
+      }
+    }
+
+    .displayModeSwitches,
+    .sortOrderDiv {
+      display: flex;
+      align-items: center;
+
+      > span,
+      > label {
+        white-space: nowrap;
+        @include breakpoints {
+          @include paragraph(g('_labels.paragraph'), $media);
+        }
+      }
+    }
+
+    .switchToListButton,
+    .switchToGridButton {
+      cursor: pointer;
+
+      $viewSwitch: merge((
+        background: none,
+        border: none,
+        padding: 0,
+        margin: (
+          margin: 6px
+        )
+      ), g('_view-switch.box'));
+
+      @include box($viewSwitch, $media);
+    }
+
+    .switchToListButton {
+      order: 1;
+      @include breakpoints {
+        @include icon(g('_list-switch.icon'), $media);
+      }
+    }
+    .switchToGridButton {
+      @include breakpoints {
+        @include icon(g('_grid-switch._active.icon'), $media);
+      }
+    }
+  }
+
+  .display-list .searchResults-options-container {
+    .switchToListButton {
+      @include breakpoints {
+        @include icon(g('_list-switch._active.icon'), $media);
+      }
+    }
+    .switchToGridButton {
+      @include breakpoints {
+        @include icon(g('_grid-switch.icon'), $media);
+      }
+    }
+  }
+
+  // sort dropdown:
+  .sortOrderDiv {
+    position: relative;
+    @include breakpoints {
+      @include icon(g('_dropdown.icon'), $media);
+    }
+
+    $pseudo: safetype(g('_filter-form._dropdown-last.side'), 'after');
+    &:#{$pseudo} {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  }
+
+  .sortOrder {
+    appearance: none;
+    cursor: pointer;
+
+    @include breakpoints {
+      @include box(g('_dropdown.box'), $media);
+      @include text(g('_dropdown.text'), $media);
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  // mobile styles:
+  @include media-query(mobile) {
+    .displayModeSwitches {
+      order: 2;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+$ratings-and-reviews: (
+  spacings: common('spacings')
+);
+
+$ratings-and-reviews: merge($ratings-and-reviews, (
+  _star: (
+    text: (
+      font-size: 20px,
+      letter-spacing: 3px
+    )
+  ),
+  _star-on: (
+    text: (
+      color: color('black')
+    )
+  ),
+  _star-off: (
+    text: (
+      color: color('neutral', 'light')
+    )
+  )
+));

@@ -1,0 +1,139 @@
+@import 'utils';
+
+.listing.listing-article-list {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($articleList, $a...);
+  }
+
+  @include wrapper();
+
+  $outer-wrapper: merge((
+    margin: (
+      margin-top: breakpoint((tablet-max: 25px, desktop: 20px)),
+      margin-bottom: spacings('s'),
+      margin-left: auto,
+      margin-right: auto,
+    )
+  ), g('_outer-wrapper.box'));
+
+  @include breakpoints() {
+    @include box($outer-wrapper, $media);
+  }
+
+  .listing-items {
+    $listing: merge((
+      display: flex,
+      flex: (
+        flex-wrap: wrap,
+        justify-content: center
+      ),
+      margin: (
+        margin: spacings('s') * -1 spacings('s') * -1 0
+      )
+    ), g('_listing.box'));
+
+    @include box($listing, $media);
+  }
+
+  .listing-item {
+    $listing-item: merge((
+      flex: (
+        justify-content: center
+      ),
+      padding: (
+        padding: spacings('s')
+      )
+    ), g('_listing._item.box'));
+
+    @include breakpoints() {
+      @include box($listing-item, $media);
+    }
+
+    > .component-content {
+      > a {
+        // hide read more link as the whole tile is clickable
+        display: none;
+      }
+
+      // richText version
+      .richText-content {
+        cursor: pointer;
+
+        $details-wrapper: merge((
+          display: block,
+          margin: 0,
+          padding: 20px 19px,
+          border: (
+            border-radius: 0 0 3px 3px
+          )
+        ), g('_listing._item._details-wrapper.box'));
+
+        @include box($details-wrapper, $media);
+
+        h2, h3  {
+          margin: 0;
+        }
+
+        h4  {
+          margin: 0;
+        }
+      }
+    }
+
+    .image {
+      box-sizing: border-box;
+      overflow: hidden;
+
+      $image-wrapper: merge((
+        height: breakpoint(200px, 280px, 340px)
+      ), g('_listing._item._image-wrapper.box'));
+
+      @include breakpoints() {
+        @include box($image-wrapper, $media);
+      }
+
+      > .component-content {
+        height: 100%;
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        min-width: 100%;
+        min-height: 100%;
+        cursor: pointer;
+
+        .mod-objectfit & {
+          min-width: 0;
+          min-height: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .listing-footer {
+    a[class*=button] {
+      $button: merge((
+        margin: (
+          margin-top: spacings('s')
+        )
+      ), g('_seeAllButton.button'));
+
+      @include button($button, $media);
+    }
+  }
+
+  @include common-rules($articleList);
+
+  &.favourite-listing {
+      .listing-items {
+        justify-content: flex-start;
+      }
+  }
+}

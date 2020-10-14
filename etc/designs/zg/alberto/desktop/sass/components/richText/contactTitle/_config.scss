@@ -1,0 +1,13 @@
+$contactTile: (
+  spacings: common('spacings'),
+  background: (
+    background-color: transparent
+  ),
+  title: extend('text.h2',(
+    line-height: 1,
+  )),
+  paragraph: extend('text.small-body',(
+    line-height: 1.2,
+  )),
+  link: common('_base.button')
+)

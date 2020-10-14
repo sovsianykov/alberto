@@ -1,0 +1,60 @@
+@import '../../../core/_config';
+
+.composite-recipe-finder.composite-variation-recipe-finder-header {
+  @import 'config';
+  @function g($a...) { @return get-last($recipeFinderHeader, $a...); }
+
+  .box > .component-content {
+    $box: merge((
+      margin: (
+        margin-bottom: -60px,
+      ),
+      padding: (
+        padding-top: breakpoint((mobile: 60px, tablet-min: 96px)),
+      )
+    ), g('box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    .richText {
+      $box: merge((
+        margin: (
+          margin-bottom: 45px,
+        ),
+      ), g('_main._text-wrapper.box'));
+
+      @include box($box, $media);
+
+      h1, h2, h3 {
+        $paragraph: merge((
+          margin: (
+            margin-top: 0,
+            margin-bottom: breakpoint(20px, 20px, spacings('m')),
+          ),
+        ), g('_main._text-wrapper._title.paragraph'));
+
+        @include breakpoints {
+          @include paragraph($paragraph, $media);
+        }
+      }
+    }
+  }
+
+  .form-search {
+    position: relative;
+  }
+
+  .search-query {
+    box-sizing: border-box;
+
+    @include breakpoints {
+      @include input(g('_main._searchBoxInput.input'), $media);
+    }
+  }
+
+  .searchBox .button {
+    @include button(g('_main._searchBoxButton.button'), $media);
+  }
+}

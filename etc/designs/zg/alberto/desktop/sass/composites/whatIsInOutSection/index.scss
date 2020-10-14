@@ -1,0 +1,79 @@
+@import '../../core/config';
+
+.composite-what_is_in_out_section {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($whatIsInOut, $a...);
+  }
+
+  $box: merge((
+    padding: (
+      padding-top: breakpoint((tablet-max: 48px, desktop: 64px)),
+      padding-bottom: breakpoint((tablet-max: 46px, desktop: 61px))
+    )
+  ), g('_main.box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  > .content {
+    @include wrapper;
+
+    $box: merge((
+      margin: (
+        margin-bottom: spacings('s') * -1
+      )
+    ), g('_main._items-wrapper.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+  }
+
+  .richText {
+    $box: merge((
+      margin: (
+        margin-bottom: spacings('s')
+      )
+    ), g('_main._item.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+
+    img {
+      $box: merge((
+        display: block,
+        max-height: 200px,
+        width: auto,
+        margin: 0 auto,
+      ), g('_main._item._image.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+    }
+  }
+
+  .richText-content {
+    @include paragraph(g('_main._item._text-wrapper.paragraph'), $media);
+
+    h3 {
+      $paragraph: merge((
+        margin: (
+          margin-top: 24px,
+          margin-bottom: 20px
+        )
+      ), g('_main._item._text-wrapper._heading.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($paragraph, $media);
+      }
+    }
+
+    p {
+      @include paragraph(g('_main._item._text-wrapper._description.paragraph'), $media);
+    }
+  }
+}

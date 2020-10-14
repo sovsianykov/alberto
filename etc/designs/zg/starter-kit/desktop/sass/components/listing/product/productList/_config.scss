@@ -1,0 +1,86 @@
+$productList: (
+  spacings: common('spacings')
+);
+
+$productList: merge($productList, (
+  _listing-item: (
+    box: (
+      padding: (
+        padding: breakpoint(
+          get($productList, 'spacings.s') 0 get($productList, 'spacings.s') 20px,
+          get($productList, 'spacings.s') 0 get($productList, 'spacings.s') 25px,
+          get($productList, 'spacings.xs') 7px
+        ),
+      ),
+      margin: (
+        margin: breakpoint((
+          desktop: get($productList, 'spacings.xs') 7px
+        ))
+      ),
+      border: (
+        border-bottom: breakpoint(
+          (tablet-max: solid 1px color('neutral', 'lighter'))
+        ),
+      ),
+      box-sizing: border-box,
+      display: breakpoint(flex, flex, null),
+      flex: (
+        flex-wrap: nowrap,
+      ),
+      height: breakpoint((desktop: 275px)),
+    ),
+    _image: (
+      box: (
+        width: breakpoint(120px, 120px, null),
+      )
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          font-weight: bold,
+          font-size: breakpoint(px(18), px(18), px('xxs')),
+          line-height: 1.43,
+        ),
+        margin: (
+          margin: get($productList, 'spacings.xs') 0,
+        )
+      )
+    ),
+    _select-icon: (
+      icon: (
+        content: '',
+        display: breakpoint(block, block, none),
+        width: 25px,
+        height: 25px,
+        border: (
+          border: solid 1px color('black'),
+          border-radius: 50%,
+        ),
+      )
+    )
+  ),
+  _listing-item-selected: (
+    box: (
+      box-shadow: breakpoint(null, null, 0 2px 5px 0 rgba(0, 0, 0, 0.16)),
+    ),
+    _select-icon: (
+      icon: (
+        content: '',
+        display: breakpoint(block, block, none),
+        width: 25px,
+        height: 25px,
+        border: (
+          border: solid 1px color('black'),
+          border-radius: 50%,
+        ),
+        background: (
+          background-color: color('black')
+        )
+      )
+    )
+  )
+));
+
+$productList: merge($productList, (
+  _listing-item-hover: get($productList, '_listing-item-selected')
+));

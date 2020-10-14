@@ -1,0 +1,61 @@
+$quickview: (
+  _quickview-overlay: (
+    box: (
+      background: rgba(color('neutral', light), 0.95),
+      position: fixed
+    )
+  ),
+  _quickview: (
+    box: (
+      background: color('white'),
+      position: fixed
+    ),
+    _close: (
+      button: (
+        background: color('black'),
+        border: (
+          border: solid 1px color('black'),
+          border-radius: 50%
+        ),
+        height: 25px,
+        position: absolute,
+        width: 25px,
+        text: (
+          color: color('white')
+        ),
+        icon: (
+          side: before,
+          content: common('icon.cross-small'),
+          color: color('white'),
+          font-size: px(9),
+          hover: (
+            color: color('black')
+          )
+        ),
+        hover: (
+          background: color('white'),
+          text: (
+            color: color('black')
+          )
+        )
+      )
+    ),
+    _wrapper: (
+      box: (
+        padding: (
+          padding: 20px
+        )
+      ),
+      _content: (
+        box: (
+          padding: (
+            padding: 0 0 0 415px
+          )
+        )
+      )
+    ),
+    _listing-holder: (
+      // box: (),
+    )
+  )
+);

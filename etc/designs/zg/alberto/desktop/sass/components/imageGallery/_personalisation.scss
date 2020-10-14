@@ -1,0 +1,76 @@
+
+
+// show personalisation text
+
+.imageGallery {
+  [data-active-index]:before {
+    opacity: 0;
+  }
+  [data-active-index="0"]:before {
+    opacity: 1;
+  }
+  [data-personalisation-text] {
+    position: relative;
+  }
+  [data-personalisation-text][data-personalisation-ean="08901030650130"]:before {
+    // set different color for different product
+    color: yellow;
+  }
+
+  @include media-query(small, tablet, 0, -2) {
+    // stating at the smallest font size with 11 chars and going up
+    @for $i from 1 through 11 {
+      [data-personalisation-length="#{12 - $i}"] {
+        > .personalised-text-svg {
+          font-size: #{((32 + $i*4) / 10)}vw;
+        }
+      }
+    }
+  }
+
+  @include media-query(notebook, notebook, -2) {
+    // stating at the smallest font size with 11 chars and going up
+    @for $i from 1 through 11 {
+      [data-personalisation-length="#{12 - $i}"] {
+        > .personalised-text-svg {
+          font-size: #{((9 + $i*1.2) / 10)}rem;
+        }
+      }
+    }
+  }
+
+  @include media-query(desktop) {
+    // stating at the smallest font size with 11 chars and going up
+    @for $i from 1 through 11 {
+      [data-personalisation-length="#{12 - $i}"] {
+        > .personalised-text-svg {
+          font-size: #{((11 + $i*1.2) / 10)}rem;
+        }
+      }
+    }
+  }
+
+  @include media-query(wide) {
+    // stating at the smallest font size with 11 chars and going up
+    @for $i from 1 through 11 {
+      [data-personalisation-length="#{12 - $i}"] {
+        > .personalised-text-svg {
+          font-size: #{((14 + $i*1.5) / 10)}rem;
+        }
+      }
+    }
+  }
+
+  .personalised-text-svg {
+    height: 100px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 240px;
+
+    > text {
+      fill: white;
+    }
+  }
+}

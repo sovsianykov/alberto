@@ -1,0 +1,20 @@
+$galleryWithSizes: (
+  spacings: common('spacings')
+);
+
+$galleryWithSizes: merge($galleryWithSizes, (
+  _main: (
+    box: (
+      margin: (
+        margin-bottom: breakpoint((tablet-max: 10px, desktop: 40px)),
+        margin-left: breakpoint((mobile: -20px, tablet-min: 0)),
+        margin-right: breakpoint((mobile: -20px, tablet-min: 0))
+      )
+    ),
+    _size-items: (
+      box: (
+        position: absolute
+      )
+    )
+  )
+));

@@ -1,0 +1,101 @@
+.box-smart-label {
+  @function gl($a...) {
+    @return get-last($header, 'supplementary._smartlabel', $a...);
+  }
+
+  $box: merge((
+    margin: (
+      margin: breakpoint(
+        20px 0 0 0,
+        0 spacings('m') 0 0,
+        0 spacings('s')
+      )
+    ),
+    flex: (
+      align-self: breakpoint(flex-end, null, null),
+      flex-basis: breakpoint((mobile: 100%))
+    )
+  ), gl('box'));
+
+  @include breakpoints {
+    @include box($box, $media);
+  }
+
+  .component-content > .content {
+    $smartLabelContainer: merge((
+      display: breakpoint((tablet-max: flex)),
+      flex: (
+        align-items: center,
+        flex-wrap: wrap
+      )
+    ));
+
+    @include breakpoints {
+      @include box($smartLabelContainer, $media);
+    }
+  }
+
+  .richText {
+    $labelBox: merge((
+      display: breakpoint(null, null, none)
+    ), gl('_label.box'));
+
+    @include breakpoints {
+      @include paragraph($labelBox, $media);
+    }
+
+    p {
+      $label: merge((
+        margin: (
+          margin: breakpoint((tablet-max: 0 7px 0 0))
+        )
+      ), gl('_label.paragraph'));
+
+      @include breakpoints {
+        @include paragraph($label, $media);
+      }
+    }
+  }
+
+  img {
+    $smartLabelImage: merge((
+      display: block,
+      width: breakpoint(121px, 125px, 66px),
+      margin: (
+        margin: breakpoint((mobile: spacings('xs') * -1 0))
+      )
+    ), gl('_image.box'));
+
+    @include breakpoints() {
+      @include box($smartLabelImage, $media);
+    }
+  }
+
+  .image:last-of-type {
+    $downloadAppBox: merge((
+      display: breakpoint(null, null, none),
+      flex: (
+        flex-basis: 100%
+      )
+    ), gl('_image.box'));
+
+    @include breakpoints() {
+      @include box($downloadAppBox, $media);
+    }
+
+    img {
+      $downloadAppImg: merge((
+        width: breakpoint(60%, 100%, 100%),
+        min-width: 200px,
+        max-width: 320px,
+        margin: (
+          margin: breakpoint((tablet-max: spacings('xs') 0 0 0, desktop: 0)),
+        )
+      ));
+
+      @include breakpoints() {
+        @include box($downloadAppImg, $media);
+      }
+    }
+  }
+}

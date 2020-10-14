@@ -1,0 +1,129 @@
+@import '../../core/config';
+
+.addthis {
+  $social-icons: (
+      ('addthis_button_facebook', 'facebook'),
+      ('addthis_button_twitter', 'twitter'),
+      ('addthis_button_pinterest_share', 'pinterest'),
+      ('addthis_button_email', 'email'),
+      ('addthis_button_whatsapp', 'whatsapp'),
+      ('addthis_button_link', 'link'),
+      ('addthis_button_tumblr', 'tumblr'),
+      ('addthis_button_linkedin', 'linkedin')
+  );
+
+  .addthis_toolbox {
+    //default / mobile
+    margin: 0 spacings('m') / -1.5;
+    position: relative;
+
+    //screen-size specific
+    @include media-query(desktop, wide) {
+      margin: 0 spacings('s') * -1;
+    }
+  }
+
+  a[class^=addthis_button] {
+    //default / mobile
+    align-items: center;
+    display: inline-flex;
+    justify-content: space-between;
+    margin: spacings('m') spacings('s') / 1.5;
+    text-decoration: none;
+
+    &:after {
+      color: color('black');
+      display: block;
+      font-family: 'icons';
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 400;
+      line-height: 1;
+      speak: none;
+      text-align: center;
+      text-transform: none;
+      font-size: px(22);
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    &:hover:after,
+    &:focus:after {
+      color: color('neutral', 'dark');
+    }
+
+    //screen-size specific
+    @include media-query(tablet, wide) {
+      margin: 20px spacings('s');
+
+      &:after {
+        font-size: px(15);
+      }
+    }
+
+    //blocks
+    > .at-icon-wrapper {
+      display: none;
+    }
+  }
+
+  @each $class-suffix, $icon-suffix in $social-icons {
+    .#{$class-suffix}:after {
+      content: common('icon.#{$icon-suffix}');
+    }
+  }
+
+  .addthis_button_lineme > .at-icon-wrapper,
+  .addthis_button_bitly > .at-icon-wrapper {
+    display: inline-block;
+  }
+
+  .addthis-missing-func {
+    display: none;
+  }
+
+  &.is-disabled {
+    .addthis_toolbox, .addthis-missing-func {
+      display: none;
+    }
+  }
+}
+
+.addthis.component.addthis-big-icons {
+  //default / mobile
+  margin: 15px spacings('s') * -1 5px spacings('s');
+  position: relative;
+
+  //screen-size specific
+  @include media-query(desktop, wide) {
+    margin: 47px spacings('s') * -1 36px spacings('s');
+  }
+
+  //blocks
+  .addthis_toolbox {
+    //default / mobile
+    margin-left: spacings('s') * -1;
+    margin-right: spacings('s') * -1;
+
+    a {
+      margin: 0 spacings('s');
+
+      &:after {
+        font-size: px(22) !important;
+      }
+    }
+  }
+}
+
+.page-products {
+  .addthis.is-disabled {
+    .addthis-missing-func {
+      display: inline-block;
+      line-height: 1.2;
+      p {
+        font-size: px(19);
+        font-family: font-family('primary');
+      }
+    }
+  }
+}

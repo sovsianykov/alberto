@@ -1,0 +1,192 @@
+@import 'utils';
+
+.listing.listing-article-list {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($articleList, $a...);
+  }
+
+  @include wrapper();
+
+  $outer-wrapper: merge((
+    margin: (
+      margin-top: breakpoint((tablet-max: 25px, desktop: 20px)),
+      margin-bottom: spacings('s'),
+      margin-left: auto,
+      margin-right: auto,
+    )
+  ), g('_outer-wrapper.box'));
+
+  @include breakpoints() {
+    @include box($outer-wrapper, $media);
+  }
+
+  .listing-items {
+    $listing: merge((
+      display: flex,
+      flex: (
+        flex-wrap: wrap,
+        justify-content: center
+      ),
+      margin: (
+        margin: spacings('s') * -1 spacings('s') * -1 0
+      )
+    ), g('_listing.box'));
+
+    @include box($listing, $media);
+  }
+
+  .listing-item {
+    $listing-item: merge((
+      flex: (
+        justify-content: center
+      ),
+      padding: (
+        padding: spacings('s')
+      )
+    ), g('_listing._item.box'));
+
+    @include breakpoints() {
+      @include box($listing-item, $media);
+    }
+    .article-teaser-info {
+      > .component-content {
+        > .richText-content {
+          display: flex;
+          flex-direction: column;
+          p:last-child {
+            margin-top: auto;
+          }
+        }
+      }
+    }
+    > .component-content {
+      height: 100%;
+      >.paragraphSystem {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        >.richText {
+          flex-grow: 1;
+          >.component-content {
+            height: 100%;
+            >.richText-content {
+              height: 100%;
+            }
+          }
+        }
+      }
+      > a {
+        // hide read more link as the whole tile is clickable
+        display: none;
+      }
+
+      // richText version
+      .richText-content {
+        cursor: pointer;
+
+        $details-wrapper: merge((
+          display: block,
+          margin: 0,
+        ), g('_listing._item._details-wrapper.box'));
+
+        @include box($details-wrapper, $media);
+
+        h2, h3  {
+          margin: 0;
+        }
+
+        p {
+          font-family: font-family('primary');
+          @include breakpoints(mobile) {
+            font-size: px(19)!important;
+          }
+          @include breakpoints(tablet, desktop) {
+            font-size: px(20)!important;
+          }
+          &:last-child {
+            // @include breakpoints(mobile) {
+            //   margin-bottom: 50px!important;
+            // }
+            // @include breakpoints(tablet) {
+            //   margin-bottom: 60px!important;
+            // }
+            // @include breakpoints(desktop) {
+            //   margin-bottom: 70px!important;
+            // }
+          }
+        }
+
+        h4  {
+          margin: 0;
+        }
+      }
+    }
+
+    .image {
+      box-sizing: border-box;
+      overflow: hidden;
+      margin-bottom: 0px;
+      @include breakpoints(desktop) {
+        margin-bottom: 20px;
+      }
+
+      $image-wrapper: merge((
+        height: breakpoint(225px, 310px, 480px)
+      ), g('_listing._item._image-wrapper.box'));
+
+      @include breakpoints() {
+        @include box($image-wrapper, $media);
+      }
+
+      > .component-content {
+        height: 100%;
+      }
+
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        min-width: 100%;
+        min-height: 100%;
+        cursor: pointer;
+
+        .mod-objectfit & {
+          min-width: 0;
+          min-height: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          font-size: 2222px;
+        }
+
+        .mod-no-object-fit & {
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+        }
+      }
+    }
+  }
+
+  .listing-footer {
+    a[class*=button] {
+      $button: merge((
+        margin: (
+          margin-top: spacings('s')
+        )
+      ), g('_seeAllButton.button'));
+
+      @include button($button, $media);
+    }
+  }
+
+  @include common-rules($articleList);
+
+  &.favourite-listing {
+      .listing-items {
+        justify-content: flex-start;
+      }
+  }
+}

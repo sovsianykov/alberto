@@ -1,0 +1,36 @@
+.storelocatorResults-wrapper.loading {
+  min-height: 120px;
+
+  &:before {
+    $spinner-size: 50px;
+
+    animation-name: sl-rotate;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    border: 1px solid color('neutral', 'light');;
+    border-bottom: 1px solid transparent;
+    border-radius: 50%;
+
+    content: " ";
+
+    display: block;
+    height: $spinner-size;
+    left: calc(50% - #{$spinner-size/2});
+    position: absolute;
+    top: 60px;
+    visibility: visible;
+    width: $spinner-size;
+    z-index: 1;
+  }
+}
+
+@keyframes sl-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

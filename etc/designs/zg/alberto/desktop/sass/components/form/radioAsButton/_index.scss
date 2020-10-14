@@ -1,0 +1,80 @@
+.radioGroup {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($radio-as-button, $a...);
+  }
+
+  &.radio-as-button {
+
+    .component-content {
+
+      .controls {
+
+        label {
+
+          input[type="radio"] {
+
+            & ~ span {
+              box-sizing: border-box;
+              padding-left: 0;
+
+              &::before,
+              &::after {
+                display: none;
+              }
+
+              $button: merge((), g('button'));
+
+              @include breakpoints() {
+                @include button($button, $media);
+              }
+            }
+          }
+
+          input[type="radio"]:checked {
+
+            & ~ span {
+              $button-checked: merge((), g('_checked.button'));
+
+              @include breakpoints() {
+                @include button($button-checked, $media);
+              }
+            }
+          }
+
+          input[type="radio"]:focus {
+
+            & ~ span {
+              box-shadow: 1px 1px 1px color('black');
+            }
+          }
+        }
+      }
+
+      &.error {
+
+        .controls {
+
+          label {
+
+            input[type="radio"] {
+
+              ~ span {
+
+                border-color: color('secondary', 'base');
+              }
+            }
+
+            input[type="radio"]:focus {
+
+              & ~ span {
+
+                box-shadow: 1px 1px 1px color('secondary', 'base');
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

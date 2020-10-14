@@ -1,0 +1,3 @@
+# This file gets appended to the desktop/js/js.txt file during build
+# It should ONLY include relative paths to bespoke local files (js-localised), that DO NOT exist in the Platform distribution folder (js-dist). Localised versions of existing files DO NOT need to be added here.
+# Check the contents of js/js.txt after editing to ensure there are no duplicates

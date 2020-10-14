@@ -1,0 +1,33 @@
+$subcategorySection: (
+  // composite outer box
+  box: (
+    padding: (
+      padding: 60px 0,
+    ),
+    box-sizing: border-box,
+  ),
+  _wrapper: (
+    box: (
+    ),
+    _title-wrapper: (
+      box: (),
+      _title: (
+        paragraph: extend('_tertiary._title.paragraph', (
+          text: (
+            color: color('black'),
+            text-align: breakpoint((tablet-max: center))
+          )
+        ))
+      ),
+      _button-wrapper: (
+        box: ()
+      )
+    ),
+    _carousel-wrapper: (
+      box: (),
+    ),
+    _button-wrapper: (
+      box: ()
+    )
+  )
+);

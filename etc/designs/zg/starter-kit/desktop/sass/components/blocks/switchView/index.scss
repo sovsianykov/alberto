@@ -1,0 +1,83 @@
+@import '../../../core/config';
+
+.reference-switch-view {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($switchView, $a...);
+  }
+
+  $wrapper: merge((
+    margin: (
+      margin-bottom: breakpoint((mobile: spacings('xs')))
+    )
+  ), g('box'));
+
+  @include breakpoints() {
+    @include box($wrapper, $media);
+  }
+
+  @include media-query(auto, tablet) {
+    order: 1;
+  }
+
+  .component-content {
+    height: 100%;
+  }
+
+  .displayModeSwitches {
+    $iconsBox: merge((
+      height: 100%,
+      display: flex,
+      flex: (
+        align-items: center
+      ),
+      margin: (
+        margin: breakpoint((mobile: 0 -6px))
+      )
+    ), g('_icons-wrapper.box'));
+
+    @include breakpoints {
+      @include box($iconsBox, $media);
+    }
+
+    > span {
+      white-space: nowrap;
+       @include paragraph(g('_labels.paragraph'), $media);
+
+      @include media-query(auto, tablet) {
+        display: none;
+      }
+    }
+  }
+
+  .switchToListButton,
+  .switchToGridButton {
+    cursor: pointer;
+
+    $viewSwitch: merge((
+      background: none,
+      border: none,
+      padding: (
+        padding: 6px
+      )
+    ), g('_view-switch.box'));
+
+    @include box($viewSwitch, $media);
+  }
+
+  .switchToListButton {
+     @include icon(g('_list-switch.icon'), $media);
+  }
+  .switchToGridButton {
+     @include icon(g('_grid-switch._active.icon'), $media);
+  }
+
+  .display-list & {
+    .switchToListButton {
+       @include icon(g('_list-switch._active.icon'), $media);
+    }
+    .switchToGridButton {
+       @include icon(g('_grid-switch.icon'), $media);
+    }
+  }
+}

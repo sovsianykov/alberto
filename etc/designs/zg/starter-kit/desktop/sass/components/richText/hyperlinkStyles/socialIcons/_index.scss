@@ -1,0 +1,40 @@
+.social-icons {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($socialIcons, $a...);
+  }
+
+  ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+
+    @include box(g('_main.box'),$media);
+
+    @include media-query(auto, notebook) {
+      justify-content: flex-start;
+      margin: g('spacings.s') 0;
+    }
+
+    > li {
+      margin-right: g('spacings.m');
+
+      @include media-query(auto, mobile) {
+        margin-right: g('spacings.l');
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    a {
+      display: block;
+
+      @include link(g('_main._icons.text.link'), $media);
+      @include classlist(g('_main._icons.classlist')) {
+        @include icon($curr, $media);
+      }
+    }
+  }
+}

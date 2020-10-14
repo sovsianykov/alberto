@@ -1,0 +1,112 @@
+.listing--as-carousel {
+  @import 'config';
+  @function g($a...) { @return get-last($listing-as-carousel, $a...); }
+
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+
+  @include breakpoints() {
+    @include box(g('box'), $media);
+  }
+
+  @import '../common-product-list';
+
+  .component-content .listing-items {
+    flex-wrap: nowrap;
+  }
+
+  .listing-header {
+    h2, h3 {
+      @include breakpoints() {
+        @include paragraph(g('_header.paragraph'), $media);
+      }
+    }
+  }
+
+  .listing-item {
+    flex-shrink: 0;
+
+    &.is-hidden {
+      // visibility: hidden is needed to prevent tabbing out of carousel viewport
+      // display: block is needed to calculate carousel width correctly
+      visibility: hidden;
+      display: block! important; // overriding global is-hidden style
+    }
+  }
+
+  .carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+
+    @include breakpoints() {
+      @include box(g('_carousel-nav.box'), $media);
+    }
+
+    .indicators {
+      list-style: none;
+      display: flex;
+      width: auto;
+      padding: 0;
+      margin: 0;
+    }
+
+    button {
+      cursor: pointer;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .indicator {
+      font-size: 0;
+
+      @include breakpoints() {
+        @include button(g('_carousel-nav._item.button'), $media);
+      }
+
+      &.is-active {
+        @include breakpoints() {
+          @include button(g('_carousel-nav._item-active.button'), $media);
+        }
+      }
+    }
+
+    .previous,
+    .next {
+      border: 0;
+
+      @include breakpoints() {
+        @include button(g('_carousel-nav._nav-item.button'), $media);
+      }
+
+      @include media-query(auto, notebook) {
+        display: none !important;
+      }
+
+      &.disabled {
+        pointer-events: none;
+
+        @include breakpoints() {
+          @include button(g('_carousel-nav._nav-item._disabled.button'), $media);
+        }
+      }
+    }
+
+    .previous {
+      @include breakpoints() {
+        @include button(g('_carousel-nav._nav-item._prev.button'), $media);
+      }
+    }
+
+    .next {
+      @include breakpoints() {
+        @include button(g('_carousel-nav._nav-item._next.button'), $media);
+      }
+    }
+  }
+}

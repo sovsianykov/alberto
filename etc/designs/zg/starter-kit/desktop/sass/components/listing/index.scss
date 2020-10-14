@@ -1,0 +1,101 @@
+@import '../../core/config';
+@import '../../commons/config-carousel';
+@import '../../commons/config-product-default-view';
+
+@mixin clearLeftForItem($columnsCount) {
+  @for $i from 1 through $columnsCount {
+    $child: $columnsCount / $i;
+
+    .listing-item.grid_#{$i} {
+      &:nth-of-type(#{$child}n + 1) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+// grid based on variants classes:
+.listing[class*=listing-cols] {
+  &-item {
+    &:first-of-type {
+      margin-left: 0;
+    }
+  }
+}
+
+.grid_12 .listing[class*=listing-cols] {
+  @include clearLeftForItem(12);
+}
+
+.grid_16 .listing[class*=listing-cols] {
+  @include clearLeftForItem(16);
+}
+
+.listing[class*=listing-cols] {
+  @include listing-cols;
+}
+
+// PDP specific behaviour styles
+.listing--product-variants {
+  > .component-content {
+    display: block;
+
+    .listing-item {
+      display: block;
+
+      &.is-hidden {
+        display: none;
+      }
+    }
+  }
+}
+
+.ua-ios-9.ua-mobile-iphone .pdp_open .shoppable-cart-open-button {
+  width: 20px !important;
+  min-width: 20px !important;
+  vertical-align: top !important;
+
+  &:after {
+    position: relative;
+    top: -7px;
+  }
+}
+
+//fix for font change on pdp opened
+.pdp_open input.input-medium.search-query {
+  font-family: sans-serif !important;
+}
+
+.favourite-listing {
+  width: 100%;
+
+  //initially hide all items until they are filtered by JS
+  .listing-item, .favourite-list-empty {
+    display: none;
+  }
+}
+
+.listing--dynamicArticles, .listing--dynamicProducts {
+  .data-loading {
+    display: none;
+  }
+
+  .adobe-products-loading.listing-items {
+    .data-loading {
+      background: url("/etc/designs/zg/starter-kit/desktop/assets/img/loader.gif") no-repeat 50% 50%;
+      display: block;
+      height: 100%;
+      left: 0;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+    .listing-item {
+      visibility: hidden;
+    }
+  }
+}
+
+@import 'articleList/index';
+@import 'listingAsCarousel/index';
+@import 'productDefaultView/index';

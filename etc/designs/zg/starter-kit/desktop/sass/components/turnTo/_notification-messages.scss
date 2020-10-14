@@ -1,0 +1,33 @@
+#TT3newQMsg {
+  @include breakpoints {
+    @include box(g('_success-message.box'), $media);
+    @include paragraph(g('_success-message.paragraph'), $media);
+  }
+}
+
+#TT3error {
+  @include box(g('_error-message.box'), $media);
+  @include paragraph(g('_error-message.paragraph'), $media);
+  @include icon(g('_error-message.icon'), $media);
+
+  $pseudo: safetype(g('_error-message.icon.side'), 'after');
+  &:#{$pseudo} {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+}
+
+.TT3tabClose {
+  background: none;
+  height: auto;
+  width: auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  @include breakpoints {
+    @include icon(g('_success-message._close-icon.icon'), $media);
+  }
+}

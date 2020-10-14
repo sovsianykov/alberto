@@ -1,0 +1,202 @@
+.carousel-hero {
+  @import 'config';
+  @function g($a...) { @return get-last($carousel-hero, $a...); }
+
+  .carousel-slides {
+    $box: merge((
+      overflow: hidden,
+      margin: 0,
+      padding: 0
+    ), g('_carousel-slides.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    max-height: 50vh; // Assure that page title is visible in viewport
+    list-style: none;
+  }
+
+  &.is-ready {
+    .composite-hero-image .box > .component-content {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .carousel-slide {
+      position: static;
+    }
+  }
+
+  .carousel-slide {
+    $carousel-slide: merge((
+      width: 100%,
+      position: absolute
+    ),g('_carousel-slides._carousel-slide.box'));
+
+    @include breakpoints {
+      @include box($carousel-slide, $media);
+    }
+
+    &.is-active {
+      display: block;
+    }
+
+    .image-and-content {
+      overflow: hidden;
+    }
+
+    .no-content .carousel-cover,
+    .no-image .carousel-content {
+      float: none;
+      width: 100%;
+    }
+  }
+
+  .carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+
+    @include breakpoints {
+      @include box(g('_carousel-nav.box'), $media);
+    }
+
+    .carousel-nav-item {
+      a {
+        @include breakpoints {
+          @include button(g('_carousel-nav._item.button'), $media);
+        }
+
+        font-size: 0;
+        box-sizing: border-box;
+      }
+
+      &.is-active a {
+        @include breakpoints {
+          @include button(g('_carousel-nav._item-active.button'), $media);
+        }
+      }
+    }
+
+    .carousel-nav-prev,
+    .carousel-nav-next {
+      @include media-query(auto, notebook) {
+        display: none;
+      }
+
+      a {
+        @include breakpoints {
+          @include button(g('_carousel-nav._nav-item.button'), $media);
+        }
+
+        color: transparent;
+        position: relative;
+
+        $pseudo: safetype(g('_carousel-nav._nav-item.button'), 'after');
+        &:#{$pseudo} {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    .carousel-nav-prev a {
+      @include breakpoints {
+        @include button(g('_carousel-nav._nav-item._prev.button'), $media);
+      }
+
+      [dir="rtl"] & {
+        @include breakpoints {
+          @include button(g('_carousel-nav._nav-item._next.button'), $media);
+        }
+      }
+    }
+
+    .carousel-nav-next a {
+      @include breakpoints {
+        @include button(g('_carousel-nav._nav-item._next.button'), $media);
+      }
+
+      [dir="rtl"] & {
+        @include breakpoints {
+          @include button(g('_carousel-nav._nav-item._prev.button'), $media);
+        }
+      }
+    }
+  }
+
+  // patch to help lazysizes know these slides do not need to be loaded up front
+
+  // pre load state
+  .carousel-slide:nth-child(n+2) .component {
+    display: none;
+  }
+  .carousel-slides {
+    $size : 70px;
+    min-height: $size * 3;
+    transition: height .3s linear;
+    &:before {
+      animation: sl-rotate 1s infinite linear;
+      border: 1px solid color("neutral","light");
+      border-left: 1px solid transparent;
+      border-radius: 50%;
+      content: " ";
+      height: $size;
+      left: 50%;
+      margin-left: $size * -0.5;
+      margin-top: $size * -0.5;
+      position: absolute;
+      top: 50%;
+      width: $size;
+    }
+  }
+
+  // post load state
+  &.is-ready {
+    .carousel-slide:nth-child(n+2) .component {
+      display: block;
+    }
+    .carousel-slides {
+      min-height: 0;
+      &:before {
+        display: none;
+      }
+    }
+  }
+}
+.carousel {
+  overflow: hidden;
+
+  &.enable-carousel-autoplay {
+    .component-content {
+      position: relative;
+
+      .auto-play-pause-button {
+        background-color: transparent;
+        border: 0 none;
+        cursor: pointer;
+        font-family: icons;
+        position: absolute;
+        right: 15px;
+        top: 45px;
+        z-index: 10;
+
+        &[data-autoplay="false"]:before {
+          content: common('icon.pause');
+          font-size: px(24);
+        }
+
+        &[data-autoplay="true"]:before {
+          content: common('icon.play');
+          font-size: px(24);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,206 @@
+// STORE LOCATOR HEADER WITH STEPS INDICATOR
+$whereToBuy: (
+  _map: (
+    size: (
+      min-height: 100vh
+    ),
+    _result-item: (
+      text: (
+        font-size: px('xxs'),
+        line-height: 1.57,
+      ),
+      _title: (
+        paragraph: (
+          text: (
+            font-weight: bold,
+            line-height: 1,
+            font-size: breakpoint(px(18), px(18), px('s')),
+          ),
+          margin: (
+            margin-top: 0,
+            margin-bottom: spacings('s'),
+          )
+        )
+      ),
+      _address: (
+        paragraph: (
+          margin: 0 0 spacings('s')
+        )
+      ),
+      _directions: (
+        button: common('_primary.button')
+      )
+    )
+  ),
+  _store-locator: (
+    box: (
+      background: (
+        background: breakpoint((
+          tablet-min: color('white')
+        ))
+      ),
+      box-shadow: breakpoint(null , null, 0 1px 10px 4px transparentize(color('black'), 0.91)),
+      width: breakpoint(100%, 50%, 600px)
+    ),
+    _header: (
+      box: (
+        width: breakpoint(auto, 200%, auto),
+        padding: (
+          padding: breakpoint(20px, 20px,  spacings('m')),
+        ),
+        background: (
+          background-color: color('neutral', 'lighter')
+        ),
+      ),
+      _title: (
+        paragraph: (
+          text: (
+            font-family: 'primary',
+            font-size: breakpoint(px('l'), px('xl'), px('xl')),
+            text-transform: uppercase,
+            font-weight: bold,
+            letter-spacing: 2px,
+            line-height: 1,
+          ),
+          line: (
+            border: (
+              border-bottom: 4px solid color('black')
+            ),
+            display: block,
+            side: after,
+            width: spacings('m'),
+            margin: (
+              margin-top: spacings('xs')
+            )
+          ),
+          margin: (
+            margin-top: 0,
+            margin-bottom: spacings('xs'),
+          )
+        )
+      ),
+      _subtitle: (
+        paragraph: (
+          text: (
+            font-size: px('xxs'),
+            letter-spacing: 0.2px,
+          ),
+          margin: (
+            margin-top: 0,
+            margin-bottom: spacings('xs'),
+          )
+        )
+      ),
+      _steps-indicator: (
+        box: (
+          // placeholder for box config
+        ),
+        text: (
+          font-size: px('xxs'),
+          font-weight: bold,
+          letter-spacing: 0.2px,
+        ),
+        _edit-link: (
+          link: (
+            text: (
+              text-transform: uppercase,
+              text-decoration: none,
+              line-height: 1,
+              font-family: 'primary'
+            ),
+            line: (
+              border: (
+                border-bottom: 1px solid color('black')
+              ),
+              width: 100%,
+              margin: (
+                margin-top: -2px,
+              )
+            )
+          )
+        ),
+        _timeline: (
+          border: (
+            border-top: 1px solid color('neutral', 'light')
+          )
+        ),
+        _timeline-active: (
+          border: (
+            border-top: 1px solid color('neutral', 'light')
+          )
+        ),
+        _step-number: (
+          text: (
+            font-size: px('xxxs'),
+            text-align: center,
+            line-height: px(20)
+          ),
+          box: (
+            background: (
+              background-color: color('neutral', 'light')
+            ),
+            height: 20px,
+            width: 20px,
+            border: (
+              border-radius: 50%,
+            ),
+            margin: (
+              margin-bottom: spacings('xxs')
+            )
+          )
+        ),
+        _step-number-active: (
+          box: (
+            background: (
+              background-color: color('primary', 'base')
+            ),
+          )
+        )
+      )
+    )
+  )
+);
+
+// STORE LOCATOR STEPS CONTENT
+$whereToBuy: merge($whereToBuy, (
+  _store-locator: (
+    _step-container: (
+      box: (
+        background: (
+          background: breakpoint((
+            mobile: color('white')
+          ))
+        ),
+        width: auto,
+        box-sizing: border-box
+      )
+    ),
+    _step1-wrapper: (
+      box: (
+        padding: (
+          padding: breakpoint(20px, 20px, spacings('m'))
+        )
+      )
+    ),
+    _step2-wrapper: (
+      box: (
+        padding: (
+          padding: breakpoint(20px, 20px, spacings('m') 20px)
+        ),
+        margin: (
+          margin: breakpoint((desktop: 0 -7px))
+        )
+      )
+    ),
+    _step3-wrapper: (
+      box: (
+        background: (
+          background-color: color('white')
+        ),
+        padding: (
+          padding-bottom: 20px,
+        )
+      )
+    ),
+  )
+));

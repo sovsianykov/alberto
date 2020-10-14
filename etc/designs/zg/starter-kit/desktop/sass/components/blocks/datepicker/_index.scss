@@ -1,0 +1,126 @@
+@import '../../../core/config';
+
+.reference-datepicker {
+  font-size: 1rem;
+  position: relative;
+  z-index: 1;
+
+  .error {
+
+    .picker__select--month,
+    .picker__select--year {
+
+      &:focus {
+        box-shadow: none !important; // Override form rule
+      }
+    }
+  }
+
+  .picker__select--month,
+  .picker__select--year {
+    width: auto;
+    margin-top: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    appearance: none;
+    background: color('white');
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+
+    &:focus {
+      box-shadow: none !important; // Override form rule
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+  }
+
+  .picker__select--month:focus,
+  .picker__select--year:focus {
+    border-color: color('neutral', 'light');
+  }
+
+  &.error {
+    .picker__select--month,
+    .picker__select--year {
+      border-color: color('neutral', 'lighter');
+    }
+  }
+
+  .picker__weekday {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .picker__holder {
+    outline: none;
+    max-width: 300px;
+    border-color: color('neutral', 'base');
+
+    @include respond-to(phone) {
+      max-width: 500px;
+    }
+  }
+
+  .picker__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .picker__table {
+    margin-bottom: 0;
+  }
+
+  .picker__box {
+    padding: 0;
+  }
+
+  .picker__nav--prev {
+    left: 0;
+  }
+
+  .picker__nav--next {
+    right: 0;
+  }
+
+  .picker__nav--next,
+  .picker__nav--prev {
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:before {
+      border-width: 0.35em;
+    }
+  }
+
+  .picker__footer {
+    display: none;
+  }
+
+  .picker__day--infocus:hover,
+  .picker__day--outfocus:hover {
+    background-color: color('primary', 'base');
+  }
+
+  .picker__day--highlighted:hover,
+  .picker__day--highlighted,
+  .picker--focused .picker__day--highlighted {
+    background-color: color('primary', 'base');
+    border-color: color('primary', 'base');
+    color: color('white');
+  }
+
+  .picker__day--selected {
+    background-color: color('primary', 'base');
+  }
+
+  .picker__day--today:before {
+    border-top-color: color('black');
+  }
+}

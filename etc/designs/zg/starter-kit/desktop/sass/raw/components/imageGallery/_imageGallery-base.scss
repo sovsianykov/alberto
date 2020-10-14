@@ -1,0 +1,152 @@
+.imageGallery-description {
+  margin: 10px 0;
+}
+
+.imageGallery {
+  &.is-playing {
+    .imageGallery-view-overlay {
+      &:before {
+        @include font-awesome($fa-var-pause);
+        font-size: 5rem;
+        position: absolute;
+      }
+    }
+  }
+}
+
+.imageGallery-view-overlay {
+  transition: opacity, 0.5s ease-out;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+
+  &:before {
+    @include font-awesome($fa-var-play);
+    font-size: 5rem;
+    color: $body-bg;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -30px 0 0 -21px;
+  }
+
+  &:hover {
+    opacity: 1;
+    text-decoration: none;
+  }
+}
+
+.imageGallery-view {
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+
+  img {
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.imageGallery-thumbnails {
+  position: relative;
+  margin: 20px 0;
+}
+
+.imageGallery-list {
+  overflow: hidden;
+  margin: 0 10%;
+  position: relative;
+}
+
+.imageGallery-list-inner {
+  overflow: hidden;
+  display: block;
+  position: relative;
+  top: 0;
+  left: 0;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+  width: 4000px;
+}
+
+.imageGallery-thumbnail {
+  opacity: .7;
+  transition: opacity .2s;
+  float: left;
+  overflow: hidden;
+  padding: 0;
+  margin: 0 9px;
+  cursor: pointer;
+  text-align: center;
+  position: relative;
+  display: block;
+  border: 1px solid $gray-light;
+
+  &:hover,
+  &.is-active {
+    opacity: 1;
+  }
+
+  a {
+    display: block;
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
+.imageGallery-arrow {
+  position: absolute;
+  top: 50%;
+  margin-top: -13px;
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  font-size: 0;
+  background: $gray-dark;
+  background: rgba($gray-dark, 0.5);
+  text-align: center;
+
+  &.is-disabled {
+    opacity: .5;
+  }
+
+  &:hover {
+    background: $gray-dark;
+    background: rgba($gray-dark, 0.8);
+  }
+}
+
+.imageGallery-arrow-left,
+.imageGallery-arrow-right {
+  &:before {
+    font-size: 1.4rem;
+    line-height: 26px;
+    color: $body-bg;
+  }
+}
+
+.imageGallery-arrow-left {
+  left: 0;
+
+  &:before {
+    @include font-awesome($fa-var-angle-left);
+  }
+}
+
+.imageGallery-arrow-right {
+  right: 0;
+
+  &:before {
+    @include font-awesome($fa-var-angle-right);
+  }
+}

@@ -1,0 +1,45 @@
+@include local-spacings();
+
+$imageGallery: (
+  spacings: spacings(),
+  _thumbnail: (
+    button: (
+      margin: (
+        margin: 0 spacings('xxs')
+      ),
+      border: (
+        border: breakpoint((mobile: 1px solid color('black'), tablet-min: 1px solid transparent)),
+        border-radius: breakpoint((mobile: 50%, tablet-min: 0))
+      ),
+      hover: (
+        border: (
+          border: breakpoint((mobile: 1px solid color('neutral', 'dark'), tablet-min: 1px solid color('neutral', 'light'))),
+        ),
+        background: (
+          background-color: breakpoint((mobile: color('neutral', 'dark'), tablet-min: transparent))
+        )
+      ),
+      box-sizing: border-box,
+      height: breakpoint((mobile: spacings('xs'))),
+      width: breakpoint((mobile: spacings('xs'))),
+      max-height: spacings('l'),
+      max-width: spacings('l')
+    )
+  ),
+  _thumbnail-active: (
+    button: (
+      background: (
+        background-color: breakpoint((mobile: color('black'), tablet-min: color('white')))
+      ),
+      border: (
+        border-color: color('black'),
+        border-radius: breakpoint((mobile: 50%, tablet-min: 0))
+      ),
+      box-sizing: border-box,
+      height: breakpoint((mobile: spacings('xs'))),
+      width: breakpoint((mobile: spacings('xs'))),
+      max-height: spacings('l'),
+      max-width: spacings('l')
+    )
+  )
+);

@@ -1,0 +1,21 @@
+a.button-primary {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($buttonPrimary, $a...);
+  }
+
+  @include breakpoints() {
+    @include button(g('_link.button'), $media);
+  }
+
+  > span {
+    @include button(g('_inner-span.button'), $media);
+  }
+
+  &:hover > span {
+    $pseudo: safetype(g('_inner-span.button.line.side'), 'after');
+    &:#{$pseudo} {
+      @include hover(g('_inner-span.button.line.hover'), $media);
+    }
+  }
+}

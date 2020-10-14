@@ -1,0 +1,11 @@
+$common: () !default;
+
+// get data from common map
+@function common($args...) {
+  @return get($common, $args...);
+}
+
+// shortcut for merging common data with current data
+@function extend($common, $map) {
+  @return merge(common($common), $map);
+}

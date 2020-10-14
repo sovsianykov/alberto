@@ -1,0 +1,89 @@
+.listing-filter-store-locator-category-selector {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($whereToBuyFilters, $a...);
+  }
+
+  .filter-form {
+    @include box(g('_filters-form.box'), $media);
+
+    &.loading {
+      &:after {
+        background: url("/etc/designs/zg/starter-kit/desktop/assets/img/loader.gif") no-repeat center;
+        background-color: transparentize(color('white'), 0.25);
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
+  }
+
+  .filter-wrapper {
+    @include breakpoints() {
+      @include box(g('_filter-wrapper.box'), $media);
+    }
+  }
+
+  .filter-prefix {
+    display: block;
+
+    @include breakpoints() {
+      @include paragraph(g('_label.paragraph'), $media);
+    }
+  }
+
+  .filter-select {
+    width: 100%;
+    display: block;
+    position: relative;
+
+    @include icon(g('_dropdown.icon'), $media);
+
+    &:after {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    > select {
+      appearance: none;
+      cursor: pointer;
+
+      @include box(g('_dropdown.box'), $media);
+      @include text(g('_dropdown.text'), $media);
+
+      &::-ms-expand {
+        display: none;
+      }
+    }
+  }
+
+  .filter-quantity,
+  .filter-order,
+  .filter-wrapper.no-tags,
+  .filter-button {
+    display: none;
+  }
+
+  @include media-query(tablet, notebook) {
+    .filter-wrapper {
+      width: 100%;
+    }
+
+    .filter-select {
+      display: block;
+      margin: 5px 0;
+      width: 100%;
+
+      select {
+        width: 100%;
+      }
+    }
+
+  }
+}

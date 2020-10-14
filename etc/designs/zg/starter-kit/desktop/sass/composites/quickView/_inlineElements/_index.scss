@@ -1,0 +1,50 @@
+@import '../../../core/config';
+
+.box-inline-elements {
+  @import 'config';
+  @function g($a...) { @return get-last($config-inline-elements, $a...); }
+
+  > .component-content > .content {
+    $box: merge((
+      margin: 0 spacings('xs') * -1
+    ), g('box'));
+
+    @include box($box, $media);
+  }
+
+  .reference-find-in-store-button,
+  .buyitnow {
+    $box: merge((
+      margin: 0 spacings('xs')
+    ), g('_button-wrappers.box'));
+
+    @include box($box, $media);
+  }
+
+  .reference-find-in-store-button {
+    margin: unset !important;
+
+    .button-tertiary {
+      $button: merge((
+        min-width: 180px
+      ), g('_find-in-store.button'));
+
+      @include button($button, $media);
+    }
+  }
+
+  .buyitnow {
+    .addtobag-btn,
+    .shopalyst-btn,
+    .btn-primary {
+      $button: merge((
+        margin: (
+          margin-top: 0,
+          margin-right: 0
+        )
+      ), g('_buy-it-now.button'));
+
+      @include button($button, $media);
+    }
+  }
+}

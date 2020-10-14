@@ -1,0 +1,53 @@
+@include local-spacings();
+
+$centeredHeader: (
+  spacings: spacings(),
+  _main: (
+    box: (
+      max-width: breakpoint((tablet-max: 530px, desktop: 730px))
+    ),
+    _header: (
+      paragraph: (
+        text: (
+          text-align: center,
+          font-size: breakpoint((tablet-max: px('xl'), desktop: px('xxxl'))),
+          line-height: breakpoint((tablet-max: 1.13, desktop: 1.06)),
+          font-weight: bold,
+          font-family: 'primary',
+          text-transform: uppercase
+        ),
+        margin: (
+          margin-top: breakpoint((tablet-max: 60px, desktop: 70px)),
+          margin-bottom: 0
+        )
+      )
+    ),
+    _text-below: (
+      paragraph: (
+        text: (
+          text-align: breakpoint((tablet-max: left, desktop: center)),
+          font-size: px(18),
+          line-height: 1.44
+        ),
+        margin: (
+          margin-top: breakpoint((tablet-max: 15px, desktop: 0)),
+          margin-bottom: breakpoint((tablet-max: spacings('l'), desktop: 20px))
+        ),
+        line: (
+          border: (
+            border-bottom: 4px solid color('primary', 'base')
+          ),
+          text: (
+            text-align: center
+          ),
+          display: block,
+          side: after,
+          width: 30px,
+          margin: (
+            margin: breakpoint((tablet-max: 26px auto 0, desktop: 16px auto 0))
+          )
+        )
+      )
+    )
+  )
+);

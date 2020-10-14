@@ -1,0 +1,97 @@
+// The simple footer inherits all CSS from NASK footer,
+// this file overrides these rules to ensure design
+// specific for Simple.
+
+.reference-footer-simple {
+  @import 'config';
+  @function g($a...) { @return get-last($footer-simple, $a...); }
+
+  @include icon(g('box'), $media);
+
+  .footer-primary-nav {
+    $box: merge((
+      margin: (
+        margin-top: breakpoint(spacings('l'), spacings('l'), 0),
+        margin-left: 0
+      )
+    ), g('_primary-nav.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    > .component-content > .content {
+      > .box {
+        h4 {
+          @include breakpoints {
+            @include paragraph(g('_primary-nav._title.paragraph'), $media);
+          }
+        }
+
+        .navigation-item a {
+          $link: merge((
+            display: flex,
+            flex: (
+              justify-content: breakpoint(center, null, null)
+            )
+          ), g('_primary-nav._link.button'));
+
+          @include breakpoints {
+            @include button($link, $media);
+          }
+        }
+      }
+    }
+  }
+
+  .footer-social-links {
+    $box: merge((
+      display: breakpoint(none, null, null),
+      margin: (
+        margin: breakpoint(null, spacings('m') * 1.5 spacings('s') * 1.5 spacings('xs'), null)
+      )
+    ), g('_social-links.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    > .component-content > .content {
+      flex-wrap: wrap;
+      margin: spacings('m') * -1;
+
+      .reference-icon-link {
+        margin: spacings('l') * 0.5 spacings('s') * 0.5;
+        //color: white;
+
+        a {
+          @include breakpoints {
+            @include classlist(g('_social-links._link-icon.classlist')) {
+              @include icon($curr, $media);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer-social-links .richText {
+    flex: 0 0 100%;
+
+
+
+    $title: merge((
+      margin: (
+        margin: breakpoint((
+          mobile: null,
+          tablet-min: spacings('m') spacings('s') * 0.5 spacings('l') * -0.5
+        ))
+      ),
+      width: 100%
+    ), g('_social-links._title.paragraph'));
+
+    @include breakpoints {
+      @include paragraph($title, $media);
+    }
+  }
+}

@@ -1,0 +1,673 @@
+$header: (
+  // text: (), // global text config
+  supplementary: (
+    // text: (), // global text config
+    background: color('neutral', 'lighter'),
+    box: (
+      padding: (
+        padding: breakpoint(spacings('m') 20px, spacings('l'), 0)
+      ),
+      max-width: breakpoint(none, 540px, none),
+      display: breakpoint((
+        tablet-min: flex
+      )),
+      margin: (
+        margin-left: breakpoint(0, auto, 0),
+        margin-right: breakpoint(0, auto, 0)
+      ),
+      flex: (
+        align-items: breakpoint(null, stretch, center),
+        justify-content: breakpoint(null, null, flex-end)
+      )
+    ),
+    _language: (
+      box: (),
+      button: (
+        border: (
+          border: breakpoint((
+            tablet-max: 1px solid color('neutral', 'light')
+          )),
+          border-radius: breakpoint((
+            tablet-max: 1000px,
+            desktop: null
+          )),
+        ),
+        box-sizing: border-box,
+        min-width: breakpoint(40px, 44px),
+        height: breakpoint(40px, 44px),
+        vertical-align: middle,
+        flex: (
+          align-items: center,
+          justify-content: center
+        ),
+        text: extend('_label.text', (
+          font-family: breakpoint('primary', 'primary', 'body'),
+          font-size: breakpoint((
+            tablet-max: px('xxs'),
+            desktop: px(9)
+          )),
+          font-weight: bold,
+          text-decoration: none,
+          color: breakpoint((
+            tablet-max: color('neutral', 'light')
+          ))
+        )),
+        icon: (
+          display: breakpoint(none, none),
+          content: common('icon.arrow-down'),
+          font-size: breakpoint(null, null, 4px),
+          margin-left: spacings('xxs')
+        ),
+        padding: breakpoint((
+          mobile: 0 2px,
+          tablet: 0 2px,
+          desktop: 0 8px
+        )),
+        hover: (
+          icon: (
+            display: breakpoint(none, none)
+          ),
+          border: (
+            border-color: breakpoint((
+              tablet-max: color('black')
+            ))
+          ),
+          background: (
+            background-color: breakpoint((
+              tablet-max: color('black')
+            ))
+          ),
+          text: (
+            color: breakpoint((
+              tablet-max: color('white')
+            ))
+          )
+        )
+      ),
+      _label: (
+        paragraph: (
+          text: extend('_label.text', (
+            font-size: px('xxs'),
+            font-weight: bold,
+            text-transform: none
+          )),
+          display: breakpoint(null, null, none),
+        )
+      ),
+      _space-between: breakpoint((
+        tablet-max: 20px
+      )),
+      _desktop: (
+        _dropdown: (
+          box: (
+            background: color('white'),
+            border: 1px solid color('neutral', 'lighter')
+          ),
+          button: (
+            text: extend('_label.text', (
+              font-family: 'body',
+              font-size: px(9),
+              font-weight: normal,
+              text-decoration: none,
+            )),
+            display: flex,
+            padding: 8px,
+            icon: (
+              content: common('icon.cross-small'),
+              font-size: breakpoint(null, null, 5px),
+              margin-top: -2px
+            ),
+            hover: (
+              background: color('primary', 'dark')
+            )
+          )
+        )
+      )
+    ),
+    _smartlabel: (
+      box: (),
+      _label: (
+        box: (),
+        paragraph: (
+          text: extend('_label.text', (
+            font-size: px('xxs'),
+            font-weight: bold
+          )),
+        )
+      ),
+      _image: (
+        box: ()
+      )
+    ),
+    _contact: (
+      box: (
+        margin: (
+          margin-top: breakpoint(25px, null, null)
+        ),
+        background: (
+          background-color: breakpoint(null, null, color('black'))
+        ),
+        display: breakpoint(null, null, flex)
+      ),
+      button: (
+        display: flex,
+        max-width: breakpoint(null, 200px, null),
+        background: (
+          background-color: breakpoint((
+            tablet-max: color('black')
+          ))
+        ),
+        padding: breakpoint((
+          tablet-max: 0 spacings('s'),
+          desktop: 7px 20px
+        )),
+        height: breakpoint(spacings('xl'), spacings('xl'), null),
+        text: extend('_label.text', (
+          font-family: 'primary',
+          font-size: breakpoint(px('xs'), px('xs'), px('xxxs')),
+          color: color('white'),
+          text-decoration: none,
+          letter-spacing: 0.3px
+        )),
+        flex: (
+          justify-content: space-between,
+          align-items: center
+        ),
+        icon: (
+          content: breakpoint((
+            tablet-max: common('icon.arrow-right')
+          )),
+          font-size: breakpoint(px(11), px(11), null),
+          color: color('white'),
+          margin-left: spacings('s')
+        ),
+        border: (
+          border-radius: common('_base.button.border.border-radius')
+        ),
+        hover: (
+          background: (
+            background-color: breakpoint((
+              tablet-max: color('neutral', 'light')
+            ))
+          ),
+          opacity: breakpoint((
+            desktop: 0.7
+          ))
+        )
+      ),
+      _space-between: breakpoint(20px, 48px, 0),
+      _separator: (
+        box: (
+          display: breakpoint(none, none, null),
+          width: 0,
+          height: spacings('xs'),
+          border: (
+            border-left: 1px solid color('white')
+          )
+        )
+      )
+    )
+  ),
+  main: (
+    // text: (), // global text config
+    box: (
+      background: color('white'),
+      height: breakpoint((
+        tablet-max: 53px
+      )),
+      border: (
+        border-top: 0,
+        border-right: 0,
+        border-left: 0,
+        border-bottom: 4px solid color('primary', 'dark'),
+        border-image: linear-gradient(to right, color('primary', 'dark'), color('primary')) 100% 1
+      )
+    ),
+    _logo: (
+      box: (
+        margin: (
+          margin-right: breakpoint((
+            tablet-max: spacings('m'),
+            desktop: spacings('xl')
+          ))
+        ),
+        padding: spacings('xs') 0,
+        max-width: breakpoint(100px, 110px, spacings('xxxl')),
+        max-height: 46px
+      )
+    ),
+    _navigation: (
+      _category-nav: (
+        classlist: (
+          defaults: (
+            button: (
+              text: (
+                font-size: breakpoint((
+                  tablet-max: px('s'),
+                  desktop: px('xs')
+                )),
+                font-family: 'primary',
+                text-transform: uppercase,
+                text-decoration: none,
+                line-height: 1.1
+              ),
+              icon: (
+                content: breakpoint((
+                  tablet-max: common('icon.arrow-right')
+                )),
+                font-size: breakpoint((
+                  tablet-max: 13px
+                ))
+              ),
+              padding: (
+                padding: breakpoint((
+                  desktop: spacings('xxs') 0
+                ))
+              ),
+              line: (
+                display: breakpoint(none, none, null),
+                side: before,
+                width: calc(100% + 20px),
+                margin: (
+                  margin: breakpoint((
+                    desktop: 12px -10px 0
+                  ))
+                ),
+                transform: (
+                  transform: breakpoint((
+                    desktop: scaleX(0)
+                  )),
+                  transform-origin: 0 0
+                ),
+                border: (
+                  border-top: breakpoint((
+                    desktop: 4px solid color('secondary')
+                  ))
+                ),
+                hover: (
+                  transform: (
+                    transform: breakpoint((
+                      desktop: scaleX(1)
+                    ))
+                  )
+                )
+              ),
+              hover: (
+                text: (
+                  color: color('secondary')
+                )
+              )
+            )
+          ),
+          items: (
+            tab-item-store-locator: (
+              button: (
+                icon: (
+                  content: breakpoint((
+                    tablet-max: common('icon.map-location'),
+                    desktop: common('icon.map')
+                  )),
+                  font-size: breakpoint(26px, 26px, 12px),
+                  margin-left: 7px,
+                  margin-top: -2px
+                )
+              )
+            )
+          )
+        ),
+        _space-between: breakpoint(20px, 20px, spacings('xl'))
+      ),
+      _header-main: (
+        _space-between: 20px,
+        _category-nav: (
+          box: (
+            margin: (
+              margin-top: breakpoint(null, null, 4px)
+            )
+          ),
+          classlist: (
+            defaults: (
+              button: (
+                display: breakpoint(none, none, flex)
+              )
+            ),
+            items: (
+              tab-item-store-locator: (
+                button: (
+                  display: flex,
+                  text: (
+                    font-size: breakpoint(0, 0, null)
+                  ),
+                  icon: (
+                    margin-left: breakpoint(0, 0, 7px)
+                  )
+                )
+              )
+            )
+          )
+        )
+      ),
+      _mobile: (// mobile has specific behaviour
+        box: (
+          background: color('white'),
+          box-shadow: 0 3px spacings('s') 0 rgba(color('black'), 0.1)
+        ),
+        _nav-holder: (
+          box: (
+            max-width: breakpoint(none, 540px),
+            padding: (
+              padding: breakpoint((
+                mobile: $gutter,
+                tablet: spacings('m') $gutter $gutter
+              ))
+            ),
+            margin: (
+              margin-left: auto,
+              margin-right: auto
+            )
+          )
+        ),
+        _category-nav: (
+          classlist: (
+            defaults: (
+              button: (
+                display: flex,
+                flex: (
+                  justify-content: space-between
+                ),
+                padding: spacings('s') 0
+              )
+            ),
+            items: (
+              tab-item-store-locator: (
+                button: (
+                  flex: (
+                    justify-content: flex-start
+                  )
+                )
+              ),
+              tab-item-direct-link: (
+                button: (
+                  icon: (
+                    display: breakpoint((
+                      tablet-max: none
+                    ))
+                  )
+                )
+              )
+            )
+          )
+        ),
+        _category-box: (
+          _navigation: (
+            button: (
+              display: flex,
+              flex: (
+                justify-content: space-between
+              ),
+              text: (
+                font-size: 18px,
+                font-family: 'body',
+                text-decoration: none
+              ),
+              padding: spacings('s') 0,
+              icon: (
+                content: breakpoint((
+                  tablet-max: common('icon.arrow-right')
+                )),
+                font-size: breakpoint((
+                  tablet-max: 13px
+                ))
+              )
+            )
+          )
+        ),
+        _open: (
+          button: (
+            width: 53px,
+            background: color('black'),
+            icon: (
+              content: common('icon.hamburguer'),
+              color: color('white'),
+              font-size: 21px
+            )
+          )
+        ),
+        _close: (
+          button: (
+            width: 55px,
+            height: 55px,
+            background: (
+              background-color: color('primary', 'base')
+            ),
+            icon: (
+              content: common('icon.cross'),
+              color: color('black'),
+              font-size: 15px,
+              side: before
+            ),
+            z-index: 1
+          )
+        ),
+        _back: (
+          button: (
+            display: flex,
+            flex: (
+              justify-content: flex-start
+            ),
+            text: (
+              font-family: 'primary',
+              font-size: px('s'),
+              text-transform: uppercase,
+              text-decoration: none
+            ),
+            icon: (
+              content: common('icon.arrow-left'),
+              color: color('neutral', 'light'),
+              font-size: 16px,
+              side: before,
+              margin-right: 15px
+            ),
+            height: 56px,
+            margin: (
+              margin-top: breakpoint((
+                mobile: $gutter * -1
+              )),
+              margin-bottom: spacings('xs')
+            ),
+            border: (
+              border-bottom: 2px solid color('primary', 'base')
+            )
+          )
+        ),
+        _back-level-2: (
+          button: (
+            display: flex,
+            flex: (
+              justify-content: flex-start
+            ),
+            margin: (
+              margin-top: spacings('xs') * -1,
+              margin-bottom: spacings('xs')
+            ),
+            text: (
+              font-family: 'body',
+              text-transform: none,
+              font-size: px(18),
+              font-weight: bold
+            ),
+            border: (
+              border-bottom: 1px solid color('neutral', 'light')
+            )
+          )
+        )
+      ),
+      _desktop: (// desktop has specific behaviours
+        _category-box: (
+          _is-fullscreen: true,
+          box: (
+            background: (
+              background-color: color('white')
+            ),
+            padding: (
+              padding: 20px spacings('m') spacings('m')
+            ),
+            margin: (
+              margin-left: spacings('m') * -1
+            )
+          ),
+          _navigation: (
+            margin: (
+              margin-top: spacings('m')
+            ),
+            _title: (
+              button: (
+                text: (
+                  font-size: px('xs'),
+                  font-weight: bold
+                ),
+                margin: (
+                  margin-bottom: spacings('s')
+                ),
+                line: (
+                  display: block,
+                  side: after,
+                  width: 100%,
+                  margin: (
+                    margin: -2px 0 0
+                  ),
+                  transform: (
+                    transform: scaleX(0),
+                    transform-origin: 0 0
+                  ),
+                  border: (
+                    border-top: 1px solid color('black')
+                  ),
+                  hover: (
+                    transform: (
+                      transform: scaleX(1)
+                    )
+                  )
+                )
+              )
+            ),
+            _link: (
+              button: (
+                text: (
+                  font-size: px('xxs'),
+                  line-height: 1.2
+                ),
+                margin: (
+                  margin-bottom: 8px
+                ),
+                hover: (
+                  text: (
+                    color: color('neutral', 'light')
+                  )
+                )
+              )
+            )
+          ),
+          _nav-holder: (
+            box: (
+              width: 170px
+            )
+          )
+        )
+      )
+    ),
+    _banner: (
+      box: (
+        border: (
+          border-left: breakpoint((
+            desktop: 2px solid color('neutral', 'light')
+          )),
+          border-top: breakpoint((
+            tablet: 2px solid color('neutral', 'light')
+          ))
+        ),
+        padding: (
+          padding-left: breakpoint((
+            desktop: spacings('m')
+          )),
+          padding-top: breakpoint(null, spacings('l'), null),
+          padding-bottom: breakpoint(null, 20px, null)
+        ),
+        margin: (
+          margin-top: breakpoint(null, spacings('m'), null)
+        )
+      ),
+      _image: (
+        _wrapper: (
+          box: (
+            background: color('neutral', 'lighter'),
+            padding: (
+              padding: spacings('s')
+            )
+          )
+        ),
+        button: (
+          display: flex,
+          width: breakpoint(null, 100%, 202px),
+          transform: (
+            transform: scale(1.005, 1.005)
+          ),
+          hover: (
+            transform: (
+              transform: scale(1.1, 1.1)
+            ),
+            transition: (
+              speed: 1s
+            )
+          )
+        )
+      ),
+      _caption: (
+        box: (
+          padding: (
+            padding: 20px 0
+          )
+        )
+      ),
+      _title: (
+        button: (
+          display: block,
+          text: (
+            font-size: px('xxs'),
+            font-weight: bold,
+            line-height: 1.14
+          ),
+          margin: (
+            margin-bottom: 8px
+          )
+        )
+      ),
+      _description: (
+        button: (
+          display: block,
+          text: extend('text.body',(
+            font-size: px('xxxs')
+          ))
+        )
+      )
+    ),
+    _search: (
+      input: extend('_base.input', (
+        width: 185px,
+        placeholder: (
+          color: color('black')
+        )
+      )),
+      icon: (
+        content: common('icon.search'),
+        font-size: breakpoint(22px, 12px, 12px),
+        side: before
+      )
+    ),
+    _mini-cart-placeholder: (
+      size: (
+        width: 20px
+      )
+    )
+  )
+);

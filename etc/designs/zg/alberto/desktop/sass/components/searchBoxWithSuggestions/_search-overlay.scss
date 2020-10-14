@@ -1,0 +1,111 @@
+.overlay-container.search-overlay {
+  @import 'config-search-overlay';
+  @function g($a...) { @return get-last($search-overlay, $a...); }
+
+  display: none;
+  height: 100vh;
+  left: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: $z-index-fixed;
+  opacity: 0;
+
+  $background-overlay: merge((
+    position: fixed
+  ), g('_background-overlay.box'));
+
+  @include breakpoints() {
+    @include box($background-overlay, $media);
+    @include transition(g('_background-overlay.transition'), (
+      'opacity'
+    ), $media);
+    background-color: rgba(255,255,255,.95);
+    transition-duration: 0.3s;
+  }
+
+  .overlay-open & {
+    display: block;
+    opacity: 1;
+  }
+
+  .overlay-close {
+    cursor: pointer;
+    font-size: 0;
+    position: absolute;
+    right: 20px;
+    top: 26px;
+
+    &::before {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    $close: merge((
+    ), g('_close.button'));
+
+    @include button($close, $media);
+    background: color("primary", "base");
+
+    &:hover:before {
+      //color: color("white");
+    }
+
+    &:hover {
+      background: none;
+    }
+
+    &:focus{
+      .ua-webkit & {
+        outline: -webkit-focus-ring-color auto 5px;
+      }
+    }
+    background: inherit;
+    &:before {
+      @include breakpoints(mobile) {
+        left: 11px;
+        top: 16px;
+        font-size: 13px;
+        color: #8f8f8f;
+      }
+      left: 5px;
+      font-size: px(20);
+      color: #8f8f8f;
+    }
+  }
+
+  .overlay-loading {
+    background: red url("/etc/designs/zg/starter-kit/desktop/assets/img/loader.gif") no-repeat;
+    height: 31px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 31px;
+  }
+
+  .overlay-content {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    max-width: 100%;
+    padding: 0;
+    position: relative;
+    top: 0;
+    @include wrapper;
+    @include breakpoints(mobile) {
+      width: 100%;
+    }
+    @include breakpoints(tablet) {
+      width: 100%;
+    }
+  }
+
+  .overlay-content-inner {
+    overflow: visible;
+  }
+}

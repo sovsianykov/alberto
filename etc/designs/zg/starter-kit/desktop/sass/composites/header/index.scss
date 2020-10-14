@@ -1,0 +1,36 @@
+@import '../../core/config';
+
+[class*=reference-header] {
+  @import 'config';
+  @function g($a...) { @return get-last($header, $a...); }
+  @import '_partials/main-holder';
+  @import '_partials/supplementary-holder';
+  @import '_partials/smart-label';
+  @import '_partials/logo';
+  @import '_partials/language-selector-v2';
+  @import '_partials/banner';
+  @import '_partials/navigation';
+  @import '_partials/contact';
+  @import '_partials/search';
+  @import '_partials/skip-to-content';
+  @import '_partials/sticky';
+
+  @include breakpoints {
+    @include text(g('text'), $media);
+  }
+
+  // MINI CART //
+  .box-cart-icon-placeholder {
+    @include breakpoints {
+      margin-left: safetype(g('main._navigation._header-main._space-between', $media), 0);
+    }
+    @include size(g('main._mini-cart-placeholder.size'), $media);
+
+    @include media-query(auto, notebook) {
+      order: 2;
+    }
+  }
+}
+
+@import 'global/index';
+@import 'global-slim/index';

@@ -1,0 +1,22 @@
+@import '../../../core/config';
+
+.image {
+  @import 'config';
+  @function g($a...) { @return get-last($image, $a...); }
+
+  bottom: 0;
+  left: 0;
+  max-width: 395px;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  .component-content img { // align image vertically in the container
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+  }
+
+  @include box(g('box'), $media);
+}

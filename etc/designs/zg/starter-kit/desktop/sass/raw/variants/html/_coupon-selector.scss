@@ -1,0 +1,15 @@
+.html--coupon-selector {
+  @include respond-to(desktop) {
+    iframe {
+      width: 1360px;
+      height: 700px;
+    }
+  }
+
+  @include respond-to(tablet-portrait) {
+    iframe {
+      width: 375px;
+      height: 500px;
+    }
+  }
+}

@@ -1,0 +1,103 @@
+@import '../../core/config';
+
+.composite-single-featured-content {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($singleFeaturedContent, $a...);
+  }
+
+  $box: merge((
+    margin: (
+      margin: breakpoint((
+        mobile: spacings('l') 0,
+        tablet-min: spacings('xxl') 0,
+      ))
+    )
+  ), g('_main.box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  > .content {
+    @include wrapper;
+
+    $wrapper: merge((
+      display: flex,
+      flex: (
+        flex-direction: breakpoint((tablet-max: column))
+      )
+    ), g('_main._wrapper.box'));
+
+    @include breakpoints() {
+      @include box($wrapper, $media);
+    }
+  }
+
+  .richText {
+    @include breakpoints() {
+      @include box(g('_text-wrapper.box'), $media);
+    }
+
+    .featured-content-subtitle {
+      $subtitle: merge((
+        display: block,
+        margin: (
+          margin-top: breakpoint((tablet-max: spacings('m'), desktop: 60px)),
+          margin-bottom: breakpoint((tablet-max: spacings('m') * -1, desktop: spacings('s') * -1))
+        )
+      ), g('_text-wrapper._subtitle.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($subtitle, $media);
+      }
+    }
+
+    h2, h3, h4 {
+      $heading: merge((
+        margin: (
+          margin-top: breakpoint((tablet-max: spacings('m'), desktop: 0))
+        )
+      ), g('_text-wrapper._heading.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($heading, $media);
+      }
+    }
+
+    p {
+      @include paragraph(g('_text-wrapper._description.paragraph'), $media);
+    }
+  }
+
+  .image {
+    $image: merge((
+      height: 100%,
+      width: breakpoint((tablet-max: 100%, desktop: 58%)),
+      flex: (
+        flex-shrink: 0
+      )
+    ), g('_image.box'));
+
+    @include breakpoints() {
+      @include box($image, $media);
+    }
+  }
+
+  a[class*=button] {
+    $cta: merge((
+      margin: (
+        margin-top: spacings('s'),
+        margin-right: breakpoint((tablet: 10px))
+      ),
+      width: breakpoint((mobile: 100%))
+    ), g('_cta.button'));
+
+    @include breakpoints() {
+      @include button($cta, $media);
+    }
+  }
+}
+
+@import 'singleFeaturedContentLeft/index';
+@import 'singleFeaturedContentRight/index';

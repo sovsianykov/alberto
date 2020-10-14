@@ -1,0 +1,283 @@
+@import '../../core/config';
+
+@import '_step2/index';
+@import '_step3/index';
+@import '_productList/index';
+@import '_listingFilters/index';
+@import '_tabs/index';
+
+// Where to buy holders and wrappers
+.box-store-locator-holder {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($whereToBuy, $a...);
+  }
+
+  position: relative;
+
+  @include size(g('_map.size'), $media);
+
+  > .component-content,
+  > .component-content > .content {
+    height: 100%;
+  }
+
+  @mixin floating-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh !important;
+    z-index: $z-index-content - 1;
+  }
+
+  .box-store-locator-map {
+    background-color: #e5e3df; // google map default bg color while loading
+
+    @include media-query(tablet, auto) {
+      @include floating-map;
+    }
+
+    @include media-query(mobile) {
+      position: relative;
+      height: 100vh !important;
+    }
+  }
+
+  &.step-1,
+  &.step-2 {
+    .box-store-locator-map {
+      @include media-query(mobile) {
+        @include floating-map;
+      }
+    }
+  }
+
+  &.step-2 {
+    .box-store-locator-map {
+      @include media-query(mobile) {
+        visibility: hidden;
+      }
+    }
+  }
+
+  .box-store-locator-controls {
+    @include relative-wrapper;
+    height: 100%;
+
+    > .component-content {
+      z-index: $z-index-content;
+
+      > .content {
+        display: flex;
+        flex-direction: column;
+
+        @include media-query(tablet, auto) {
+          max-height: 100vh;
+        }
+      }
+
+      @include media-query(mobile, tablet) {
+        height: 100%;
+      }
+
+      @include breakpoints() {
+        @include box(g('_store-locator.box'), $media);
+      }
+    }
+  }
+
+  // title and step indicator
+  $icon: g('_store-locator._header._steps-indicator._step-number.icon');
+  $icon-width: g('_store-locator._header._steps-indicator._step-number.box.width');
+  $icon-height: g('_store-locator._header._steps-indicator._step-number.box.height');
+
+  .box-store-locator-step-indicator {
+    box-sizing: border-box;
+
+    @include breakpoints() {
+      @include box(g('_store-locator._header.box'), $media);
+
+      h1 {
+        @include paragraph(g('_store-locator._header._title.paragraph'), $media);
+      }
+      p {
+        @include paragraph(g('_store-locator._header._subtitle.paragraph'), $media);
+      }
+    }
+
+    ol {
+      padding: 0;
+      margin: 0;
+      display: flex;
+      list-style-type: none;
+      justify-content: space-between;
+      position: relative;
+
+      @include box(g('_store-locator._header._steps-indicator.box'), $media);
+
+      li {
+        position: relative;
+        z-index: 3;
+        counter-increment: item;
+        width: percentage(1/3);
+
+        @include text(g('_store-locator._header._steps-indicator.text'), $media);
+
+        &:before {
+          content: counter(item);
+          display: block;
+          @include text(g('_store-locator._header._steps-indicator._step-number.text'), $media);
+          @include box(g('_store-locator._header._steps-indicator._step-number.box'), $media);
+        }
+
+        &:nth-child(2) {
+          text-align: center;
+
+          &:before {
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+
+        &:nth-child(3) {
+          text-align: right;
+
+          &:before {
+            margin-left: auto;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .where-to-buy-edit {
+    display: inline-block;
+    margin-top: 5px;
+
+    @include link(g('_store-locator._header._steps-indicator._edit-link.link'), $media);
+
+    cursor: pointer;
+
+    &.last-step {
+      margin-left: 20px;
+    }
+  }
+
+  // active (or completed) steps
+  @for $i from 1 through 3 {
+    &.step-#{$i} .box-store-locator-step-indicator ol li:nth-child(-n+#{$i}):before {
+      @include box(g('_store-locator._header._steps-indicator._step-number-active.box'), $media);
+    }
+  }
+
+  // timeline
+  .box-store-locator-step-indicator ol {
+    &:after,
+    &:before {
+      content: "";
+      position: absolute;
+      top: #{$icon-height / 2};
+      left: #{$icon-width / 2};
+      width: calc(100% - #{$icon-width});
+      z-index: 1;
+
+      @include border(g('_store-locator._header._steps-indicator._timeline.border'), $media);
+    }
+
+    &:after {
+      z-index: 2;
+      transform-origin: 0 0;
+      transform: scaleX(0);
+
+      @include border(g('_store-locator._header._steps-indicator._timeline-active.border'), $media);
+    }
+  }
+
+  &.step-2 .box-store-locator-step-indicator ol:after {
+    transform: scaleX(0.5);
+  }
+
+  &.step-3 .box-store-locator-step-indicator ol:after {
+    transform: scaleX(1);
+  }
+
+  &.step-2,
+  &.step-3 {
+    .box-store-locator-controls {
+      > .component-content {
+        > .content {
+          @include media-query(tablet, auto) {
+            height: 100vh;
+          }
+        }
+      }
+    }
+
+    .box-store-locator-steps {
+      @include media-query(tablet, auto) {
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
+    }
+  }
+
+  .box-store-locator-steps {
+    @include breakpoints {
+      @include box(g('_store-locator._step-container.box'), $media);
+    }
+  }
+
+  // steps
+  .box-store-locator-step-1,
+  .box-store-locator-step-2,
+  .box-store-locator-step-3 {
+    display: none;
+  }
+
+  @for $i from 1 through 3 {
+    &.step-#{$i} .box-store-locator-step-#{$i} {
+      display: block;
+
+      @include breakpoints() {
+        @include box(g('_store-locator._step#{$i}-wrapper.box'), $media);
+      }
+    }
+  }
+
+  // results on map
+  .storeresults-info-wrapper {
+    padding: 5px 0; // temp until we have custom boxes.
+
+    @include text(g('_map._result-item.text'), $media);
+
+    .storeresults-name {
+      @include breakpoints {
+        @include paragraph(g('_map._result-item._title.paragraph'), $media);
+      }
+    }
+
+    .storeresults-address {
+      @include paragraph(g('_map._result-item._address.paragraph'), $media);
+    }
+
+    .storeresults-phone {
+      display: none;
+    }
+
+    .storeresults-directions {
+      box-sizing: border-box;
+      display: block;
+      width: 100%;
+
+      @include breakpoints {
+        @include button(g('_map._result-item._directions.button'), $media);
+      }
+    }
+  }
+
+  .storeresults-address > *:before {
+    content: " ";
+  }
+}

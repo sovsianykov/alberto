@@ -1,0 +1,85 @@
+@import '../../core/config';
+
+.listingFilters[class*=default-style] {
+  // margin-top: $gutter;
+  font-size: 18px;
+
+  .filter-form {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+    &.loading {
+      &:after {
+        background: url("/etc/designs/zg/starter-kit/desktop/assets/img/loader.gif") no-repeat;
+        content: "";
+        margin-left: 5px;
+        width: 31px;
+        height: 31px;
+      }
+    }
+  }
+
+  .filter-wrapper,
+  .filter-quantity {
+    margin-right: 4px;
+  }
+
+  .filter-select {
+    > select {
+      border-radius: 0;
+      appearance: none;
+      cursor: pointer;
+      height: 30px;
+      font-size: 16px;
+      box-sizing: border-box;
+      padding: 3px 10px;
+      // color: $gray;
+      // border: 1px solid darken($gray-lighter, 5%);
+      // background: $body-bg;
+
+      &::-ms-expand {
+        display: none;
+      }
+    }
+  }
+
+  .filter-quantity {
+    font-style: italic;
+    font-weight: bold;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .filter-wrapper.no-tags {
+    display: none;
+  }
+
+  .filter-button {
+    display: none;
+  }
+
+  @include media-query(tablet, notebook) {
+    .filter-wrapper {
+      width: 100%;
+    }
+
+    .filter-select {
+      display: block;
+      margin: 5px 0;
+      width: 100%;
+
+      select {
+        width: 100%;
+      }
+    }
+
+  }
+}
+
+@import 'articles/index';
+@import 'product/index';

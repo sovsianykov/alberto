@@ -1,0 +1,31 @@
+.smartbutton {
+  button {
+    @extend %btn;
+    background: $brand-primary;
+    color: $white;
+    outline: none;
+    box-shadow: 0 1px 1px rgba($gray-base, 0.2);
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: darken($brand-primary, 5%);
+      color: $white;
+      border: 0;
+      box-shadow: none;
+    }
+
+    &:disabled,
+    &:disabled:hover{
+      background: $gray-light;
+      box-shadow: 0 1px 1px rgba($gray-base, 0.2);
+      color: $gray-lighter;
+      cursor: default;
+    }
+  }
+
+  .addtobag-btn {
+    display: block;
+    margin: auto;
+  }
+}

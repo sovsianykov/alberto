@@ -1,0 +1,393 @@
+/**
+* This file will be included in author mode only
+*
+* USE:
+* ".aem-AuthorLayer-Edit" to detect Touch UI authoring
+* ".cq-wcm-edit" to detect Classic UI authoring
+*/
+
+// This fixes author device emulator background overwrite problem.
+#cq-emulator-content.firefox {
+  background-color: #fff !important;
+}
+
+.hiddenField, .hide-element {
+  display: block;
+}
+
+#header,
+#content,
+#footer {
+  height: auto;
+}
+
+.row .new.section.cq-Editable-dom {
+  clear: both;
+}
+
+#wrapper {
+  min-height: 0;
+}
+
+// header & footer
+[class*=reference-header],
+.reference-footer {
+  .box-heading {
+    display: none;
+  }
+
+  &.snippet-content-page {
+    .new.section {
+      width: 100%;
+      box-sizing: border-box;
+      // border: 1px solid red;
+    }
+
+    .component {
+      border: 2px solid #ccc;
+      margin: 0 !important;
+      padding: 5px !important;
+    }
+
+    .cq-Editable-dom--container {
+      padding: 5px;
+    }
+  }
+}
+
+// header
+[class*=reference-header] {
+  .tabContent > .content {
+    > a {
+      display: none;
+    }
+  }
+
+  &.snippet-content-page {
+    .header-supplementary {
+      .box-heading {
+        display: none;
+      }
+
+      > .component-content,
+      > .component-content > .content {
+        display: block !important;
+      }
+    }
+
+    .header-main {
+      > .component-content,
+      > .component-content > .content {
+        display: block !important;
+      }
+
+      .tabs {
+        display: block;
+
+        [style="clear:both"] {
+          display: none;
+        }
+      }
+
+      .tabs-content {
+        display: block !important;
+        position: static !important;
+        width: auto !important;
+        padding: 0 !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+
+        &:before,
+        &:after {
+          display: none;
+        }
+      }
+
+      [class*="grid_"] {
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .tabContent > .content {
+        margin: 0 !important;
+        flex-wrap: wrap;
+
+        > div {
+          flex-basis: auto !important;
+        }
+      }
+
+      .tabs-main-navigation .tabs-content .tabContent > .content > div {
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+      }
+    }
+
+    .box-language-selector  {
+      .richText p {
+        display: block;
+      }
+
+      .navigation-item .navigation-item-title {
+        display: flex;
+      }
+    }
+  }
+
+  .richText-skip-to-content .richText-content a {
+    opacity: 1;
+    height: auto;
+    width: auto;
+  }
+}
+
+[class*=reference-header] .box-language-selector .navigation-item .navigation-item-title {
+  &.is-active {
+    display: flex;
+  }
+}
+
+.shoppable-cart-open-button {
+  margin-top: 55px !important;
+}
+
+// footer
+.reference-footer {
+  * {
+    box-sizing: border-box;
+  }
+  .cq-Editable-dom--container {
+    display: block !important;
+    margin: 0 auto !important;
+  }
+  .component {
+    width: 100% !important;
+
+    &.formButton {
+      width: auto !important;
+      max-height: 60px;
+    }
+  }
+  .formContent.cq-Editable-dom--container {
+    padding: 0;
+  }
+}
+
+.reference-phone-link {
+  display: block !important;
+}
+
+//virtual agent
+.virtual-agent-holder .virtualAgent {
+  div.virtualAgent-noresults {
+    display: block;
+  }
+
+  div.virtualAgent-footer {
+    display: block;
+  }
+}
+
+// where to buy
+.box-store-locator-holder {
+
+  &,
+  .box-store-locator-controls > .component-content > .content {
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .box-store-locator-map {
+    position: relative !important;
+    height: 300px !important;
+  }
+
+  .box-store-locator-step-1,
+  .box-store-locator-step-2,
+  .box-store-locator-step-3 {
+    display: block;
+  }
+
+  .listing.listing-cols-3 .listing-item {
+    width: auto;
+
+    .image.component {
+      width: percentage(1/3);
+    }
+  }
+
+  .box-store-locator-step-2 .listing-product-list {
+
+    .component.storelocator {
+      position: relative;
+    }
+
+    .storelocator-form-wrapper {
+      display: block;
+      position: relative;
+    }
+
+    .listing-item > .component-content {
+      height: auto !important;
+    }
+  }
+
+  .tabs-content.is-hidden {
+    position: relative;
+    left: 0;
+    visibility: visible !important;
+  }
+}
+
+// Shoppable checkout iframe
+.html--shoppable-checkout iframe {
+  min-height: 500px;
+}
+
+// Carousel listing Quick View button
+.listing--as-carousel .quickview-btn {
+  position: static !important;
+  transform: translate(0) !important;
+  opacity: 1 !important;
+}
+
+.listing--as-carousel .listing-item .box:nth-of-type(2) {
+  padding: 30px 10px;
+  margin-top: 150px;
+}
+
+// Make sure listing is displayed and is clickable without products
+.listing {
+  display: block !important;
+  min-height: 100px;
+}
+
+// display hidden links in article listings
+.listing.listing-article-list .listing-item .component-content .richText-content a {
+  display: block;
+}
+
+.cta-filter-mobile {
+  display: block;
+}
+
+.button-clear-filters {
+  display: block;
+}
+
+.cta-select-category {
+  display: block;
+}
+
+.template-product-landing-page .product-filters-and-category-navigation .mobile-buttons-wrapper {
+  display: block;
+  font-size: 1rem;
+}
+
+.carousel-hero,
+.carousel-slick {
+  .carousel-slides {
+    height: auto !important;
+  }
+
+  .carousel-slide {
+    display: block !important;
+    position: static !important;
+  }
+}
+
+.search-filters {
+  display: block;
+}
+
+.searchFilter {
+  display: block !important;
+}
+
+.email-us-form form .fieldSet.odd .fields {
+  display: block !important;
+}
+
+.mobile-only {
+  display: block !important;
+}
+
+.composite-contact_us_boxes {
+  > .section {
+    margin: 0 100px;
+  }
+}
+
+.richText--newsletter-trigger {
+  display: block !important;
+}
+
+body .quizCTA {
+  opacity: 1;
+}
+
+
+// WCAG add warnings here...
+.quizCTA-image:not([alt]) {
+  outline: 2px dotted red;
+}
+
+// #ThirdPartyPlaceholderModel Error display in author
+.floating-error-message {
+  background-color : white;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 10px;
+  margin: -30px 0 0 10px;
+  position: absolute;
+  z-index: 2147483647;
+}
+
+// Custom variant; Image
+.resource-origin {
+  height: 100%;
+}
+
+// Favourite icons
+// In author both icon and button variants are shown
+.favourite-icon.button,
+.favourite-icon.icon,
+.listing-item .box-meta-details .favourite-icon.icon,
+body.template-recipe-detail-page .recipeList--as-carousel .favourite-icon.button,
+body.template-article-details .composite-variation-related_articles .favourite-icon.button {
+  display: none!important;
+}
+.favourite-icon.icon {
+  // in listing show the icon
+  $size: 38px;
+  height: $size;
+  margin-top: 8px;
+  padding: 0 0 0 $size;
+  width: $size;
+
+  &:before {
+    font-size: ($size - 3);
+  }
+}
+body.template-article-details .favourite-icon.button,
+body.template-product-detail-page .favourite-icon.button,
+body.template-recipe-detail-page .favourite-icon.button,
+.composite-recipe-meta-details .favourite-icon.button {
+  display: inline-block!important;
+}
+.listing-item .favourite-icon.icon,
+.recipeListing-item .favourite-icon.icon,
+.searchResults-item .favourite-icon.icon {
+  display: inline-block!important;
+}
+.favourite-listing {
+  .listing-item, .favourite-list-empty {
+    display: block !important;
+  }
+}

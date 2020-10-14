@@ -1,0 +1,199 @@
+.listing.listing-product-default-view .listing-item {
+  @import 'config';
+  @function g($a...) { @return get-last($common-product-list, $a...); }
+
+  @include box(g('_listing-item.box'), $media);
+
+  &:hover .box:nth-of-type(1) .quickview-btn {
+    opacity: 1;
+  }
+
+  &:hover .box:nth-of-type(2) {
+    @include hover(g('_listing-item._content-box.hover'), $media);
+  }
+
+  > .component-content {
+    height: 100%;
+
+    > .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      > .box {
+        flex: 1 1 0;
+        -ms-flex: 1 1 auto;   //fix for IE
+      }
+    }
+  }
+
+  .box:nth-of-type(1) {
+    position: relative;
+    z-index: 1;
+    @include breakpoints() {
+      @include box(g('_listing-item._image-wrapper.box'), $media);
+    }
+
+    border-bottom: 1px solid color('secondary', 'base');
+
+    > .component-content,
+    > .component-content > .content {
+      height: 100%;
+    }
+
+    .image {
+      height: 100%;
+
+      > .component-content {
+        height: 100%;
+        position: relative;
+      }
+
+      img {
+        bottom: 0;
+        left: 50%;
+        max-height: 100%;
+        max-width: 100%;
+        position: absolute;
+        transform: translate(-50%);
+        transition: transform 0s;
+        width: auto;
+      }
+    }
+
+    .quickview-btn {
+      bottom: 20px;
+      left: 50%;
+      opacity: 0;
+      position: absolute;
+      transform: translate(-50%);
+      transition: opacity 0.3s $ease-out;
+      z-index: 2;
+
+      @include button(g('_listing-item._quick-view.button'), $media);
+
+      @include media-query(auto, tablet) {
+        display: none;
+      }
+
+      &:focus {
+        opacity: .8
+      }
+    }
+  }
+
+  .box:nth-of-type(2) {
+    height: 100%;
+
+    @include breakpoints() {
+      @include box(g('_listing-item._content-box.box'), $media);
+    }
+    @include transition(g('_listing-item._content-box.transition'), ('background'), $media);
+
+    .richText {
+      h3 {
+        @include paragraph(g('_listing-item._content-box._title.paragraph'), $media);
+
+        a {
+          text-decoration: inherit;
+        }
+      }
+
+      p {
+        @include paragraph(g('_listing-item._content-box._description.paragraph'), $media);
+      }
+    }
+
+    @import '_ratingsAndReviewsBazaarvoice/index';
+    @import '_ratingsAndReviewsKritique/index';
+  }
+}
+
+// styles for grid view only
+.display-grid .listing.listing-product-default-view .listing-item {
+  .box:nth-of-type(2) {
+    cursor: pointer;
+  }
+}
+
+.page-home {
+  .listing {
+    .ratingsandreviews {
+      .rr-widget-container.rr-star-percentage {
+        font-size: 0;
+        >:not(.aggregateRating) {
+          display: none!important;
+        }
+      }
+    }
+    &.without-devider {
+      .listing-carousel {
+        background-image: none!important;
+      }
+    }
+  }
+  #content {
+    .layout-inner {
+      >div {
+        >.paragraphSystem {
+          >.richText {
+            h2 {
+              text-transform: uppercase;
+              @include breakpoints(mobile) {
+                font-size: px(26);
+                margin-bottom: 40px;
+              }
+              @include breakpoints(tablet) {
+                font-size: px(34);
+                margin-bottom: 40px;
+              }
+              @include breakpoints(desktop) {
+                font-size: px(40);
+                margin-bottom: 50px;
+              }
+              + p {
+                @include breakpoints(mobile) {
+                  margin-top: -20px;
+                }
+                @include breakpoints(tablet) {
+                  margin-top: -25px;
+                }
+                @include breakpoints(desktop) {
+                  margin-top: -30px;
+                }
+              }
+            }
+            p {
+              font-family: font-family('primary');
+              @include breakpoints(mobile) {
+                font-size: px(19);
+              }
+              @include breakpoints(tablet) {
+                font-size: px(22);
+              }
+              @include breakpoints(desktop) {
+                font-size: px(26);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .composite-filtered-articles {
+    .listing-article-list {
+      .listing-items {
+        .listing-item {
+          .richText {
+            .richText-content  {
+              h3 + p {
+                max-height: 90px;
+                overflow: hidden;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

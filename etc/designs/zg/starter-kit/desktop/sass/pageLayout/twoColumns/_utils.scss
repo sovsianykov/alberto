@@ -1,0 +1,65 @@
+@mixin two-columns-wrapper($left: 6, $right: 6) {
+
+  @each $label, $value in $wrapper-sizes {
+    @include media-query($label) {
+      $wrapper-size: $value;
+
+      $left-size-eq: #{'(('}#{$wrapper-size} / 12#{')'} * #{$left}#{')'} ;
+      $left-size: calc( #{$left-size-eq} );
+
+      $right-size-eq: #{'(('}#{$wrapper-size} / 12#{')'} * #{$right}#{')'} ;
+      $right-size: calc( #{$right-size-eq} );
+
+      $gap-eq: #{'(('}100vw - #{$wrapper-size}#{')'} / 2#{')'} ;
+      $gap: calc( #{$gap-eq} );
+
+      $left-percent: calc( #{$gap-eq} + #{$left-size-eq} );
+      $right-percent: calc( #{$gap-eq} + #{$right-size-eq} );
+
+      // usage example (use [param]-eq version if nesting)
+      // width: $left-size;
+      // width: calc( #{$left-size-eq} / 2 );
+
+      @if ($label == mobile OR $label == tablet) {
+        flex-direction: column;
+      }
+
+      .grid_12 {
+
+        &.left-side-holder,
+        &.right-side-holder {
+
+          @if ($label == mobile OR $label == tablet) {
+            padding: 0 $gutter;
+          }
+        }
+
+        &.left-side-holder {
+          @if ($wrapper-size != auto) {
+            width: $left-percent;
+          }
+
+          .left-side {
+            @if ($wrapper-size != auto) {
+              max-width: calc(#{$left-size-eq} - #{$gutter});
+            }
+            padding: 0;
+          }
+        }
+
+        &.right-side-holder {
+          @if ($wrapper-size != auto) {
+            width: $right-percent;
+          }
+
+          .right-side {
+            @if ($wrapper-size != auto) {
+              max-width: calc(#{$right-size-eq} - #{$gutter});
+            }
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}

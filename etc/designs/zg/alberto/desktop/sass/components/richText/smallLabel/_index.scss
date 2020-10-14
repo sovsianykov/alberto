@@ -1,0 +1,16 @@
+.richText-small-label {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($small-label, $a...);
+  }
+
+  p {
+    $paragraph: merge((
+      margin: (
+        margin: 0 0 spacings('xs')
+      )
+    ), g('_main.paragraph'));
+
+    @include paragraph($paragraph, $media);
+  }
+}

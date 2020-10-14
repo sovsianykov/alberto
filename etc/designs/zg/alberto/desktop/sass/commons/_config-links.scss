@@ -1,0 +1,70 @@
+$common: () !default;
+
+$common: merge($common, (
+  _links: (
+    _base: (
+      link: (
+        text: (
+          text-decoration: none
+        ),
+        hover: (
+          text: (
+            color: color('neutral', 'light')
+          )
+        )
+      )
+    ),
+    _base-focus: (
+      link: (
+        focus: (
+          // default settings for the focus state
+          // for example: outline: none
+        )
+      )
+    ),
+    _non-native-focus: (
+      link: (
+        focus: (
+          /*
+            outline for items not highlighted by the browser by default,
+            for example divs that are working like buttons
+           */
+          box-shadow: 0 0 4px 1px color('primary', 'lighter')
+        )
+      )
+    ),
+    _primary-link: (
+      button: (
+        text: (
+          color: color('secondary'),
+          text-transform: uppercase,
+          font-family: 'primary',
+          font-weight: bold,
+          font-size: px(16),
+          text-align: breakpoint((tablet-min: center)),
+          text-decoration: none,
+          line-height: 1,
+        ),
+        line: (
+          width: 100%,
+          side: before,
+          border: (
+            border-top: 1px solid color('secondary')
+          ),
+        )
+      ),
+    ),
+    _secondary-link: (
+      button: (
+        text: (
+          font-family: 'primary',
+          font-size: px('xxs'),
+          font-weight: bold,
+          text-transform: uppercase,
+          text-decoration: underline,
+          color: color('secondary', 'base')
+        )
+      )
+    )
+  )
+));

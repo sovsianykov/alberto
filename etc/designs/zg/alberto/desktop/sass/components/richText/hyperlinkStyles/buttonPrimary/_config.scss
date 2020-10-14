@@ -1,0 +1,31 @@
+$buttonPrimary: (
+  spacings: common('spacings')
+);
+
+$buttonPrimary: merge($buttonPrimary, (
+  _link: (
+    button: common('_primary.button')
+  ),
+  _inner-span: (
+    button: (
+      text: (
+        line-height: 1
+      ),
+      line: (
+        width: 100%,
+        transform: (
+          transform: scaleX(0),
+          transform-origin: 0 0
+        ),
+        border: (
+          border-top: 2px solid color('black'),
+        ),
+        hover: (
+          transform: (
+            transform: scaleX(1)
+          )
+        )
+      )
+    )
+  )
+));

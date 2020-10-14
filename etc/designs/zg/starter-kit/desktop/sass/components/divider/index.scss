@@ -1,0 +1,11 @@
+@import '../../core/config';
+
+.main .divider {
+  @import 'config';
+  @function g($a...) { @return get-last($divider, $a...); }
+  @include wrapper;
+
+  > .component-content {
+    @include box(g('box'), $media);
+  }
+}

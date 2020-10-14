@@ -1,0 +1,26 @@
+$recipeShare: (
+  _label-wrapper: (
+    box: (),
+    _label: (
+      paragraph: (
+        text: (
+          font-size: px('xxs'),
+          font-weight: bold,
+          line-height: 1.57,
+          letter-spacing: 0.3px
+        ),
+      )
+    )
+  ),
+  _share-icon: (
+    button: ()
+  ),
+  _print-wrapper: (
+    box: (),
+    _icon: (
+      button: (
+        margin: 0
+      )
+    )
+  )
+);

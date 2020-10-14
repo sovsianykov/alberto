@@ -1,0 +1,21 @@
+$title-medium: (
+  spacings: common('spacings')
+);
+
+$title-medium: merge($title-medium,(
+  paragraph: (
+    text: (
+      color: color('black'),
+      font-weight: bold,
+      line-height: 1.1,
+      font-family: 'body',
+      font-size: breakpoint((
+        tablet-max: px('m'),
+        desktop: px('l')
+      )),
+      margin: (
+        margin-top: breakpoint((mobile: 20px))
+      )
+    )
+  )
+))

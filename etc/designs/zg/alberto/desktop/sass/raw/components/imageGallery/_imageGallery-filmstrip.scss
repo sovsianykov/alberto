@@ -1,0 +1,17 @@
+.imageGallery-filmstrip {
+  .imageGallery-view {
+    display: none;
+  }
+
+  .imageGallery-list {
+    margin: 0 5%;
+  }
+
+  .imageGallery-thumbnail {
+    opacity: 1;
+
+    a {
+      cursor: default;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+.richText.contact-tile {
+  @import 'config';
+  @function g($a...) { @return get-last($contactTile, $a...); }
+
+  padding: g('spacings.s');
+  margin-top: g('spacings.s');
+  margin-bottom: g('spacings.s');
+  @include breakpoints() {
+    @include background(g('background'), $media);
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: g('spacings.s');
+    @include breakpoints() {
+      @include text(g('title'), $media);
+    }
+  }
+
+  p {
+    @include breakpoints() {
+      @include text(g('paragraph'), $media);
+    }
+  }
+
+  a.button {
+    text-decoration: none;
+    margin-top: g('spacings.s');
+    @include breakpoints() {
+      @include button(g('link'), $media);
+      @include lh-padding(g('spacings.s'), g('link.text'), $media);
+    }
+  }
+}

@@ -1,0 +1,84 @@
+@import '../../core/config';
+
+.composite-centered_featuredcontent {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($centeredFeaturedContent, $a...);
+  }
+
+  $main: merge((
+    margin: (
+      margin: breakpoint((tablet-max: 60px 0, desktop: spacings('xxxl') 0))
+    )
+  ), g('_main.box'));
+
+  @include breakpoints() {
+    @include box($main, $media);
+  }
+
+  .box {
+    > .component-content {
+      $box: merge((
+        padding: (
+          padding: breakpoint((tablet-max: spacings('xxl') 0, desktop: 150px 0)),
+        ),
+        background: (
+          background-size: cover,
+          background-position: center
+        )
+      ), g('_image.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+
+      > .content {
+        $box: merge((
+          max-width: 730px,
+          margin: (
+            margin-bottom: spacings('s') * -1
+          )
+        ), g('_text-wrapper.box'));
+
+        @include box($box, $media);
+        @include paragraph(g('_text-wrapper.paragraph'), $media);
+      }
+    }
+  }
+
+  .richText-content {
+    h2, h3 {
+      $cFC-title: merge((
+        margin: 0
+      ), g('_title.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($cFC-title, $media);
+      }
+    }
+
+    p {
+      $description: merge((
+        margin: (
+          margin-top: breakpoint((tablet-max: spacings('xs'), desktop: 15px))
+        )
+      ), g('_description.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($description, $media);
+      }
+    }
+
+    .button-secondary {
+      @include media-query(mobile) {
+        width: 100%;
+      }
+    }
+  }
+}
+.composite-centered_big_title {
+  .favourite {
+    text-align: center;
+    margin:20px !important;
+  }
+}

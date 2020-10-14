@@ -1,0 +1,11 @@
+#container-article {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($containerArticle, $a...);
+  }
+  @include wrapper;
+  @include breakpoints() {
+    @include box(g('_main.box'), $media);
+    @include clearfix;
+  }
+}

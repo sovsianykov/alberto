@@ -1,0 +1,163 @@
+@import '../../core/config';
+@import '../../components/richText/utils';
+
+.sign-up-form {
+  $gap: spacings('m');
+
+  @import 'config';
+  @function g($a...) {
+    @return get-last($sign-up-form, $a...);
+  }
+
+  $box: merge((), g('box'));
+  @include box($box, $media);
+
+  form {
+    $formContent: merge((
+      padding: (
+        padding: breakpoint(
+          60px 0 spacings('xxl'),
+          60px 0 spacings('xxl'),
+          70px 0 60px 90px
+        )
+      )
+    ), g('_formContent.box'));
+
+    @include breakpoints() {
+      @include box($formContent, $media);
+    }
+
+    fieldset {
+      .textField,
+      .selectField,
+      .radioGroup,
+      .reference-datepicker,
+      .fileupload,
+      .form-legal-info {
+        .component-content {
+          $groupFields: merge((
+            margin: (
+              margin: $gap auto
+            )
+          ), g('_groupFields.box'));
+
+          @include box($groupFields, $media);
+        }
+      }
+
+      .radioGroup {
+        .component-content {
+          .controls {
+            label {
+              display: inline-block;
+              margin: 0 $gutter 0 0;
+              vertical-align: top;
+            }
+          }
+        }
+      }
+
+      .reference-checkbox-item {
+        margin-bottom: spacings('s');
+
+        .controls {
+          .checkbox,
+          .checkbox-label-text {
+            display: inline-block;
+          }
+        }
+      }
+    }
+
+    .formButton {
+      $formButtonSubmit: merge((
+        margin: (
+          margin-top: $gutter
+        )
+      ), g('_formButtonSubmit.box'));
+
+      @include box($formButtonSubmit, $media);
+
+      .component-content {
+        $formButtonSubmit: merge((
+        ), g('_formButtonSubmit._buttonHolder.box'));
+
+        @include box($formButtonSubmit, $media);
+
+        .button {
+          $formButtonSubmit: merge((
+            display: breakpoint((mobile: inline-block)) // *** quickfix for inline-flex issues in iOS 10.0.
+          ), g('_formButtonSubmit.button'));
+
+          @include breakpoints() {
+            @include button($formButtonSubmit, $media);
+          }
+        }
+      }
+    }
+
+    @include media-query(desktop, auto) {
+
+      fieldset {
+
+        .form-element {
+
+          &.field-given-name,
+          &.field-family-name,
+          &.field-date-picker,
+          &.field-zip-code {
+
+            .component-content {
+              margin: 0 0 spacings('m') 0;
+            }
+          }
+        }
+
+        .reference-datepicker {
+
+          @include breakpoints() {
+            @include box(g('_datePicker.box'), $media);
+          }
+
+          .component-content {
+            margin: 0 auto spacings('m');
+          }
+
+          + .form-element {
+
+            .component-content {
+              margin: 0;
+            }
+          }
+        }
+
+        .reference-checkbox-item {
+          box-sizing: border-box;
+          display: inline-block;
+          padding-right: spacings('s');
+          vertical-align: top;
+          width: 50%;
+
+          &.form-label {
+            display: block;
+            margin: spacings('m') 0 spacings('xs');
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .reference-datepicker {
+    .ua-safari & {    //the smallest allowed font size for input controls on small devices with iOS is 16px, otherwise when click on input, whole page is zoomed in
+      .controls {
+        @include breakpoints() {
+          @include text(g('_iOS-datepicker-controls.text'), $media);
+        }
+      }
+    }
+  }
+}
+
+@import 'observations/index';
+@import 'signUpInfo/index';

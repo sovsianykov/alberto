@@ -1,0 +1,107 @@
+@import '../../core/config';
+
+.composite-hero-image {
+  @import 'config';
+  @function g($a...) { @return get-last($heroImage, $a...); }
+
+  .box > .component-content {
+    $box: merge((
+      display: flex,
+      flex: (
+        align-items: center
+      ),
+      background: (
+        background-size: cover,
+        background-position: center
+      ),
+      padding: (
+        padding: breakpoint((
+          mobile: 100px 0,
+          tablet-min: 135px 0,
+        )),
+      ),
+      box-sizing: border-box,
+      min-height: breakpoint(250px, 326px, 326px)
+    ),g('box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    > .content {
+      @include wrapper;
+
+      @include media-query(auto, notebook) {
+        width: 100%;
+      }
+    }
+
+    .richText {
+      @include breakpoints {
+        @include box(g('_content.box'), $media);
+      }
+
+      .richText-content {
+        @include breakpoints {
+          @include safepadding;
+        }
+      }
+
+      // first paragraph is considered for "pretitle" text
+      // only in strong/b elements
+      p:first-child {
+        $paragraph: merge((
+          margin: 0 0 spacings('s'),
+        ), g('_pretitle.paragraph'));
+
+        @include breakpoints {
+          @include paragraph($paragraph, $media);
+        }
+      }
+
+      // accepting some hs tags for semantic needs
+      h1, h2, h3 {
+        $title: g('_title.paragraph');
+        @include breakpoints {
+          @include paragraph($title, $media);
+          // using lh-margin-diff to fix the line height difference for
+          // more commonly larger fonts and avoid the weird-looking
+          // alignment feelling
+          @include lh-margin-diff($title, $media);
+        }
+      }
+
+      // following p tags will behave as description
+      p:first-child,
+      h1,
+      h2 {
+        + p {
+          @include paragraph(g('_description.paragraph'), $media);
+        }
+      }
+
+      a {
+        $button: merge((
+          margin: (
+            margin-top: 20px,
+          )
+        ), g('_cta.button'));
+
+        @include button($button, $media);
+      }
+    }
+
+    .title {
+      h1, h2, h3 {
+        $title: g('_title.paragraph');
+        @include breakpoints {
+          @include paragraph($title, $media);
+          @include lh-margin-diff($title, $media);
+        }
+      }
+    }
+  }
+}
+
+@import 'heroImageWithSideText/index';
+@import 'heroImageWithRichTextBelow/index';

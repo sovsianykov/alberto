@@ -1,0 +1,97 @@
+.listing-item {
+  @import 'config-common-product-list';
+  @function g($a...) { @return get-last($common-product-list, $a...); }
+
+  @include breakpoints() {
+    @include box(g('_listing-item.box'), $media);
+  }
+
+  &:hover .box:nth-of-type(1) .quickview-btn {
+    opacity: 1;
+  }
+
+  > .component-content {
+    height: 100%;
+
+    > .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .box:nth-of-type(1) {
+    position: relative;
+    z-index: 1;
+    @include breakpoints() {
+      @include box(g('_listing-item._image-wrapper.box'), $media);
+    }
+
+    > .component-content,
+    > .component-content > .content {
+      height: 100%;
+    }
+
+    .image {
+      height: 100%;
+
+      > .component-content {
+        height: 100%;
+        position: relative;
+      }
+
+      img {
+        bottom: 0;
+        left: 50%;
+        max-height: 100%;
+        max-width: 100%;
+        position: absolute;
+        transform: translate(-50%);
+      }
+    }
+
+    .quickview-btn {
+      bottom: 20px;
+      cursor: pointer;
+      left: 50%;
+      opacity: 0;
+      position: absolute;
+      transform: translate(-50%);
+      transition: opacity 0.3s $ease-out;
+      z-index: 2;
+
+      @include breakpoints() {
+        @include button(g('_listing-item._quick-view.button'), $media);
+      }
+
+      @include media-query(auto, tablet) {
+        display: none;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .box:nth-of-type(2) {
+    height: 100%;
+
+    @include breakpoints() {
+      @include box(g('_listing-item._content-box.box'), $media);
+    }
+
+    .richText {
+
+      h3 {
+        @include paragraph(g('_listing-item._content-box._title.paragraph'), $media);
+      }
+
+      p {
+        @include paragraph(g('_listing-item._content-box._description.paragraph'), $media);
+      }
+    }
+
+    @import 'ratings-and-reviews';
+  }
+}

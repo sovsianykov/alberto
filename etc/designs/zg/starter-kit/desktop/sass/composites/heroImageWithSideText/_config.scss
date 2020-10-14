@@ -1,0 +1,23 @@
+$heroImageWithSideText: (
+  spacings: common('spacings')
+);
+
+$heroImageWithSideText: merge($heroImageWithSideText, (
+  _main: (
+    box: (),
+    _text-wrapper: (
+      box: (),
+      _wrapper-content: (
+        box: (),
+        _headline: (
+          paragraph: (
+            text: (
+              font-size: breakpoint((tablet-max: px('m'), tablet-min: px('l'))),
+              line-height: 1
+            )
+          )
+        )
+      )
+    )
+  )
+));

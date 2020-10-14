@@ -1,0 +1,59 @@
+.box.box-product-share {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($shareLabel, $a...);
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+
+    @include media-query(mobile) {
+      justify-content: flex-start;
+    }
+  }
+
+  .richText p {
+    @include breakpoints() {
+      @include paragraph(g('_share-label.paragraph'), $media);
+      margin-right: 20px;
+    }
+    font-family: font-family('primary');
+    @include breakpoints(tablet, desktop) {
+      font-size: px(20);
+    }
+  }
+  [class*='addthis_button_'] {
+    margin-right: 0;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border-radius: 7px;
+    background-color: inherit;
+    background-size: contain;
+    @include breakpoints(mobile) {
+      margin-left: 15px;
+    }
+    @include breakpoints(tablet, desktop) {
+      margin-left: 20px;
+    }
+    &:after {
+      content: none;
+    }
+    &:hover {
+      background-color: color('primary', 'base');
+    }
+    span {
+      display: none;
+      svg {
+        display: none;
+      }
+    }
+  }
+  .addthis_button_facebook {
+    background-image: url('../../assets/img/facebook-icon-black.svg');
+  }
+  .addthis_button_twitter {
+    background-image: url('../../assets/img/twitter-icon-black.svg');
+  }
+}

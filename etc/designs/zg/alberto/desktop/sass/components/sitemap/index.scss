@@ -1,0 +1,196 @@
+@import '../../core/config';
+
+.sitemap {
+  @import 'config';
+  @function g($a...) { @return get-last($sitemap, $a...); }
+  @include wrapper();
+  @include box(g('box'), $media);
+
+  ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    li {
+      h2, h3 {
+        //@include paragraph(g('_parent-list-item.paragraph'), $media);
+        margin-bottom: 10px;
+        a {
+          @include link(g('_parent-list-item.link'), $media);
+          @include breakpoints(tablet) {
+            font-size: px(22);
+          }
+          @include breakpoints(desktop) {
+            font-size: px(24);
+          }
+        }
+      }
+
+      > a {
+        @include button(g('_children-list-item.button'), $media);
+      }
+
+      ul {
+        li {
+          @include box(g('_children-list-item.box'), $media);
+          a {
+            font-family: font-family('primary');
+            @include breakpoints(mobile) {
+              font-size: px(19);
+            }
+            @include breakpoints(tablet, desktop) {
+              font-size: px(20);
+            }
+          }
+        }
+      } 
+    }
+  }
+  
+  > .component-content {
+    // specific logic for sitemap component. 
+    // Class .sitemap-columns-N should work only for desktop
+    display: flex;
+    flex-wrap: wrap;
+    margin: $gutter * -0.5;
+
+    @for $i from 1 through 4 {
+      &.sitemap-columns-#{$i}{
+        .sitemap-column {
+          width: calc(#{percentage(1/$i)} - (#{$gutter} + 2px));
+        }
+      }
+
+      @include media-query(auto, tablet) {
+        &.sitemap-columns-#{$i}{
+          .sitemap-column {
+            @if $i < 2 {
+              width: 100%;
+            } @else {
+              width: calc(49% - 20px);
+            }
+          }
+        }
+      }
+
+      @include media-query(mobile) {
+        &.sitemap-columns-#{$i}{
+          .sitemap-column {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .sitemap-column {
+    box-sizing: border-box;
+    margin: $gutter * 0.5;
+    >ul {
+      >li {
+        @include breakpoints(mobile) {
+          margin-bottom: 0;
+        }
+        @include breakpoints(tablet, desktop) {
+          margin-bottom: 15px;
+        }
+      }
+    }
+  }
+}
+
+.page-sitemap {
+  h1 {
+    @include breakpoints(mobile) {
+      font-size: px(26);
+      text-align: left!important;
+      padding-left: 20px;
+      padding-right: 20px;
+      margin-bottom: 10px;
+    }
+    @include breakpoints(tablet) {
+      font-size: px(34);
+      text-align: center;
+    }
+    @include breakpoints(desktop) {
+      font-size: px(40);
+      text-align: center;
+    }
+  }
+  .sitemap-wrap {
+    >.component-content {
+      @include wrapper;
+      >.paragraphSystem {
+        @include breakpoints(tablet, desktop) {
+          display: flex;
+        }
+      }
+    }
+    .sitemap-manual-links {
+      @include breakpoints(tablet) {
+        width: 33%;
+      }
+      @include breakpoints(desktop) {
+        width: 20%;
+      }
+      h2, h3 {
+        a {
+          font-family: font-family("body");
+          text-decoration: none;
+          display: block;
+          &:hover {
+            color: color("neutral", "base");
+          }
+          @include breakpoints(mobile) {
+            font-size: px(20);
+            margin-bottom: 30px;
+          }
+          @include breakpoints(tablet) {
+            font-size: px(22);
+            margin-bottom: 30px;
+          }
+          @include breakpoints(desktop) {
+            font-size: px(24);
+            margin-bottom: 35px;
+          }
+        }
+      }
+    }
+    .sitemap-generated-links {
+      @include breakpoints(tablet) {
+        width: 66%;
+        h2, h3 {
+          margin-top: 0;
+        }
+      }
+      @include breakpoints(desktop) {
+        width: 80%;
+        h2, h3 {
+          margin-top: 0;
+        }
+      }
+      .sitemap-column,
+      .sitemap  {
+        @include breakpoints(mobile) {
+          margin-left: 0;
+          padding-left: 0;
+          margin-top: 0;
+        }
+      }
+      .sitemap {
+        @include breakpoints(mobile) {
+          margin-top: 5px;
+        }
+        >.component-content {
+          margin-left: 0;
+        }
+        h2, h3 {
+          @include breakpoints(mobile) {
+            margin-top: 0;
+          }
+        }
+        width: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+$productCarouselListing: (
+  box: (),
+  _header: (
+    paragraph: ()
+  ),
+  _carousel-nav: (
+    box: (),
+    _item: (
+      button: ()
+    ),
+    _item-active: (
+      button: ()
+    ),
+    _nav-item: (
+      button: (),
+      _prev: (
+        button: ()
+      ),
+      _next: (
+        button: ()
+      ),
+      _disabled: (
+        button: ()
+      )
+    )
+  )
+);

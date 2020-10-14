@@ -1,0 +1,46 @@
+@import 'config';
+
+@function g($a...) {
+  @return get-last($shopalystBuyItNow, $a...);
+}
+
+.buyitnow {
+  .sl-iframe {
+    @include breakpoints() {
+      $shopalyst-iframe: merge((
+        width: 100%,
+        height: breakpoint((mobile: 110px, tablet: 110px, desktop: 100px)),
+        max-width: none
+      ), g('_shopalyst._iframe.box'));
+
+      /*! @important(start) */
+      @include box($shopalyst-iframe, $media);
+      /*! @important(stop) */
+    }
+  }
+}
+
+.shopalyst-active {
+  .buyitnow {
+    width: 100% !important;
+  }
+
+  .reference-find-in-store-button {
+    bottom: 0;
+    left: 200px;
+
+    $findInStore-button: merge((
+      position: breakpoint((desktop: absolute))
+    ), g('_shopalyst._find-in-store.box'));
+
+    @include breakpoints() {
+      /*! @important(start) */
+      @include box($findInStore-button, $media);
+      /*! @important(stop) */
+    }
+    @include media-query(mobile, desktop) {
+      position: static;
+    }
+  }
+}
+

@@ -1,0 +1,201 @@
+$virtualAgent: (
+  _main: (
+    box: (
+      margin: (
+        margin-top: breakpoint(spacings('l'), spacings('l'), spacings('xl')),
+        margin-bottom: breakpoint(spacings('xl'), spacings('xxl'), spacings('xxxl'))
+      )
+    ),
+    _quick-tip: (
+      paragraph: (
+        margin: (
+          margin-bottom: breakpoint(spacings('l'), spacings('xxl'), spacings('xxl'))
+        ),
+        text: (
+          font-size: px(18),
+          line-height: px(24),
+          letter-spacing: breakpoint(null, 0.3px, 0.3px)
+        )
+      )
+    ),
+    _form: (
+      box: (
+        border: (
+          border-bottom: 1px solid color('black')
+        )
+      ),
+      icon: (
+        content: common('icon.search'),
+        color: color('neutral.dark'),
+        side: after,
+        font-size: px('s'),
+        padding: 10px 20px 0,
+      ),
+      _input: (
+        text: (
+          font-family: 'body',
+          font-size: breakpoint(px('s'), px('l'), px('l')),
+          font-weight: bold,
+          line-height: breakpoint(px(22), px(30), px(30))
+        ),
+        placeholder: (
+          font-size: breakpoint(px('s'), px('m'), px('m')),
+          line-height: breakpoint(px(22), px(30), px(30)),
+          color: color('neutral.light')
+        ),
+        border: (
+          border: 0
+        ),
+      ),
+      _suggestions: (
+        box: (
+          background: (
+            background-color: color('white')
+          ),
+          margin: (
+            margin-top: 1px
+          ),
+          padding: (
+            padding-top: breakpoint(27px, 21px, 21px)
+          ),
+        ),
+        text: (
+          font-size: px(18),
+          line-height: breakpoint(px(24), px(22), px(22)),
+          letter-spacing: breakpoint(null, 0.3px, 0.3px)
+        )
+      ),
+      _suggestion: (
+        box: (
+          padding: (
+             padding: breakpoint(12px 10px 21px, 13px 10px 15px, px(14))
+          ),
+          margin: (
+            margin-left: breakpoint(px(-10), px(-10), px(-14))
+          )
+        )
+      ),
+      _suggestion-active: (
+        box: (
+          background: (
+            background-color: color('neutral.lighter')
+          )
+        )
+      ),
+      _reset: (
+        button: extend('_base.button', (
+          padding: breakpoint(10px 0 10px 13px, 10px, 16px),
+          background: (
+            background-color: color('white')
+          ),
+          icon: (
+            content: common('icon.cross'),
+            color: color('neutral.dark'),
+            side: before,
+            text-align: left,
+            font-size: px('xs'),
+          ),
+          text: (
+            font-size: 0
+          ),
+          hover: (
+            background: (
+              background-color: color('white')
+            )
+          )
+        )
+      )),
+      _loading: (
+        box: (
+          background: (
+            background: url('/etc/designs/zg/starter-kit/desktop/assets/img/loader.gif'),
+            background-repeat: no-repeat,
+            background-position: 50% 50%
+          ),
+          min-height: 50px
+        )
+      ),
+      _results: (
+        box: (
+          margin: (
+            margin-top: spacings('m')
+          )
+        ),
+        _question: (
+          paragraph: (
+            text: (
+              font-size: px('s'),
+              line-height: px(30)
+            ),
+            margin: (
+              margin-bottom: spacings('m')
+            )
+          )
+        ),
+        _answer: (
+          paragraph: (
+            text: (
+              font-size: px('xxs'),
+              line-hegiht: px(22),
+              letter-spacing: 0.2px
+            ),
+            margin: (
+              margin-bottom: spacings('l'),
+            )
+          )
+        ),
+        _related-question: (
+          paragraph: (
+            text: (
+              font-size: px('xxxs'),
+              font-weight: bold,
+              line-height: px(16),
+              text-transform: uppercase
+            ),
+            margin: (
+              margin-bottom: spacings('xs'),
+            )
+          )
+        )
+      ),
+      _noresults: (
+        paragraph: (
+          text: (
+            font-size: px(18),
+            line-height: px(22)
+          ),
+          margin: (
+            margin-top: px(36),
+            margin-bottom: 0
+          )
+        )
+      )
+    ),
+    _get-in-touch: (
+      paragraph: (
+        text: (
+          font-size: px('xxs')
+        ),
+        margin: (
+          margin-top: spacings('xxl')
+        )
+      ),
+      button: extend('_base.button', (
+        width: 215px,
+        text: (
+          font-size: px(18),
+          line-height: px(18),
+          color: color('black'),
+          text-decoration: none
+        ),
+        background: (
+          background-color: color('primary', 'dark')
+        ),
+        padding: 16px 0,
+        margin: (
+          margin-top: 23px
+        )
+      )),
+    )
+  ),
+);

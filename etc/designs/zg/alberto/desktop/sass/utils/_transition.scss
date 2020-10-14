@@ -1,0 +1,34 @@
+$common: () !default;
+
+@mixin transition($d, $prop-list, $screen) {
+  $property: ();
+  $ease: safetype(get-last($d, 'ease', $screen), common('transitions.ease'));
+
+  $base-delay: safetype(get-last($d, 'delay', $screen), 0s);
+
+  $speed-val: get-last($d, 'speed', $screen);
+  $speed-val: if(type-of($speed-val) != 'map', $speed-val, 'base');
+  $base-speed: if(type-of($speed-val) == 'string', get($common, 'transitions.speed', $speed-val), $speed-val);
+  $base-speed: safetype(if($base-speed, $base-speed, $speed-val), 0.3s);
+
+  @each $prop in $prop-list {
+    $delay: $base-delay;
+    $speed: $base-speed;
+
+    @if ($prop == 'visibility') {
+      $delay: $base-speed;
+      $speed: 0s;
+    }
+
+    $property: append($property, #{$prop} #{$speed} #{$ease} #{$delay}, 'comma');
+  }
+
+  transition: $property;
+}
+
+@mixin stagger($i, $d, $screen) {
+  $speed-val: safetype(get-last($d, 'stagger', $screen), 'base');
+  $speed: get($common, 'transitions.stagger', $speed-val);
+  $speed: safetype(if($speed, $speed, $speed-val), 0s);
+  transition-delay: ($i * $speed);
+}

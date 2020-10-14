@@ -1,0 +1,63 @@
+$turnTo: merge($turnTo, (
+  _success-message: (
+    box: (
+      background: (
+        background-color: transparentize(color('primary'), 0.8)
+      ),
+      border: none,
+      padding: (
+        padding: 30px,
+      )
+    ),
+    paragraph: (
+      text: (
+        font-size: breakpoint(px('xxs'), px('xs'), px(18)),
+        line-height: 1.33,
+        color: color('black'),
+        text-align: center,
+      ),
+    ),
+    _close-icon: (
+      icon: merge(get($turnTo, '_close-icon.icon'), (
+        margin: (
+          margin-top: 6px,
+          margin-right: 6px
+        )
+      ))
+    )
+  ),
+  _error-message: (
+    box: (
+      background: (
+        background-color: transparentize(color('secondary'), 0.8)
+      ),
+      border: none,
+      padding: 10px 40px 10px 10px,
+    ),
+    paragraph: (
+      text: (
+        font-size: px('xxs'),
+        line-height: 1.33,
+        color: color('secondary'),
+        text-align: left,
+      ),
+      padding: (
+        padding-right: 50px,
+      )
+    ),
+    icon: (
+      content: '!',
+      font-size: 12px,
+      color: color('white'),
+      height: 25px,
+      width: 25px,
+      margin-right: 10px,
+      border: (
+        border-radius: 50%,
+      ),
+      background:(
+        background-color: color('secondary'),
+      )
+    )
+  )
+));

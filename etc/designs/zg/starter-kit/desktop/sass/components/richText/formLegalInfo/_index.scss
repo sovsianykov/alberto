@@ -1,0 +1,46 @@
+.richText.form-legal-info {
+  @import 'config';
+  @function g($a...) { @return get-last($form-legal-info, $a...); }
+
+  $richText-box: merge((
+  ), g('box'));
+
+  @include box($richText-box, $media);
+
+  p {
+
+    $richText-paragraph: merge((
+    ), g('paragraph'));
+
+    @include paragraph($richText-paragraph, $media);
+
+    &:first-child {
+      margin-bottom: 0;
+    }
+
+    &:last-child {
+      margin-top: 0;
+    }
+
+    a {
+      position: relative;
+      text-decoration: none;
+
+      $richText-link: merge((
+      ), g('link'));
+
+      @include link($richText-link, $media);
+
+      &::after {
+        border-top: solid 2px;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+      }
+    }
+  }
+}

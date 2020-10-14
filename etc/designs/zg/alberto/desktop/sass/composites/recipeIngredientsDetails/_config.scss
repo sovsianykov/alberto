@@ -1,0 +1,42 @@
+$recipeIngredientsDetails: (
+  box: (),
+  _title: (
+    paragraph: (
+      text: (
+        font-weight: bold,
+        line-height: 1.23,
+        font-family: 'body',
+        font-size: px('m'),
+      ),
+    )
+  ),
+  _accordion: (
+    box: (),
+    _slide: (
+      box: (
+        border: (
+          border-top: solid 2px color('black'),
+          border-bottom: solid 2px color('black'),
+        )
+      )
+    ),
+    _head: (
+      box: ()
+    ),
+    _title: (
+      paragraph: ()
+    ),
+    _link: (
+      button: ()
+    ),
+    _content: (
+      box: ()
+    ),
+    _items-wrapper: (
+      box: (),
+      _item: (
+        box: ()
+      )
+    )
+  )
+);

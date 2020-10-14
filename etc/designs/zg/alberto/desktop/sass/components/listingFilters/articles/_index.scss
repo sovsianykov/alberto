@@ -1,0 +1,168 @@
+.listingFilters-articles {
+  @import 'config';
+  @function g($a...) { @return get-last($articles, $a...); }
+  @include wrapper;
+
+  $box: merge((
+    margin: (
+      margin-top: breakpoint((mobile: 20px, tablet-min: spacings('m'))),
+      margin-bottom: 20px
+    )
+  ), g('box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  .filter-form {
+    @include breakpoints() {
+      @include box(g('_filter-form.box'), $media);
+      @include text(g('_filter-form.text'), $media);
+    }
+
+    .filter-wrapper {
+      @include breakpoints() {
+        @include box(g('_filter-form._wrapper.box'), $media);
+      }
+
+      .filter-prefix {
+        position: relative;
+        bottom: -6px;
+
+        @include media-query(auto, notebook) {
+          bottom: 0;
+        }
+
+        @include button(g('_filter-form._label.button'), $media);
+
+        @include media-query(mobile) {
+          display: none;
+        }
+      }
+
+      .filter-select {
+        @include breakpoints() {
+          @include button(g('_filter-form._dropdown-wrapper.button'), $media);
+        }
+
+        &:before {
+          top: unset;
+          bottom: 0;
+        }
+
+        &:after {
+          position: relative;
+          right: 10px;
+        }
+      }
+    }
+
+    select {
+      width: 100%;
+      appearance: none;
+      outline: none;
+      position: relative;
+      background: transparent;
+      border: 0;
+
+      &::-ms-expand {
+        display: none;
+      }
+    }
+
+    .select-replacement {
+      .select-trigger {
+        pointer-events: none;
+        white-space: nowrap;
+
+        @include breakpoints() {
+          @include button(g('_filter-form._dropdown.button'), $media);
+        }
+      }
+
+      select {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 20;
+        opacity: 0.01;
+
+        &:focus + .select-trigger {
+          box-shadow: 0 0 3px 3px color('primary', 'dark');
+        }
+      }
+    }
+
+    .filter-wrapper.filter-order {
+      $sortFilter: merge((
+        flex: (
+          flex-grow: breakpoint((desktop: 1)),
+          flex-basis: breakpoint((mobile: 100%)),
+          justify-content: breakpoint((desktop: flex-end))
+        ),
+        margin: (
+          margin-top: breakpoint((mobile: 20px)),
+          margin-right: 0
+        )
+      ), g('_filter-form._sort-filter-wrapper.box'));
+
+      @include breakpoints() {
+        @include box($sortFilter, $media);
+      }
+
+      .filter-prefix {
+        display: inline-flex;   //label of sorting filter is always visible
+      }
+
+      .filter-select {
+        @include breakpoints() {
+          @include button(g('_filter-form._dropdown-wrapper-last.button'), $media);
+        }
+
+        select {
+          opacity: 1;
+          min-width: 0;
+
+          @include breakpoints() {
+            @include button(g('_filter-form._dropdown-wrapper-last._dropdown-last.button'), $media);
+          }
+
+          //the smallest allowed font size for select on small devices with iOS is 16px, otherwise when click on select, whole page is zoomed in
+          .ua-safari & {
+            @include breakpoints() {
+              @include text(g('_filter-form._dropdown-wrapper-last._IOS-sort-dropdown.text'), $media);
+            }
+          }
+
+          option {
+            min-height: 0;
+
+            @include breakpoints() {
+              @include text(g('_filter-form._dropdown-options.text'), $media);
+              @include box(g('_filter-form._dropdown-options.box'), $media);
+            }
+          }
+        }
+
+        $pseudo: safetype(g('_filter-form._dropdown-last.side'), 'after');
+        &:#{$pseudo} {
+          position: absolute;
+          right: 10px;
+          top: 50%;
+          transform: translateY(-50%);
+        }
+
+        $pseudo: safetype(g('_filter-form._dropdown-last.side'), 'before');
+        &:#{$pseudo} {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .filter-quantity, .filter-button {
+    display: none !important;       //overwrite inline style
+  }
+}

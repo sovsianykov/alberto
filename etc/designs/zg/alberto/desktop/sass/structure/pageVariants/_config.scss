@@ -1,0 +1,21 @@
+@include local-spacings();
+
+$pageBackground: (
+  spacings: spacings(),
+  _page-backgrounds: (
+    classlist: (
+      defaults: (
+        box: ()
+      ),
+      items: (
+        background-darker: (
+          box: (
+            background: (
+              background-color: color('neutral', 'dark')
+            )
+          )
+        )
+      )
+    )
+  )
+);

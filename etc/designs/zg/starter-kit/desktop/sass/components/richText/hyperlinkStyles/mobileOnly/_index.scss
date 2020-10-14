@@ -1,0 +1,5 @@
+a.mobile-only {
+  @include media-query(desktop, auto) {
+    display: none;
+  }
+}

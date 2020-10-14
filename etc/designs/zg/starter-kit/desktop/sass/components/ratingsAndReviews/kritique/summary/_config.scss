@@ -1,0 +1,47 @@
+$summary: (
+  text: (
+    font-size: px('xxxs')
+  ),
+  _rating: (
+    box: (
+      height: 16px
+
+    )
+  ),
+  _action: (
+    button: (
+      display: inline-block,
+      text: (
+        font-family: 'primary',
+        font-size: px('xxxs'),
+        font-weight: bold,
+        text-transform: uppercase,
+        color: color('black'),
+        text-decoration: none,
+        line-height: breakpoint((
+          mobile: 1.36,
+          tablet-min: 1.83
+        ))
+      ),
+      padding: 0px 20px,
+      border: (
+        border-right: 2px solid color('neutral', 'light')
+      ),
+      hover: (
+        text: (
+          font-family: 'primary',
+          text-transform: uppercase,
+          color: color('neutral', 'dark')
+        )
+      )
+    )
+  )
+);
+
+$summary: merge($summary, (
+  _last-action: (
+    button: merge(get($summary, '_action.button'), (
+      border: none
+    ))
+  )
+));

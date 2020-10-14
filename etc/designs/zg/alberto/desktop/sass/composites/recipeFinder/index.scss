@@ -1,0 +1,79 @@
+@import '../../core/config';
+
+.composite-recipe-finder {
+  @import 'config';
+  @function g($a...) { @return get-last($recipeFinder, $a...); }
+
+  $outerWrapper: merge((
+    margin: (
+      margin-top: spacings('xl')
+    )
+  ), g('_outer-wrapper.box'));
+
+  @include box($outerWrapper, $media);
+
+  .composite-subcategory-section + & {
+    margin-top: 0;
+  }
+
+  > div > .box > .component-content {
+    $box: merge((
+      padding: (
+        padding: breakpoint((tablet-max: 60px 0 spacings('xxxl'), desktop: 96px 0 spacings('xxxl')))
+      )
+    ), g('_main.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    .richText {
+      @include box(g('_main._text-wrapper.box'), $media);
+
+      h3 {
+        $paragraph: merge((
+          margin: (
+            margin-bottom: breakpoint(20px, 20px, spacings('m')),
+          ),
+        ), g('_main._text-wrapper._title.paragraph'));
+
+        @include breakpoints {
+          @include paragraph($paragraph, $media);
+        }
+      }
+    }
+  }
+
+  .form-search {
+    position: relative;
+  }
+
+  .search-query {
+    box-sizing: border-box;
+
+    @include breakpoints {
+      @include input(g('_main._searchBoxInput.input'), $media);
+    }
+  }
+
+  .searchBox .button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 0;
+    padding: 0;
+
+    $button: merge((
+      margin: (
+        margin: breakpoint((tablet-max: spacings('xs'), desktop: 20px))
+      )
+    ), g('_main._searchBoxButton.button'));
+
+    @include breakpoints {
+      @include button($button, $media);
+    }
+  }
+}
+
+@import "recipeFinderHeader/index";
+@import "recipeFinderWithCarousel/index";

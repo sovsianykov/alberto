@@ -1,0 +1,68 @@
+.searchResults {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($article, $a...);
+  }
+
+  // default view
+  .item-article {
+    @include breakpoints {
+      .searchResults-desc h4,
+      .searchResults-desc h5 {
+        @include paragraph(g('_grid-view-article._title.paragraph'), $media);
+      }
+    }
+    .searchResults-desc > div > .image,
+    .searchResults-icon {
+      @include breakpoints {
+        @include box(g('_grid-view-article._icon.box'), $media);
+      }
+      @include coverImage;
+    }
+  }
+
+  // grid view
+  .display-grid .item-article {
+    @include breakpoints {
+      @include box(g('_grid-view-article.box'), $media);
+    }
+    .searchResults-icon {
+      @include breakpoints {
+        @include box(g('_grid-view-article._icon.box'), $media);
+      }
+    }
+  }
+
+  // list view
+  .display-list .item-article {
+    .searchResults-desc {
+      flex-basis: 100%;
+    }
+    .searchResults-desc > div {
+      display: flex;
+    }
+    @include breakpoints {
+      @include box(g('_list-view-article.box'), $media);
+
+      .searchResults-desc:first-child > div > .box .richText {
+        h4,
+        h5 {
+          @include paragraph(g('_list-view-article._title.paragraph'), $media);
+        }
+        p {
+          @include paragraph(g('_list-view-article._description.paragraph'), $media);
+        }
+      }
+    }
+    .searchResults-desc > div > .image,
+    .searchResults-icon {
+      @include breakpoints {
+       @include box(g('_list-view-article._icon.box'), $media);
+      }
+    }
+  }
+
+  .taglist {
+    display: none !important;
+  }
+}

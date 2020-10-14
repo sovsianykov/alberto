@@ -1,0 +1,11 @@
+$listingAsCarousel: (
+  spacings: spacings(),
+  box: (),
+  _header: (
+    paragraph: ()
+  ),
+  _carousel: (
+    box: ()
+  ),
+  _carousel-nav: common('carousel._nav')
+);

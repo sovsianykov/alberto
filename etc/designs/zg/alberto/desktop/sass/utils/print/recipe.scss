@@ -1,0 +1,111 @@
+@media print {
+  .template-recipe-detail-page {
+    #header,
+    #shoppable_magic_v1_cart_tab,
+    .breadcrumbs,
+    .bv_main_container > .bv_main_container_row_flex:last-of-type,
+    .box-recipe-share,
+    #footer {
+      display: none !important;
+    }
+
+    .box-recipe-image-and-meta,
+    .box-recipe-ingredients-and-directions {
+      > .component-content > .content {
+        display: table;
+        margin: 0;
+        width: 100%;
+
+        > .component,
+        > .composite {
+          display: table-cell;
+          vertical-align: top;
+        }
+      }
+    }
+
+    .box-recipe-image-and-meta  {
+      margin-bottom: 30px !important;
+
+      .image {
+        width: percentage(7/12) !important;
+
+        img {
+          margin: 0 !important;
+          width: 100% !important;
+        }
+      }
+    }
+
+    .composite-recipe-meta-details {
+      width: percentage(5/12) !important;
+      padding-left: 30px !important;
+
+      .richText--recipe-title {
+        h1, h2, h3 {
+          margin-bottom: 10px;
+        }
+      }
+
+      .recipeCookingInfo  {
+        margin: 0;
+
+        .component-content {
+          margin: 10px 0;
+        }
+      }
+    }
+
+    .composite-recipe-ingredients-details {
+      width: percentage(5/12) !important;
+    }
+
+    .recipeDirections {
+      width: percentage(7/12) !important;
+      padding-left: 30px !important;
+
+      .recipeDirections-item p {
+          margin-left: 10px;
+          margin-bottom: 10px;
+      }
+    }
+
+    .accordion-slide {
+      &.first {
+        display: none;
+      }
+
+      &.last {
+        border-top: 2px black solid !important;
+      }
+
+      > .accordion-content-wrapper {
+        visibility: visible;
+        position: relative;
+        top: auto;
+        left: auto;
+        height: auto;
+        overflow: hidden;
+      }
+    }
+
+    .recipeNutrients {
+      padding: 5px 0;
+    }
+
+    .recipeIngredients-text,
+    .recipeDirections-item p,
+    .richText--nutrients-title .richText-content p,
+    .recipeNutrients-name,
+    .recipeNutrients-value {
+      font-size: 14px;
+    }
+
+    .recipeContext{
+      ~ .component,
+      ~ .composite {
+        display: none;
+      }
+    }
+  }
+}

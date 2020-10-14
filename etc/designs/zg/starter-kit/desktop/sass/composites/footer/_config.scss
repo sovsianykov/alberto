@@ -1,0 +1,254 @@
+$footer: (
+  // text: (), // global text config
+  main: (
+    // text: (), // global text config
+    box: (
+      background: (
+        background-color: color('neutral', 'lighter')
+      ),
+      padding: (
+        padding-top: breakpoint(spacings('l'), spacings('xl'), spacings('xl')),
+        padding-bottom: breakpoint(spacings('l'), spacings('xl'), spacings('xl')),
+        padding-left: breakpoint(null, 64px, null),
+        padding-right: breakpoint(null, 64px, null)
+      ),
+    ),
+    _newsletter: (
+      title: (
+        paragraph: (
+          text: (
+            font-size: px('m'),
+            font-weight: bold,
+            line-height: breakpoint(1.3, 1.15)
+          ),
+          margin: (
+            margin-top: breakpoint(0, 0, -5px),
+            margin-bottom: breakpoint((
+              tablet-min: 5px
+            ))
+          )
+        )
+      ),
+      text: (
+        paragraph: (
+          text: (
+            font-size: breakpoint(px(18), px('xxs'), px('xxs')),
+            line-height: 1.33
+          ),
+          margin: (
+            margin-top: breakpoint(10px, 5px, 5px),
+            margin-bottom: breakpoint(15px, 10px, 15px)
+          )
+        )
+      ),
+      input: extend('_base.input', (
+        height: spacings('xl'),
+        text: (
+          font-size: px(17),
+          line-height: 1,
+        ),
+        placeholder: (
+          color: color('neutral', 'light')
+        ),
+        border: (
+          border-top-right-radius: 0,
+          border-bottom-right-radius: 0,
+          border-right: 0
+        ),
+      )),
+      button: extend('_base.button', (
+        width: breakpoint(46px, 107px, 125px),
+        height: spacings('xl'),
+        flex: (
+          justify-content: center,
+        ),
+        border: (
+          border-top-left-radius: 0,
+          border-bottom-left-radius: 0,
+        ),
+        text: (
+          font-size: breakpoint(0, px('xxs'), px('xxs')),
+          color: breakpoint(transparent, color('white'), color('white')),
+          text-transform: uppercase,
+          letter-spacing: 0.3px
+        ),
+        icon: (
+          spacing: 5px,
+          content: common('icon.arrow-right'),
+          font-size: 16px,
+          color: color('white'),
+          display: breakpoint(block, none, none)
+        ),
+        hover: (
+          background: color('neutral', 'dark')
+        )
+      )),
+    ),
+    _phone-link: (
+      background: (
+        background-color: color('black')
+      ),
+      border: (
+        border-radius: common('_base.button.border.border-radius')
+      ),
+      _phone-label: (
+        text: (
+          font-family: 'primary',
+          font-size: px('xs'),
+          color: color('primary', 'base'),
+          text-transform: uppercase,
+          font-weight: bold,
+          letter-spacing: 0.5px,
+        )
+      ),
+      _phone-number: (
+        text: (
+          font-family: 'primary',
+          font-size: px('xs'),
+          color: color('white'),
+          font-weight: normal,
+        )
+      ),
+      _phone-icon: (
+        icon: (
+          content: common('icon.phone'),
+          font-size: px(21),
+          color: color('white')
+        )
+      )
+    ),
+    _social-links: (
+      title: (
+        paragraph: (
+          text: (
+            font-weight: bold,
+            line-height: 1.22,
+            font-size: px(18)
+          ),
+          margin: (
+            margin-bottom: 10px
+          )
+        )
+      ),
+      text: (
+        link: (
+          text: (
+            font-size: 0,
+            text-decoration: none
+          )
+        )
+      ),
+      classlist: (
+        defaults: (
+          font-size: breakpoint(28px, 21px, 21px),
+          color: color('black'),
+          hover: (
+            color: color('neutral', 'dark')
+          )
+        ),
+        items: (
+          icon-facebook: (
+            content: common('icon.facebook')
+          ),
+          icon-twitter: (
+            content: common('icon.twitter')
+          ),
+          icon-pinterest: (
+            content: common('icon.pinterest')
+          ),
+          icon-instagram: (
+            content: common('icon.instagram')
+          ),
+          icon-youtube: (
+            content: common('icon.youtube')
+          )
+        )
+      )
+    ),
+    _primary-nav: (
+      box: (
+        margin: (
+          margin-top: breakpoint((
+            tablet-max: 44px,
+            desktop: 2px
+          )),
+          margin-left: breakpoint((
+            desktop: 20px
+          ))
+        )
+      ),
+      title: (
+        paragraph: (
+          text: (
+            font-weight: bold,
+            line-height: 1.22,
+            font-size: px(18)
+          ),
+          margin: (
+            margin-bottom: 1px
+          )
+        )
+      ),
+      classlist: (
+        defaults: (
+          button: (
+            display: flex,
+            flex: (
+              justify-content: flex-start
+            ),
+            text: (
+              line-height: breakpoint(1.5, 1.38, 1.38),
+              font-size: breakpoint(px('s'), px('xs'), px('xs'))
+            ),
+            margin: (
+              margin-top: breakpoint(10px, 10px, 5px)
+            ),
+            icon: (
+              side: before,
+              font-size: px(13)
+            ),
+            hover: (
+              text: (
+                color: color('neutral', 'light')
+              )
+            )
+          )
+        ),
+        items: (
+          adchoices-script: (
+            button: (
+              icon: (
+                content: common('icon.ad-choices-logo'),
+                margin-right: 5px
+              )
+            )
+          )
+        )
+      )
+    )
+  ),
+  supplementary: (
+    box: (
+      background: (
+        background-color: color('white')
+      ),
+      padding: (
+        padding-top: breakpoint((tablet-max: spacings('m'), desktop: 20px)),
+        padding-bottom: spacings('m'),
+        padding-left: breakpoint(null, 64px, null),
+        padding-right: breakpoint(null, 64px, null)
+      ),
+    ),
+    text: (
+      // color: blue, // global text config
+      link: extend('_links._base.link', (
+        text: (
+          font-size: px('xxxs'),
+        )
+      )),
+      copyright: (
+        font-size: px('xxxs')
+      )
+    )
+  ),
+);

@@ -1,0 +1,27 @@
+$filteredArticles: (
+  _main: (
+    box: ()
+  ),
+  _listing-wrapper: (
+    box: (),
+  ),
+  _article-list: (
+    box: ()
+  ),
+  _article: (
+    box: (),
+    _text-wrapper: (
+      box: ()
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          text-transform: none
+        )
+      )
+    ),
+    _description: (
+      paragraph: ()
+    )
+  )
+);

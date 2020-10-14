@@ -1,0 +1,53 @@
+.ratingsandreviews .kritique {
+
+  .rr-widget-container {
+    @include wrapper;
+    margin: 0 auto !important;
+
+    img {
+      max-width: initial;
+      width: auto;
+    }
+
+    .customReview {
+      cursor: pointer;
+      display: none;
+    }
+
+    &.rr-inline-widget {
+      @import 'config';
+      @function g($a...) {
+        @return get-last($summary, $a...);
+      }
+      padding: 0;
+      width: auto;
+
+      @include text(g('text'), $media);
+
+      .aggregateRating img {
+
+        @include box(g('_rating.box'), $media);
+      }
+
+      .wRtng {
+        @include breakpoints {
+          @include button(g('_action.button'), $media);
+        }
+
+        &:last-of-type {
+          @include breakpoints {
+            @include button(g('_last-action.button'), $media);
+          }
+          &:hover {
+            text-transform: none!important;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  //Inside this div we have got SEO content within <noscript> tag. We don't want this to be displayed when JS is off
+  .kritique-seo {
+    display: none;
+  }
+}

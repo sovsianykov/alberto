@@ -1,0 +1,232 @@
+@include local-spacings();
+
+$mini-cart: (
+  spacings: spacings(),
+  _cart-handler: (
+    _bag-icon-in-body: (
+      button: (
+        background: (
+          background-color: transparent,
+        ),
+        margin: (
+          margin-top: breakpoint((
+            tablet-max: 15px,
+            desktop: 34px
+          )),
+          margin-right:  breakpoint((
+            tablet-max: 73px,
+            desktop: 0
+          ))
+        ),
+        icon: (
+          content: common('icon.button-bag'),
+          font-size: 24px,
+          color: color('black'),
+          hover: (
+            color: color('secondary')
+          )
+        )
+      )
+    ),
+    _bag-icon-in-parent: (
+      button: (
+        background: (
+          background-color: transparent,
+        ),
+        icon: (
+          content: common('icon.button-bag'),
+          font-size: 24px
+        )
+      )
+    ),
+    _quantity: (
+      button: (
+        padding: 11px 0 6px,
+        text: (
+          font-family: 'body',
+          font-size: 10px,
+          font-weight: bold,
+          line-height: 1
+        ),
+        flex: (
+          justify-content: center
+        )
+      )
+    )
+  ),
+  _cart-overlay: (
+    box: (
+      background: color('white'),
+      box-shadow: 0 spacings('xxs') 20px fade-out(color('black'), 0.8),
+      margin: (
+        margin-top: breakpoint((
+          tablet-max: 57px,
+          desktop: 75px
+        ))
+      )
+    ),
+    _heading: (
+      box: (
+        background: color('neutral', 'lighter'),
+        height: 50px,
+        box-shadow: 0 0 spacings('xs') fade-out(color('black'), 0.8),
+      ),
+      button: (
+        width: 30px,
+        height: 30px,
+        border: (
+          border-radius: 50%
+        ),
+        background: color('black'),
+        text: (
+          font-size: 0,
+          color: color('white')
+        ),
+        padding: spacings('xs'),
+        flex: (
+          justify-content: center
+        ),
+        icon: (
+          content: common('icon.cross-small'),
+          font-size: 10px
+        )
+      )
+    ),
+    _product-item: (
+      box: (),
+      _product-image-box: (
+        box: ()
+      ),
+      _image: (
+        box: (
+          width: 110px,
+          height: 110px
+        )
+      ),
+      _description-box: (
+        box: ()
+      ),
+      _name: (
+        paragraph: (
+          text: (
+            font-size: breakpoint(px('xxs'), px(18), px(18)),
+            line-height: 1.22,
+            font-weight: bold
+          )
+        )
+      ),
+      _price-box: (
+        box: ()
+      ),
+      _price: (
+        paragraph: (
+          text: (
+            font-size: px('s'),
+            font-weight: bold,
+            margin: (
+              margin-left: spacings('s')
+            )
+          )
+        )
+      ),
+      _remove: (
+        button: (
+          text: (
+            font-family: 'primary',
+            font-weight: bold,
+            font-size: px('xxs')
+          )
+        )
+      ),
+      _size-and-quantity: (
+        paragraph: (),
+        _size: (
+          text: ()
+        ),
+        _quantity: (
+          button: (
+            padding: 0 0 0 spacings('xxs'),
+            border: (
+              border-left: 1px solid color('black')
+            )
+          )
+        )
+      )
+    ),
+    _summary: (
+      box: (
+        box-shadow: 0 0 spacings('xs') fade-out(color('black'), 0.8),
+      ),
+      text: (
+        text-align: right
+      ),
+      _title: (
+        paragraph: (
+          text: (
+            font-size: px('xxxs'),
+            line-height: 1.5
+          )
+        )
+      ),
+      _price: (
+        paragraph: (
+          text: (
+            font-size: px('m'),
+            font-weight: bold,
+            line-height: 1.23
+          )
+        )
+      )
+    ),
+    _info: (
+      paragraph: (
+        text: (
+          font-size: px('xxxs'),
+          text-align: right,
+        ),
+        _total: (
+          text: (
+            font-size: px('s'),
+            font-weight: bold,
+          ),
+        )
+      ),
+      box: (
+        padding: (
+          padding-top: 0,
+          padding-right: breakpoint(spacings('xs'), 19px, 19px),
+          padding-bottom: spacings('s'),
+          padding-left: spacings('s'),
+        ),
+        background: color('white'),
+      )
+    ),
+    _view-cart-box: (
+      box: (
+        background: color('white'),
+      ),
+      _btn-box: (
+        box: ()
+      ),
+    ),
+    _view-cart-btn: (
+      button: extend('_base.button', (
+        min-width: 215px,
+        height: 50px,
+        background: color('primary', 'base'),
+        text: (
+          color: color('black'),
+          font-size: px(18),
+          font-weight: bold,
+          text-align: center
+        ),
+        hover: (
+          background: color('primary', 'dark'),
+          text: (
+            color: color('white')
+          )
+        )
+      ))
+    )
+  )
+);

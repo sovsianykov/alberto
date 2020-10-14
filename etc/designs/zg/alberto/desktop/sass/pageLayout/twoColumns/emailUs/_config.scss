@@ -1,0 +1,30 @@
+$email-us: (
+  box: (
+    background: transparent
+  ),
+  _separator: (
+    box: (
+      box-shadow: 0 0 10px 2px transparentize(color('neutral', 'light'), .5)
+    )
+  ),
+  _left-side-holder: (
+    box: (
+      background: transparent
+    ),
+    _left-side: (
+      box: (
+        background: transparent
+      )
+    )
+  ),
+  _right-side-holder: (
+    box: (
+      background: color('neutral', 'lighter')
+    ),
+    _right-side: (
+      box: (
+        background: transparent
+      )
+    )
+  )
+);

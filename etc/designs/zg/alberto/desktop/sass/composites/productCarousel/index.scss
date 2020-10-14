@@ -1,0 +1,207 @@
+@import '../../core/config';
+
+.composite-product-carousel {
+  @import 'config';
+  @function g($a...) { @return get-last($productCarousel, $a...); }
+
+  $box: merge((
+    margin: (
+      margin-top: spacings('xxl'),
+      margin-bottom: spacings('xxl')
+    )
+  ), g('_main.box'));
+
+  @include box($box, $media);
+
+  > .content {
+    @include wrapper;
+
+    $box: merge((
+      padding: (
+        padding-left: breakpoint((mobile: 0)),
+        padding-right: breakpoint((mobile: 0))
+      )
+    ), g('_content-wrapper.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+  }
+}
+
+@import '_listing/index';
+
+
+.product-item-small {
+  h3 {
+    font-family: font-family('body');
+    font-weight: bold;
+    margin-bottom: 10px;
+    border-top: 1px solid color('secondary', 'base');
+    a {
+      text-decoration: none;
+    }
+    @include breakpoints(mobile) {
+      font-size: px(18);
+      padding-top: 20px;
+    }
+    @include breakpoints(tablet) {
+      font-size: px(22);
+      padding-top: 25px;
+    }
+    @include breakpoints(desktop) {
+      font-size: px(24);
+      padding-top: 25px;
+    }
+    + p {
+      font-family: font-family('primary');
+      margin-top: 0!important;
+      text-transform: lowercase;
+      &:first-letter {
+        text-transform: uppercase;
+      }
+      a {
+        text-decoration: none;
+      }
+      @include breakpoints(mobile) {
+        font-size: px(19);
+        margin-bottom: 15px;
+      }
+      @include breakpoints(tablet, desktop) {
+        font-size: px(20);
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .paragraphSystem {
+    display: flex;
+    flex-direction: column;
+    >*:last-child {
+      p {
+        margin-top: 15px;
+      }
+    }
+  }
+  .ratingsandreviews {
+    margin-top: auto;
+    margin-bottom: 0;
+    .rr-widget-container.rr-star-percentage {
+      font-size: 0!important;
+      >*:not(.aggregateRating) {
+        display: none!important;
+      }
+    }
+  }
+}
+
+.listing-carousel {
+  .product-item-small {
+    >.component-content {
+      height: 100%;
+      >.paragraphSystem {
+        height: 100%;
+      }
+    }
+    &.is-hidden {
+      visibility: visible!important;
+    }
+    @include breakpoints(mobile) {
+      padding: 0 11px 0 11px!important;
+    }
+    .paragraphSystem {
+      display: flex;
+      flex-direction: column;
+      >*:last-child {
+        p {
+          margin-top: 15px;
+        }
+      }
+    }
+    h3 {
+      @include breakpoints(mobile) {
+        max-height: 110px;
+        overflow: hidden;
+      }
+      @include breakpoints(tablet) {
+        max-height: 165px;
+        overflow: hidden;
+      }
+      @include breakpoints(desktop) {
+        max-height: 150px;
+        overflow: hidden;
+      }
+      + p {
+          a {
+          text-decoration: none;
+        }
+      }
+    }
+    .ratingsandreviews {
+      margin-top: auto;
+      margin-bottom: 0;
+      .rr-widget-container.rr-star-percentage {
+        font-size: 0!important;
+        >*:not(.aggregateRating) {
+          display: none!important;
+        }
+      }
+    }
+  }
+}
+
+.featured-related-products-list {
+  h2 {
+    margin-bottom: 15px;
+    @include breakpoints(mobile) {
+      font-size: px(26);
+    }
+    @include breakpoints(tablet) {
+      font-size: px(32);
+    }
+    @include breakpoints(desktop) {
+      font-size: px(40);
+    }
+  }
+}
+
+.template-product-detail-page {
+  .featured-related-products-list {
+    .listing-header {
+      .richText:first-child {
+        margin-bottom: 0;
+      }
+      .richText:last-child {
+        p {
+          margin-top: 0;
+          font-family: font-family('primary');
+          @include breakpoints(mobile) {
+            margin-bottom: 50px;
+            font-size: px(19);
+          }
+          @include breakpoints(tablet) {
+            margin-bottom: 60px;
+            font-size: px(23);
+          }
+          @include breakpoints(desktop) {
+            margin-bottom: 70px;
+            font-size: px(26);
+          }
+        }
+      }
+    }
+    h2 {
+      @include breakpoints(mobile) {
+        font-size: px(26)!important;
+        margin-bottom: 10px;
+      }
+      @include breakpoints(tablet) {
+        font-size: px(32)!important;
+        margin-bottom: 15px;
+      }
+      @include breakpoints(desktop) {
+        font-size: px(40)!important;
+        margin-bottom: 15px;
+      }
+    }
+  }
+}

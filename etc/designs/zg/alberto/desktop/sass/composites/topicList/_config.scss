@@ -1,0 +1,82 @@
+$topicList: (
+  box: (),
+  _title: (
+    paragraph: (
+      text: (
+        font-family: 'primary',
+        font-size: px('l'),
+        color: color('black'),
+        text-transform: uppercase,
+        text-align: center,
+        line-height: 1.16,
+        font-weight: bold
+      ),
+      margin: (
+        margin-top: spacings('xxl'),
+        margin-bottom: spacings('m')
+      )
+    )
+  ),
+  _list-gutter: breakpoint(20px, 30px, 30px),
+  _item: (
+    box: (
+      height: breakpoint(136px, 270px, 270px),
+      background: linear-gradient(to right, white 0%, color('neutral', 'dark') 1%, color('neutral', 'dark') 99%, white 100%)
+    ),
+    _image: (
+      hover: (
+        transform: (
+          transform: breakpoint((
+            tablet-min: scale(1.1, 1.1) translate(-50%, -50%)
+          )),
+          transform-origin: left
+        )
+      ),
+      transition: (
+        speed: 1s
+      )
+    ),
+    button: (
+      padding: breakpoint((
+        mobile: 10px,
+        tablet-min: 10px 20px
+      )),
+      min-height: breakpoint(29px, 42px, 42px),
+      background: (
+        background-color: color('neutral', 'lighter')
+      ),
+      text: (
+        font-family: 'primary',
+        text-transform: uppercase,
+        text-decoration: none,
+        font-size: breakpoint(14px, 20px, 20px),
+        line-height: 1.1,
+        color: color('black')
+      ),
+      icon: (
+        background: color('black'),
+        border: (
+          border-radius: 100%
+        ),
+        margin: (
+          margin-left: breakpoint(5px, 10px, 10px)
+        ),
+        padding: (
+          padding-left: breakpoint(0, 2px, 2px)
+        ),
+        width: breakpoint(15px, 20px, 20px),
+        height: breakpoint(15px, 21px, 21px),
+        font-size: breakpoint(6px, 9px, 9px),
+        content: common('icon.arrow-right'),
+        color: color('white')
+      ),
+      hover: (
+        background: (
+          background-color: breakpoint((
+            tablet-min: color('neutral', 'light')
+          ))
+        )
+      )
+    )
+  )
+);

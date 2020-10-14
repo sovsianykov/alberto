@@ -1,0 +1,45 @@
+.cta-filter-mobile {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($cta-filter-mobile, $a...);
+  }
+
+  position: relative;
+
+  $filterBox: merge((
+    padding: 12px 34px 11px 8px,
+    display: inline-flex,
+    flex: (
+      justify-content: flex-start
+    )
+  ), g('button'));
+
+  @include breakpoints() {
+    @include button($filterBox, $media);
+  }
+
+  @include media-query(desktop, auto) {
+    display: none;
+  }
+
+  @include media-query(auto, notebook) {
+    margin-bottom: auto;
+  }
+
+  @include media-query(mobile) {
+    &.even.initialized {
+      margin-bottom: 9px;
+    }
+  }
+
+  &:after {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  p {
+    margin: 0;
+  }
+}

@@ -1,0 +1,14 @@
+// Please navigate to buyItNow/_config.scss for global Buy It Now component configuration
+
+@import '../config';
+
+$shopalystBuyItNow: merge($buyItNow, (
+  _shopalyst: (
+    _iframe: (
+      box: ()
+    ),
+    _find-in-store: (
+      box: ()
+    )
+  )
+));

@@ -1,0 +1,117 @@
+$refineSearchBox: (
+  text: (
+    font-size: px(14),
+    line-height: 1.29
+  ),
+  box: (
+    background: transparent,
+    margin: (
+      margin-bottom: spacings('l'),
+      margin-top: spacings('m')
+    )
+  ),
+  _content: (
+    _refine-search-header: (
+      paragraph: (
+        margin: (
+          margin-bottom: breakpoint(
+            10px,
+            22px,
+            14px
+          ),
+          margin-top: 0
+        ),
+        text: (
+          font-size: breakpoint(
+            px(16),
+            px(16),
+            px(14)
+          ),
+          line-height: breakpoint(
+            1.38,
+            1.38,
+            1.29
+          )
+        )
+      )
+    ),
+    _suggestion: (
+      paragraph: (
+        display: inline-flex,
+        margin: (
+          margin-bottom: 0,
+          margin-left: spacings('s'),
+          margin-top: 0
+        )
+      )
+    ),
+    _refine-search-input: (
+      input: (
+        display: block,
+        padding: breakpoint(
+            0 31px 13px 0,
+            0 31px 13px 0,
+            0 38px 15px 0
+        ),
+        width: 100%,
+        background: (
+          background: transparent
+        ),
+        border: (
+          border-bottom: 2px solid color('black'),
+          border-left: 0,
+          border-right: 0,
+          border-top: 0,
+        ),
+        margin: (
+          margin-bottom: breakpoint(
+            10px,
+            19px,
+            14px
+          )
+        ),
+        text: (
+          font-family: 'body',
+          font-size: breakpoint(
+            px(36),
+            px(36),
+            px(48)
+          ),
+          font-weight: bold,
+          line-height: breakpoint(
+            1.11,
+            1.11,
+            1.08
+          )
+        ),
+        placeholder: (
+          color: color('black')
+        )
+      )
+    ),
+    _refine-search-submit-button: (
+      button: (
+        background: (
+          background: transparent
+        ),
+        border: (
+          border: 0
+        ),
+        icon: (
+          color: color('black'),
+          content: common('icon.search'),
+          display: inline-block,
+          font-size: breakpoint(
+            px(21),
+            px(21),
+            px(28)
+          ),
+          side: before
+        ),
+        margin: (
+          margin-top: 12px
+        )
+      )
+    )
+  )
+);

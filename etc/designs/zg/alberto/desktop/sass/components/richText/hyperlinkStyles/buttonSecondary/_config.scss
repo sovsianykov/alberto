@@ -1,0 +1,9 @@
+$buttonSecondary: (
+  spacings: common('spacings')
+);
+
+$buttonSecondary: merge($buttonSecondary, (
+  _link: (
+    button: common('_secondary.button'),
+  )
+));

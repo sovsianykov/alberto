@@ -1,0 +1,24 @@
+.richText-centered-big-header {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($centeredHeader, $a...);
+  }
+
+  @include wrapper;
+
+  @include breakpoints() {
+    @include box(g('_main.box'), $media);
+  }
+
+  h1, h2, h3 {
+    @include breakpoints() {
+      @include paragraph(g('_main._header.paragraph'), $media);
+    }
+  }
+
+  p {
+    @include breakpoints() {
+      @include paragraph(g('_main._text-below.paragraph'), $media);
+    }
+  }
+}

@@ -1,0 +1,113 @@
+$searchTabNavigation: (
+  spacings: common('spacings')
+);
+
+$searchTabNavigation: merge($searchTabNavigation, (
+  box: (
+    margin: (
+      margin-bottom: breakpoint(
+        0,
+        50px,
+        50px
+      )
+    )
+  ),
+  _content: (
+    // box: (),
+    _navigation-list-wrapper: (
+      box: (
+        border: (
+          border-bottom: breakpoint(
+            solid 1px transparent,
+            solid 1px color('neutral', 'lighter'),
+            solid 1px color('neutral', 'lighter')
+          )
+        ),
+        margin: (
+          margin: 0 -1px
+        ),
+        padding: (
+          padding: 0
+        )
+      )
+    ),
+    _navigation-item-holder: (
+      // box: (),
+      paragraph: (
+        text: (
+          font-family: 'primary',
+          font-size: px(18),
+          font-weight: bold,
+          line-height: 1.22,
+          text-transform: uppercase
+        ),
+        margin: 0 1px,
+      ),
+      _tab: (
+        button: (
+          width: 100%,
+          padding: breakpoint(
+            0 3px 13px,
+            0 3px 13px,
+            0 3px 27px
+          ),
+          text: (
+            color: color('black'),
+            text-align: center,
+            text-decoration: none
+          ),
+          line: (
+            side: after,
+            width: 100%,
+            margin: (
+              margin: 0
+            ),
+            border: (
+              border-top: 2px solid color('secondary')
+            ),
+            transform: (
+              transform: scaleX(0),
+              transform-origin: 0 0
+            ),
+            hover: (
+              transform: (
+                transform: scaleX(1)
+              )
+            )
+          ),
+          hover: (
+            text: (
+              color: color('secondary')
+            )
+          )
+        )
+      ),
+      _tab-active: (
+        button: (
+          line: (
+            side: after,
+            width: 100%,
+            margin: (
+              margin: 0
+            ),
+            border: (
+              border-top: 2px solid color('secondary')
+            ),
+            transform: (
+              transform: scaleX(1)
+            )
+          ),
+          padding: breakpoint(
+            0 3px 13px,
+            0 3px 13px,
+            0 3px 27px
+          ),
+          text: (
+            color: color('secondary')
+          ),
+          hover: ()
+        )
+      )
+    )
+  )
+));

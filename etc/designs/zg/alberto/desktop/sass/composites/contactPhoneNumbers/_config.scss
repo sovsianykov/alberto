@@ -1,0 +1,73 @@
+$contactPhoneNumbers: (
+  _main: (
+    box: ()
+  ),
+  _phone-title: (
+    paragraph: (
+      text: (
+        font-size: px('s'),
+        line-height: 1.2,
+        font-weight: normal
+      ),
+      line: (
+        border: (
+          border-bottom: 4px solid color('primary', 'dark')
+        ),
+        display: block,
+        side: after,
+        width: 25px
+      )
+    )
+  ),
+  _phone-number: (
+    paragraph: (
+      text: (
+        font-size: px('l'),
+        line-height: 1.15,
+        font-weight: bold,
+        font-family: 'primary',
+      )
+    )
+  ),
+  _details: (
+    paragraph: (
+      text: (
+        font-size: px('xxs'),
+        line-height: 1.57,
+        font-weight: normal
+      )
+    )
+  ),
+  _mobile-phone-link: (
+    button: (
+      background: (
+        background-color: color('black')
+      ),
+      border: (
+        border-radius: common('_base.button.border.border-radius')
+      ),
+      height: 50px,
+      icon: (
+        content: common('icon.phone'),
+        font-size: px(21),
+        color: color('white')
+      )
+    ),
+    _phone-label: (
+      text: (
+        font-family: 'primary',
+        font-size: px('xs'),
+        color: color('primary', 'dark'),
+        text-transform: uppercase,
+        font-weight: bold
+      ),
+    ),
+    _phone-number: (
+      text: (
+        font-family: breakpoint(null, 'base','primary'),
+        font-size: px('xs'),
+        color: color('white')
+      )
+    )
+  )
+)

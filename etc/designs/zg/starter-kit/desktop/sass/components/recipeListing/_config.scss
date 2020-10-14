@@ -1,0 +1,94 @@
+$recipeList: (
+  box: (),
+  _recipes-filters: extend('_filter-form', (
+    box: (),
+    _main-filters: (
+      box: ()
+    ),
+    _wrapper: (
+      box: ()
+    ),
+    _dropdown-wrapper: (
+      button: (
+        line: (
+          width: calc(100% - 25px),
+          border: (
+            border-top: 2px solid color('black')
+          ),
+        ),
+      )
+    ),
+    _dropdown: (
+      button: (
+        padding: 0 spacings('s') 0 0
+      ),
+      text: (
+        font-size: breakpoint((tablet-max: px(18), desktop: px('m'))),
+      )
+    ),
+    _sort-order: (
+      box: ()
+    ),
+    _dropdown-wrapper-last: (
+      button: (
+        margin: (
+          margin-top: breakpoint((mobile: spacings('m')))
+        )
+      ),
+    )
+  )),
+  _recipe-listing-item: (
+    box: (),
+    _details: (
+      box: (
+        background: color('white'),
+      ),
+      hover: (
+        background: (
+          background-color: rgba(color('neutral', 'light'), 0.2)
+        )
+      ),
+      _name: (
+        paragraph: (
+          text: (
+            text-align: center,
+            font-size: px(18),
+            line-height: 1.22,
+          ),
+        ),
+      ),
+      _description: (
+        paragraph: (
+          text: (
+            text-align: center,
+            font-size: breakpoint((tablet-max: px('xxxs'), desktop: px('xxs'))),
+            line-height: 1.36,
+          ),
+        ),
+      ),
+      _ratings: (
+        box: (),
+        _stars-container: (
+          box: ()
+        )
+      )
+    ),
+  ),
+  _show-more-btn: extend('_load-more', (
+    button: (
+      margin: 60px auto 0,
+      text: (
+        font-size: px('xxs'),
+        font-weight: bold
+      ),
+      icon: (
+        font-size: 15px,
+        width: 35px,
+        height: 35px,
+        margin: (
+          margin: 0 auto spacings('xs'),
+        )
+      )
+    )
+  ))
+);

@@ -1,0 +1,38 @@
+$error-color: color('secondary', 'base');
+
+$radio-as-button: (
+  button: extend('_tertiary.button', (
+    border: (
+      border-color: color('black')
+    ),
+    min-width: breakpoint((
+      mobile: 0,
+      tablet-min: 200px,
+    )),
+    padding: spacings('s'),
+    width: breakpoint((
+      mobile: 100%,
+    )),
+    hover: (
+      background: color('black'),
+      text: (
+        color: color('white')
+      )
+    )
+  )),
+  _checked: (
+    button: extend('button', (
+      background: color('black'),
+      text: (
+        color: color('white')
+      ),
+      padding: spacings('s'),
+      hover: (
+        background: color('black'),
+        text: (
+          color: color('white')
+        )
+      )
+    ))
+  )
+);

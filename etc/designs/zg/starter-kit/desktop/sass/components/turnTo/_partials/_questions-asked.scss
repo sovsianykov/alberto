@@ -1,0 +1,236 @@
+#TTbrowseQAWrapper,
+#TT2MainSection {
+  // browse questions title
+  .TTtitle {
+    @include breakpoints {
+      @include paragraph(g('_questions-asked._browse-title.paragraph'), $media);
+    }
+  }
+
+  // sort by wrapper
+  #TTexUgcR {
+    position: relative;
+
+    @include breakpoints() {
+      @include icon(g('_questions-asked._sort-dropdown.icon'), $media);
+    }
+
+    $pseudo: safetype(g('_questions-asked._sort-dropdown.icon.side'), 'after');
+    &:#{$pseudo} {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+
+      @include breakpoints() {
+        @include button(g('_questions-asked._sort-dropdown.button'), $media);
+      }
+
+      &::-ms-expand {
+        display: none;
+      }
+    }
+  }
+
+  // question item
+  .TT3questWrp {
+    @include breakpoints() {
+      @include box(g('_questions-asked._item.box'), $media);
+    }
+  }
+
+  .TT3itemBox {
+    @include breakpoints() {
+      @include box(g('_questions-asked._item._question-wrapper.box'), $media);
+    }
+  }
+
+  .TT3qText {
+    @include breakpoints() {
+      @include paragraph(g('_questions-asked._item._title.paragraph'), $media);
+    }
+  }
+
+  .TT4askedByBlock {
+    @include breakpoints() {
+      @include paragraph(g('_questions-asked._item._asked-by.paragraph'), $media);
+    }
+  }
+
+  .TT3staffBadge,
+  .TT3youBadge {
+    background: none;
+    padding-right: 0;
+
+    @include breakpoints() {
+      @include text(g('_questions-asked._item._user-type.text'), $media);
+    }
+  }
+
+  .TT3timeStamp {
+    @include breakpoints() {
+      @include text(g('_questions-asked._item._timestamp.text'), $media);
+    }
+  }
+
+  // best answer label
+  .TTbestAnswer {
+    display: block;
+    @include breakpoints() {
+      @include paragraph(g('_questions-asked._item._best-answer-label.paragraph'), $media);
+    }
+  }
+
+  // best answer:
+  .TT3aText {
+    display: block;
+    @include breakpoints() {
+      @include paragraph(g('_questions-asked._item._best-answer.paragraph'), $media);
+    }
+  }
+
+  // buttons / links under answers
+  .TT4bestAnswerBlock ul.TT3linkLine,
+  .TT3ansArea ul.TT3linkLine {
+    a {
+      @include breakpoints() {
+        @include button(g('_questions-asked._item._answer-links.button'), $media);
+      }
+    }
+  }
+
+  ul.TT3linkLine li {
+    @include breakpoints {
+      @include text(g('text'), $media); // reset TurnTo settings to config global settings (color)
+    }
+
+    &.TT4disabledVote {
+      @include breakpoints() {
+        @include text(g('_disabled-links.text'), $media);
+      }
+    }
+
+    @include breakpoints() {
+      @include icon(g('_questions-asked._separator-icon.icon'), $media);
+    }
+
+    &:last-of-type {
+      $pseudo: safetype(g('_questions-asked._separator-icon.icon.side'), 'after');
+      &:#{$pseudo} {
+        display: none;
+      }
+    }
+  }
+
+  // collapse/expand links icons
+  .TT4collapse,
+  .TT4expand,
+  .TT4pen,
+  .TT4thumb {
+    background: none;
+    height: auto;
+    width: auto;
+    margin: 0;
+  }
+
+  .TT4collapse {
+    @include breakpoints() {
+      @include icon(g('_questions-asked._collapse-icon.icon'), $media);
+    }
+  }
+
+  .TT4expand {
+    @include breakpoints() {
+      @include icon(g('_questions-asked._expand-icon.icon'), $media);
+    }
+  }
+
+  ul.TT3questionLinkLine {
+    border-top: 0;
+
+    @include breakpoints() {
+      @include box(g('_questions-asked._item._question-links.box'), $media);
+      @include text(g('text'), $media);
+    }
+
+    @include media-query(mobile, tablet) {
+      li {
+        display: block;
+
+        &:after {
+          content: none;
+        }
+      }
+    }
+
+    a {
+      @include breakpoints() {
+        @include button(g('_questions-asked._item._question-links.button'), $media);
+      }
+      vertical-align: top;
+    }
+
+    a.TT4addAnswer {
+      @include breakpoints() {
+        @include button(g('_questions-asked._item._question-links._add-answer.button'), $media);
+      }
+    }
+
+    .TT3helpful {
+      .TTrespDesktopDisp {
+        display: inline-block !important; // overwrite turnTo default styles (don't hide text on mobile)
+      }
+
+      a {
+        @include breakpoints() {
+          @include button(g('_questions-asked._item._question-links._helpful.button'), $media);
+        }
+      }
+    }
+
+    .TT3vcntUp {
+      margin-top: 0;
+      margin-left: 5px;
+    }
+  }
+
+  .TT4disabledVote {
+    @include breakpoints() {
+      @include text(g('_disabled-links.text'), $media);
+    }
+  }
+
+  .TT4respAnsWidth {
+    width: 100% !important; // overwrite turnTo default styles
+  }
+
+  // product images caption:
+  .TT3metaText {
+    @include breakpoints() {
+      @include paragraph(g('_questions-asked._item._product-image-caption.paragraph'), $media);
+    }
+  }
+
+  // show more button
+  .TT3ShowMore {
+    img {
+      display: none;
+    }
+    a {
+      height: auto;
+      overflow: visible;
+    }
+
+    .TT3ShowMoreText {
+      @include breakpoints {
+        @include button(g('_show-more.button'), $media);
+      }
+    }
+  }
+}

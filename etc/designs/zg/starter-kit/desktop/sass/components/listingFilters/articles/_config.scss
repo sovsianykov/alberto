@@ -1,0 +1,24 @@
+$articles: (
+  _filters-wrapper: (
+    box: ()
+  ),
+  _filter-form: extend('_filter-form', (
+    //default styles here
+    _dropdown: (
+      button: (
+        text: (
+          text-decoration: none,
+          line-height: 1.1
+        )
+      )
+    ),
+    _sort-filter-wrapper: (
+      box: ()
+    ),
+    _dropdown-wrapper-last: (
+      _IOS-sort-dropdown: (
+        text: extend('_IOS-select-settings.text', ())   //the smallest allowed font size for select on small devices with iOS is 16px, otherwise when click on select, whole page is zoomed in
+      )
+    )
+  ))
+);

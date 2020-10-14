@@ -1,0 +1,287 @@
+// Step 3 of "where to buy"
+.box-store-locator-step-3 {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($storeLocator-results, $a...);
+  }
+
+  .component.storelocator {
+    .storelocator-radius-wrapper,
+    .storelocator-zipcode-wrapper,
+    .storelocator-select-product,
+    .storelocator-product-size-wrapper,
+    .storelocator-button-wrapper {
+      display: none;
+    }
+
+    .storelocator-product-wrapper {
+      @include breakpoints() {
+        @include button(g('_product-item.box'), $media);
+      }
+
+      .storelocator-product-image {
+        flex-shrink: 0;
+        @include size(g('_product-item._image.size'), $media);
+      }
+
+      .storelocator-product {
+        @include box(g('_product-item._details.box'), $media);
+
+        .image img {
+          width: 110px; // this is temporary until we have bazaar voice integration
+        }
+
+        div:first-of-type {
+          @include paragraph(g('_product-item._details._product-size.paragraph'), $media);
+        }
+      }
+
+      .storelocator-prefix {
+        @include paragraph(g('_product-item._details._title.paragraph'), $media);
+      }
+
+      .where-to-buy-edit {
+        margin-left: 0;
+      }
+    }
+
+    .storelocator-product-image {
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+
+  .storelocatorResults-wrapper {
+    visibility: hidden;
+    position: relative;
+
+    &.ready {
+      visibility: visible;
+    }
+
+    &.error {
+      > * {
+        display: none;
+        &.is-visible {
+          display: block;
+        }
+      }
+
+      .storeresults-intro {
+        display: block;
+      }
+    }
+
+    .storeresults-intro {
+      @include paragraph(g('_results-message.paragraph'), $media);
+    }
+
+    .storeresults-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: listStyle;
+
+      > li {
+        counter-increment: listStyle;
+
+        &:before {
+          content: counter(listStyle);
+          left: 10px;
+          @include box(g('_result-item._counter.box'), $media);
+          @include text(g('_result-item._counter.text'), $media);
+        }
+
+        @include box(g('_result-item.box'), $media);
+        @include text(g('_result-item.text'), $media);
+
+        &.active {
+            @include box(g('_result-item-active.box'), $media);
+
+            &:before {
+                @include box(g('_result-item-active._counter.box'), $media);
+            }
+        }
+
+        @include media-query(desktop, auto) {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .storeresults-name {
+      @include breakpoints() {
+        @include paragraph(g('_result-item._title.paragraph'), $media);
+      }
+    }
+
+    .storeresults-distance {
+      @include breakpoints() {
+        @include paragraph(g('_result-item._distance.paragraph'), $media);
+      }
+    }
+
+    .storeresults-address {
+      @include breakpoints() {
+        @include paragraph(g('_result-item._address.paragraph'), $media);
+      }
+    }
+
+    .storeresults-phone {
+      white-space: nowrap;
+      @include breakpoints() {
+        @include button(g('_result-item._phone-number.button'), $media);
+      }
+    }
+
+    .storeresults-directions {
+      white-space: nowrap;
+      @include breakpoints() {
+        @include button(g('_result-item._directions.button'), $media);
+      }
+    }
+
+    .storeresults-more-wrapper {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .storeresults-more {
+      cursor: pointer;
+
+      @include button(g('_results-load-more.button'), $media);
+    }
+  }
+
+  .richText {
+    p {
+      @include paragraph(g('_buy-now._message.paragraph'), $media);
+    }
+  }
+
+  .primary-btn,
+  .addtobag-btn,
+  .shoppable {
+    text-align: center;
+
+    button {
+      cursor: pointer;
+      margin: 0;
+
+      @include breakpoints() {
+        @include button(g('_buy-now._buy-button.button'), $media);
+      }
+    }
+  }
+}
+
+.store-locator-results-scroll {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($storeLocator-results, $a...);
+  }
+  @include media-query(tablet, auto) {
+    overflow-y:scroll;
+  }
+  .storelocatorResults-wrapper {
+    visibility: hidden;
+    position: relative;
+
+    &.ready {
+      visibility: visible;
+    }
+
+    &.error {
+      > * {
+        display: none;
+        &.is-visible {
+          display: block;
+        }
+      }
+    }
+    .storeresults-list {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: listStyle;
+
+      > li {
+        counter-increment: listStyle;
+
+        &:before {
+          content: counter(listStyle);
+          left: 10px;
+          @include box(g('_result-item._counter.box'), $media);
+          @include text(g('_result-item._counter.text'), $media);
+        }
+
+        @include box(g('_result-item.box'), $media);
+        @include text(g('_result-item.text'), $media);
+
+        &.active {
+            @include box(g('_result-item-active.box'), $media);
+
+            &:before {
+                @include box(g('_result-item-active._counter.box'), $media);
+            }
+        }
+
+        @include media-query(desktop, auto) {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .storeresults-name {
+      @include breakpoints() {
+        @include paragraph(g('_result-item._title.paragraph'), $media);
+      }
+    }
+
+    .storeresults-distance {
+      @include breakpoints() {
+        @include paragraph(g('_result-item._distance.paragraph'), $media);
+      }
+    }
+
+    .storeresults-address {
+      @include breakpoints() {
+        @include paragraph(g('_result-item._address.paragraph'), $media);
+      }
+    }
+
+    .storeresults-phone {
+      white-space: nowrap;
+      @include breakpoints() {
+        @include button(g('_result-item._phone-number.button'), $media);
+      }
+    }
+
+    .storeresults-directions {
+      white-space: nowrap;
+      @include breakpoints() {
+        @include button(g('_result-item._directions.button'), $media);
+      }
+    }
+
+    .storeresults-more-wrapper {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .storeresults-more {
+      cursor: pointer;
+
+      @include button(g('_results-load-more.button'), $media);
+    }
+  }
+
+  .richText {
+    p {
+      @include paragraph(g('_buy-now._message.paragraph'), $media);
+    }
+  }
+
+}

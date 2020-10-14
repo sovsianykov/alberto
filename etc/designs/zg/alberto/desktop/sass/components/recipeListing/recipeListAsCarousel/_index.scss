@@ -1,0 +1,143 @@
+.recipeList--as-carousel {
+  @import 'config';
+  @function g($a...) { @return get-last($recipeListAsCarousel, $a...); }
+
+  @include listing-cols('.recipeListing-list', '.recipeListing-item', 0px, breakpoint(1, 3, 4));
+
+  $box: merge((
+    padding: (
+      padding: breakpoint((tablet-min: 0 56px))
+    ),
+    margin: (
+      margin-bottom: breakpoint((mobile: 30px, tablet-min: 60px))
+    )
+  ), g('box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  user-select: none;
+
+  &.component-content {
+    .recipeListing-wrapper {
+      $box: merge((
+        width: breakpoint((mobile: calc(50% - 10px))),
+        overflow: breakpoint((tablet-min: hidden)),
+        margin: (
+          margin: breakpoint((mobile: 0 auto, tablet-min: spacings('xs') * -1))
+        )
+      ), g('_carousel-wrapper.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+    }
+
+    .recipeListing-list {
+      flex-wrap: nowrap;
+      margin: 0;
+    }
+
+    .recipeListing-item {
+      margin: 0 !important; //overriding grid styles
+
+      $box: merge((
+        flex: (
+          flex-shrink: 0
+        ),
+        padding: spacings('xs')
+      ), g('_carousel-wrapper._carousel-item.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+
+      &.is-hidden {
+        // visibility: hidden is needed to prevent tabbing out of carousel viewport
+        // display: block is needed to calculate carousel width correctly
+        visibility: hidden;
+        display: block ! important; // overriding global is-hidden style
+      }
+    }
+
+    .recipeListing-link {
+      touch-action: pan-y;
+
+      &:hover {
+        background: transparent;
+      }
+    }
+
+    .carousel-controls {
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+
+      $box: merge((
+        display: flex,
+        flex: (
+          align-items: center,
+          justify-content: center,
+        ),
+        width: 100%,
+        box-sizing: border-box,
+      ), g('_carousel-nav.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+
+      button {
+        cursor: pointer;
+
+        &:focus {
+          outline: none;
+        }
+
+        &.previous,
+        &.next {
+          &, &.disabled {
+            @include media-query(mobile) {
+              display: none;
+            }
+          }
+        }
+      }
+
+      .previous,
+      .next {
+        position: absolute;
+        border: 0;
+
+        @include breakpoints() {
+          @include button(g('_carousel-nav._nav-item.button'), $media);
+        }
+
+        &.disabled {
+          pointer-events: none;
+
+          @include breakpoints() {
+            @include button(g('_carousel-nav._nav-item._disabled.button'), $media);
+          }
+        }
+      }
+
+      .previous {
+        left: 0;
+
+        @include breakpoints() {
+          @include button(g('_carousel-nav._nav-item._prev.button'), $media);
+        }
+      }
+
+      .next {
+        right: 0;
+
+        @include breakpoints() {
+          @include button(g('_carousel-nav._nav-item._next.button'), $media);
+        }
+      }
+    }
+  }
+}

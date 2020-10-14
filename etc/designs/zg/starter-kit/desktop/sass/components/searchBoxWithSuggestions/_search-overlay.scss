@@ -1,0 +1,82 @@
+.overlay-container.search-overlay {
+  @import 'config-search-overlay';
+  @function g($a...) { @return get-last($search-overlay, $a...); }
+
+  display: none;
+  height: 100vh;
+  left: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: $z-index-fixed;
+  opacity: 0;
+
+  $background-overlay: merge((
+    position: fixed
+  ), g('_background-overlay.box'));
+
+  @include breakpoints() {
+    @include box($background-overlay, $media);
+    @include transition(g('_background-overlay.transition'), (
+      'opacity'
+    ), $media);
+  }
+
+  .overlay-open & {
+    display: block;
+    opacity: 1;
+  }
+
+  .overlay-close {
+    cursor: pointer;
+    font-size: 0;
+    position: absolute;
+    right: 20px;
+    top: 26px;
+
+    &::before {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    $close: merge((
+    ), g('_close.button'));
+
+    @include button($close, $media);
+
+    &:focus{
+      .ua-webkit & {
+        outline: -webkit-focus-ring-color auto 5px;
+      }
+    }
+  }
+
+  .overlay-loading {
+    background: red url("/etc/designs/zg/starter-kit/desktop/assets/img/loader.gif") no-repeat;
+    height: 31px;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 31px;
+  }
+
+  .overlay-content {
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    max-width: 100%;
+    padding: 0;
+    position: relative;
+    top: 0;
+    @include wrapper;
+  }
+
+  .overlay-content-inner {
+    overflow: visible;
+  }
+}

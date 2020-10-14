@@ -1,0 +1,15 @@
+.box.main-content-who-we-are {
+  > .component-content {
+    @include wrapper;
+  }
+  h1 {
+  	font-size: px(26);
+  	margin-top: 30px;
+  	@include breakpoints(tablet) {
+  		//font-size: px(26);
+  	}
+  	@include breakpoints(desktop) {
+  		//font-size: px(26);
+  	}
+  }
+}

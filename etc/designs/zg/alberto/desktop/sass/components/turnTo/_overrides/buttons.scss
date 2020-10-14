@@ -1,0 +1,20 @@
+@mixin buttonSprite($lang) {
+  .TT4chatIcon, .TT4thumb, .TT4pen, .TT4expand, .TT4collapse, .TT3carouselLeft, .TT3carouselRight, .TT3clearSearchMiqa, .TT4miqaScrollL, .TT4miqaScrollR, .TT4answVoteCallArrow, .TT4showMoreSmallImg, .TT4closeIcon, .TT3removeAttachedItem, .TTclearRevSearch, .TT4searchIcon, .TTinputTeaserBubble1, input[type=checkbox].TTcheckbox+label.TTlabel, .TT3addedText, .TT4miqAdd, .TT4showMoreImg, .TTsmallSubmitBtn, .TTdoneBtn, .TTupdateBtn, .TT4writeReviewBtn, .TTcancelBtn, .TTconfirmDupBtn, .TTsqvBack, .TTsqvForward, .TTcancelDupBtn, .TTblankBtn, .TTcloseBtn, .TTsaveBtn, .TTsearchBtn, .TTbigSubmitBtn, .TT4instAnswNext, .TT3yesVote, .TTrating-0-0, .TTrating-0-5, .TTrating-1-0, .TTrating-1-5, .TTrating-2-0, .TTrating-2-5, .TTrating-3-0, .TTrating-3-5, .TTrating-4-0, .TTrating-4-5, .TTrating-5-0, .TTcustom-0-0, .TTcustom-0-5, .TTcustom-1-0, .TTcustom-1-5, .TTcustom-2-0, .TTcustom-2-5, .TTcustom-3-0, .TTcustom-3-5, .TTcustom-4-0, .TTcustom-4-5, .TTcustom-5-0, .TT4breakdown, .TT4breakdownPercent, .TT4reviewRange, .TT4reviewRangeSmall, .TT4reviewRangeDot, .TTcustomSmall-0-0, .TTcustomSmall-0-5, .TTcustomSmall-1-0, .TTcustomSmall-1-5, .TTcustomSmall-2-0, .TTcustomSmall-2-5, .TTcustomSmall-3-0, .TTcustomSmall-3-5, .TTcustomSmall-4-0, .TTcustomSmall-4-5, .TTcustomSmall-5-0, .TTfacebookDelAuth, .TTtwitterDelAuth, .TTgmailDelAuth, .TTfacebookShare, .TTfacebookNoShare, .TTtwitterShare, .TTtwitterNoShare, .TTvc-question, .TTvc-settings, .TTvc-next, .TTvc-next-disabled, .TTvc-back, .TTvc-back-disabled, .TTvc-clear, .TTvc-delete, .TTvc-like, .TTvc-like-on, .TTvc-flag, .TTvc-flag-on, .TTvc-share, .TTvc-share-on, .TTvc-facebook, .TTvc-pinterest, .TTvc-twitter, .TTvc-link, .TTvc-like-md, .TTvc-flag-md, .TTvc-phone-md, .TTvc-star-md-empty, .TTvc-star-md-half, .TTvc-star-md-filled, .TTvc-radio-off, .TTvc-radio-on, .TTvc-star-lg-empty, .TTvc-star-lg-half, .TTvc-star-lg-filled, .TTvc-icon-lg-video, .TTvc-btn-fab-top, .TTvc-bar-media-md-video, .TTvc-bar-media-md-photo, .TTvc-bar-media-lg-photo, .TTvc-bar-media-lg-video, .TTvc-bar-media-lg-photo-on, .TTvc-bar-media-lg-video-on, .TTvc-slider-bg, .TTvc-slider-dot, .TTvc-btn-submit-new-question, .TTvc-btn-submit-question, .TTvc-share-a-photo, .TTvc-edit-profile, .TTvc-submit, .TTvc-add-take-photo, .TTvc-submit-disabled, .TTvc-slider-dot-off, .TTvc-checkbox-off, .TTvc-checkbox-on, .TTvc-x-media, .TTvc-tag-media, .TTvc-share-photo-alt, .TTvc-add-new-photo, .TTvc-add-new-video, .TTvc-add-video-disabled, .TTvc-add-video, .TTvc-share-media, .TTvc-x-media-sm, .TTvc-icon-md-video, .TTvc-continue, .TTvc-add-your-photo, .TTvc-add-your-video {
+    background-image: url(../../assets/turnto/#{$lang}_1x.png);
+
+    @media not all, not all, only screen and (-webkit-min-device-pixel-ratio: 2), not all {
+      & {
+        background-image: url(../../assets/turnto/#{$lang}_2x.png);
+      }
+    }
+  }
+}
+
+html {
+  @include buttonSprite("en_US");
+}
+
+html[lang="es"] {
+  // add button sprite images
+  // in the same format as the existing en_US ones
+}

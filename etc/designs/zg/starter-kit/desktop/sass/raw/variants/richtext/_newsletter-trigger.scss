@@ -1,0 +1,19 @@
+.richText--newsletter-trigger {
+  display: none;
+
+  .richText-image,
+  .richText-content {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .richText-image {
+    max-width: 30px;
+    margin-bottom: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+}

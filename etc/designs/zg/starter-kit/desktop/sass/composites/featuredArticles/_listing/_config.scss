@@ -1,0 +1,31 @@
+$featured-articles: (
+  box: (),
+  _listing-items: (
+    box: ()
+  ),
+  _item: (
+    box: (),
+    _image: (
+      box: ()
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          font-size: px('m'),
+          line-height: 1.23,
+        )
+      )
+    ),
+    _desription: (
+      paragraph: (
+        text: (
+          font-size: px(18),
+          line-height: 1.44
+        )
+      )
+    ),
+    _link: (
+      button: ()
+    )
+  )
+);

@@ -1,0 +1,132 @@
+$navigation: (
+   box: (),
+  _content: (
+     box: (),
+    _arrow-button: (
+      icon: (
+        side: before,
+        content: common('icon.arrow-down'),
+        color: color('primary', 'base'),
+        font-size: px(8),
+        margin: (
+          margin-top: spacings('m')
+        ),
+        hover: (
+          transform: (
+            transform: rotate(-90deg)
+          )
+        )
+      )
+    ),
+    _arrow-button-active: (
+      transform: rotate(-180deg),
+      icon: (
+        side: before,
+        content: common('icon.arrow-down'),
+        color:  color('primary', 'base'),
+        font-size: px(8),
+        margin: (
+          margin-top: spacings('m')
+        ),
+        hover: (
+          transform: (
+            transform: rotate(-90deg)
+          )
+        )
+      )
+    ),
+    _nav-title-wrapper: (
+       box: (),
+      _navigation-item: (
+        box: (
+          border: (
+            border-top: 1px solid color('secondary', 'base')
+          ),
+          // margin: (
+          //   margin-bottom: spacings('s')
+          // ),
+          padding: (
+            padding-bottom: spacings('s'),
+            padding-top: spacings('s'),
+            padding-right: 140px
+          )
+        )
+      ),
+      _navigation-item-title: (
+        button: (
+          display: inline-block,
+          margin: (
+            margin-right: 20px
+          ),
+          text: (
+            color: color('black'),
+            font-family: 'primary',
+            font-size: 24px,
+            line-height: normal
+          ),
+          hover: (
+            text: (
+              color: color('secondary', 'base')
+            )
+          )
+        )
+      ),
+      _navigation-item-decoration: (
+        button: (
+          display: none
+        )
+      )
+    ),
+    _nav-item-wrapper: (
+       box: (),
+      _navigation-item: (
+        box: (
+          background: (
+            background: transparent
+          )
+        )
+      ),
+      _navigation-item-title: (
+        button: (
+          background: transparent,
+          display: block,
+          padding: 13px 0 13px spacings('xs'),
+          text: (
+            color: color('black'),
+            font-family: 'body',
+            font-size: px(xxs),
+            line-height: 1.29
+          ),
+          hover: (
+            text: (
+              color: color('primary', 'base')
+            )
+          )
+        )
+      ),
+      _navigation-item-decoration: (
+         button: (
+           display: none
+         ),
+      )
+    ),
+    _separation: (
+      box: (
+        display: breakpoint(
+          none,
+          block,
+          block
+        ),
+        border: (
+          border-bottom: 2px solid color('black')
+        ),
+        margin: (
+          margin-bottom: spacings('xl'),
+          margin-left: 0,
+          margin-right: 0,
+          margin-top: spacings('xl')
+        )
+      )
+    )
+  )
+);

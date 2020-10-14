@@ -1,0 +1,181 @@
+@import '../../core/config';
+// To allow user to edit map (zoom/position store etc...)
+// before printing add the following
+
+// Add print Preview controls to page
+// print controls (shown when page is in print mode)
+// <div class="print-controls no-print richText component richtext initialized"><div class="component-content"><div class="richText-content"><p><span><button data-action="print">print</button></span> | <span><button data-action="toggle-preview">close</button></span></p></div></div></div>
+// print preview trigger (shown on normal view)
+// <button data-action="toggle-preview no-print no-print-preview">print</button>
+
+// Add javascript to the page
+// function printPreviewPrint(){ window.print() }
+// $("body").on("click","[data-action='print']", printPreviewPrint);
+// $("body").on("click","[data-action='toggle-preview']", function(){$("body").toggleClass('print-preview') });
+
+@mixin print-styles {
+
+  .footer-main,
+  .shoppable-cart-open-button,
+  .header-supplementary,
+  .footer-secondary-nav .richtext,
+  .box-store-locator-holder .storeresults-info-wrapper a.storeresults-directions,
+  .header-main > .component-content > .paragraphSystem > *:not(.image-brand-logo) {
+    display: none !important;
+  }
+
+  .component.section,
+  .component-content,
+  .storelocatorResults-wrapper.ready {
+    position: static;
+  }
+
+  .inline_rating,
+  .ratingsandreviews {
+    pointer-events: none;
+  }
+
+  #wrapper #content.main {
+    border-bottom: 4px solid silver;
+    flex-grow: 0;
+    height: 520px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .component.section.box-store-locator-controls {
+    display: block;
+    left: -18px;
+    padding-left: 0;
+    position: absolute;
+    top: 0;
+    width: 340px;
+    z-index: 3000;
+    > .component-content {
+      width: 100%!important;
+    }
+
+    .box-store-locator-step-indicator,
+    .storelocator-no-results-auxillary.is-visible,
+    .storeresults-directions,
+    .storeresults-distance,
+    .storeresults-intro,
+    .storeresults-list .active:before,
+    .storeresults-more-wrapper,
+    .where-to-buy-edit,
+    li:not(.active) {
+      display: none !important;
+    }
+    .tabs-where-to-buy .tabContent {
+      padding: 0;
+    }
+  }
+
+  [class*=reference-header] .header-main > .component-content > .content,
+  [class*=reference-footer] .footer-supplementary > .component-content > .content {
+    width: 100% !important;
+    > .component-content {
+      padding: 20px;
+    }
+  }
+  .footer-secondary-nav {
+    right: 20px;
+    position: absolute;
+    z-index: 3000;
+  }
+
+
+  // address format
+  .storeresults-list-wrapper .storeresults-address > *:not(:last-child):before {
+    display: block;
+  }
+  .storeresults-list .active {
+    padding-left: 1cm;
+  }
+}
+
+.reference-print-controls,
+.print-only {
+  display: none;
+}
+
+.print-preview-trigger {
+  float: right;
+  .print-preview-trigger__cta {
+    all: inherit;
+    &:before {
+      content: common('icon.printer');
+      font-family: 'icons';
+      font-size: 14px;
+      speak: none;
+    }
+
+    .mod-no-cssall & {
+      border: 0 none;
+      background-color: transparent;
+    }
+
+    &:focus {
+      .ua-webkit & {
+        outline: -webkit-focus-ring-color auto 5px !important;
+      }
+    }
+  }
+  .print-preview-trigger__text {
+    position: absolute;
+    left: -9999px;
+  }
+}
+
+
+
+.page-where-to-buy.print-preview {
+
+  @include print-styles;
+
+  .component.section.reference-print-controls { // show on print preview but hide on actual print
+    display: block;
+    padding: 14px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3000;
+    button {
+      all: inherit;
+      cursor: pointer;
+      display: inline-block;
+
+
+      .mod-no-cssall & {
+        border: 0 none;
+        background-color: transparent;
+      }
+    }
+    .print-button-divider {
+      display: inline-block;
+      margin: 0 10px;
+    }
+  }
+
+  .no-print-preview {
+    display: none;
+  }
+}
+
+@media print {
+  .page-where-to-buy {
+    @include print-styles;
+    .gm-style div > img { // chrome bug 426294 work-a-round
+      position: absolute;
+    }
+    .reference-print-controls {
+      visibility: hidden;
+    }
+  }
+  .print-only {
+    display: block;
+  }
+  .no-print {
+    display: none;
+  }
+}

@@ -1,0 +1,261 @@
+@import '../../core/config';
+
+.quiz.initialized {
+   visibility: visible;
+}
+
+.quiz {
+  $spinner-size: 70px;
+
+  > .component-content {
+    margin: spacings('m');
+    overflow: hidden;
+
+    > .content {
+      @include wrapper;
+    }
+  }
+
+  &-container {
+    position: relative;
+    transition: min-height ease .5s .5s;
+  }
+
+  &-step {
+    left: 0;
+    opacity: 1;
+    position: absolute;
+    transition: opacity linear 1s;
+    width: 100%;
+
+    &:after {
+      content: " ";
+      display: block;
+      height: 1px;
+    }
+    &.current {
+      position: relative;
+    }
+
+    &.is-active {
+      .quizCTA:not(.is-active) {
+        opacity: .3;
+      }
+      .quizCTA {
+        pointer-events: none;
+      }
+    }
+  }
+
+  &-indicator {
+    list-style: none;
+    justify-content: center;
+    margin: 0 0 spacings('m') 0;
+    padding: 0;
+    transition: opacity linear 1s;
+
+    &[aria-hidden="false"] {
+      display: flex;
+    }
+    .quiz &[aria-hidden="true"] {
+      display: flex;
+      opacity: 0;
+    }
+
+    li {
+      color: color('primary','dark');
+      padding: 0;
+      position: relative;
+      width: 70px;
+
+      span {
+        visibility: hidden;
+      }
+
+      &[aria-current="step"] ~ li {
+        color: color('neutral','light');
+      }
+
+      &:before {
+        background-color: currentColor;
+        content: " ";
+        display: block;
+        height: 2px;
+        left: -50%;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        z-index: 1;
+      }
+      &:first-of-type:before {
+        display: none;
+      }
+
+      &:after {
+        background-color: currentColor;
+        border-radius: 50%;
+        content: " ";
+        display: block;
+        height: 20px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-10px, -10px);
+        width: 20px;
+        z-index: 2;
+      }
+    }
+  }
+
+  &-target {
+    @include clearfix;
+
+    > .richText.component {
+      margin-bottom: spacings('s');
+    }
+
+    .quizCTA.component:hover {
+      cursor: pointer;
+    }
+
+    > .component.grid_3.prefix_1.alpha {
+      // three columns is a special case, shift over half a grid column
+      @include media-query(desktop, auto) {
+        margin-left: (8.50694% * 1.5)  !important;
+      }
+    }
+  }
+
+  &-buttons {
+    margin-bottom: spacings('m');
+    text-align: center;
+
+    $backButton: (
+      icon: (
+        content: common('icon.arrow-left'),
+        font-size: 20px,
+        side: before,
+        margin: 0 10px,
+        color: color('black'),
+      )
+    );
+    $nextButton: (
+      icon: (
+        content: common('icon.arrow-right'),
+        font-size: 20px,
+        side: before,
+        margin: 0 10px,
+        color: color('black'),
+      )
+    );
+    $resetButton: (
+      icon: (
+        content: common('icon.cross-small'),
+        font-size: 20px,
+        side: after,
+        margin: 0 10px,
+        color: color('black'),
+      )
+    );
+
+    &-previous {
+      float: left;
+      @include button($backButton, $media);
+    }
+
+    &-next {
+      float: right;
+      @include button($nextButton, $media);
+    }
+
+    &-reset {
+      width: 54px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+
+      @include button($resetButton, $media);
+    }
+
+    &-previous,
+    &-next,
+    &-reset {
+      background-color: transparent;
+      border: 0 none;
+      cursor: pointer;
+    }
+
+    &-label {
+      // visually hide the labels, but leave them there for screen-readers
+      display: inline-block;
+      opacity: 0;
+      width: 0px;
+    }
+  }
+
+  &.initialized {
+    .quizCTA {
+      opacity: 1;
+      pointer-events: auto;
+      &.active {
+        border: 3px solid red;
+      }
+    }
+  }
+
+  .quizCTA {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity linear 500ms;
+  }
+
+  [aria-hidden="true"] {
+    display: none;
+  }
+
+  // loader
+  .quiz-step > .container:before {
+
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-name: quiz-rotate;
+    animation-timing-function: linear;
+
+    background-color: rgba(255,255,255, .3);
+    border: 3px solid color('primary');
+    border-left-color: transparent;
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: $spinner-size;
+    left: -9999px;
+    opacity: 0;
+    position: absolute;
+    top: calc(50% - #{$spinner-size / 2});
+    transition: opacity 1s 1s;
+    width: $spinner-size;
+    z-index: 2;
+  }
+  .quiz-step.current.is-active > .container:before {
+    opacity: 1;
+    left: calc(50% - #{$spinner-size / 2});
+
+  }
+
+  // search results
+  .searchResults .searchResults-section-contents {
+      border-bottom-width: 0;  // currently three max
+      justify-content: center; // there may be only one or two results so align centre
+  }
+}
+
+
+@keyframes quiz-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

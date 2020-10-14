@@ -1,0 +1,60 @@
+@mixin common-rules($d) {
+
+  @include breakpoints() {
+    @include box(get($d, '_outer-wrapper.box'), $media);
+  }
+
+  .listing-items {
+    @include box(get($d, '_listing.box'), $media);
+  }
+
+  .listing-item {
+    @include box(get($d, '_listing._item.box'), $media);
+
+    &:focus-within .image img,
+    &:hover .image img {
+      @include breakpoints {
+        @include hover(get($d, '_listing._item._image-wrapper._image.hover'), $media);
+      }
+    }
+
+    // richText version
+    > .component-content {
+      &:hover .richText-content {
+        @include breakpoints() {
+          @include hover(get($d, '_listing._item._details-wrapper.hover'), $media);
+        }
+      }
+
+      .richText-content {
+        @include box(get($d, '_listing._item._details-wrapper.box'), $media);
+
+        h2, h3  {
+          @include breakpoints() {
+            @include paragraph(get($d, '_listing._item._details-wrapper._title.paragraph'), $media);
+          }
+        }
+
+        h4  {
+          @include breakpoints() {
+            @include paragraph(get($d, '_listing._item._details-wrapper._title-small.paragraph'), $media);
+          }
+        }
+
+        p {
+          @include paragraph(get($d, '_listing._item._details-wrapper._description.paragraph'), $media);
+        }
+      }
+    }
+
+    .image {
+      @include box(get($d, '_listing._item._image-wrapper.box'), $media);
+
+      img {
+        @include transition(get($d, '_listing._item._image-wrapper._image.transition'), (
+          'transform', 'opacity', 'visibility'
+        ), $media);
+      }
+    }
+  }
+}

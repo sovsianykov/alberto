@@ -1,0 +1,59 @@
+$productVariantList: (
+  _main: (
+    box: ()
+  ),
+  _size-items-wrapper: (
+    box: ()
+  ),
+  _item-wrapper: (
+    box: ()
+  ),
+  _size-item: (
+    button: (
+      background: (
+        background-color: color('white')
+      ),
+      box-sizing: border-box,
+      width: breakpoint((mobile: 47px, tablet-min: 59px)),
+      height: breakpoint((mobile: 47px, tablet-min: 59px)),
+      border: (
+        border: solid 1px color('neutral', 'light'),
+        border-radius: 50%
+      ),
+      text: (
+        color: color('black'),
+        font-family: 'primary',
+        font-size: px(18),
+        font-weight: bold,
+        font-stretch: condensed,
+        line-height: 1
+      ),
+      hover: (
+        background: (
+          background: color('neutral', 'light')
+        ),
+        text: (
+          color: color('white')
+        )
+      )
+    )
+  ),
+  _size-item-active: (
+    button: (
+      background: (
+        background-color: color('black')
+      ),
+      text: (
+        color: color('white')
+      ),
+      hover: (
+        background: (
+          background: color('neutral', 'dark')
+        ),
+        text: (
+          color: color('white')
+        )
+      )
+    )
+  )
+);

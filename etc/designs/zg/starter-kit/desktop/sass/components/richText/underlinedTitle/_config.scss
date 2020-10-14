@@ -1,0 +1,10 @@
+$underlinedTitle: (
+  _wrapper: (
+    box: ()
+  ),
+  _title: (
+    paragraph: extend('_underlined-title.paragraph', (
+      //custom config here
+    ))
+  )
+);

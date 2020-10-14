@@ -1,0 +1,23 @@
+@import '../../core/config';
+
+.mobile-buttons-and-sort-by-wrapper {
+  @import 'config-mobile-buttons-and-sort-by-wrapper';
+  @function g($a...) {
+    @return get-last($mobile-buttons-and-sort-by-wrapper, $a...);
+  }
+
+  box-sizing: border-box;
+  font-size: 0;
+
+  @include breakpoints {
+    @include box(g('box'), $media);
+  }
+
+  > .component-content > .content {
+
+    @include media-query(mobile) {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+}

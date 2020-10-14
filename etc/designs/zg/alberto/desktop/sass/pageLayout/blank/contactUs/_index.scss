@@ -1,0 +1,625 @@
+@import '../../core/config';
+
+.article-landing-hero-image,
+.hero-article-image {
+  .image {
+    position: relative;
+    overflow: hidden;
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.15);
+      z-index: 1;
+    }
+    @include breakpoints(tablet) {
+      height: 500px;
+    }
+    @include breakpoints(desktop) {
+      height: 600px;
+    }
+    img {
+      pointer-events: none;
+      .mod-objectfit & {
+        object-fit: cover;
+      }
+      @include breakpoints(mobile) {
+        max-height: 275px;
+      }
+      @include breakpoints(tablet, desktop) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+}
+
+.hero-article-image {
+  .image {
+    &:before {
+      content: none;
+    }
+  }
+}
+
+
+.page-what-s-new {
+  #content {
+    .layout-inner {
+      .alpha:nth-child(2) {
+        position: relative;
+        >.content {
+          >.component {
+            >.component-content {
+              >.paragraphSystem.content {
+                z-index: 2;
+                position: relative;
+                >.richText {
+                  >.component-content {
+                   .richText-content {
+                    color: #fff;
+                    text-shadow: 2px 2px 16px rgba(0,0,0,0.5);
+                   } 
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .filter-select {
+    &:before {
+      @include breakpoints(desktop) {
+        right: 20px!important;
+      }
+    }
+  }
+  select[name="filter-tag-1"] {
+    border-radius: 10px!important;
+    transition: all 0.3s ease;
+    outline: none;
+    border: none!important;
+    padding-left: 20px!important;
+    &:focus {
+      outline: none;
+    }
+  }
+  .article-landing-hero-image {
+    @include breakpoints(mobile) {
+      margin-bottom: -260px;
+    }
+    @include breakpoints(tablet) {
+      margin-bottom: -510px;
+    }
+    @include breakpoints(desktop) {
+      margin-bottom: -620px;
+    }
+  }
+  .composite-filtered-articles {
+    .listingFilters {
+      @include breakpoints(mobile) {
+        margin-bottom: 120px;
+      }
+      @include breakpoints(tablet) {
+        margin-bottom: 320px;
+      }
+      @include breakpoints(desktop) {
+        margin-bottom: 400px;
+      }
+    }
+  }
+  &.layout-article {
+    .recommended-products {
+      .listing {
+        .ratingsandreviews {
+          .rr-widget-container.rr-inline-widget {
+            text-align: left;
+            font-size: 0;
+            >*:not(.aggregateRating) {
+              display: none!important;
+            }
+            .aggregateRating {
+              img {
+                @include breakpoints(mobile) {
+                  height: 16px;
+                }
+                @include breakpoints(tablet) {
+                  height: 20px;
+                }
+                @include breakpoints(desktop) {
+                  height: 24px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Contact us page
+.wrapper-contact-us {
+  h1 {
+    text-transform: uppercase;
+    @include breakpoints(mobile) {
+      font-size: px(26);
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+    @include breakpoints(tablet) {
+      font-size: px(34);
+      margin-bottom: 10px;
+      margin-top: 30px;
+      text-align: center;
+    }
+    @include breakpoints(desktop) {
+      font-size: px(40);
+      margin-bottom: 15px;
+      margin-top: 60px;
+      text-align: center;
+    }
+    + p {
+      font-family: font-family('primary');
+      margin-top: 0;
+      @include breakpoints(mobile) {
+        font-size: px(19);
+      }
+      @include breakpoints(tablet) {
+        font-size: px(23);
+        text-align: center;
+      }
+      @include breakpoints(desktop) {
+        font-size: px(26);
+        text-align: center;
+      }
+    }
+  }
+}
+
+.wrapper-inner-contact-us {
+  @include breakpoints(mobile) {
+    margin-top: 0;
+    margin-bottom: 70px;
+  }
+  @include breakpoints(tablet) {
+    margin-top: 60px;
+    margin-bottom: 80px;
+  }
+  @include breakpoints(desktop) {
+    margin-top: 90px;
+    margin-bottom: 100px;
+  }
+  h2, h3 {
+    @include breakpoints(mobile) {
+      font-size: px(20);
+    }
+    @include breakpoints(tablet) {
+      font-size: px(22);
+    }
+    @include breakpoints(desktop) {
+      font-size: px(24);
+    }
+  }
+  >.component-content {
+    >.paragraphSystem {
+      display: flex;
+      @include breakpoints(mobile) {
+        flex-direction: column;
+      }
+      @include breakpoints(tablet, desktop) {
+      }
+    }
+  }
+  .form-contact-us {
+    @include breakpoints(tablet, desktop) {
+      width: 66%;
+      margin-right: auto;
+    }
+    .fieldSet, .selectField {
+      width: 100%;
+    }
+    h2.form-heading {
+      margin-bottom: 5px;
+    }
+    form {
+      padding: 0;
+      .field-family-name {
+        padding-left: 0;
+      }
+      .field-given-name {
+        padding-right: 0;
+      }
+      .component-content {
+        margin-top: 0!important;
+        margin-bottom: 0!important;
+        label.control-label {
+          font-family: font-family('primary');
+          color: rgba(0,0,0,0.6);
+          text-transform: initial;
+          font-weight: normal;
+          @include breakpoints(mobile) {
+            font-size: px(19);
+            margin-top: 15px;
+          }
+          @include breakpoints(tablet, desktop) {
+            font-size: px(20);
+            margin-top: 30px;
+          }
+        }
+      }
+      .captcha {
+        width: 100%;
+        margin-top: 30px;
+        @media screen and (max-width: 340px) {
+          transform: scale(0.9);
+          max-width: 280px;
+          transform-origin: bottom left;
+        }
+        .deepblue-captcha-input {
+          &:focus {
+            outline: none;
+            border-color: #00803a !important;
+            box-shadow: 0 0 2px #00803a !important;
+          }
+        }
+      }
+      .formButton {
+        margin-top: 30px;
+        button {
+          padding-left: 10px;
+          padding-right: 10px;
+          width: auto;
+        }
+      }
+      .richText {
+        p {
+          color: rgba(0,0,0,0.6);
+        }
+      }
+      input[type='email'],
+      textarea {
+        background-color:#fff;
+        font-size: 1.125rem;
+        color: rgba(0,0,0,0.6);
+        font-weight: 400;
+        line-height: 1.5;
+        text-align: left;
+        text-transform: none;
+        font-style: normal;
+        display: inline-flex;
+        border: 1px solid #b1bfca;
+        border-radius: 3px;
+        padding: 10.98px 20px 10.08px;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      input,
+      textarea,
+      select {
+        color: rgba(0,0,0,0.6)!important;
+        font-family: font-family('primary')!important;
+        &:focus {
+          border-color: #00803a !important;
+          box-shadow: 0 0 2px #00803a !important;
+        }
+      }
+      .selectField {
+        .component-content {
+          .controls {
+            &:after {
+              color: color('primary', 'base');
+            }
+          }
+        }
+      }
+      >.paragraphSystem {
+        @include breakpoints(tablet, desktop) {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+        >.box {
+          width: 100%;
+          .paragraphSystem {
+            display: flex;
+            flex-direction: column;
+            >.captcha {
+              order: 1;
+            }
+            >.richText {
+              margin-top: 15px;
+              order: 1;
+            }
+          }
+        }
+        @include breakpoints(mobile) {
+          display: flex;
+          flex-direction: column;
+          // >:nth-child(1) {
+          //   order: 0;
+          // }
+          // >:nth-child(2) {
+          //   order: 0;
+          // }
+          // >:nth-child(3) {
+          //   order: 0;
+          // }
+          // >:nth-child(4) {
+          //   order: 2;
+          // }
+          // >:nth-child(5) {
+          //   order: 0;
+          // }
+          // >:nth-child(6) {
+          //   order: 2;
+          // }
+        }
+        .richText.component {
+          p {
+            font-family: font-family('primary');
+            margin-top: 0;
+            margin-bottom: 0;
+            @include breakpoints(mobile) {
+              font-size: px(19);
+            }
+            @include breakpoints(tablet, desktop) {
+              font-size: px(20);
+            }
+            &.optIns {
+              margin-top: 20px;
+            }
+          }
+        }
+        .formButton {
+          + .richText {
+            margin-top: 15px;
+            p {
+              color: rgba(0,0,0,0.6);
+              font-family: font-family('primary');
+              @include breakpoints(mobile) {
+                font-size: px(19);
+              }
+              @include breakpoints(tablet, desktop) {
+                font-size: px(20);
+              }
+            }
+          }
+        }
+        .fieldSet {
+          >fieldset {
+            >.paragraphSystem {
+              .textArea,
+              .richText {
+                width: 100%;
+              }
+              .richText {
+                margin-top: 15px;
+                p {
+                  color: rgba(0,0,0,0.6);
+                  font-family: font-family('primary');
+                  @include breakpoints(mobile) {
+                    font-size: px(19);
+                  }
+                  @include breakpoints(tablet, desktop) {
+                    font-size: px(20);
+                  }
+                }
+              }
+              .selectField {
+                .component-content.error {
+                  select {
+                    border: 1px solid red;
+                  }
+                }
+              }
+              .textField {
+                .component-content.error {
+                  input {
+                    background: inherit;
+                    border: 1px solid red;
+                  }
+                }
+              }
+              .textArea {
+                .error {
+                  .controls {
+                    textarea {
+                      background: inherit;
+                      border: 1px solid red;
+                    }
+                  }
+                }
+              }
+              input,
+              select,
+              textarea {
+                border-radius: 5px;
+                color: rgba(0,0,0,0.6)!important;
+                @include breakpoints(mobile) {
+                  font-size: px(18);
+                }
+                @include breakpoints(tablet) {
+                  font-size: px(18);
+                  padding: 10px!important;
+                }
+                @include breakpoints(desktop) {
+                  font-size: px(18);
+                }
+                &:focus {
+                  border-color: #00803a !important;
+                  box-shadow: 0 0 2px #00803a !important;
+                }
+                &::placeholder {
+                  color: rgba(0,0,0,0.6)!important;
+                }
+              }
+              input,
+              select {
+                color: rgba(0,0,0,0.6);
+                @include breakpoints(mobile) {
+                  height: 40px;
+                }
+              }
+              option {
+                font-family: font-family('primary');
+                color: #000000;
+                &:first-of-type {
+                  color: rgba(0,0,0,0.6);
+                }
+                @include breakpoints(mobile) {
+                  font-size: px(19);
+                }
+                @include breakpoints(tablet, desktop) {
+                  font-size: px(20);
+                }
+              }
+              @include breakpoints(tablet, desktop) {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .sidebar-contact-us {
+    @include breakpoints(tablet, desktop) {
+      width: 23.8%;
+      order: 1;
+    }
+    h3 {
+      margin-bottom: 5px;
+      + p {
+        margin-top: 0;
+        font-family: font-family('primary');
+        @include breakpoints(mobile) {
+          font-size: px(19);
+        }
+        @include breakpoints(tablet, desktop) {
+          font-size: px(20);
+        }
+        ~p {
+          font-weight: normal;
+          @include breakpoints(mobile) {
+            font-size: px(20);
+            margin-top: 10px;
+          }
+          @include breakpoints(tablet) {
+            font-size: px(22);
+          }
+          @include breakpoints(desktop) {
+            font-size: px(24);
+          }
+        }
+      }
+    }
+    .reference-phone-link {
+      .phone-link {
+        text-decoration: none;
+        font-weight: normal;
+        @include breakpoints(mobile) {
+          font-size: px(15);
+          border-radius: 5px;
+          background-color: color('primary', 'base');
+          border: 1px solid color('primary', 'base');
+          color: white;
+          height: 36px;
+          font-weight: bold;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 15px;
+          &:hover {
+            border: 1px solid color('primary', 'base');
+            background-color: transparent;
+            color: color('primary', 'base');
+          }
+        }
+        @include breakpoints(tablet, desktop) {
+          font-size: px(24);
+        }
+        .phone-label {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+// Thank you page after contact us
+
+.thank-you-page {
+  @include breakpoints(mobile) {
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  @include breakpoints(tablet) {
+    margin-top: 50px;
+    margin-bottom: 60px;
+  }
+  @include breakpoints(desktop) {
+    margin-top: 60px;
+    margin-bottom: 80px;
+  }
+  .richText-content {
+    h1 {
+      text-transform: uppercase;
+      text-align: center;
+      @include breakpoints(tablet) {
+        font-size: px(34);
+      }
+      @include breakpoints(desktop) {
+        font-size: px(40);
+      }
+      +p {
+        font-family: font-family('primary');
+        font-size: px(22);
+        margin-bottom: 30px;
+        text-align: center;
+        ~p {
+          text-align: center;
+        }
+      }
+    }
+    .button-primary {
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        box-shadow: 0 0px 0px 0 rgba(0,169,79,.4);
+      }
+      @include breakpoints(mobile) {
+        width: 100%;
+      }
+      @include breakpoints(tablet, desktop) {
+        width: 250px;
+      }
+    }
+  }
+}
+
+.page-search {
+  .searchResults {
+    .searchResults-options-container {
+      display: none;
+    }
+  }
+  .search-content-wrapper {
+    .reference-icon-link,
+    .cta-filter-mobile {
+      display: none;
+    }
+  }
+}

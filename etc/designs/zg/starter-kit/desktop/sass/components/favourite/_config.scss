@@ -1,0 +1,56 @@
+$favourite: (
+  _favourite-btn: (
+    button: common('_tertiary.button')
+  ),
+  _favourite-grid-btn: (
+    button: extend('_base.button', (
+      text: (
+        font-size: px(18),
+        font-weight: bold,
+        color: color('black'),
+        text-decoration: none
+      ),
+      background: (
+        background-color: color('white')
+      ),
+      border: (
+        border: 1px solid color('neutral', 'light'),
+      ),
+      box-sizing: border-box,
+      height: auto,
+      min-width: 0,
+      margin: common('spacings.s') 0 0 0,
+      padding: common('spacings.s'),
+      width: 100%,
+      hover: (
+        background: (
+          background-color: rgba(color('white'), 0.8)
+        )
+      )
+    ))
+  ),
+  _favourite-list-btn: (
+    button: (
+      text: (
+        font-size: px(18),
+        font-weight: bold,
+        color: color('black'),
+        text-decoration: none
+      ),
+      background: (
+        background-color: color('white')
+      ),
+      border: (
+        border: 1px solid color('neutral', 'light'),
+      ),
+      box-sizing: border-box,
+      min-width: 0,
+      align-self: stretch,
+      hover: (
+        background: (
+          background-color: rgba(color('neutral', 'light'), 0.2)
+        )
+      )
+    )
+  )
+);

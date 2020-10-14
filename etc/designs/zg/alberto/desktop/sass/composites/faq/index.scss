@@ -1,0 +1,221 @@
+@import '../../core/config';
+
+.page-faq {
+  .richText {
+    h1 {
+      @include breakpoints(mobile) {
+        font-size: px(26);
+        text-align: left!important;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      @include breakpoints(tablet) {
+        font-size: px(34);
+        text-transform: uppercase;
+        text-align: center;
+      }
+      @include breakpoints(desktop) {
+        font-size: px(40);
+        text-transform: uppercase;
+        text-align: center;
+      }
+      + h2, +p {
+        font-family: font-family('primary');
+        font-weight: 400;
+        @include breakpoints(mobile) {
+          font-size: px(19);
+          text-align: left!important;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        @include breakpoints(tablet) {
+          font-size: px(23);
+          text-align: center;
+        }
+        @include breakpoints(desktop) {
+          font-size: px(26);
+          font-weight: 500;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.accordion.accordion-faq {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($faq-section, $a...);
+  }
+
+  @include breakpoints() {
+    @include box(g('box'), $media);
+  }
+
+  padding-top: 10px!important;
+
+  > .component-content {
+    @include wrapper;
+  }
+
+  .accordion-title {
+    white-space: initial;
+    .accordion-title-text {
+
+    }
+  }
+
+  .accordion-slide {
+    @include breakpoints() {
+      @include box(g('_accordion-item.box'), $media);
+      border-bottom: 1px solid color("secondary", "light");
+    }
+    &:first-child {
+      border-top: 1px solid color("secondary", "light");
+    }
+    &.is-active > .accordion-head h3 a:after {
+      transform: rotate(180deg) translateY(50%);
+    }
+    &.is-active {
+      .accordion-head h3 a:before {
+        @include breakpoints(mobile) {
+          content: url('../../assets/img/minus-accordion.png');
+        }
+      }
+    }
+  }
+
+  .accordion-head {
+    @include breakpoints() {
+      @include box(g('_accordion-item._panel-title.box'), $media);
+      padding: 15px 0;
+    }
+    &:hover {
+      h3 {
+        color: color('primary', 'base');
+      }
+    }
+
+    h3 {
+      transition: color .15s ease-in-out;
+      a {
+        @include breakpoints() {
+          @include paragraph(g('_accordion-item._panel-title.paragraph'), $media);
+          text-transform: none;
+        }
+
+        @include breakpoints() {
+          @include icon(g('_accordion-item._panel-title.icon'), $media);
+          font-weight: bold;
+          font-family: font-family('body');
+        }
+
+        @include breakpoints(mobile) {
+          font-size: px(20);
+        }
+
+        @include breakpoints(tablet) {
+          font-size: px(22);
+        }
+
+        @include breakpoints(desktop) {
+          font-size: px(24);
+        }
+
+        &:after {
+          content: none!important;
+          top: 50%;
+          transform: translateY(-50%);
+          transition: transform, linea, 200ms;
+          color: color("primary", "base");
+        }
+        &:before {
+          content: url('../../assets/img/plus-accordion.png');
+          position: absolute;
+          left: 0px;
+          padding-right: 5px;
+          top: 50%;
+          transform: translateY(-50%);
+          height: 20px;
+        }
+        @include breakpoints(mobile) {
+          font-size: px(20);
+        }
+
+        @include breakpoints(tablet, desktop) {
+          &:before {
+            content: none;
+          }
+          &:after {
+            content: common('icon.arrow-down')!important;
+          }
+        }
+
+        .accordion-title-text {
+          // this is to offset the din-condensed & uppercase combination
+          @include breakpoints(mobile) {
+            top: 0;
+            padding-left: 35px;
+          }
+          display: inline-block;
+          position: relative;
+          top: 2px;
+        }
+      }
+
+      .wf-loading & {
+        visibility: hidden;
+      }
+    }
+  }
+
+  .accordion-content {
+    @include breakpoints() {
+      @include box(g('_accordion-item._panel-content.box'), $media);
+      padding: 0 0 15px;
+      width: 100%;
+    }
+    .richText-content :first-child {
+      margin-top: 0;
+    }
+    .richText-content {
+      font-family: font-family('primary');
+      p {
+        margin-bottom: 8px;
+        margin-top: 0;
+        @include breakpoints(mobile) {
+          font-size: px(19);
+        }
+        @include breakpoints(tablet, desktop) {
+          font-size: px(20);
+        }
+      }
+      a {
+        color: color("primary", "base");
+        text-decoration: none;
+        &:after {
+          content: url('../../assets/img/dropdown-download.png');
+          padding-left: 5px;
+          position: relative;
+          top: 5px;
+        }
+      }
+    }
+  }
+
+  .accordion-slide.is-active > .accordion-head {
+    @include breakpoints() {
+      @include box(g('_accordion-item._panel-title-open.box'), $media);
+    }
+
+    h3 a {
+      @include breakpoints() {
+        @include paragraph(g('_accordion-item._panel-title-open.paragraph'), $media);
+      }
+
+      @include breakpoints() {
+        @include icon(g('_accordion-item._panel-title-open.icon'), $media);
+      }
+    }
+  }
+}

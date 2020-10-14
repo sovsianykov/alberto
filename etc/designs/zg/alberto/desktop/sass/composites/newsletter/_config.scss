@@ -1,0 +1,87 @@
+$newsletterOverlay: (
+  box: (),
+  _overlay-bg: (
+    box: (
+      background: (
+        background-color: color('white')
+      )
+    )
+  ),
+  _newsletter-overlay: (
+    _close-button: (
+      button: (),
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          font-family: 'primary',
+          font-size: px('m'),
+          font-weight: bold,
+          line-height: breakpoint((tablet-max: 1, desktop: 1.3)),
+          text-transform: uppercase
+        ),
+        margin: (
+          margin-top: 0,
+          margin-bottom: breakpoint((
+            tablet-min: spacings('xs')
+          ))
+        )
+      )
+    ),
+    _info: (
+      paragraph: (
+        text: (
+          font-size: breakpoint(px(18), px('xxs'), px('xxs')),
+          line-height: 1.33
+        ),
+        margin: (
+          margin-top: breakpoint(10px, 5px, 5px),
+          margin-bottom: breakpoint(15px, 10px, 10px)
+        )
+      )
+    ),
+    input: extend('_base.input', (
+      height: spacings('xl'),
+      text: (
+        font-size: px(17),
+        line-height: 1,
+      ),
+      placeholder: (
+        color: color('neutral', 'light')
+      ),
+      border: (
+        border-top-right-radius: 0,
+        border-bottom-right-radius: 0,
+        border-right: 0
+      ),
+    )),
+    button: extend('_base.button', (
+      width: breakpoint(46px, 107px, 125px),
+      max-width: 125px,
+      height: spacings('xl'),
+      flex: (
+        justify-content: center,
+      ),
+      border: (
+        border-top-left-radius: 0,
+        border-bottom-left-radius: 0,
+      ),
+      text: (
+        font-size: breakpoint(0, px('xs'), px('xs')),
+        color: breakpoint(transparent, color('white'), color('white')),
+        text-transform: uppercase,
+        letter-spacing: 0.3px
+      ),
+      icon: (
+        spacing: 5px,
+        content: common('icon.arrow-right'),
+        font-size: 16px,
+        color: color('white'),
+        display: breakpoint(block, none, none)
+      ),
+      hover: (
+        background: color('neutral', 'dark')
+      )
+    )),
+  )
+);

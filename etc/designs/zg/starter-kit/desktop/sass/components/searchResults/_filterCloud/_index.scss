@@ -1,0 +1,66 @@
+.filterCloud {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($filterCloud, $a...);
+  }
+
+  $filtersBox: merge((
+    width: breakpoint((mobile: 100%)),
+    max-width: breakpoint((tablet-min: 460px)),
+    margin: (
+      margin: breakpoint((
+        mobile: 22px spacings('xxs') * -1 -8px,
+        tablet-min: -3px -3px 7px
+      )),
+    ),
+    flex: (
+      flex-grow: 1,
+      align-items: flex-start,
+      order: breakpoint((mobile: 3))
+    )
+  ), g('box'));
+
+  @include breakpoints {
+    @include box($filtersBox, $media);
+  }
+
+  .filterCloud-item {
+    position: relative;
+
+    $filterItem: merge((
+      box-sizing: border-box,
+      padding: 12px 20px,
+      margin: (
+        margin: breakpoint((mobile: 8px spacings('xxs'), tablet-min: 3px))
+      )
+    ), g('_filter-item.button'));
+
+    @include breakpoints {
+      @include button($filterItem, $media);
+    }
+
+    &:after {
+      display: block;
+    }
+
+    .filter-label {
+      $filterLabel: merge((
+        margin: (
+          margin-left: spacings('xs')
+        )
+      ), g('_filter-item._label.paragraph'));
+
+      @include paragraph($filterLabel, $media);
+    } 
+
+    a {
+      font-size: 0;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 25px;
+      opacity: 0;
+      left: 0;
+    }
+  }
+}

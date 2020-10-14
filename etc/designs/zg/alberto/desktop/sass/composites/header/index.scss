@@ -1,0 +1,383 @@
+@import '../../core/config';
+
+[class*=reference-header] {
+  @import 'config';
+  @function g($a...) { @return get-last($header, $a...); }
+  @import '_partials/main-holder';
+  @import '_partials/supplementary-holder';
+  @import '_partials/smart-label';
+  @import '_partials/logo';
+  @import '_partials/language-selector-v2';
+  @import '_partials/banner';
+  @import '_partials/navigation';
+  @import '_partials/contact';
+  @import '_partials/search';
+  @import '_partials/skip-to-content';
+  @import '_partials/sticky';
+
+  @include breakpoints {
+    @include text(g('text'), $media);
+  }
+
+  // MINI CART //
+  .box-cart-icon-placeholder {
+    @include breakpoints {
+      margin-left: safetype(g('main._navigation._header-main._space-between', $media), 0);
+    }
+    @include size(g('main._mini-cart-placeholder.size'), $media);
+
+    @include media-query(auto, notebook) {
+      order: 2;
+    }
+  }
+}
+
+.reference-header-main {
+
+
+  .richText-skip-to-content {
+
+    @include breakpoints(desktop) {
+      flex-grow: 0;
+    }
+  }
+  .tabs-main-navigation {
+      height: 55px;
+    @include breakpoints(desktop) {
+      position: static;
+      .tabs-content.is-enabled {
+        left: 30px;
+      }
+    }
+  }
+  .image-brand-logo {
+    // make logo link unclickable on homepage
+    .page-home & {
+      pointer-events: none;
+    }
+    img {
+      pointer-events: none;
+    }
+    @include breakpoints(tablet, desktop) {
+      height: 46px;
+    }
+  }
+  .header-main {
+
+    position: relative;
+    z-index: 1;
+
+    @include breakpoints(mobile) {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background: #fff;
+    }
+    @include breakpoints(tablet) {
+      padding-top: 15px;
+      padding-bottom: 15px;
+      background: #fff;
+    }
+    >.component-content {
+
+      border-image: none!important;
+      border-bottom: none!important;
+
+    }
+  }
+  .image-brand-logo {
+
+    @include breakpoints(desktop) {
+      margin-right: 30px;
+    }
+    a {
+      display: block;
+
+
+    }
+  }
+  &.is-sticky {
+    .header-main {
+      top: 0;
+    }
+  }
+  .header-main {
+
+    @include breakpoints(desktop) {
+      padding: 20px 0;
+      background: #fff;
+    }
+  }
+  .tabs-main-navigation {
+    .navigation-level1 {
+      >.navigation-item {
+        >.navigation-item-title {
+          @include breakpoints(desktop) {
+            font-size: px(18);
+          }
+        }
+      }
+    }
+    .navigation-level2 {
+      >.navigation-item {
+        >.navigation-item-title {
+
+
+          @include breakpoints(desktop) {
+            font-size: px(18);
+          }
+        }
+      }
+    }
+  }
+  .tabs-nav-list {
+
+    >.tabs-nav-item.is-enabled {
+      >a {
+        .tabMenuItem {
+          color: color('secondary', 'darken');
+
+        }
+      }
+    }
+  }
+  @include breakpoints(mobile) {
+   .image-brand-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+   }
+   .searchBox {
+    flex-grow: 0;
+   }
+   .nav-button {
+    position: absolute;
+    left: -15px;
+    top: 50%;
+    transform: translateY(-50%);
+   }
+   .searchBox {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+   }
+  }
+  @include breakpoints(mobile, tablet) {
+    .nav-button-close {
+      &:after {
+        background: color('primary', 'base');
+        opacity: .8;
+        width: 56px;
+      }
+      &:before {
+        color: color('white');
+        z-index: 1;
+        top: 22px;
+        position: relative;
+      }
+     }
+    .nav-mobile {
+    .tabs-main-navigation {
+      .tabs-nav {
+        padding-top: 13px;
+      }
+      .tabs-content {
+        padding-top: 0;
+      }
+      .tabMenuItem {
+        &:after {
+          color: color('primary', 'base');
+        }
+      }
+      .back-button-wrapper {
+        padding-top: 20px;
+      }
+      .back-button {
+        border-bottom: 1px solid color('secondary', 'base');
+        text-transform: none;
+        font-family: font-family('body');
+        font-size: px(18);
+        font-weight: bold;
+        @include breakpoints(mobile) {
+          padding-top: 21px;
+        }
+        &:before {
+          color: color('primary', 'base');
+        }
+      }
+      .tabs-nav-list {
+        .tabs-nav-item {
+          a,
+          span,
+          .text-wrapper {
+            font-family: font-family('body');
+            font-weight: 300;
+            text-transform: none;
+            font-size: px(18);
+          }
+        }
+      }
+    }
+   }
+  }
+  @include breakpoints(mobile, tablet) {
+    .header-main {
+      >.component-content {
+        border-bottom: none;
+      }
+    }
+    .searchBox {
+      .search-query {
+        line-height: 44px!important;
+      }
+    }
+  }
+  @include breakpoints(tablet, desktop) {
+    .searchBox {
+
+      .search-query {
+
+        //border-radius: 15px;
+        background: rgba( color('primary', 'light'), 0.2);
+        border: none;
+        //border-radius: 22px;
+        height: 44px;
+        box-sizing: border-box;
+      }
+      .searchBox-title {
+        left: 15px;
+        right: auto;
+        height: 24px;
+        width: 24px;
+        &:before {
+          font-size: 24px;
+        }
+        +input {
+          padding-left: 46px;
+          &::placeholder {
+            color: color('secondary', 'dark');
+            font-family: font-family('primary');
+            line-height: 28px;
+            font-size: px(20);
+          }
+        }
+      }
+    }
+  }
+  @include breakpoints(desktop) {
+    .searchBox  {
+
+
+      .search-query {
+        width: 340px;
+        font-size: px(18);
+        &:before {
+          font-size: px(24);
+        }
+      }
+    }
+    .header-main {
+      >.component-content {
+        border-bottom: none;
+      }
+      .tabs-nav-list {
+        margin-top: 0;
+      }
+    }
+    .tabs-main-navigation {
+      justify-content: center;
+      .tabs-nav {
+        .tabs-nav-item {
+          margin: 15px 18px;
+          a {
+            font-family: font-family('body');
+            font-weight: bold;
+          }
+          .tabMenuItem {
+            font-size: px(18);
+            text-transform: none;
+            span {
+              font-family: font-family('body');
+              font-weight: 500;
+            }
+          }
+          .tabMenuItem:not(.tab-item-direct-link) {
+            &:after {
+              color: color('primary', 'darker');
+              content: common('icon.arrow-down');
+              font-size: px(11);
+              display: block;
+              font-family: icons;
+              speak: none;
+              font-style: normal;
+              font-weight: 400;
+              font-variant: normal;
+              text-transform: none;
+              text-align: center;
+              line-height: 1;
+              -webkit-font-smoothing: antialiased;
+              padding-left: 10px;
+            }
+          }
+          &.is-enabled {
+            .tabMenuItem:not(.tab-item-direct-link) {
+              &:after {
+                content: common('icon.arrow-up');
+              }
+            }
+          }
+        }
+      }
+      .is-enabled {
+        .tabMenuItem {
+          color: black;
+        }
+      }
+      .tabMenuItem {
+        &:before {
+          border-color: color('primary', 'darker');
+          border: none;
+        }
+      }
+      .tabs-content {
+        .tabContent {
+          >.content {
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+  .searchBox {
+
+    .search-query {
+
+      @include media-query(desktop) {
+        width: 140px;
+        font-size: px(14);
+
+      }
+      @include media-query(desktop-middle) {
+        width: 180px;
+        font-size: px(14);
+
+      }
+    }
+  }
+}
+
+.searchBoxWithSuggestions .form-search .searchBox-suggestions {
+  text-align: left;
+  li {
+    text-align: left;
+    button {
+      text-align: left;
+    }
+  }
+  .searchBox-suggestion {
+    text-align: left;
+  }
+}
+
+@import 'global/index';
+@import 'global-slim/index';

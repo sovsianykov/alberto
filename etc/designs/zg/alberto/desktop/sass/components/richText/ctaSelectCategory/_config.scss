@@ -1,0 +1,44 @@
+// mobile "select category" button on Product Landing Pages
+
+$cta-select-category: (
+  spacings: common('spacings')
+);
+
+$cta-select-category: merge($cta-select-category, (
+  button: (
+    display: breakpoint((
+      tablet-max: inline-flex,
+      desktop: none
+    )),
+    border: (
+      border: solid 1px color('neutral', 'light'),
+      border-radius: 3px
+    ),
+    text: (
+      font-family: 'body',
+      font-size: px('xs'),
+      color: breakpoint(
+        color('neutral', 'dark'),
+        color('black'),
+        color('black')
+      ),
+      line-height: 1.38,
+    ),
+    icon: (
+      content: common('icon.arrow-right'),
+      side: after,
+      font-size: px(18px),
+      color: color('black'),
+      spacing: 5px,
+      display: block,
+      margin: (
+        margin-right: 10px
+      )
+    ),
+    background: color('white'),
+    padding: 12px 38px 12px 10px,
+    margin: 0 0 10px,
+    box-sizing: border-box,
+    width: 100%
+  )
+));

@@ -1,0 +1,27 @@
+$template-product-landing-page: (
+  box: (),
+  _side-nav: (
+    box: (
+      // border: (
+      //   border-right: breakpoint(
+      //     0,
+      //     solid 1px color('neutral', 'light'),
+      //     solid 1px color('neutral', 'light')
+      //   )
+      // )
+    )
+  ),
+  _show-filter: (
+    background: (
+      background: color('neutral', 'lighter')
+    )
+  ),
+  _show-category: (
+    background: color('white')
+  ),
+  _results: (
+     box: (
+      width: breakpoint((desktop: calc(100% - 200px)))
+     )
+  )
+);

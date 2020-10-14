@@ -1,0 +1,12 @@
+.richText--nutrients-title {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($nutrientsTitle, $a...);
+  }
+
+  @include paragraph(g('box'), $media);
+
+  p {
+    @include paragraph(g('paragraph'), $media);
+  }
+}

@@ -1,0 +1,88 @@
+@import '../../core/config';
+
+.composite-article-images {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($articleImages, $a...);
+  }
+
+  $aI-caption: merge((
+    margin: (
+      margin-top: spacings('xs'),
+      margin-bottom: 0,
+    )
+  ), g('_main._caption.paragraph'));
+
+  .box {
+    width: 100%;
+
+    > .component-content > .content {
+      $aI-box: merge((
+        display: flex,
+        flex: (
+          flex-direction: breakpoint((tablet-max: column, desktop: row)),
+          justify-content: flex-start,
+          align-items: flex-start,
+          flex-wrap: wrap
+        ),
+        margin: (
+          margin: breakpoint((
+            tablet-max: spacings('m') (-(spacings('xs'))) spacings('s'),
+            desktop: spacings('l') (-(spacings('xs'))) spacings('xs')
+          ))
+        )
+      ), g('_main.box'));
+
+      @include breakpoints {
+        @include box($aI-box, $media);
+      }
+    }
+  }
+
+  .image {
+    $aI-image: merge((
+      margin: (
+        margin: spacings('xs')
+      )
+    ), g('_main._image.box'));
+
+    @include box($aI-image, $media);
+
+    figcaption p {
+      @include paragraph($aI-caption, $media);
+
+      @include media-query(auto, notebook) {
+        text-align: left;
+      }
+    }
+  }
+
+  .video {
+    $aI-video: merge((
+      width: breakpoint((tablet-max: calc(100% - 20px), desktop: 100%)),
+      margin: (
+        margin: 0 spacings('xs')
+      )
+    ), g('_main._video.box'));
+
+    @include breakpoints {
+      @include box($aI-video, $media)
+    }
+
+    & + .richText p {
+      $aI-videoCaption: merge((
+        margin: (
+          margin-left: spacings('xs')
+        )
+      ), $aI-caption);
+
+      @include breakpoints {
+        @include paragraph($aI-videoCaption, $media);
+      }
+
+      @include media-query(auto, notebook) {
+        text-align: left;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+$titleLineBelow: (
+  spacings: common('spacings')
+);
+
+$titleLineBelow: merge($titleLineBelow,(
+  _header: (
+    button: (
+      text: (
+        font-size: breakpoint((
+          tablet-max: px('l'),
+          desktop: px('xl'))),
+        line-height: breakpoint((tablet-max: 1.16, desktop: 1.13))
+      ),
+      max-width: breakpoint((
+        tablet-max: 335px,
+        desktop: 380px)),
+      margin: (
+        margin-bottom: breakpoint((
+          tablet-max: get($titleLineBelow, 'spacings.m'),
+          desktop: 60px))
+      ),
+      line: (
+        display: block,
+        side: after,
+        width: 65px,
+        border: (
+          border: breakpoint((
+            tablet-max: 2px solid color('black'),
+            desktop: 3px solid color('black')))
+        ),
+        margin: (
+          margin-top: breakpoint((
+            tablet-max: get($titleLineBelow, 'spacings.m'),
+            desktop: 60px))
+        )
+      )
+    )
+  )
+))

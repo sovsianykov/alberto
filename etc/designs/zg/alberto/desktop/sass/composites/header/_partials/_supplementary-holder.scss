@@ -1,0 +1,61 @@
+.header-supplementary {
+
+  @include media-query(auto, notebook) {
+    display: none;
+  }
+
+  @include media-query(desktop, wide) {
+    position: relative;
+    z-index: $z-index-behind;
+  }
+
+  > .component-content {
+    @include breakpoints {
+      @include text(g('supplementary.text'), $media);
+      @include background(g('supplementary.background'), $media);
+    }
+
+    > .content {
+      @include breakpoints {
+        @include box(g('supplementary.box'), $media);
+      }
+
+      @include media-query(auto, notebook) {
+        > a {
+          display: none;
+        }
+      }
+
+      @include media-query(desktop, auto) {
+        @include wrapper;
+      }
+    }
+  }
+}
+
+.nav-mobile {
+  .header-supplementary {
+    display: block;
+    z-index: 2;
+  }
+}
+
+
+.nav-mobile-wrapper {
+  @function gl($a...) { @return get-last($header, 'main._navigation', $a...); }
+
+  .header-supplementary {
+    @include breakpoints(mobile, tablet) {
+      @include transition(gl('_mobile.transition'), (
+        'transform', 'opacity', 'visibility'
+      ), $media);
+    }
+  }
+
+  &.level-2,
+  &.level-3 {
+    .header-supplementary {
+      transform: translateX(-100%);
+    }
+  }
+}

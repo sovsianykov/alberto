@@ -1,0 +1,53 @@
+{
+  "name": "starterk-kit-theme",
+  "version": "0.0.1",
+  "description": "Starter Kit Theme",
+  "private": true,
+  "scripts": {
+    "build": "gulp build",
+    "dev": "gulp dev",
+    "test": "gulp jscs:dev jshint:dev",
+    "dev-server": "gulp server",
+    "increment-version": "gulp increment"
+  },
+  "config": {
+    "direction": "ltr"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ],
+  "engines": {
+    "node": ">=6.4.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.6.1",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-decompress": "^2.0.2",
+    "gulp-download2": "^1.0.2",
+    "gulp-exec": "^2.1.3",
+    "gulp-filter": "^4.0.0",
+    "gulp-git": "^2.5.2",
+    "gulp-jscs": "^4.0.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-postcss": "^6.2.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sequence": "^1.0.0",
+    "gulp-watch": "^5.0.1",
+    "jshint": "^2.9.4",
+    "local-web-server": "^1.2.8",
+    "postcss-pixels-to-rem": "^0.8.0",
+    "require-dir": "^0.3.1",
+    "yargs": "^8.0.1"
+  },
+  "dependencies": {
+    "fs-extra": "^7.0.1",
+    "gulp-cached": "^1.1.1",
+    "gulp-sass-inheritance": "^1.1.0",
+    "postcss-important-startstop": "git+https://github.com/mcarneiro/postcss-important-startstop#annotation",
+    "postcss-rtl": "^1.2.3"
+  }
+}

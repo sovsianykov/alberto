@@ -1,0 +1,125 @@
+.search-overlay {
+  &.overlay-container {
+    background: $white;
+    font-family: $font-family-serif;
+    z-index: $zindex-overlay;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+
+    @include respond-to(desktop) {
+      background: rgba($white, .9);
+    }
+  }
+
+  .overlay-content {
+    background: transparent;
+    box-shadow: none;
+    position: static;
+    margin-top: 50px;
+
+    @include respond-to(desktop) {
+      position: relative;
+      margin-top: auto;
+    }
+  }
+
+  .searchBoxWithSuggestions {
+    .searchBox-title {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 24px;
+      white-space: normal;
+
+      @include respond-to(desktop) {
+        font-size: 36px;
+        white-space: nowrap;
+        margin-bottom: 20px;
+      }
+    }
+
+    .search-query {
+      height: auto;
+      font-size: 24px;
+      border: none;
+      border-bottom: 1px solid $gray;
+      background: transparent;
+      line-height: 140%;
+      padding: 0;
+      width: calc(100% - 30px);
+      border-radius: 0;
+
+      &:focus {
+        border-bottom: 1px solid $brand-primary;
+        outline: none;
+      }
+
+      @include respond-to(desktop) {
+        border-bottom: 2px solid $gray;
+        font-size: 36px;
+        width: calc(100% - 48px);
+
+        &:focus {
+          border-bottom: 2px solid $brand-primary;
+        }
+      }
+
+      &::placeholder {
+        color: $gray-light;
+      }
+    }
+  }
+
+  &.overlay-container .button {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    background: transparent;
+    height: 30px;
+    width: 30px;
+    color: $gray;
+
+    @include respond-to(desktop) {
+      top: 80px;
+      height: 48px;
+      width: 48px;
+    }
+
+    &:hover,
+    &:focus {
+      background: transparent;
+      color: $brand-primary;
+    }
+
+    &::after {
+      font-size: 18px;
+      color: inherit;
+
+      @include respond-to(desktop) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .overlay-close {
+    display: block;
+    font-size: 24px;
+    color: $gray;
+
+    @include respond-to(desktop) {
+      top: -60px;
+      right: 28px;
+      font-size: 36px;
+    }
+
+    &:hover,
+    &:focus {
+      color: $brand-primary;
+    }
+  }
+
+  .overlay-loading {
+    display: none;
+  }
+}

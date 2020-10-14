@@ -1,0 +1,18 @@
+.richText-contact-titles {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($contactTitles, $a...);
+  }
+
+  h2, h3 {
+    @include breakpoints() {
+      @include paragraph(g('_title.paragraph'), $media);
+    }
+  }
+
+  p {
+    @include breakpoints() {
+      @include paragraph(g('_subtitle.paragraph'), $media);
+    }
+  }
+}

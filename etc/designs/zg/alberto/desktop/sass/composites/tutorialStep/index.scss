@@ -1,0 +1,121 @@
+@import "../../core/config";
+
+.composite-tutorial_step {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($tutorial-step, $a...);
+  }
+
+  $box: merge((
+    margin: (
+      margin-bottom: breakpoint((tablet-max: 60px, desktop: spacings('xxl')))
+    )
+  ), g('_outer-wrapper.box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  > .content {
+    @include wrapper;
+    @include media-query(auto, notebook) {
+      display: flex;
+      flex-direction: column;
+    }
+
+    > .component:first-of-type {
+      $first-grid-item: merge((
+        padding: (
+          padding-right: breakpoint((desktop: calc(95px - 2.08333%)))
+        ),
+        width: breakpoint((tablet-max: 100%))
+      ), g('_step-content._first-grid-item.box'));
+
+      @include breakpoints() {
+        @include box($first-grid-item, $media);
+      }
+    }
+
+    > .component:last-of-type {
+      $last-grid-item: merge((
+        margin: (
+          margin-left: breakpoint((tablet-max: 0))
+        ),
+        width: breakpoint((tablet-max: 100%))
+      ), g('_step-content._last-grid-item.box'));
+
+      @include breakpoints() {
+        @include box($last-grid-item, $media);
+      }
+    }
+  }
+
+  .image {
+    $image-container: merge((
+      width: breakpoint((tablet-max: 100%)),
+      flex: (
+        order: -1
+      )
+    ), g('_step-content._image-container.box'));
+
+    @include breakpoints() {
+      @include box($image-container, $media);
+    }
+
+    img {
+      $image: merge((
+        margin: (
+          margin: breakpoint((tablet-max: 0 auto))
+        )
+      ), g('_step-content._image-container._image.box'));
+
+      @include breakpoints() {
+        @include box($image, $media);
+      }
+    }
+  }
+
+  .richText {
+    $step-description: merge((
+      padding: (
+        padding-top: breakpoint((tablet-max: 25px))
+      )
+    ), g('_step-content._text-wrapper.box'));
+
+    @include breakpoints {
+      @include box($step-description, $media);
+    }
+
+    h2, h3 {
+      $step-title: merge((
+        margin: 0,
+        line: (
+          display: block,
+          side: after,
+          width: spacings('m'),
+          margin: (
+            margin: spacings('s') 0 20px
+          )
+        )
+      ), g('_step-content._title.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($step-title, $media);
+
+        + h3, h4 {
+          $step-subtitle: merge((
+            margin: 0,
+            line: (
+              display: none,
+            )
+          ), g('_step-content._subtitle.paragraph'));
+          @include paragraph($step-subtitle, $media);
+        }
+      }
+    }
+
+    a[class*=button] {
+      @include button(g('_step-content._cta.button'), $media);
+    }
+  }
+}

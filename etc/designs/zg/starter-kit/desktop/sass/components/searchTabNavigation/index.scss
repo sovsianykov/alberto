@@ -1,0 +1,58 @@
+@import '../../core/config';
+
+.searchTabNavigation[class*=default-style] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($searchTabNavigation, $a...);
+  }
+
+  @include breakpoints {
+    @include box(g('box'), $media);
+  }
+
+  .component-content {
+    @include box(g('_content.box'), $media);
+  }
+
+  .navigation-list {
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 0;
+    justify-content: space-between;
+    list-style: none;
+    @include breakpoints {
+      @include box(g('_content._navigation-list-wrapper.box'), $media);
+    }
+
+    .navigation-item {
+      align-self: flex-end;
+      box-sizing: border-box;
+      flex-grow: 1;
+      @include paragraph(g('_content._navigation-item-holder.paragraph'), $media);
+      @include box(g('_content._navigation-item-holder.box'), $media);
+
+      a {
+        box-sizing: border-box;
+        @include breakpoints {
+          @include button(g('_content._navigation-item-holder._tab.button'), $media);
+        }
+      }
+
+      &:first-child {
+        @include media-query(mobile) {
+          display: none;
+        }
+      }
+
+      &.is-active {
+
+        a {
+          @include breakpoints {
+            @include button(g('_content._navigation-item-holder._tab-active.button'), $media);
+          }
+        }
+      }
+    }
+  }
+}

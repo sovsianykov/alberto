@@ -1,0 +1,172 @@
+$common: () !default;
+
+$common: merge($common, (
+  _dropdown: (
+    box: (
+      background: color('white'),
+      border: (
+        border-radius: 3px,
+        border: 1px solid color('neutral', 'light'),
+      ),
+      padding: 0 26px 0 6px,
+      height: 36px,
+      width: 100%
+    ),
+    icon: (
+      content: common('icon.arrow-down'),
+      font-size: breakpoint(px(8), px(4), px(4)),
+      margin-right: 8px,
+    ),
+    text: (
+      font-size: px(12),
+      color: color('black'),
+      line-height: px(36),
+      font-family: 'body'
+    ),
+  )
+));
+
+$common: merge($common, (
+  _filter-form: (   //base configs for articles and recipes filters
+    box: (
+      display: flex,
+      flex: (
+        align-items: center,
+        justify-content: space-between,
+        flex-wrap: wrap
+      ),
+      margin: (
+        margin-bottom: spacings('m')
+      )
+    ),
+    text: (
+      text-transform: uppercase,
+      font-weight: bold,
+      font-size: breakpoint((tablet-max: px(18), desktop: px(20))),
+      font-family: 'primary'
+    ),
+    _wrapper: (
+      box: (
+        margin: (
+          margin-right: breakpoint((tablet-max: 10px, desktop: 30px)),
+          margin-top: spacings('xs')
+        ),
+        display: flex,
+        flex: (
+          align-items: center
+        ),
+        width: auto
+      )
+    ),
+    _label: (
+      button: (
+        margin: (
+          margin-right: spacings('xs')
+        ),
+        text: (
+          line-height: 1.3
+        )
+      )
+    ),
+    _dropdown-wrapper: (
+      button: (
+        line: (
+          display: block,
+          side: before,
+          width: calc(100% - 30px),
+          border: (
+            border-top: breakpoint((tablet-max: 2px solid color('black'), desktop: 3px solid color('black')))
+          ),
+          hover: (
+            border: (
+              border-color: color('neutral', 'dark')
+            )
+          )
+        ),
+        icon: (
+          content: common('icon.arrow-down'),
+          font-size: 6px,
+          color: color('secondary'),
+          hover: (
+            color: color('secondary', 'dark')
+          )
+        )
+      )
+    ),
+    _dropdown: (
+      button: (
+        background: (
+          background-color: transparent
+        ),
+        border: none,
+        padding: 0 20px 0 0,
+        height: 100%,
+        hover: (
+          text: (
+            color: color('neutral', 'dark')
+          )
+        ),
+        text: (
+          font-family: 'primary',
+          font-size: breakpoint((tablet-max: px('m'), desktop: px('l'))),
+          font-weight: bold,
+          text-transform: uppercase,
+          color: color('black')
+        )
+      ),
+    ),
+    _dropdown-options: (
+      text: (
+        font-size: px('xxs'),
+        font-weight: normal
+      ),
+      box: (
+        min-height: breakpoint((tablet-max: 30px, desktop: 45px)),
+        padding: (
+          padding: 0
+        )
+      )
+    ),
+    _dropdown-wrapper-last: (
+      button: (
+        icon: (
+          content: common('icon.arrow-down'),
+          font-size: 6px,
+          color: color('black')
+        ),
+        margin: (
+          margin-top: breakpoint((tablet-max: 0, desktop: 10px))
+        )
+      ),
+      _dropdown-last: (
+        button: (
+          width: 100%,
+          min-width: 175px,
+          padding: 14px 30px 14px 10px,
+          margin: 0,
+          box-sizing: border-box,
+          border: (
+            border: 1px solid color('neutral', 'light'),
+            border-radius: 3px
+          ),
+          text: (
+            font-family: 'primary',
+            font-size: px('xxs'),
+            line-height: 1,
+            font-weight: normal,
+            text-transform: none
+          )
+        )
+      )
+    )
+  )
+));
+
+$common: merge($common, (
+  //the smallest allowed font size for select on small devices with iOS is 16px, otherwise when click on select, whole page is zoomed in
+  _IOS-select-settings: (
+    text: (
+      font-size: breakpoint((tablet-max: 16px))
+    )
+  )
+));

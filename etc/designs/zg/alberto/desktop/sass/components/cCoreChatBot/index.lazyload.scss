@@ -1,0 +1,13 @@
+@import '../../core/config';
+
+div#bot {
+    width: 30%;
+
+    @include media-query(auto, notebook) {
+      width: 100%;
+    }
+
+    @include media-query(desktop) {
+        width: 50%;
+    }
+}

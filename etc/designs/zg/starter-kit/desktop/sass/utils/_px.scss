@@ -1,0 +1,12 @@
+$common: () !default;
+@function px($val) {
+  @if (type-of($val) == 'string') {
+    $val: common('font-sizes', $val);
+  }
+
+  @if (unit($val) == 'px') {
+    $val: $val / 1px; // remove unit
+  }
+
+  @return $val * common('font-ratio') * 1px;
+}

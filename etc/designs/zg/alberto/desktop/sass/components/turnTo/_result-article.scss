@@ -1,0 +1,25 @@
+#TT3soloQuestionViewQ {
+  @include box(g('_result-article.box'), $media);
+
+  // reset turnTo styles:
+  .TT3artBox,
+  .TT3itemBox2,
+  #TT3soloQuestionQ,
+  .TTartBody .TT3ansArea {
+    margin: 0;
+    padding: 0;
+  }
+
+  // article title:
+  #TT3soloQuestionQ .TT3artBox {
+    @include paragraph(g('_result-article._title.paragraph'), $media);
+  }
+
+  .TTartBody .TT3artCntr {
+    @include paragraph(g('_result-article._content.box'), $media);
+  }
+
+  .TT3aText p {
+    @include paragraph(g('_result-article._content.paragraph'), $media);
+  }
+}

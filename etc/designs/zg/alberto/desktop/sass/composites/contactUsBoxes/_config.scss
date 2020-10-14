@@ -1,0 +1,192 @@
+// MAIN BOX SETTINGS (CONTACT US SECTION)
+$contactUsBoxes: (
+  _main: (
+    box: (
+      background: color('neutral', 'lighter')
+    ),
+    _tiles-wrapper: (
+      box: (
+        // box (tiles wrapper) config
+      )
+    )
+  )
+);
+
+// CONTACT US BOXES TITLES
+$contactUsBoxes: merge($contactUsBoxes, (
+  _title: (
+    paragraph: (
+      text: (
+        font-size: px('xl'),
+        color: color('black'),
+        font-weight: bold,
+        text-transform: uppercase,
+        line-height: 1,
+        font-family: 'primary',
+      )
+    )
+  ),
+  _subtitle: (
+    paragraph: (
+      text: (
+        font-size: px(18),
+        line-height: 1.22,
+        letter-spacing: 0.4px,
+      )
+    )
+  )
+));
+
+// CONTACT TILE SETTINGS
+$contactUsBoxes: merge($contactUsBoxes, (
+  _contactTile: (
+    box: (
+      background: (
+        background-color: color('white')
+      ),
+      border: (
+        border-radius: 3px,
+      ),
+      box-shadow: 0 2px 5px 0 rgba(color('black'), 0.16)
+    ),
+    link: (
+      hover: (
+        transform: (
+          transform: breakpoint((
+            tablet-min: translateY(-10px)
+          ))
+        )
+      )
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          font-size: px('s'),
+          line-height: 1.2,
+          font-weight: normal
+        ),
+        line: (
+          border: (
+            border-bottom: 4px solid color('primary', 'dark')
+          ),
+          display: block,
+          side: after,
+          width: 25px
+        )
+      ),
+      icon: (
+        general: (
+          color: color('black'),
+          font-size: 22px,
+          side: before,
+          text-align: left,
+        )
+      )
+    ),
+    _description: (
+      paragraph: (
+        text: extend('text.body', (
+          line-height: 1.29,
+          letter-spacing: 0.2px
+        ))
+      )
+    )
+  )
+));
+
+// CONTACT TILES - ICONS VARIANTS
+$contactUsBoxes: merge($contactUsBoxes, (
+  _contactTile: (
+    _title: (
+      icon: (
+        email: merge(get($contactUsBoxes, '_contactTile._title.icon.general'), (
+          content: common('icon.email'),
+          font-size: 18px,
+        )),
+        storeLocator: merge(get($contactUsBoxes, '_contactTile._title.icon.general'), (
+          content: common('icon.map-location'),
+        )),
+        liveChat: merge(get($contactUsBoxes, '_contactTile._title.icon.general'), (
+          content: common('icon.speach'),
+        )),
+        liveAgent: merge(get($contactUsBoxes, '_contactTile._title.icon.general'), (
+          content: common('icon.FAQ'),
+        )),
+      )
+    )
+  )
+));
+
+// CONTACT TILE BUTTON
+$contactUsBoxes: merge($contactUsBoxes, (
+  _contactTile: (
+    button: extend('_base.button', (
+      border: (
+        border-top-right-radius: 0,
+        border-top-left-radius: 0,
+        border-bottom-right-radius: 3px,
+        border-bottom-left-radius: 3px,
+      ),
+      background: (
+        background-color: color('neutral', 'lighter')
+      ),
+      icon: (
+        content: breakpoint((all: common('icon.arrow-right'))),
+        font-size: 10px,
+        color: color('white'),
+        background: (
+          background-color: color('black')
+        ),
+        border: (
+          border-radius: 50%
+        ),
+        width: 21px,
+        height: 22px,
+        opacity: breakpoint((desktop-min: 0)),
+        hover: (
+          opacity: 1,
+          transition: (
+            speed: 'base'
+          ),
+        )
+      ),
+      justify-content: space-between,
+      text: (
+        text-decoration: none,
+        color: color('neutral', 'dark'),
+        font-weight: bold,
+        font-size: breakpoint(px(18), px('s'), px('s')),
+        line-height: 1.1,
+      ),
+      hover: (
+        background: (
+          background-color: color('primary', 'base')
+        ),
+      )
+    )),
+  )
+));
+
+// CONTACT TILE - DISABLED STATE
+$contactUsBoxes: merge($contactUsBoxes, (
+  _contactTile: (
+    button-disabled: merge(get($contactUsBoxes, '_contactTile.button'), (
+      text: (
+        color: color('neutral', 'light'),
+      ),
+      hover: (
+        background: (
+          background-color: color('neutral', 'lighter')
+        ),
+      ),
+      icon: (
+        content: breakpoint((all: none))
+      )
+    )),
+    box-disabled: (
+      hover: (
+        transform: translateY(0)
+      )
+    )
+  )
+));

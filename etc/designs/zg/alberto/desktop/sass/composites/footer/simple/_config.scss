@@ -1,0 +1,40 @@
+$footer-simple: (
+  box: (),
+  _primary-nav: (
+    box: (),
+    _title: (
+      paragraph: (
+        text: (
+          text-align: breakpoint(center, null, null)
+        )
+      )
+    ),
+    _link: (
+      button: (
+        text: (
+          font-size: px('xxs')
+        )
+      )
+    )
+  ),
+  _social-links: (
+    box: (),
+    _title: (
+      paragraph: ()
+    ),
+    _link-icon: (
+      classlist: (
+        defaults: (
+          font-size: breakpoint(null, 32px, 32px)
+        ),
+        items: (
+          icon-facebook: (),
+          icon-twitter: (),
+          icon-pinterest: (),
+          icon-instagram: (),
+          icon-youtube: ()
+        )
+      )
+    )
+  )
+);

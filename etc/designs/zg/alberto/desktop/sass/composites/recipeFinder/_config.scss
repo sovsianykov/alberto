@@ -1,0 +1,75 @@
+$recipeFinder: (
+  _outer-wrapper: (
+    box: ()
+  ),
+  _main: (
+    box: (
+      background: (
+        background-size: cover,
+        background-position: center
+      ),
+      box-sizing: border-box,
+      min-height: breakpoint(250px, 326px, 326px)
+    ),
+    _text-wrapper: (
+      box: (),
+      _title: (
+        paragragh: (),
+      )
+    ),
+    _searchBoxInput: (
+      input: (
+        display: block,
+        padding: breakpoint(
+            16px 44px 16px spacings('xs'),
+            16px 44px 16px spacings('xs'),
+            28px 70px 28px 20px
+        ),
+        width: 100%,
+        background: (
+          background: rgba(color('white'), 0.8)
+        ),
+        border: (
+          border: 0
+        ),
+        text: (
+          font-family: 'body',
+          font-size: breakpoint(
+              px('s'),
+              px('s'),
+              px('m')
+          ),
+          line-height: breakpoint(
+              1.3,
+              1.3,
+              1.23
+          )
+        ),
+        placeholder: (
+          color: color('black')
+        )
+      )
+    ),
+    _searchBoxButton: (
+      button: (
+        background: (
+          background: transparent
+        ),
+        border: (
+          border: 0
+        ),
+        icon: (
+          color: color('black'),
+          content: common('icon.search'),
+          display: inline-block,
+          font-size: breakpoint(
+              px(26),
+              px(26),
+              px(32)
+          ),
+          side: before
+        ),
+      )
+    )
+  )
+);

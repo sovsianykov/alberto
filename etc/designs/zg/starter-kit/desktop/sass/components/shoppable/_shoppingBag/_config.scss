@@ -1,0 +1,186 @@
+$shopping-bag: (
+  spacings: common('spacings')
+);
+
+$shopping-bag: merge($shopping-bag, (
+  _title: (
+    paragraph: (
+      text: (
+        font-family: 'primary',
+        font-size: px('xl'),
+        font-weight: bold,
+        color: color('black'),
+        text-transform: uppercase
+      )
+    ),
+    box: (
+      border: (
+        border-bottom: 2px solid color('neutral', 'light')
+      )
+    )
+  ),
+  _empty-message: (
+    paragraph: (
+      text: (
+        font-family: 'body',
+        font-size: px(18),
+        text-align: center,
+        color: color('black')
+      )
+    ),
+    box:()
+  ),
+  _action-buttons: (
+    button: extend('button.base', (
+      background: color('primary', 'base'),
+      border: (
+        border: solid 1px color('primary', 'base'),
+        border-radius: 3px
+      ),
+      text: (
+        color: color('black'),
+        font-family: 'primary',
+        font-size: px(18),
+        text-transform: uppercase,
+        text-decoration: none
+      ),
+      hover: (
+        background: color('primary', 'dark')
+      )
+    ))
+  ),
+  _single-links: (
+    button: (
+      background: color('white'),
+      border: none,
+      text: (
+        font-family: 'primary',
+        font-size: px('xxs'),
+        font-weight: bold,
+        text-transform: uppercase,
+        text-decoration: none,
+        color: color('black'),
+        line-height: 50px
+      ),
+      hover: (
+        text: (
+          text-decoration: underline
+        )
+      )
+    )
+  ),
+  _product-list: (
+    box: (
+      border: (
+        border-bottom: 2px solid color('neutral', 'light')
+      ),
+      text: (
+        text-align: right
+      )
+    )
+  ),
+  _info-holder: (
+    _title: (
+      paragraph: (
+        text: (
+          font-family: 'body',
+          font-size: breakpoint(px('s'), px('s'), px('m')),
+          font-weight: bold,
+          line-height: 1.23,
+          color: color('black')
+        )
+      )
+    ),
+    _details: (
+      paragraph: (
+        text: (
+          font-family: 'body',
+          font-size: px(18),
+          color: color('black')
+        )
+      ),
+      line: (
+        border:(
+          border-right: 1px solid color('black')
+        )
+      )
+    ),
+    _qtd-subtotal-wrapper: (
+      box: (),
+      text: ()
+    ),
+    _qtd: (
+      button: (
+        border: solid 1px color('neutral', 'light'),
+        text: (
+          font-family: 'body',
+          font-size: px(18),
+          color: color('black')
+        ),
+        icon: (
+          side: after,
+          content: common('icon.arrow-down'),
+          color: color('black'),
+          font-size: px(8)
+        )
+      )
+    ),
+    _subtotal: (
+      text: (
+        font-family: 'body',
+        font-size: px(m),
+        font-weight: bold,
+        text-align: breakpoint(right, left, left),
+        line-height: 50px,
+        color: color('black'),
+      )
+    )
+  ),
+  _resume: (
+    _subtotal :(
+      paragraph: (
+        text: (
+          font-family: 'body',
+          font-size: px('xxs'),
+          text-align: right,
+          color: color('black'),
+        )
+      )
+    ),
+    _amount: (
+      paragraph: (
+        text: (
+          font-family: 'body',
+          font-size: px('xl'),
+          font-weight: bold,
+          text-align: right,
+          color: color('black'),
+        )
+      )
+    ),
+    _disclaimer: (
+      text: (
+        font-family: 'body',
+        font-size: breakpoint(px('xxs'), px('xxs'), px(18)),
+        text-align: right,
+        color: color('black'),
+      ),
+      box: (
+        border: (
+          border-bottom: 2px solid color('neutral', 'light')
+        )
+      )
+    ),
+    _terms: (
+      paragraph: (
+        text: (
+          font-family: 'body',
+          font-size: px('xxxs'),
+          line-height: 1.5,
+          text-align: right,
+          color: color('black')
+        )
+      )
+    )
+  )
+));

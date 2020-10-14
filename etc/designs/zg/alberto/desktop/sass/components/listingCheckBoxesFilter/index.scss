@@ -1,0 +1,134 @@
+@import '../../core/config';
+
+.listingCheckBoxesFilter[class*=default-style] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($listingCheckBoxesFilter, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  .component-content {
+    @include box(g('_content.box'), $media);
+
+    &::after {
+      content: "";
+      @include breakpoints {
+        @include box(g('_content._separation.box'), $media);
+      }
+    }
+
+    .toggle-filters-link {
+      cursor: pointer;
+      @include breakpoints {
+        @include button(g('_content._toggle-filters-link.button'), $media);
+      }
+    }
+  }
+
+  &.is-active {
+
+    .listingCheckBoxesFilter-title,
+    .listingRadioFilter-title {
+      position: relative;
+
+      @include media-query(mobile) {
+
+        &::before {
+          transform: rotate(-180deg);
+        }
+      }
+
+      &::after {
+        content: "";
+        @include breakpoints {
+          @include box(g('_content._separation.box'), $media);
+        }
+      }
+    }
+
+    .listingCheckBoxesFilter-items,
+    .listingRadioFilter-items {
+      @include box(g('_content._items-active.box'), $media);
+    }
+  }
+
+  .listingCheckBoxesFilter-title,
+  .listingRadioFilter-title {
+
+    @include media-query(mobile) {
+
+      &::before {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: transform .25s $ease-out;
+        transform: rotate(0deg);
+      }
+
+      @include icon(g('_content._title.icon'), $media);
+    }
+
+    @include breakpoints {
+      @include paragraph(g('_content._title.paragraph'), $media);
+      @include box(g('_content._title.box'), $media);
+    }
+  }
+
+  .listingCheckBoxesFilter-items,
+  .listingRadioFilter-items {
+      @include breakpoints {
+        @include box(g('_content._items.box'), $media);
+      }
+
+    .listingCheckBoxesFilter-item,
+    .listingRadioFilter-item {
+      font-size: 0;
+      @include box(g('_content._item.box'), $media);
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      input[type=checkbox],
+      input[type=radio]  {
+        display: none;
+
+        &:checked ~ .listingCheckBoxesFilter-label,
+        &:checked ~ .listingRadioFilter-label {
+          @include breakpoints {
+            @include button(g('_content._item._label-checked.button'), $media);
+          }
+        }
+      }
+
+      .listingCheckBoxesFilter-label,
+      .listingRadioFilter-label {
+
+        &:before {
+          box-sizing: border-box;
+          cursor: pointer;
+          left: 0;
+          position: absolute;
+          top: 0;
+        }
+        @include breakpoints {
+          @include button(g('_content._item._label.button'), $media);
+        }
+      }
+      
+      .listingCheckBoxesFilter-label {
+        &:before {
+          border-radius: 5px;
+        }
+      }
+
+      .text-wrapper {
+        cursor: pointer;
+        @include breakpoints {
+          @include paragraph(g('_content._item._link.paragraph'), $media);
+        }
+      }
+    }
+  }
+}

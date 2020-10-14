@@ -1,0 +1,60 @@
+@import '../../core/config';
+
+.gigya-container {}
+
+.gigya-secured #gigya-container {
+  //hide the content before checking the session
+  display: none;
+}
+
+//GIGYA SOCIAL LINKS
+
+.gigya-social-login-container {
+
+  @include media-query(mobile) {
+
+    height: 100%!important;
+    width: 100%!important;
+
+    [id^=gigya-container_social_] {
+
+      height: 100%!important;
+      width: 100%!important;
+
+      .gigya-login-providers {
+
+        height: 100%!important;
+
+        .gigya-login-providers-container {
+
+          display: inline;
+          width: 100%!important;
+
+          .gigya-login-providers-list-container {
+
+            display: inline-block;
+            width: 100%!important;
+
+            .gigya-login-providers-list {
+
+              text-align: center;
+
+              .gigya-login-provider-row {
+
+                display: inline;
+                white-space: normal !important;
+
+                span {
+
+                  margin-left: 4px !important;
+                  margin-right: 2px !important;
+                }
+              }
+            }
+
+          }
+        }
+      }
+    }
+  }
+}

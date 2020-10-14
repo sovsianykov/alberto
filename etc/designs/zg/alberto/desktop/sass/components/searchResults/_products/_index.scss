@@ -1,0 +1,485 @@
+.searchResults {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($product, $a...);
+  }
+
+  // default view
+  .item-product {
+    $box: merge((
+      display: flex,
+      flex: (
+        flex-direction: column
+      ),
+      margin: (
+        margin-top: spacings('s')
+      )
+    ), g('_grid-view.box'));
+
+    $boxContainer: merge($box, (
+      display: flex,
+      flex: (
+        flex-direction: column
+      ),
+      margin: (
+        margin-top: breakpoint(0, 0, 0)
+      ),
+      padding: (
+        padding-left: breakpoint(0, 0, 0),
+        padding-right: breakpoint(0, 0, 0)
+      )
+    ));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+
+    .searchResults-desc:first-child {
+      height: 100%;
+      & > div {
+        height: 100%;
+        @include breakpoints() {
+          @include box($boxContainer, $media);
+        }
+      }
+      & > div > .box > div > .paragraphSystem {
+        @include breakpoints() {
+          @include box($boxContainer, $media);
+        }
+      }
+    }
+
+    .searchResults-desc > div > .image,
+    .searchResults-icon {
+      $imageWrapper: merge((
+        z-index: 1,
+        height: auto,
+        min-height: 155px,
+        max-height: 255px
+      ), g('_grid-view._image-wrapper.box'));
+
+      @include breakpoints() {
+        @include box($imageWrapper, $media);
+      }
+
+      a {
+        top: 0;
+        padding: 0;
+      }
+
+      img {
+        $image: merge((
+          max-height: 255px,
+          display: block,
+          margin: (
+            margin: 0 auto
+          )
+        ), g('_grid-view._image-wrapper._image.box'));
+
+        @include breakpoints() {
+          @include box($image, $media);
+        }
+      }
+    }
+
+    .searchResults-desc:first-child > div > .box,
+    .searchResults-icon + .searchResults-desc {
+      $descOuterBox: merge((
+        display: flex,
+        flex: (
+          flex-grow: 1,
+          flex-direction: column,
+        )
+      ), g('_grid-view._content-outer-box.box'));
+
+      @include breakpoints() {
+        @include box($descOuterBox, $media);
+      }
+    }
+
+    .searchResults-desc:first-child > div > .box,
+    .searchResults-icon + .searchResults-desc > div {
+      $box: merge((
+        display: flex,
+        flex: (
+          flex-grow: 1,
+          flex-direction: column
+        )
+      ), g('_grid-view._content-box.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+
+      .richText {
+        h3, h4, h5 {
+          @include breakpoints() {
+            @include paragraph(g('_grid-view._content-box._title.paragraph'), $media);
+          }
+
+          a {
+            @include breakpoints() {
+              @include link(g('_grid-view._content-box._link.link'), $media);
+            }
+
+            text-decoration: inherit;
+          }
+        }
+
+        p {
+          @include breakpoints() {
+            @include paragraph(g('_grid-view._content-box._description.paragraph'), $media);
+          }
+        }
+      }
+
+      //hide read more link for grid view
+      .richText-read-more-link {
+        display: none;
+      }
+    }
+
+    .buyitnow {
+      display: none;
+    }
+
+    .bv_writeAReview_buttonMinimalist.bv_ffs_hover {
+      display: none !important; //overwrite ratings important styles
+    }
+
+    .ratingsandreviews .bazaarvoice div[data-bv-show="rating_summary"] .bv_main_container {
+      flex-direction: row !important; //overwrite ratings important styles
+    }
+
+    .ratingsandreviews .bazaarvoice .bv_main_container .bv_numReviews_text,
+    .ratingsandreviews .bazaarvoice .bv_main_container .bv_avgRating {
+      @include breakpoints {
+        /*! @important(start) */
+        @include paragraph(g('_ratings._count.paragraph'), $media);
+        /*! @important(stop) */
+      }
+    }
+
+    .quickview-btn {
+      cursor: pointer;
+
+      @include breakpoints() {
+        @include button(g('_quick-view-button.button'), $media)
+      }
+
+      @include media-query(mobile) {
+        display: none;
+      }
+    }
+  }
+
+  // grid view
+  .display-grid .item-product {
+    // BazaarVoice reviews (overwrite BV styles)
+    .ratingsandreviews .bazaarvoice div[data-bv-show="rating_summary"] {
+      text-align: center !important;
+    }
+
+    .ratingsandreviews .bazaarvoice .bv_main_container .bv_numReviews_text,
+     .ratingsandreviews .bazaarvoice .bv_main_container .bv_avgRating,
+     .ratingsandreviews .bazaarvoice .bv_main_container .bv_numReviews_component_container {
+       @include breakpoints {
+         /*! @important(start) */
+         display: none;
+         /*! @important(stop) */
+       }
+     }
+    [data-bv-show=rating_summary] .bv_main_container {
+      .bv_main_container_row_flex {
+        /*! @important(start) */
+        padding-right: 0;
+        /*! @important(stop) */
+      }
+
+      .bv_stars_button_container {
+        /*! @important(start) */
+        margin-right: 0;
+        /*! @important(stop) */
+      }
+    }
+
+    // Kritique reviews (overwrite Kritique styles)
+    .kritique {
+      .wRtng {
+        /*! @important(start) */
+        display: none;
+        /*! @important(stop) */
+      }
+
+      .rr-widget-container.rr-inline-widget {
+        font-size: 0; // hide ratings numbers in grid view
+        text-align: center;
+      }
+    }
+  }
+
+  // list view
+  .display-list .item-product {
+    $box: merge((
+      display: flex,
+      flex: (
+        flex-direction: breakpoint((mobile: column, tablet-min: row))
+      ),
+      padding: (
+        padding: 0
+      ),
+      margin: (
+        margin: breakpoint((mobile: 0 0 spacings('xxl'), tablet-min: 0 0 60px))
+      )
+    ), g('_list-item.box'));
+
+    $container: merge((
+      display: flex,
+      flex: (
+        flex-direction: breakpoint((mobile: column, tablet-min: row))
+      ),
+      padding: (
+        padding: 0
+      ),
+      margin: (
+        margin: 0
+      )
+    ), g('_list-item.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+
+    .searchResults-desc {
+      .ua-ie-11 & {
+        width: 100%;
+      }
+    }
+
+    .searchResults-desc:first-child > div {
+
+      @include breakpoints() {
+        @include box($container, $media);
+      }
+    }
+
+    .searchResults-desc > div > .image,
+    .searchResults-icon {
+      $imageBox: merge((
+        width: breakpoint((mobile: 155px, tablet-min: 100%)),
+        max-width: 255px,
+        min-width: 155px,
+        height: breakpoint((mobile: 155px, tablet-min: auto)),
+        max-height: 255px,
+        min-height: 155px,
+        flex: (
+          flex: 1 1 auto
+        ),
+        margin: (
+          margin: breakpoint((mobile: 0 auto, tablet-min: 0 spacings('m') 0 0)),
+        )
+      ), g('_list-item._image.box'));
+
+      @include breakpoints() {
+        @include box($imageBox, $media);
+      }
+    }
+
+    .searchResults-desc:first-child > div > .box,
+    .searchResults-icon + .searchResults-desc > div {
+      $box: merge((
+        background: (
+          background-color: transparent
+        ),
+        margin: (
+          margin-top: 0
+        ),
+        padding: (
+          padding: 0
+        ),
+        flex: (
+          flex-direction: column
+        )
+      ), g('_list-item._details-box.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+
+      .ratingsandreviews {
+        .bv_main_container {
+          margin: 0 !important;   //overriding 3rd party styles
+        }
+      }
+
+      .richText {
+        h3, h4, h5 {
+          $productName: merge((
+            margin: 0
+          ), g('_list-item._details-box._title.paragraph'));
+
+          @include breakpoints() {
+            @include paragraph($productName, $media);
+          }
+
+          a {
+            text-decoration: inherit;
+          }
+        }
+      }
+
+      .richText-product-view-description {
+        $descriptionBox: merge((
+          flex: (
+            order: 1
+          )
+        ), g('_list-item._details-box._description-box.box'));
+
+        @include breakpoints() {
+          @include box($descriptionBox, $media);
+        }
+
+        p {
+          $description: merge((
+            margin: (
+              margin: breakpoint((mobile: 20px 0 spacings('xs'), tablet-min: 0 0 spacings('s')))
+            )
+          ), g('_list-item._details-box._description.paragraph'));
+
+          @include breakpoints() {
+            @include paragraph($description, $media);
+          }
+        }
+      }
+
+      .richText-read-more-link {
+        $readMoreWrapper: merge((
+          display: inline-flex,
+          flex: (
+            order: breakpoint((mobile: 1, tablet-min: 2))
+          )
+        ), g('_list-item._details-box._read-more-wrapper.box'));
+
+        @include breakpoints() {
+          @include box($readMoreWrapper, $media);
+        }
+
+        p {
+          margin: 0;
+        }
+
+        .link-read-more {
+          @include breakpoints {
+            @include button(g('_list-item._details-box._read-more-link.button'), $media);
+          }
+        }
+      }
+
+      .box {
+        $buttonsOuterBox: merge((
+          width: 100%,
+          margin: (
+            margin: breakpoint((mobile: spacings('m') 0 0, tablet-min: 20px 0))
+          ),
+          flex: (
+            order: breakpoint((mobile: 2))
+          )
+        ), g('_list-item._details-box._buttons-outer-box.box'));
+
+        @include breakpoints() {
+          @include box($buttonsOuterBox, $media);
+        }
+
+        .content {
+          $buttonsInnerBox: merge((
+            display: flex,
+            flex: (
+              flex-direction: breakpoint((mobile: column, tablet-min: row)),
+              flex-wrap: wrap
+            ),
+            margin: (
+              margin: -10px 0
+            )
+          ), g('_list-item._details-box._buttons-inner-box.box'));
+
+          @include breakpoints() {
+            @include box($buttonsInnerBox, $media);
+          }
+        }
+      }
+
+      .buyitnow {
+        $buyItNowBox: merge((
+          display: block,
+          width: breakpoint((mobile: 100%)),
+          margin: (
+            margin: breakpoint((
+              mobile: spacings('xs') 0 spacings('xxs'),
+              tablet-min: spacings('xs') 20px spacings('xxs') 0
+            ))
+          )
+        ), g('_list-item._details-box._buy-it-now-wrapper.box'));
+
+        @include breakpoints() {
+          @include box($buyItNowBox, $media);
+        }
+
+        .addtobag-btn,
+        .shopalyst-btn {
+          $buyItNowBtn: merge((
+            width: breakpoint((mobile: 100%)),
+            min-width: 188px,
+            margin: (
+              margin: 0,
+            )
+          ), g('_list-item._details-box._buy-it-now-wrapper._buy-it-now.button'));
+
+          @include breakpoints() {
+            @include button($buyItNowBtn, $media);
+          }
+        }
+      }
+
+      .reference-find-in-store-button {
+        $findInStoreWrapper: merge((
+          display: inline-block,
+          margin: (
+            margin: spacings('xs') 0,
+          )
+        ), g('_find-in-store-wrapper.box'));
+
+        @include breakpoints() {
+          @include box($findInStoreWrapper, $media);
+        }
+
+        a {
+          $findInStoreBtn: merge((
+            min-width: 188px
+          ), g('_find-in-store-wrapper._find-in-store.button'));
+
+          @include breakpoints() {
+            @include button($findInStoreBtn, $media);
+          }
+        }
+      }
+
+      .ua-ie-11 & {
+        flex-basis: 100%;
+      }
+    }
+
+    .quickview-btn {
+      display: none;
+    }
+
+    .kritique {
+      .rr-widget-container.rr-inline-widget {
+        /*! @important(start) */
+        margin-top: 10px;
+        /*! @important(stop) */
+        font-size: 12px;
+        text-align: left;
+      }
+    }
+  }
+}

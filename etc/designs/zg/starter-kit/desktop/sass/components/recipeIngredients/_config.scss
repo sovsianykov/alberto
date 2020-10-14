@@ -1,0 +1,24 @@
+$recipeIngredients: (
+  box: (
+    margin: (
+      margin-bottom: 20px
+    )
+  ),
+  _list: (
+    box: (
+      margin: 0,
+    ),
+    _item: (
+      box: (
+        border: (
+          border-top: solid 1px color('neutral', 'light')
+        ),
+        padding: spacings('xs') 0
+      ),
+      text: (
+        font-size: px(18),
+        line-height: 1.44
+      )
+    )
+  )
+);

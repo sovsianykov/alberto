@@ -1,0 +1,275 @@
+.display-list .listing-product-default-view {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($listView, $a...);
+  }
+
+  .listing-items {
+    $listingWrapper: merge((
+      margin: 0,
+      flex: (
+        flex-direction: column
+      )
+    ), g('_products-list.box'));
+
+    @include breakpoints() {
+      @include box($listingWrapper, $media);
+    }
+
+    .listing-item {
+      $itemWrapper: merge((
+        width: 100%,
+        padding: 0,
+        margin: (
+          margin-top: 0px,
+          margin-bottom: breakpoint((mobile: spacings('xxl'), tablet-min: 60px))
+        )
+      ), g('_products-list._item-wrapper.box'));
+
+      @include breakpoints() {
+        @include box($itemWrapper, $media);
+      }
+    }
+
+    .promotile-item {
+        .component-content {
+          @include media-query(desktop, auto) {
+            display: flex;
+
+            picture {
+              margin-right: spacings('m');
+              height: 255px;
+              width: 255px;
+            }
+          }
+        }
+      }
+
+    .content {
+      $item: merge((
+        flex: (
+          flex-direction: breakpoint((mobile: column, tablet-min: row)),
+          align-items: breakpoint((mobile: center))
+        )
+      ), g('_products-list._item.box'));
+
+      @include breakpoints() {
+        @include box($item, $media);
+      }
+
+      .box:first-of-type {
+        $imageBox: merge((
+          max-height: 255px,
+          max-width: 255px,
+          margin: (
+            margin-right: breakpoint((tablet-min: spacings('m')))
+          )
+        ), g('_products-list._image-box.box'));
+
+        @include breakpoints() {
+          @include box($imageBox, $media);
+        }
+
+        .productQuickView {
+          display: none;
+        }
+
+        img {
+          margin: 0 auto;
+          position: static;
+          transform: none;
+          transition: transform 0s;
+        }
+      }
+
+      .box:last-of-type {
+        $detailsOuterBox: merge((
+          width: 100%,
+          padding: 0,
+          margin: (
+            margin-top: 0
+          ),
+        ), g('_products-list._details-outer-box.box'));
+
+        @include breakpoints() {
+          @include box($detailsOuterBox, $media);
+        }
+
+        .content {
+          $detailsInnerBox: merge((
+            display: flex,
+            flex: (
+              flex-direction: column,
+              align-items: flex-start
+            )
+          ), g('_products-list._details-inner-box.box'));
+
+          @include breakpoints() {
+            @include box($detailsInnerBox, $media);
+          }
+
+          h3, h4, h5, h6 {
+            $productName: merge((
+              margin: (
+                margin-top: 0
+              )
+            ), g('_products-list._details-inner-box._product-name.paragraph'));
+
+            @include breakpoints() {
+              @include paragraph($productName, $media);
+            }
+          }
+
+          .richText {
+            .ua-ie-11 & {
+              max-width: 100%;
+            }
+          }
+        }
+
+        .box {
+          $buttonsOuterBox: merge((
+            width: 100%,
+            margin: (
+              margin: breakpoint((mobile: spacings('m') 0 0, tablet-min: 20px 0))
+            ),
+            flex: (
+              order: breakpoint((mobile: 2))
+            )
+          ), g('_products-list._details-inner-box._buttons-outer-box.box'));
+
+          @include breakpoints() {
+            @include box($buttonsOuterBox, $media);
+          }
+
+          .content {
+            $buttonsInnerBox: merge((
+              display: flex,
+              flex: (
+                flex-direction: breakpoint((mobile: column, tablet-min: row))
+              )
+            ), g('_products-list._buttons-inner-box.box'));
+
+            @include breakpoints() {
+              @include box($buttonsInnerBox, $media);
+            }
+          }
+        }
+
+        .buyitnow {
+          $buyItNowBox: merge((
+            display: block,
+            width: breakpoint((mobile: 100%)),
+            margin: (
+              margin-right: breakpoint((mobile: 0, tablet-min: 20px))
+            )
+          ), g('_products-list._details-inner-box._buy-it-now-wrapper.box'));
+
+          @include breakpoints() {
+            @include box($buyItNowBox, $media);
+          }
+        }
+
+        .addtobag-btn {
+          margin: 0;
+
+          @include breakpoints() {
+            @include button(g('_products-list._details-inner-box._buy-it-now.button'), $media);
+          }
+        }
+
+        .reference-find-in-store-button {
+          $findStoreBox: merge((
+            width: 100%,
+            margin: (
+              margin-top: breakpoint((mobile: spacings('xs')))
+            )
+          ), g('_products-list._details-inner-box._find-store-box.box'));
+
+          @include breakpoints() {
+            @include button($findStoreBox, $media);
+          }
+
+          .component-content {
+            width: 100%;
+          }
+
+          .button-tertiary {
+            min-width: 188px;
+
+            @include button(g('_products-list._details-inner-box._find-store-box._cta-button.box'), $media);
+          }
+        }
+
+        .richText:last-of-type {
+          $readMoreWrapper: merge((
+            display: inline-flex,
+            flex: (
+              order: breakpoint((mobile: 1, tablet-min: 2))
+            )
+          ), g('_products-list._details-inner-box._read-more-wrapper.box'));
+
+          @include breakpoints() {
+            @include box($readMoreWrapper, $media);
+          }
+
+          p {
+            margin-bottom: 0;
+          }
+
+          .link-read-more {
+            @include breakpoints {
+              @include button(g('_products-list._details-inner-box._read-more-link.button'), $media);
+            }
+          }
+        }
+
+        //override grid view styles
+        .ratingsandreviews {
+          .bv_main_container {
+            margin-bottom: 0 !important;
+            flex-direction: row !important;
+          }
+
+          .bv_main_container_row_flex {
+            .bv_avgRating_component_container,
+            .bv_numReviews_component_container {
+              display: block !important;
+            }
+
+            .bv_stars_button_container {
+              margin-right: 8px !important;
+            }
+
+            &:last-of-type {
+              display: flex !important;
+            }
+          }
+        }
+      }
+
+      .richText-product-view-description {
+        $productDescription: merge((
+          flex: (
+            order: 1
+          )
+        ), g('_products-list._details-inner-box._product-description.box'));
+
+        @include box($productDescription, $media);
+
+        p {
+          $text: merge((
+            margin: (
+              margin: breakpoint((mobile: 20px 0 spacings('xs'), tablet-min: 0 0 spacings('s')))
+            )
+          ), g('_products-list._details-inner-box._product-description.paragraph'));
+
+          @include breakpoints() {
+            @include paragraph($text, $media);
+          }
+        }
+      }
+    }
+  }
+
+}

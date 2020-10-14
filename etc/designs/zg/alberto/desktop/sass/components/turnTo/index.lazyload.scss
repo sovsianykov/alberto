@@ -1,0 +1,168 @@
+@import '../../core/config';
+
+.turnto.initialized {
+  visibility: visible;
+}
+
+.component.communityqa .turnto,
+#TTtraWindow {
+  @import 'config';
+  @import '_results/config';
+  @import '_resultArticle/config';
+  @import '_notificationMessages/config';
+
+  @function g($a...) {
+    @return get-last($turnTo, $a...);
+  }
+
+  @import '_partials/questions-asked';
+  @import '_partials/product-search';
+  @import '_partials/answers';
+  @import '_results/index';
+  @import '_resultArticle/index';
+  @import '_notificationMessages/index';
+
+  #TT2ILTbox {
+    display: none; // hide title and unnecessary links
+  }
+
+  #TThiMsg {
+    @include breakpoints {
+      @include text(g('text'), $media);
+    }
+
+    @include media-query(mobile) {
+      display: block;
+    }
+  }
+
+  .TT4AskBkgAndBorder {
+    @include breakpoints {
+      @include box(g('_ask-area-wrapper.box'), $media);
+    }
+  }
+
+  #TT4questionTextWrap {
+    @include box(g('_ask-area-wrapper._input-wrapper.box'), $media);
+  }
+
+  .TT4chatIcon {
+    background: none;
+    height: 100%;
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    width: auto;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    @include icon(g('_ask-area-wrapper._input-wrapper._search-icon.icon'), $media);
+  }
+
+  #TT4closeQuestionBox {
+    background: none;
+    height: 100%;
+    margin: 0;
+    width: auto;
+    top: 0;
+    right: 0;
+    @include icon(g('_ask-area-wrapper._input-wrapper._reset-icon.icon'), $media);
+
+    $pseudo: safetype(g('_ask-area-wrapper._input-wrapper._reset-icon.icon.side', $media), 'after');
+    &:#{$pseudo} {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  #TurnToContent {
+    @include text(g('text'), $media);
+
+    a {
+      @include text(g('text'), $media);
+    }
+
+    textarea#TT2questionText {
+      position: relative;
+      @include breakpoints {
+        @include input(g('_ask-area-wrapper._input-wrapper.input'), $media);
+      }
+    }
+
+    .TT4startTyping {
+      @include paragraph(g('_ask-area-wrapper._hint.paragraph'), $media);
+      @include breakpoints {
+        a {
+          @include button(g('_ask-area-wrapper._hint.button'), $media);
+        }
+      }
+    }
+
+    #TT4questionTextHelpCnt {
+      @include box(g('_ask-area-wrapper._how-it-works-box.box'), $media);
+      @include text(g('_ask-area-wrapper._how-it-works-box.text'), $media);
+
+      #TT4questionTextHelpContent {
+        li {
+          list-style: none;
+
+          $listItem: merge((
+            width: 100%,
+            flex: (
+              align-items: center,
+              justify-content: flex-start
+            )
+          ), g('_ask-area-wrapper._how-it-works-box._list-item.button'));
+
+          @include button($listItem, $media);
+        }
+      }
+    }
+
+    // ask a question area:
+    #TTaskAreaBtnLine_instr {
+      float: none;
+      height: auto;
+      @include breakpoints {
+        @include paragraph(g('_ask-area-wrapper._ask-question-area._instruction-msg.paragraph'), $media);
+      }
+    }
+
+    #TT4miqAbout {
+      float: none;
+
+      @include paragraph(g('_ask-area-wrapper._ask-question-area._title.paragraph'), $media);
+    }
+
+    #TTmiqArea {
+      @include clearfix;
+    }
+
+    .TTquestionMiqaHelpText {
+      width: auto;
+      @include paragraph(g('_ask-area-wrapper._ask-question-area._help-text.paragraph'), $media);
+    }
+
+    #TTaskAreaBtnLine {
+      @include breakpoints {
+        @include box(g('_ask-area-wrapper._ask-question-area._buttons-row.box'), $media);
+      }
+
+      .TT4QhintCenter {
+        float: none;
+
+        @include paragraph(g('_ask-area-wrapper._ask-question-area._buttons-row.paragraph'), $media);
+      }
+
+      .TTaskOwnerBtnWrap {
+        float: none;
+      }
+    }
+  }
+}
+
+@import '_signUpOverlay/index';
+@import '_overrides/buttons';

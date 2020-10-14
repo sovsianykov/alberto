@@ -1,0 +1,224 @@
+html, body {
+  $body: merge(common('text.body'), (font-size: 100%));
+  @include text($body, $media);
+  @include background(common('background.body'), $media);
+}
+
+h1 {font-size: 28px;}
+h2 {font-size: 21px;}
+h3 {font-size: 16px;}
+h4 {font-size: 14px;}
+h5 {font-size: 12px;}
+h6 {font-size: 9px;}
+#header img {font-size: 7px;} // set small alt text if images 404 in header
+
+a, button {
+  @include breakpoints {
+    @include link(common('_links._base-focus.link'), $media);
+  }
+}
+
+a {
+  &, &:active, &:hover, &:visited {
+    color: inherit;
+  }
+}
+
+input {
+  @include breakpoints {
+    @include input(common('_base-focus.input'), $media);
+  }
+}
+
+.component {
+  > .component-content {
+    @include clearfix;
+  }
+}
+
+#wrapper {
+  // this is temporary
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+
+  #content {
+    flex-grow: 1;
+  }
+
+  #header {
+    @include media-query(desktop, wide) {
+      position: relative;
+      z-index: $z-index-content + 1;
+    }
+  }
+
+  &, > .main {
+    // reseting grid.css stuff for full-width layouts
+    padding: 0;
+    margin: 0;
+    width: auto;
+  }
+}
+
+.composite {
+  @include clearfix;
+}
+
+.alert {
+  margin-bottom: 20px;
+
+  &-list {
+    margin: 0;
+    padding: 0;
+    list-style: disc inside;
+
+    li {
+      padding-left: 4px;
+    }
+  }
+
+  &-error {
+    color: color('error');
+  }
+}
+
+.clearfix {
+  @include clearfix;
+}
+
+.pull {
+  &-right {
+    float: right;
+  }
+
+  &-left {
+    float: left;
+  }
+}
+
+.is-hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+.button {
+  background-color: color('neutral','light');
+  border-radius: 20px;
+  border: 1px solid color('neutral','dark');
+  color: color('neutral','dark');
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 20px;
+
+  &:hover {
+    background-color: color('neutral','lighter');
+    color: color('neutral','base');
+  }
+}
+
+.object-fit-polyfill {
+  // set bg image
+  background-position: center center;
+  background-size: cover;
+
+  img {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+img {
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.ua-ie-11 {   //fix for IE 11
+  #content {
+    height: 100%;
+  }
+}
+
+.lazyload,
+.lazyloading {
+  opacity: 0;
+}
+
+.lazyloaded {
+  opacity: 1;
+  transition: opacity 300ms;
+}
+
+// show screen reader text in author, or publish in debug mode i.e. $("body").addClass("show-sr-text")
+// watch out double :not() works like AND
+body:not(.cq-wcm-edit-touch):not(.show-sr-text) .sr-only {
+  border: 0;
+  clip: rect(0,0,0,0);
+  height: 1px;
+  margin: -1px;
+  opacity: .1;
+  outline: 0;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+
+  &:after {
+    content: "";
+  }
+}
+
+// in author and debug mode show SR text opaque and labeled
+.richText.sr-only,
+.title.sr-only h1,
+span.sr-only {
+  margin: 0 !important;
+  opacity: .5;
+  padding: 0 !important;
+  &:after {
+    content: " (screenreader)";
+    font-size: 8px;
+  }
+  &:before {
+    content: " ";
+    display: inline-block;
+    width: 1rem;
+  }
+}
+.title.sr-only {
+  text-align: center;
+}
+
+* {
+  &, &:hover, &:before, &:after {
+    transition: background .3s $ease-out 0s, color .3s $ease-out 0s, opacity .3s $ease-out 0s, transform .3s $ease-out 0s;
+  }
+}
+
+html.showmq body:after {
+  background-color: white;
+  border: 1px dashed silver;
+  bottom: 0;
+  content: "small";
+  display: block;
+  left: 0;
+  opacity: .7;
+  padding: 8px 20px;
+  position: fixed;
+  @include media-query(mobileUp, wide) {
+    content: "mobile";
+  }
+  @include media-query(tablet, wide) {
+    content: "tablet";
+  }
+  @include media-query(notebook, wide) {
+    content: "notebook";
+  }
+  @include media-query(desktop, wide) {
+    content: "desktop";
+  }
+  @include media-query(wide) {
+    content: "wide";
+  }
+}

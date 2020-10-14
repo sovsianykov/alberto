@@ -1,0 +1,13 @@
+$containerArticle: (
+  spacings: common('spacings')
+);
+
+$containerArticle: merge($containerArticle,(
+  _main: (
+    box: (
+      margin: (
+        margin-top: breakpoint((tablet-max: 0, desktop: 40px))
+      )
+    )
+  )
+));

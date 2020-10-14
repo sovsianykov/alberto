@@ -1,0 +1,17 @@
+// The global headers inherit all the CSS of NASK header,
+// here is only overlap changes of CSS to achieve the
+// specific behaviours of the global headers.
+
+$header-slim: (
+  box: (),
+  _language: (
+    text: (
+      font-size: px('xs'),
+      font-weight: 500,
+      letter-spacing: px(0.7)
+    ),
+    icon: (
+      font-size: px(8)
+    )
+  )
+);

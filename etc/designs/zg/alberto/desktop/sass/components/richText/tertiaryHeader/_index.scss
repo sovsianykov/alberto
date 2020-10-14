@@ -1,0 +1,20 @@
+.richText-tertiary-header {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($tertiaryHeader, $a...);
+  }
+
+  @include breakpoints() {
+    @include box(g('_main.box'), $media);
+  }
+
+  h1, h2, h3, h4 {
+    @include breakpoints() {
+      @include paragraph(g('_main._header.paragraph'), $media);
+    }
+  }
+
+  p {
+    @include paragraph(g('_main._text-below.paragraph'), $media);
+  }
+}

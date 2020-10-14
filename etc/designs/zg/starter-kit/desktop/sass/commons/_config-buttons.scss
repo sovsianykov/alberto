@@ -1,0 +1,164 @@
+$common: () !default;
+
+$common: merge($common, (
+  _base: (
+    button: (
+      justify-content: center,
+      align-items: center,
+      text: (
+        font-size: px(18),
+        line-height: 1.22,
+        font-family: 'primary',
+        text-decoration: none,
+        text-transform: uppercase,
+        color: color('white')
+      ),
+      border: (
+        border-radius: 3px,
+        border: 0
+      ),
+      background: (
+        background-color: color('black')
+      ),
+      hover: (
+        transition: (
+          speed: 'base'
+        )
+      )
+    )
+  )
+));
+
+$common: merge($common, (
+  _primary: (
+    button: extend('_base.button', (
+      text: (
+        color: color('black'),
+        font-weight: bold
+      ),
+      background: (
+        background-color: color('primary', 'base')
+      ),
+      height: 52px,
+      min-width: breakpoint((
+        mobile: 215px,
+        tablet-min: 255px,
+      )),
+      padding: common('spacings.s') common('spacings.xl'),
+      box-sizing: border-box,
+      hover: (
+        background: (
+          background-color: color('primary', 'dark'),
+        )
+      )
+    ))
+  ),
+  _secondary: (
+    button: extend('_base.button', (
+      margin: (
+        margin-top: breakpoint((tablet-max: 25px, desktop: common('spacings.l')))
+      ),
+      text: (
+        color: color('white'),
+        text-decoration: none,
+        font-weight: bold,
+        text-align: center
+      ),
+      background: (
+        background-color: color('black')
+      ),
+      height: 52px,
+      min-width: breakpoint((
+        mobile: 215px,
+        tablet-min: 255px,
+      )),
+      padding: common('spacings.s') common('spacings.xl'),
+      box-sizing: border-box,
+      hover: (
+        background: (
+          background-color: color('neutral', 'dark')
+        ),
+        text: (
+          color: color('white')
+        )
+      )
+    ))
+  ),
+  _tertiary: (
+    button: extend('_base.button', (
+      width: breakpoint((mobile: 100%, tablet-min: auto)),
+      text: (
+        font-size: px(18),
+        font-weight: bold,
+        color: color('black'),
+        text-decoration: none
+      ),
+      border: (
+        border: 1px solid color('neutral', 'light'),
+      ),
+      box-sizing: border-box,
+      height: 52px,
+      min-width: breakpoint((
+        mobile: 215px,
+        tablet-min: 255px,
+      )),
+      padding: common('spacings.s') common('spacings.xl'),
+      background: (
+        background-color: color('white')
+      ),
+      hover: (
+        background: (
+          background-color: rgba(color('neutral', 'light'), 0.2)
+        )
+      )
+    ))
+  ),
+  _close-button: (
+    button: (
+      background: (
+        background-color: color('black')
+      ),
+      border: (
+        border-radius: 50%,
+        border: 1px solid color('black')
+      ),
+      icon: (
+        content: common('icon.cross-small'),
+        font-size: 10px,
+        color: color('white'),
+        height: 30px,
+        width: 30px,
+        hover: (
+          color: color('black')
+        )
+      ),
+      hover: (
+        background: color('white')
+      )
+    )
+  ),
+  _view-all: (
+    button: (
+      text: (
+        font-family: primary,
+        font-size: px(18),
+        font-weight: bold,
+        line-height: px(30),
+        text-decoration: none,
+        text-transform: uppercase,
+      ),
+      border: (
+        border: solid 1px color('neutral', 'light'),
+        border-radius: 3px
+      ),
+      cursor: pointer,
+      height: 30px,
+      padding: 0 10px,
+      hover: (
+        background: (
+          background-color: rgba(color('neutral', 'light'), 0.2)
+        )
+      )
+    )
+  )
+));

@@ -1,0 +1,110 @@
+@import '../../core/config';
+
+@import 'config';
+@function g($a...) {
+  @return get-last($favourite, $a...);
+}
+
+
+// Common styles
+
+.favourite-icon {
+  &[data-favourite="false"]:after {
+    content: attr(data-label-add);
+  }
+  &[data-favourite="true"]:after {
+    content: attr(data-label-remove);
+  }
+  &[data-favourite="false"]:before {
+    color: color('neutral', 'light');
+    content: common('icon.heart');
+    font-family: icons;
+  }
+  &[data-favourite="true"]:before {
+    color: color('primary', 'dark');
+    content: common('icon.heart');
+    font-family: icons;
+  }
+}
+
+// Icon styles
+.favourite-icon.icon {
+  $size: 28px;
+  background-color: transparent;
+  border: 0 none;
+  cursor: pointer;
+  display: inline-block;
+  height: $size;
+  overflow: hidden;
+  position: relative;
+  padding: 0 0 0 $size;
+  width: $size;
+
+  &:before {
+    font-family: icons;
+    font-size: ($size - 3);
+    left: 2px;
+    position: absolute;
+    speak: none;
+    top: 0;
+  }
+
+  &:after {
+    display: block;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    width: 0;
+  }
+
+  &[data-favourite="false"]:after {
+    content: attr(data-label-add);
+  }
+
+  &[data-favourite="true"]:after {
+    content: attr(data-label-remove);
+  }
+}
+
+.image .favourite-icon {
+  $offset: 10px;
+  position: absolute;
+  right: $offset;
+  top: $offset;
+  z-index: $z-index-content;
+
+  html[dir="rtl"] & {
+    left: $offset;
+    right: auto;
+  }
+}
+
+// product page styles
+.favourite-icon.button {
+  @include breakpoints() {
+    @include button(g("_favourite-btn.button"), $media);
+  }
+  &:before {
+    font-size: 90%;
+    margin-top: -3px;
+    padding-right: 7px;
+  }
+  .product-results-wrapper.display-grid & {
+    @include button(g("_favourite-grid-btn.button"), $media);
+  }
+  .product-results-wrapper.display-list & {
+    @include media-query(mobile) {
+      margin-top: spacings('xs');
+    }
+    @include media-query(tablet, wide) {
+      margin-left: 20px;
+    }
+    @include button(g("_favourite-list-btn.button"), $media);
+  }
+}
+
+@include media-query(mobile) {
+  .product-results-wrapper.display-list .favourite {
+    width: 100%;
+  }
+}

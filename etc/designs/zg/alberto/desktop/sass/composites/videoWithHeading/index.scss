@@ -1,0 +1,60 @@
+@import '../../core/config';
+
+.composite-video-with-heading {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($videoWithHeading, $a...);
+  }
+
+  @include wrapper;
+
+  $box: merge((
+    margin: (
+      margin-top: breakpoint((tablet-max: 60px, desktop: spacings('xxxl'))),
+      margin-bottom: breakpoint((tablet-max: 60px, desktop: spacings('xxxl')))
+    )
+  ), g('_main.box'));
+
+  @include breakpoints() {
+    @include box($box, $media);
+  }
+
+  .richText-content {
+    $heading-wrapper: merge((
+      margin: (
+        margin-right: breakpoint((mobile: 20px, desktop: 190px)),
+        margin-bottom: breakpoint((mobile: spacings('m'), desktop: spacings('xl'))),
+        margin-left: breakpoint((mobile: 20px, desktop: 190px))
+      )
+    ), g('_main._heading-wrapper.box'));
+
+    @include breakpoints() {
+      @include paragraph($heading-wrapper, $media);
+    }
+
+    h2, h3, h4 {
+      $heading: merge((
+        margin: (
+          margin-top: 0,
+          margin-bottom: 20px
+        )
+      ), g('_main._heading.paragraph'));
+
+      @include breakpoints() {
+        @include paragraph($heading, $media);
+      }
+    }
+  }
+
+  .video {
+    $video: merge((
+      margin: (
+        margin: breakpoint((mobile: 0 -20px, tablet-min: null))
+      )
+    ), g('_main._video.box'));
+
+    @include breakpoints() {
+      @include box($video, $media);
+    }
+  }
+}

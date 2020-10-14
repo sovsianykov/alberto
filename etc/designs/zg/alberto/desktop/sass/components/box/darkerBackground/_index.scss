@@ -1,0 +1,20 @@
+.box-darker-background {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($darkerBackground, $a...);
+  }
+
+  > .component-content {
+    $box: merge((
+      padding: (
+        padding: 60px 0
+      )
+    ), g('_main.box'));
+
+    @include box($box, $media);
+  }
+
+  .composite {
+    margin: 0;
+  }
+}

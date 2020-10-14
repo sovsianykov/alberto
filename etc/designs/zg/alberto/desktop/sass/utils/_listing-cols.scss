@@ -1,0 +1,42 @@
+@mixin listing-cols($row: ".listing-items", $cell: ".listing-item", $gutter: 0px, $default: 2) {
+  #{$row} {
+    display: flex;
+    flex-wrap: wrap;
+    margin: $gutter * -0.5;
+  }
+
+  #{$cell} {
+    box-sizing: border-box;
+    margin: $gutter * 0.5;
+  }
+
+  $data: (
+    mobile: (auto, mobile),
+    tablet: (tablet, notebook),
+    desktop: (desktop, auto)
+  );
+
+  @each $label, $value in $data {
+    @include media-query(nth($value, 1), nth($value, 2)) {
+
+      // default values, defined on CSS layer by this mixin
+      #{$cell} {
+        $cols: safetype(get-last($default, $label), 2);
+        width: calc(#{percentage(1/$cols)} - #{$gutter});
+      }
+
+      // values defined by class (overriding default values, used on variants)
+      @for $i from 1 through 4 {
+        // media-query specific and defaul needs to be
+        // inside media-query so it overrides default values.
+        &.listing-cols-#{$i},
+        // just forcing inheritance (over media-query of other versions)
+        &.component.listing-cols-#{$i}-#{$label} {
+          #{$cell} {
+            width: calc(#{percentage(1/$i)} - #{$gutter});
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+// Shortcut for media queries. If only "from" exists,
+// it'll print the min / max for that breakpoint.
+// use mobileUp as lower limit if needed e.g. media-query(mobileUp, ...); not media-query(mobile, ...);
+$breakpoints: (
+  small: (from: null, to: $bp-small-max),
+  mobile: (from: null, to: $bp-mobile-max),
+  mobileUp: (from: $bp-small-max, to: $bp-mobile-max),
+  tablet: (from: $bp-tablet-min, to: $bp-tablet-max),
+  notebook: (from: $bp-notebook-min, to: $bp-notebook-max),
+  desktop: (from: $bp-desktop-min, to: $bp-desktop-middle-min),
+  desktop-middle: (from: $bp-desktop-middle-min, to: $bp-desktop-max),
+  wide: (from: $bp-wide-min, to: null)
+) !default;
+
+@mixin media-query($from, $to: $from, $offsetMin: 0, $offsetMax: 0) {
+  $from: if($from != auto, $from, small);
+  $to: if($to != auto, $to, wide);
+
+  @if ($from != null and $to != null) {
+    $min: get($breakpoints, $from, 'from');
+    $max: get($breakpoints, $to, 'to');
+
+    @if ($min == null) {
+      @media only screen and (max-width: $max + $offsetMax) {
+        @content;
+      }
+    }
+    @if ($max == null) {
+      // these styles print
+      @media (min-width: $min + $offsetMin) {
+        @content;
+      }
+    }
+    @if ($min != null and $max != null) {
+      @media only screen and (min-width: $min + $offsetMin) and (max-width: $max + $offsetMax) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin respond-to($media) {
+  @if $media==mobile {
+    @media only screen and (max-width: $bp-mobile-max) {
+      @content;
+    }
+  }
+  @else if $media==tablet {
+    @media only screen and (min-width: $bp-tablet-min) and (max-width: $bp-tablet-max) {
+      @content;
+    }
+  }
+  @else if $media==notebook {
+    @media only screen and (min-width: $bp-notebook-min) and (max-width: $bp-notebook-max) {
+      @content;
+    }
+  }
+  @else if $media==desktop {
+    @media only screen and (min-width: $bp-desktop-min) and (max-width: $bp-desktop-max) {
+      @content;
+    }
+  }
+  @else if $media==desktop-middle {
+    @media only screen and (min-width: $bp-desktop-middle-min) and (max-width: $bp-desktop-middle-max) {
+      @content;
+    }
+  }
+  @else if $media==wide {
+    @media only screen and (min-width: $bp-wide-min) {
+      @content;
+    }
+  }
+}
+
+@mixin respond-to($media) {
+  @if $media==mobile {
+    @media only screen and (max-width: $bp-mobile-max) {
+      @content;
+    }
+  }
+  @else if $media==tablet {
+    @media only screen and (min-width: $bp-tablet-min) and (max-width: $bp-tablet-max) {
+      @content;
+    }
+  }
+  @else if $media==notebook {
+    @media only screen and (min-width: $bp-notebook-min) and (max-width: $bp-notebook-max) {
+      @content;
+    }
+  }
+  @else if $media==desktop {
+    @media only screen and (min-width: $bp-desktop-min) and (max-width: $bp-desktop-max) {
+      @content;
+    }
+  }
+  @else if $media==desktop-middle {
+    @media only screen and (min-width: $bp-desktop-middle-min) and (max-width: $bp-desktop-middle-max) {
+      @content;
+    }
+  }
+  @else if $media==wide {
+    @media only screen and (min-width: $bp-wide-min) {
+      @content;
+    }
+  }
+}

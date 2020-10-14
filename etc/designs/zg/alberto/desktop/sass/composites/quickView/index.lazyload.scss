@@ -1,0 +1,98 @@
+@import '../../core/config';
+
+.quickview-background {
+  @import 'config';
+  @function g($a...) { @return get-last($quickview, $a...); }
+
+  display: none;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $z-index-fixed;
+
+  @include box(g('_quickview-overlay.box'), $media);
+
+  .overlay-open & {
+    display: block;
+  }
+}
+
+.quickview-container {
+  @import 'config';
+  @function g($a...) { @return get-last($quickview, $a...); }
+
+  box-sizing: border-box;
+  display: none;
+  left: 50%;
+  max-width: 980px;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  z-index: $z-index-modal;
+
+  @include box(g('_quickview.box'), $media);
+
+  &.is-active {
+    display: block;
+  }
+
+  .quickview-close {
+    cursor: pointer;
+    font-size: 0;
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    z-index: $z-index-modal;
+
+    &::before {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @include button(g('_quickview._close.button'), $media);
+  }
+
+  .quickview-wrapper {
+    box-sizing: border-box;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+    width: 100%;
+
+    @include box(g('_quickview._wrapper.box'), $media);
+
+    .quickview-content {
+      box-sizing: border-box;
+      height: 100%;
+      position: relative;
+
+      @include box(g('_quickview._wrapper._content.box'), $media);
+    }
+  }
+
+  .listing {
+    height: 100%;
+
+    > .component-content {
+      height: 100%;
+
+      .listing-items {
+        height: 100%;
+        position: relative;
+
+        @include box(g('_quickview._listing-holder.box'), $media);
+      }
+    }
+  }
+
+  @import '_inlineElements/index';
+  @import '_image/index';
+  @import '_productVariantList/index';
+  @import '_ratingsAndReviews/index';
+  @import '_richText/index';
+}

@@ -1,0 +1,116 @@
+.listing.listing-related-articles {
+  .listing-item {      
+    @include breakpoints(mobile) {
+      padding: 5px;
+    }
+    @include breakpoints(tablet, desktop) {
+      padding: 10px;
+    }
+    h3 {
+      @include breakpoints(mobile) {
+        margin-bottom: 5px;
+      }
+      @include breakpoints(tablet) {
+        font-size: px(22);
+        margin-bottom: 10px;
+      }
+      @include breakpoints(desktop) {
+        font-size: px(24);
+        margin-bottom: 10px;
+      }
+      + p {
+        @include breakpoints(mobile) {
+          font-size: px(15);
+        }
+      }
+    }
+  }
+  .listing-carousel {
+    @include breakpoints(mobile) {
+      overflow: hidden;
+      width: calc(100% - 5px);
+    }
+  }
+  img {
+    border-radius: 10px;
+  }
+  .richText {
+    h2 {
+      font-size: px(26);
+      @include breakpoints(tablet) {
+        font-size: px(33);
+      }
+      @include breakpoints(desktop) {
+        font-size: px(40);
+      }
+    }
+  }
+}
+
+.template-article-details {
+  .listing.listing-related-articles {
+    .image {
+      position: relative;
+      height: 480px;
+      overflow: hidden;
+      border-radius: 12px;
+      img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+  .listing.listing-related-articles,
+  .recommended-products {
+    .listing-items {
+      >.listing-item {
+        &.is-hidden {
+          visibility: visible!important;
+        }
+      }
+    }
+  }
+  .recommended-products {
+    .listing-items {
+      >.listing-item {
+        padding: 0 15px;
+      }
+    }
+  }
+  .recommended-products,
+  .related-articles {
+    h2 {
+      text-transform: uppercase;
+      @include breakpoints(mobile) {
+        font-size: px(26);
+        margin-bottom: 20px;
+      }
+      @include breakpoints(tablet) {
+        font-size: px(32);
+        margin-bottom: 20px;
+      }
+      @include breakpoints(desktop) {
+        font-size: px(40);
+        margin-bottom: 20px;
+      }
+      + p {
+        margin-top: 0;
+        font-family: font-family('primary');
+        @include breakpoints(mobile) {
+          margin-bottom: 50px;
+          font-size: px(19);
+        }
+        @include breakpoints(tablet) {
+          margin-bottom: 60px;
+          font-size: px(23);
+        }
+        @include breakpoints(desktop) {
+          margin-bottom: 70px;
+          font-size: px(26);
+        }
+      }
+    }
+  }
+}

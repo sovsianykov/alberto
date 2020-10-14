@@ -1,0 +1,20 @@
+@import '../../core/config';
+
+.richText[class*=default-style] {
+  @import 'config';
+  @function g($a...) { @return get-last($rich-text, $a...); }
+
+  h3 {
+    @include paragraph(g('_title.paragraph'), $media);
+  }
+
+  p {
+    @include paragraph(g('_description.paragraph'), $media);
+  }
+
+  a {
+    display: none;
+
+    @include link(g('_product-details.link'), $media);
+  }
+}

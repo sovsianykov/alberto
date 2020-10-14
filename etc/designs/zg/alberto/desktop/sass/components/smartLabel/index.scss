@@ -1,0 +1,16 @@
+@import '../../core/config';
+
+.smartlabel {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($smart-label, $a...);
+  }
+
+  .smartlabel-button a {
+    margin: spacings('s') 0;
+
+    @include breakpoints {
+      @include button(g('button'), $media);
+    }
+  }
+}

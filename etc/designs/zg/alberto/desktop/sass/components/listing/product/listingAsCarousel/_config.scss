@@ -1,0 +1,20 @@
+$listing-as-carousel: (
+  spacings: common('spacings')
+);
+
+$listing-as-carousel: merge($listing-as-carousel, (
+  box: (
+    margin: get($listing-as-carousel, 'spacings.s') 0,
+    padding: (
+      padding: 0
+    )
+  ),
+  _header: (
+    paragraph: (
+      margin: (
+        margin: 0 0 get($listing-as-carousel, 'spacings.m')
+      )
+    )
+  ),
+  _carousel-nav: common('carousel._nav')
+));

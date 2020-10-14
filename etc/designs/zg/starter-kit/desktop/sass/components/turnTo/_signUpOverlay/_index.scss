@@ -1,0 +1,349 @@
+html .TTui-widget-overlay {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($turnToOverlay, $a...);
+  }
+
+  opacity: .8;
+
+  @include box(g('_overlay.box'), $media);
+}
+
+#TTtraWindow {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($turnToOverlay, $a...);
+  }
+  //overwriting inline styles
+  left: 50% !important;
+  transform: translateX(-50%);
+
+  @include box(g('_main-box.box'), $media);
+  @include paragraph(g('_main-box.paragraph'), $media);
+
+  #TT3toplinks {
+    @include paragraph(g('_top-links.paragraph'), $media);
+  }
+
+  .TTlogoutLink {
+    @include paragraph(g('_top-links._logout.paragraph'), $media);
+
+    #TT3loLink {
+      @include paragraph(g('_top-links._logout.paragraph'), $media);
+    }
+  }
+
+  .TTmoreFeedbackPrompt,
+  #TT3subwinMsg {
+    @include paragraph(g('_overlay._feedback-msg.paragraph'), $media);
+  }
+
+  #TTtraSubWindow {
+    box-shadow: 0px 0px 100px 0px rgba(0,0,0,0.47);
+    background-color: color('white');
+    overflow: visible !important;
+
+    #TTtrasubtop,
+    #TTtrasubmid,
+    #TTtrasubbot {
+      background-image: none;
+    }
+    #TTtrasubtop {
+      height: 20px;
+    }
+
+    $icon-position: (
+      right: breakpoint(5px, -10px, -10px),
+      top: breakpoint(5px, -10px, -10px)
+    );
+    $content-column-width: 44%;
+    $column-spacer-width: 10%;
+    $button-offset: $content-column-width + $column-spacer-width;
+    $column-width: (
+      width: breakpoint(100%, $content-column-width, $content-column-width)
+    );
+    $column-separator: (
+      box-sizing: border-box,
+      padding: breakpoint(20px, 0, 0),
+      text-align: center,
+      text-transform: uppercase,
+      width: breakpoint(100%, $column-spacer-width, $column-spacer-width),
+    );
+    $buttons-position: (
+      margin-left: breakpoint(0, $button-offset, $button-offset)
+    );
+    $turnTo-bg-button: (
+      filter: grayscale(1),
+      height: 30px,
+      padding: 0,
+      margin: breakpoint(0 auto, 0, 0),
+    );
+    $centre-on-mobile: (
+      margin: breakpoint(0 auto, 0, 0),
+      text-align: breakpoint(center, left, left)
+    );
+
+    #TTSubWindowClose {
+      @include breakpoints {
+        @include attr($icon-position, ('top','right'), $media);
+      }
+      @include breakpoints {
+        @include icon(g('_overlay._close-icon.icon'), $media);
+      }
+    }
+    #TTrespRegLeft,
+    #TTrespRegRight {
+      margin-left: 0;
+      margin-right: 0;
+      @include breakpoints() {
+        @include attr($column-width, ('width'), $media);
+      }
+    }
+    #TTauthOr {
+      @include breakpoints() {
+        @include attr($column-separator, ('box-sizing','padding','text-align','text-transform','width'), $media);
+      }
+    }
+    #TTrespRegRight input {
+      margin-left: 0;
+    }
+
+    #TTSubDialogSection .TT8 {
+      background-color: transparent !important;
+      color: black;
+
+      @include box(g('_overlay._heading.box'), $media);
+      @include paragraph(g('_overlay._heading._title.paragraph'), $media);
+    }
+
+    #TTregInstrText,
+    #TTregInfoText,
+    #TTauthOr {
+      @include paragraph(g('_overlay._body.paragraph'), $media);
+    }
+    #TTregCenter {
+      @include breakpoints {
+        @include box(g('_overlay._TTregCenter.box'), $media);
+      }
+    }
+
+    #TTregBtns {
+      $buttonsContainer: merge((
+        display: flex
+      ), g('_overlay._buttons-container.box'));
+
+      @include box($buttonsContainer, $media);
+
+      @include breakpoints() {
+        @include attr($buttons-position, ('margin-left'), $media);
+      }
+    }
+    a#TTregSkip.TT2left,
+    #TTregSubmit {
+      display: block !important;
+      margin: 0 auto;
+      float: none;
+      text-align: center;
+
+      @include breakpoints() {
+        @include attr($centre-on-mobile, ('text-align','margin'), $media);
+      }
+    }
+
+    #TTregCancel {
+      $cancelBtn: merge((
+        width: 100px,
+        margin: 0 0 0 spacings('s'),
+        padding: 0,
+      ), g('_overlay._cancel.button'));
+
+      @include button($cancelBtn, $media);
+    }
+
+    #TTrespRegRight input {
+      @include box(g('_overlay._input.box'), $media);
+    }
+    #TTrespRegRight input[type='text'] {
+      @include paragraph(g('_overlay._input.paragraph'), $media);
+    }
+    a#TTregSkip.TT2left {
+      @include button(g('_overlay._link.button'), $media);
+    }
+    a#TTregSkip.TT2left:hover,
+    a#TTregSkip.TT2left:focus {
+      @include button(g('_overlay._link.button.hover'), $media);
+    }
+    .TT3metaText {
+      @include paragraph(g('_overlay._meta.paragraph'), $media);
+    }
+  }
+
+
+  #TTSubDialogSection .TT8 {
+    @include box(g('_find-your-profile.box'), $media);
+  }
+
+  .TTfeedbackBlockCont {
+    width: 98%;
+  }
+
+  #TT4UPtabs {
+    @include box(g('_profile-tabs-wrapper.box'), $media);
+  }
+
+  #TTprofileTabs {
+    color: inherit;
+  }
+
+  #TT3UPContent .TT3questWrp:first-of-type {
+    border-top: none;
+  }
+
+  .TT3IAContainer {
+    display: none; // hide answers by default (JS is added to expand this section on click)
+  }
+
+  #TT3UPContent .TTtitle, .TTtitle {
+    @include breakpoints {
+      @include button(g('_profile-tabs._item.button'), $media);
+    }
+
+    &.TTactiveTab {
+      @include breakpoints {
+        @include button(g('_profile-tabs._item-active.button'), $media);
+      }
+    }
+  }
+
+  .TT3questCntr .TT3aboutLine {
+    a {
+      @include breakpoints {
+        @include button(g('_about-link.button'), $media);
+      }
+    }
+  }
+
+  table {
+    $formBox: merge((
+      width: 70%
+    ), g('form'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($formBox, $media);
+      /*! @important(stop) */
+    }
+  }
+
+  .nameRF {
+    $label: merge((
+      margin: (
+        margin-top: 20px
+      )
+    ), g('_form._label.paragraph'));
+
+    @include breakpoints {
+      @include paragraph($label, $media);
+    }
+
+    b {
+      @include paragraph(g('_form._section-title.paragraph'), $media);
+    }
+  }
+
+  td {
+    display: block;
+
+    input[type='text'],
+    input[type='password'] {
+      box-sizing: border-box;
+
+      $textField: merge((
+        height: 50px,
+        width: 100%
+      ), g('_form._base-text-field.input'));
+
+      @include breakpoints {
+        @include input($textField, $media);
+      }
+    }
+
+    &.valueL {
+      width: 100% !important;   //overwriting 3rd party styles
+    }
+
+    &.select-container {
+      position: relative;
+
+      @include breakpoints {
+        @include icon(g('_form._dropdown.icon'), $media);
+      }
+
+      $pseudo: safetype(g('_form._dropdown.icon.side'), 'after');
+      &:#{$pseudo} {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+    }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+      box-sizing: border-box;
+
+      $dropdown: merge((
+        height: 50px,
+        width: 100%,
+        padding: (
+          padding-left: spacings('xs')
+        )
+      ), g('_form._dropdown.box'));
+
+      @include breakpoints {
+        /*! @important(start) */
+        @include box($dropdown, $media);
+        /*! @important(stop) */
+        @include text(g('_form._dropdown.text'), $media);
+      }
+
+      &::-ms-expand {
+        display: none;
+      }
+
+      option {
+        @include breakpoints {
+          @include text(g('_form._dropdown._options.text'), $media);
+        }
+      }
+    }
+
+    #pwd_change,
+    #pwd_nochange,
+    #showPhotoEditorLink2 {
+      @include breakpoints {
+        @include button(g('_form._active-links.button'), $media);
+      }
+    }
+
+    #TT2userImgFile {
+      padding-left: 0;    //reset
+    }
+
+    #TT3nickName {
+      display: block;
+    }
+  }
+
+  #contactInfo .valueL {
+    @include breakpoints {
+      @include paragraph(g('_form._email.paragraph'), $media);
+    }
+  }
+
+  .TTuserSetting-buttons {
+    margin-right: 20px;
+  }
+}

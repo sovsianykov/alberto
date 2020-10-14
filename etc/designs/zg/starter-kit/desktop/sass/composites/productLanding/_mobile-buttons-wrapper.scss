@@ -1,0 +1,49 @@
+// @import '../../core/config';
+
+.mobile-buttons-wrapper {
+  @import 'config-mobile-buttons-wrapper';
+  @function g($a...) {
+    @return get-last($mobile-buttons-wrapper, $a...);
+  }
+
+  font-size: 0;
+  position: relative;
+
+  @include breakpoints {
+    @include box(g('box'), $media);
+  }
+
+  .button-clear-filters {
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    @include breakpoints {
+      @include margin(g('_button-clear-filters.margin'), $media);
+    }
+  }
+}
+
+.show-filter {
+  @import 'config-mobile-buttons-wrapper';
+  @function g($a...) {
+    @return get-last($mobile-buttons-wrapper, $a...);
+  }
+
+  .cta-cancel {
+    @include breakpoints {
+      @include padding(g('_show-filter-cta-cancel.padding'), $media);
+    }
+  }
+
+  .button-clear-filters {
+    display: inline-flex;
+  }
+}
+
+.show-category {
+
+  .button-clear-filters {
+    display: none;
+  }
+}

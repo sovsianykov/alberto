@@ -1,0 +1,10 @@
+// this will add important to all properties as this module needs to override
+// third party inline styles and !important rules.
+
+/*! @important(start) */
+@import '../../core/config';
+@import '_miniCart/index';
+@import '_addToBag/index';
+@import '_shoppingBag/index';
+@import '_thankYou/index';
+/*! @important(stop) */

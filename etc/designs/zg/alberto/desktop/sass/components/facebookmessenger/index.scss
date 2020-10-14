@@ -1,0 +1,7 @@
+@import '../../core/config';
+
+.facebookmessenger {
+  &.component {
+    margin-top: spacings('xs') * 1.6;
+  }
+}

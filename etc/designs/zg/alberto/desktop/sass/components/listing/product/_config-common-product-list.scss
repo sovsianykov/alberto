@@ -1,0 +1,76 @@
+$common-product-list: (
+  spacings: common('spacings')
+);
+
+$common-product-list: merge($common-product-list, (
+  _listing-item: (
+    box: (
+      padding: 0 get($common-product-list, 'spacings.xs')
+    ),
+    _image-wrapper: (
+      box: (
+        height: breakpoint(180px, 220px, 260px),
+        min-height: breakpoint(180px, 220px, 260px)
+      )
+    ),
+    _content-box: (
+      box: (
+        margin: (
+          margin-top: -30px
+        ),
+        padding: (
+          padding: breakpoint(
+            get($common-product-list, 'spacings.m') get($common-product-list, 'spacings.xs') get($common-product-list, 'spacings.m'),
+            get($common-product-list, 'spacings.m') get($common-product-list, 'spacings.s') get($common-product-list, 'spacings.m'),
+            get($common-product-list, 'spacings.m') get($common-product-list, 'spacings.m') get($common-product-list, 'spacings.m')
+          )
+        )
+      ),
+      _title: (
+        paragraph: (
+          margin: 17px 0 get($common-product-list, 'spacings.xs') 0,
+          text: (
+            color: color('black'),
+            font-size: px(18),
+            font-weigth: bold,
+            line-height: 1.22,
+            text-align: center
+          )
+        )
+      ),
+      _description: (
+        paragraph: (
+          margin: 0 0 get($common-product-list, 'spacings.xs') 0,
+          text: (
+            color: color('black'),
+            font-size: px(12),
+            line-height: 1.5,
+            text-align: center
+          )
+        )
+      )
+    ),
+    _quick-view: (
+      button: extend('_base.button', (
+        min-width: 70%,
+        padding: get($common-product-list, 'spacings.s') get($common-product-list, 'spacings.l'),
+        text: (
+          color: color('black'),
+          font-size: px(18),
+          line-height: px(22)
+        ),
+        background: (
+          background-color: rgba(color('white'), 0.55)
+        ),
+        hover: (
+          background: (
+            background-color: rgba(color('black'), 1)
+          ),
+          text: (
+            color: color('white')
+          )
+        )
+      ))
+    )
+  )
+));

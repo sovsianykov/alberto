@@ -1,0 +1,30 @@
+$centeredFeaturedContent: (
+  _main: (
+    box: ()
+  ),
+  _image: (
+    box: ()
+  ),
+  _text-wrapper: (
+    box: (),
+    paragraph: (
+      text: (
+        text-align: center
+      )
+    )
+  ),
+  _title: (
+    paragraph: (
+      text: (
+        font-family: 'primary',
+        font-size: breakpoint((mobile: px('m'), tablet-min: px('xl'))),
+        font-weight: bold,
+        text-transform: uppercase,
+        line-height: 1.2
+      )
+    )
+  ),
+  _description: (
+    paragraph: ()
+  )
+);

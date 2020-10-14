@@ -1,0 +1,36 @@
+$recipeListAsCarousel: (
+  box: (),
+  _carousel-wrapper: (
+    box: (),
+    _caorusel-item: (
+      box: ()
+    )
+  ),
+  _carousel-nav: extend('carousel._nav', (
+    box: (
+      position: absolute,
+      margin: 0
+    ),
+    _nav-item: (
+      button: (
+        icon: (
+          font-size: 9px
+        )
+      ),
+      _prev: (
+        margin: 0,
+        button: (
+          width: 26px,
+          height: 26px,
+        )
+      ),
+      _next: (
+        margin: 0,
+        button: (
+          width: 26px,
+          height: 26px,
+        )
+      ),
+    )
+  ))
+);

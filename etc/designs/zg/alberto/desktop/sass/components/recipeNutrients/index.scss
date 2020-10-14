@@ -1,0 +1,47 @@
+@import '../../core/_config';
+
+.recipeNutrients {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($recipeNutrients, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  &-list {
+    list-style: none;
+    padding-left: 0;
+
+    @include box(g('_list.box'), $media);
+
+    .recipeNutrients-item {
+      @include box(g('_list._item.box'), $media);
+
+      &:last-child {
+        border-bottom: 0
+      }
+    }
+  }
+
+  .button-content {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    .show-all {
+      @include button(g('_show-all.button'), $media);
+    }
+  }
+
+  &-name,
+  &-value {
+    @include text(g('_list._item._text.text'), $media);
+  }
+
+  &-value {
+    float: right;
+  }
+
+  &.initialized .button-content {
+    display: flex;
+  }
+}

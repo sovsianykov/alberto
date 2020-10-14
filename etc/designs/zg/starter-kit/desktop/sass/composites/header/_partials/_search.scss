@@ -1,0 +1,57 @@
+.searchBox {
+
+  @include media-query(desktop, wide) {
+    position: relative;
+    z-index: $z-index-behind - 1;
+  }
+
+  .searchBox-label {
+    position: relative;
+    display: block;
+  }
+
+  .searchBox-title {
+    display: block;
+    font-size: 0;
+
+    @include breakpoints {
+      @include icon(g('main._search.icon'), $media);
+    }
+  }
+
+  button {
+    display: none;
+  }
+
+  @include media-query(auto, mobile) {
+    input {
+      display: none;
+    }
+  }
+
+  @include breakpoints(tablet, desktop) {
+    input {
+      @include input(g('main._search.input'), $media);
+    }
+  }
+
+  @include media-query(tablet, auto) {
+    .searchBox-title {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: spacings('xxs') + 1; // anti-alias diff
+    }
+
+    input {
+      padding-left: 12px + (spacings('xxs') * 2);
+      display: block;
+    }
+  }
+
+  @include media-query(auto, notebook) {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

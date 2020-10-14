@@ -1,0 +1,10 @@
+a.button-secondary {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($buttonSecondary, $a...);
+  }
+
+  @include breakpoints() {
+    @include button(g('_link.button'), $media);
+  }
+}

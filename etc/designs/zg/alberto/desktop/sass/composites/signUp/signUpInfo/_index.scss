@@ -1,0 +1,35 @@
+.richText.sign-up-info {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($sign-up-info, $a...);
+  }
+
+  h1, h2, h3, h4 {
+
+    $title: merge((
+      margin: (
+        margin: breakpoint(
+          spacings('l') 0 $gutter,
+          spacings('l') 0 $gutter,
+          spacings('l') $gutter spacings('xs') 0
+        )
+      ),
+      line: (
+        display: block,
+        margin: (
+          margin-top: $gutter
+        )
+      )
+    ), g('_title.paragraph'));
+
+    @include breakpoints {
+      @include paragraph($title, $media);
+      // using lh-margin-diff to fix the line height difference for
+      // more commonly larger fonts and avoid the weird-looking
+      // alignment feelling
+      @include lh-margin-diff($title, $media);
+    }
+  }
+
+  @include common-rules($sign-up-info);
+}

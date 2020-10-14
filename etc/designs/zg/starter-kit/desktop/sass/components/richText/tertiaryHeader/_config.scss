@@ -1,0 +1,28 @@
+@include local-spacings();
+
+$tertiaryHeader: (
+  spacings: spacings(),
+  _main: (
+    box: (
+      margin: (
+        margin: breakpoint(0 20px 20px, 0 20px 40px, 0 0 20px 0)
+      )
+    ),
+    _header: (
+      paragraph: extend('_tertiary._title.paragraph', (
+        // custom config can go here
+      ))
+    ),
+    _text-below: (
+      paragraph: (
+        text: (
+          font-size: px(18),
+          line-height: 1.44
+        ),
+        margin: (
+          margin: spacings('xs') 0
+        )
+      )
+    )
+  )
+);

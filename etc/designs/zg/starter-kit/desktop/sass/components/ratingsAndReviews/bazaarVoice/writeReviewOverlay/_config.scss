@@ -1,0 +1,31 @@
+$review-overlay: (
+  box: (
+    box-shadow: 0 4px 75px 30px rgba(0, 0, 0, 0.2)
+  ),
+  _submit-button: (
+    button: extend('_secondary.button', (
+      margin: (
+        margin-top: 10px,
+        margin-right: breakpoint((tablet-min: spacings('xs')))
+      )
+    ))
+  ),
+  _cancel-button: (
+    button: extend('_tertiary.button', (
+      margin: (
+        margin-top: 10px
+      )
+    ))
+  )
+);
+
+$review-overlay: merge($review-overlay, (
+  _overlay-bg: (
+    box: (
+      position: absolute,
+      background: (
+        background-color: color('white')
+      )
+    )
+  )
+));

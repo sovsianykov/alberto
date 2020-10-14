@@ -1,0 +1,8 @@
+@import '../../../core/_config';
+
+.composite-variation-subcategory-section-darker {
+  @import 'config';
+  @function g($a...) { @return get-last($subcategorySectionDarker, $a...); }
+
+  @include box(g('box'), $media);
+}

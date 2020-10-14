@@ -1,0 +1,72 @@
+$listView: (
+  _products-list: (
+    box: (),
+    _item-wrapper: (
+      box: ()
+    ),
+    _item: (
+      box: (),
+    ),
+    _image-box: (
+      box: ()
+    ),
+    _details-outer-box: (
+      box: (
+        background: (
+          background-color: color('white')
+        )
+      ),
+    ),
+    _buttons-inner-box: (
+      box: ()
+    ),
+    _details-inner-box: (
+      box: (),
+      _buttons-outer-box: (
+        box: ()
+      ),
+      _product-name: (
+        paragraph: (
+          text: (
+            font-size: breakpoint((mobile: px('s'), tablet-min: px('m'))),
+            font-weight: bold,
+            line-height: breakpoint((mobile: 1.2, tablet-min: 1.15))
+          )
+        )
+      ),
+      _product-description: (
+        box: (),
+        paragraph: (
+          text: (
+            font-size: breakpoint((mobile: px(18), tablet-min: px('xxs'))),
+            text-align: left
+          )
+        ),
+      ),
+      _buy-it-now-wrapper: (
+        box: ()
+      ),
+      _buy-it-now: (
+        button: (
+          display: block
+        )
+      ),
+      _find-store-box: (
+        box: (),
+        _cta-button: (
+          button: ()
+        ),
+      ),
+      _read-more-wrapper: (
+        box: ()
+      ),
+      _read-more-link: (
+        button: extend('_links._secondary-link.button', (
+          text: (
+            font-size: breakpoint((mobile: px('xs'), tablet-min: px(18)))
+          )
+        ))
+      )
+    ),
+  ),
+)

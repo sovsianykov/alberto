@@ -1,0 +1,242 @@
+@import '../../../core/config';
+
+.cartbagview {
+  .shopify-bag-view {
+    display: none;
+
+    @include media-query(notebook, wide) {
+      display: block;
+    }
+  }
+
+  .bag-view-btn-wrap {
+    .bag-view-toggle-wrap {
+      align-items: center;
+      display: flex;
+
+      .bag-view-toggle-button {
+        color: color('primary', 'dark');
+
+        &:after {
+          content: common('icon.arrow-down');
+          font-family: "icons";
+          font-size: px('xs') / 2;
+          padding-left: spacings("xs");
+        }
+      }
+    }
+
+    @include media-query(notebook, wide) {
+      display: none;
+    }
+  }
+
+  &.slide-up-down-bag-view-in-mobile {
+    .shopify-bag-view {
+      display: block;
+    }
+
+    .bag-view-btn-wrap {
+      .bag-view-toggle-wrap {
+        .bag-view-toggle-button {
+          &:after {
+            content: common('icon.arrow-up');
+          }
+        }
+      }
+    }
+  }
+}
+
+.shopify-bag-view {
+  &__header-wrap {
+    text-align: center;
+
+    .no-item-in-cart & {
+      text-align: center;
+    }
+
+    @include media-query(notebook, wide) {
+      text-align: left;
+    }
+  }
+
+  &__sub-header-wrap {
+    display:none;
+    margin-bottom: spacings('m');
+    padding: spacings('m') 0;
+    text-align: center;
+
+    &__subtitle {
+      margin-bottom: spacings('s');
+    }
+
+    &__continue-shopping {
+      border: 1px solid color('primary', 'darker');
+      border-radius: spacings('xxs');
+      display: inline-block;
+      padding: spacings('xs') spacings('m');
+      text-decoration: none;
+
+      @include media-query(notebook, wide) {
+        margin-left: spacings('xxs');
+      }
+    }
+
+    .no-item-in-cart & {
+      display: block;
+    }
+  }
+
+  &__bag-items {
+    margin-bottom: spacings('m');
+  }
+
+  &__image {
+    max-width: 150px;
+
+    @include media-query(notebook, wide) {
+      max-width: 100%;
+    }
+  }
+
+  &__quantity-wrap {
+    & > p {
+      display: inline-block;
+    }
+
+    .item-quantity {
+      display: none;
+    }
+  }
+
+  &__quantity-select {
+    display: block;
+    padding: spacings('xxxs') spacings('xxs');
+    width: 80px;
+  }
+
+  &__bag-item {
+    margin-bottom: spacings('xs');
+    overflow: hidden;
+    padding: spacings('s');
+
+    @include media-query(notebook, wide) {
+      display: flex;
+    }
+
+    &__image-wrap {
+      text-align: center;
+
+      @include media-query(notebook, wide) {
+        width: 30%;
+      }
+    }
+
+    &__name {
+      font-weight: bold;
+    }
+
+    &__mobile-view {
+      text-align: center;
+
+      @include media-query(notebook, wide) {
+        display: none;
+      }
+    }
+
+    &__desktop-view {
+      display:none;
+
+      @include media-query(notebook, wide) {
+        display: block;
+      }
+    }
+
+    &__description-warp {
+      text-align: center;
+
+      @include media-query(notebook, wide) {
+        text-align: left;
+      }
+    }
+
+    &__total-wrap {
+      & > p {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__quantity-remove {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    @include media-query(tablet, tablet) {
+      justify-content: center;
+    }
+  }
+
+  &__details {
+    @include media-query(tablet, tablet) {
+      margin-right: spacings("s");
+    }
+  }
+
+  &__bag-details {
+    width: auto;
+
+    @include media-query(notebook, wide) {
+      padding-left: spacings('s');
+      width: 70%;
+    }
+  }
+
+  &__remove-button {
+    color: color('primary', 'dark');
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  &__shipping-wrap {
+    text-align: left;
+  }
+
+  &__summary-item {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__cart-total {
+    font-size: px('s');
+    font-weight: bold;
+  }
+
+  &__summary-item-value-delivery {
+    text-align: right;
+  }
+
+  &__bag-data {
+    padding-bottom: spacings('m');
+
+    @include media-query(notebook, wide) {
+      margin-left: 30%;
+      padding-left: spacings('s');
+    }
+
+    .no-item-in-cart & {
+      display: none;
+    }
+  }
+
+  &__bag-footer {
+    margin-bottom: spacings('xs');
+  }
+
+  p {
+    margin: spacings('xxs') 0;
+  }
+}
+
+@import 'errorNotification/index';

@@ -1,0 +1,40 @@
+.box.box-gallery-with-sizes {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($galleryWithSizes, $a...);
+  }
+
+  > .component-content {
+    @include breakpoints() {
+      @include box(g('_main.box'), $media);
+    }
+  }
+
+  .productVariantList {
+    top: 20px;
+    left: 20px;
+    height: 100%;
+
+    @include media-query(mobile) {
+      top: 10px;
+      left: 10px;
+    }
+
+     @include box(g('_main._size-items.box'), $media);
+
+    > .component-content {
+      height: 100%;
+
+      .productVariantList-list {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  .reference-zoom-icon {
+    display: none;
+  }
+}

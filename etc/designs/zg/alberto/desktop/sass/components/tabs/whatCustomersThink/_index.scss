@@ -1,0 +1,53 @@
+.tabs-what-customers-think {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($what-customers-think-tabs, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  > .component-content {
+    @include wrapper;
+  }
+
+  .tabs-nav-list {
+    display: flex;
+    list-style-type: none;
+
+    @include box(g('_tabs-nav.box'), $media);
+  }
+
+  .tabs-nav-item {
+    @include breakpoints() {
+      @include button(g('_tabs-nav._item.button'), $media);
+    }
+
+    &:first-of-type {
+      @include breakpoints {
+        @include button(g('_tabs-nav._item-first.button'), $media);
+      }
+    }
+
+    &.is-active {
+      @include breakpoints {
+        @include button(g('_tabs-nav._item-active.button'), $media);
+      }
+
+      &:first-of-type {
+        @include breakpoints {
+          @include border(g('_tabs-nav._item-first.button.border'), $media);
+        }
+      }
+    }
+
+    a {
+      text-decoration: inherit;
+    }
+  }
+
+  .tabs-content {
+    @include breakpoints() {
+      @include box(g('_tabs-content.box'), $media);
+    }
+  }
+}

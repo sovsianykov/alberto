@@ -1,0 +1,90 @@
+// Normalize data to breakpoint format. Eg.:
+// - breakpoint(18px, 16px) // (mobile: 18px, tablet: 16px)
+// - breakpoint(18px, null, 16px) // (mobile: 18px, desktop: 16px)
+// - breakpoint((tablet-max: 18px)) // (mobile: 18px, tablet: 18px)
+// - breakpoint((mobile: 18px, tablet-min: 16px)) // (mobile: 18px, tablet: 16px, desktop: 16px)
+
+@function breakpoint($args...) {
+  $d: ();
+
+  @if (length($args) == 1 and type-of(nth($args, 1)) != 'map') {
+    $d: if(nth($args, 1), merge($d, (mobile: nth($args, 1))), $d);
+  }
+
+  @if (length($args) == 1 and type-of(nth($args, 1)) == 'map') {
+    $d: nth($args, 1);
+  }
+
+  @if (length($args) == 2) {
+    $d: if(nth($args, 1), merge($d, (mobile: nth($args, 1))), $d);
+    $d: if(nth($args, 2), merge($d, (tablet: nth($args, 2))), $d);
+  }
+
+  @if (length($args) == 3) {
+    $d: if(nth($args, 1), merge($d, (mobile: nth($args, 1))), $d);
+    $d: if(nth($args, 2), merge($d, (tablet: nth($args, 2))), $d);
+    $d: if(nth($args, 3), merge($d, (desktop: nth($args, 3))), $d);
+  }
+
+  $ret: merge($d, ());
+
+  @if (get($d, 'mobile-max')) {
+    $ret: merge($ret, (
+      mobile: get($d, 'mobile-max')
+    ));
+  }
+
+  @if (get($d, 'tablet-max')) {
+    $ret: merge($ret, (
+      mobile: get($d, 'tablet-max'),
+      tablet: get($d, 'tablet-max')
+    ));
+  }
+
+  @each $label in 'desktop-max', 'mobile-min', 'all' {
+    @if (get($d, $label)) {
+      $ret: merge($ret, (
+        mobile: get($d, $label),
+        tablet: get($d, $label),
+        desktop: get($d, $label)
+      ));
+    }
+  }
+
+  @if (get($d, 'tablet-min')) {
+    $ret: merge($ret, (
+      tablet: get($d, 'tablet-min'),
+      desktop: get($d, 'tablet-min')
+    ));
+  }
+
+  @if (get($d, 'desktop-min')) {
+    $ret: merge($ret, (
+      desktop: get($d, 'desktop-min')
+    ));
+  }
+
+  @return $ret;
+}
+
+$media: '' !global;
+@mixin breakpoints($mq-list...) {
+  @if (length($mq-list) == 0) {
+    $mq-list: ('mobile', 'tablet', 'desktop');
+  }
+  $mq: (
+    'mobile': (auto, 'mobile'),
+    'tablet': ('tablet', 'notebook'),
+    'desktop': ('desktop', auto)
+  );
+
+  @each $l, $m in $mq-list {
+    $curr: get($mq, $l);
+    $media: $l !global;
+    @include media-query(nth($curr, 1), nth($curr, 2)) {
+      @content
+    }
+  }
+
+  $media: '';
+}

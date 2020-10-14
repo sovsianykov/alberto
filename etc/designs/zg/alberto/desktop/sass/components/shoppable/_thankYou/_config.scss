@@ -1,0 +1,91 @@
+@include local-spacings();
+
+$thank-you: (
+  spacings: spacings(),
+  _content: (
+    box: ()
+  ),
+  _title: (
+    paragraph: (
+      text: (
+        font-family: 'primary',
+        font-size: breakpoint((mobile: px(50), tablet-min: px('xxxl'))),
+        text-transform: uppercase,
+        text-align: left,
+        color: color('secondary', 'base'),
+        line-height: 1
+      )
+    )
+  ),
+  _regular-text: (
+    text: (
+      font-family: 'body',
+      font-size: breakpoint((mobile: px(18), tablet-min: px('xxs'))),
+      line-height: 1.5,
+      color: color('black')
+    ),
+    _faq: (
+      text: (
+        font-family: 'primary',
+        font-weight: bold,
+        text-decoration: underline
+      )
+    ),
+    _email: (
+      paragraph: (
+        text: (
+          font-family: 'primary',
+          font-size: px('xxs'),
+          font-weight: bold,
+          text-transform: uppercase,
+          text-decoration: underline,
+          color: color('secondary', 'base')
+        )
+      )
+    )
+  ),
+  _order: (
+    _title: (
+      paragraph: (
+        text: (
+          font-family: 'primary',
+          font-size: breakpoint((mobile: px(16), tablet-min: px(18))),
+          font-weight: bold,
+          text-transform: uppercase,
+          color: color('black')
+        )
+      )
+    ),
+    _number: (
+      text: (
+        font-family: 'primary',
+        font-size: px('xl'),
+        line-height: px('xl'),
+        font-weight: bold,
+        text-align: left,
+        color: color('black')
+      ),
+      box:(
+        border: (
+          border-bottom: 2px solid color('neutral', 'light')
+        )
+      )
+    )
+  ),
+  _back-button: (
+    button: ()
+  ),
+  _side-box: (
+    _vertical-line: (
+      line: (
+        border: (
+          border: breakpoint(none, none, 1px solid color('neutral', 'lighter'))
+        ),
+        side: before
+      )
+    ),
+    _content: (
+      box: ()
+    )
+  )
+);

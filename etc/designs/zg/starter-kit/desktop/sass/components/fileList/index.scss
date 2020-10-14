@@ -1,0 +1,60 @@
+@import '../../core/config';
+
+.fileList {
+  &-heading {
+    color: color('neutral','base');
+    display: block;
+    font-size: px('s');
+    font-weight: bold;
+    padding-bottom: spacings('xs');
+  }
+
+  &-date {
+    color: color('neutral','light');
+    margin-bottom: 10px;
+  }
+
+  &-file {
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  &-description {
+    overflow: hidden;
+  }
+
+  &-title {
+    color: color('neutral','base');
+    display: block;
+    font-size: px('s');
+    font-weight: bold;
+    padding-bottom: spacings('xs');
+  }
+
+  &-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-thumbnail {
+    float: left;
+    margin-right: spacings('s');
+    max-width: 100px;
+
+    @include respond-to(mobile) {
+      display: block;
+      float: none;
+      margin: auto;
+    }
+  }
+
+  &-download {
+    text-align: right;
+
+    &-size {
+      color: color('neutral','base');
+      display: block;
+    }
+  }
+}

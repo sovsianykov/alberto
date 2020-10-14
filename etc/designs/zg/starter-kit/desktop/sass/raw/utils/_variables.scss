@@ -1,0 +1,72 @@
+// Breakpoints
+
+$grid-breakpoint: 768px;
+
+$screen-xs: 480px !default;
+$screen-sm: $grid-breakpoint !default;
+$screen-md: 992px !default;
+$screen-lg: 1120px !default;
+
+//  Colors
+
+$gray-base: #000 !default;
+$gray-darker: #333 !default;
+$gray-dark: #363839 !default;
+$gray: #707070 !default;
+$gray-light: #d2d3d4 !default;
+$gray-light-2: #e7e7e7 !default;
+$gray-lighter: #f6f6f6 !default;
+$gray-lighter-2: #767676 !default;
+$white: #fff !default;
+$error: #C22300 !default;
+
+$brand-primary: #4dd0e1;
+$input-focus: #217ac0;
+
+// Scaffolding
+
+$gutter-default: 20px; // used by row and column mixin as gutter can be temporarily changed
+$gutter: $gutter-default !global;
+
+$body-bg: #fff !default;
+$text-color: $gray !default;
+$link-color: $gray !default;
+$link-hover-color: $gray !default;
+$link-hover-decoration: underline !default;
+$component-spacing: $gutter !default;
+$wrapper-width: 1180px !default;
+$wrapper-width-content: 844px !default;
+
+// Typography
+
+$font-family-sans-serif: "PT Sans" !default;
+$font-family-serif: "Zilla Slab" !default;
+$fallback-font-sans-serif: "Trebuchet MS" !default;
+$fallback-font-serif: "Georgia" !default;;
+
+$font-family-base: $font-family-sans-serif !default;
+$fallback-font-base: $fallback-font-sans-serif !default;
+$font-size-base: 1.6 !default;
+
+$headings-font-family: $font-family-serif !default;
+$headings-font-weight: 500 !default;
+$headings-line-height: 1.1 !default;
+$headings-color: $gray-darker !default;
+
+$font-size-h1: 4.8 !default;
+$font-size-h2: 3.6 !default;
+$font-size-h3: 2.2 !default;
+$font-size-h4: 1.6 !default;
+$font-size-h5: $font-size-base !default;
+
+$line-height-base: 1.49 !default;
+
+// Animation
+$ease-out: cubic-bezier(0.55, 0, 0.1, 1); // material design ease out calculation
+
+// Z-indexes
+$zindex-overlay: 11;
+$zindex-overlay-bg: 10;
+$zindex-header: 8;
+$zindex-nav: 7;
+$zindex-carousel-nav: 6;

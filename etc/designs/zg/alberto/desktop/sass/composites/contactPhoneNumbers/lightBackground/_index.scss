@@ -1,0 +1,14 @@
+// CONTACT US SECTION WITH PHONE NUMBERS
+.reference-contact-us-phonenumbers.snippet-light-background {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($contactPhoneNumbers, $a...);
+  }
+
+  // main box:
+  > .inner {
+    @include breakpoints() {
+      @include box(g('_main.box'), $media);
+    }
+  }
+}

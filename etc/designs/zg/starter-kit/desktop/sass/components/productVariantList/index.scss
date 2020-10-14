@@ -1,0 +1,49 @@
+@import '../../core/config';
+
+.productVariantList[class*=default-style] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($productVariantList, $a...);
+  }
+
+  @include box(g('_main.box'), $media);
+
+  .productVariantList-list {
+    list-style-type: none;
+    padding: 0;
+
+    $size-items-wrapper: merge((
+      margin: (
+        margin: breakpoint((tablet-max: spacings('xs') * -1, desktop: -20px))
+      )
+    ), g('_size-items-wrapper.box'));
+
+    @include breakpoints() {
+      @include box($size-items-wrapper, $media);
+    }
+  }
+
+  .productVariantList-item {
+    $item-wrapper: merge((
+      margin: (
+        margin: breakpoint((mobile: spacings('xxs'), tablet: spacings('xs'), desktop: spacings('xs')))
+      )
+    ), g('_item-wrapper.box'));
+
+    @include breakpoints() {
+      @include box($item-wrapper, $media);
+    }
+  }
+
+  .productVariantList-link {
+    text-decoration: none;
+
+    @include breakpoints() {
+      @include button(g('_size-item.button'), $media);
+    }
+
+    &.is-active {
+      @include button(g('_size-item-active.button'), $media);
+    }
+  }
+}

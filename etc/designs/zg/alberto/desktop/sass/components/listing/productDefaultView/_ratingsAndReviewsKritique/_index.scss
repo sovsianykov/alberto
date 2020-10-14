@@ -1,0 +1,28 @@
+.ratingsandreviews .kritique {
+  @import 'config';
+  @function g($a...) { @return get-last($kritique, $a...); }
+
+  .rr-widget-container.rr-inline-widget {
+	  font-size: 0; // hide ratings numbers in grid view
+    text-align: center;
+
+    @include box(g('box'), $media);
+
+    .aggRtng,
+    .tRtng,
+    .wRtng {
+      display: none;
+    }
+  }
+}
+
+.display-list {
+  .ratingsandreviews .kritique .rr-widget-container.rr-inline-widget {
+    font-size: 12px;
+    .aggRtng,
+    .tRtng,
+    .wRtng {
+      display: inline-block;
+    }
+  }
+}

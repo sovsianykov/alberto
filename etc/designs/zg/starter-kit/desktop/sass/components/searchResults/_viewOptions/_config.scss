@@ -1,0 +1,112 @@
+$viewOptions: (
+  _filters-container: (
+    box: (
+      background: (
+        background-color: color('neutral', 'lighter')
+      ),
+      padding: 20px,
+      margin: (
+        margin: breakpoint((
+          mobile: 1px -20px 0
+        ))
+      )
+    )
+  ),
+  _labels: (
+    paragraph:(
+      text: (
+        font-weight: bold,
+        line-height: px(23),
+      ),
+      display: breakpoint((
+        mobile: none,
+        tablet-min: block
+      )),
+      margin: (
+        margin-right: 10px
+      )
+    )
+  ),
+  _dropdown: extend('_dropdown', (
+    text: (
+      color: breakpoint(
+        color('neutral', 'dark'),
+        color('black'),
+        color('black')
+      ),
+      font-size: breakpoint(
+        px(16),
+        px(12),
+        px(12)
+      )
+    ),
+    margin: (
+      margin: breakpoint(
+        0 10px,
+        0 0 0 20px,
+        0 0 0 20px
+      )
+    )
+  )),
+  _icons-box: (
+    box: ()
+  ),
+  _view-switch: (
+    box: (),
+    icon: (
+      side: before,
+      font-size: 23px,
+      color: color('neutral', 'light'),
+      hover: (
+        text : (
+          color: color('neutral', 'base')
+        )
+      ),
+      focus: (
+        text : (
+          color: color('black')
+        )
+      )
+    ),
+    _active: (
+      icon: (
+        side: before,
+        font-size: 23px,
+        color: color('black'),
+        hover: (
+          text : (
+            color: color('neutral', 'base')
+          )
+        ),
+        focus: (
+          text : (
+            color: color('black')
+          )
+        )
+      ),
+    )
+  )
+);
+
+$viewOptions: merge($viewOptions, (
+  _list-switch: (
+    icon: merge(get($viewOptions, '_view-switch.icon'), (
+      content: common('icon.list-view')
+    )),
+    _active: (
+      icon: merge(get($viewOptions, '_view-switch._active.icon'), (
+        content: common('icon.list-view')
+      )),
+    )
+  ),
+  _grid-switch: (
+    icon: merge(get($viewOptions, '_view-switch.icon'), (
+      content: common('icon.grid-view')
+    )),
+    _active: (
+      icon: merge(get($viewOptions, '_view-switch._active.icon'), (
+        content: common('icon.grid-view')
+      )),
+    )
+  )
+));

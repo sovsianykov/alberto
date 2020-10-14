@@ -1,0 +1,107 @@
+@import '../../core/config';
+
+.composite-subcategory-section {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($subcategorySection, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  > .content {
+    @include wrapper;
+    $box: merge((
+      display: flex,
+      flex: (
+        align-items: center,
+        justify-content: center,
+        flex-direction: breakpoint((tablet-max: column))
+      ),
+      padding: (
+        padding: breakpoint((mobile: 0))
+      )
+    ), g('_wrapper.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+  }
+
+  .richText-tertiary-header {
+    $box: merge((
+      width: breakpoint((tablet-max: 100%)),
+      margin: (
+        margin-right: breakpoint((tablet-max: 0)),
+        margin-bottom: breakpoint((tablet-max: spacings('m')))
+      )
+    ), g('_wrapper._title-wrapper.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    .richText-content {
+      @include breakpoints {
+        @include safepadding;
+      }
+    }
+
+    h2, h3, h4 {
+      @include breakpoints {
+        @include paragraph(g('_wrapper._title-wrapper._title.paragraph'), $media);
+      }
+    }
+
+    p {
+      $box: merge((
+        margin: (
+          margin: breakpoint((tablet-max: 0))
+        )
+      ), g('_wrapper._title-wrapper._title._button-wrapper.box'));
+
+      @include breakpoints {
+        @include box($box, $media);
+      }
+    }
+  }
+
+  .recipeListing {
+    $box: merge((
+      width: breakpoint((tablet-max: 100%)),
+      margin: (
+        margin-left: breakpoint((tablet-max: 0))
+      ),
+    ), g('_wrapper._carousel-wrapper.box'));
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+  }
+
+  .recipeList--as-carousel {
+    @include listing-cols('.recipeListing-list', '.recipeListing-item', 0px, breakpoint(1, 3, 3));
+
+    width: 100%;
+    margin-bottom: 0;
+
+    .recipeListing-list {
+      flex-wrap: nowrap;
+    }
+  }
+
+  .richText:last-of-type {
+    @include breakpoints {
+      @include box(g('_wrapper._button-wrapper.box'), $media);
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .button-tertiary.desktop-only {
+    min-width: 160px;
+  }
+}
+
+@import 'subcategorySectionDarker/index';

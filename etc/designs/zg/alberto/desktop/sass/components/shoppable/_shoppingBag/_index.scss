@@ -1,0 +1,373 @@
+@import 'config';
+
+.shoppable-shoppingbag {
+  @function g($a...) {
+    @return get-last($shopping-bag, $a...);
+  }
+
+  &.shoppingbag-empty {
+    .shopping-bag-summary {
+      .shopping-bag-subtotal-label,
+      .shopping-bag-subtotal,
+      .shopping-bag-price-disclaimer,
+      .shopping-bag-checkout-link.btn-primary,
+      .shopping-bag-legal-terms {
+        display: none;
+      }
+      .summary-container {
+        text-align: center;
+        border: 0;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
+  .summary-container {
+    @include clearfix;
+  }
+
+  h1, h2 {
+    $paragraphTitle: merge((
+      margin: (
+        margin: breakpoint(
+          g('spacings.xl') 0 g('spacings.m') 0
+          g('spacings.xl') 0 g('spacings.m') 0
+          g('spacings.xxl') 0 g('spacings.l') 0
+        )
+      )
+    ), g('_title.paragraph'));
+
+    $boxTitle: merge((
+      position: relative,
+      padding: (
+        padding: 0 0 g('spacings.l') 0
+      )
+    ), g('_title.box'));
+
+    @include paragraph($paragraphTitle, $media);
+    @include box($boxTitle, $media);
+  }
+
+  .shopping-empty-bag-info {
+    $boxEmptyMessage: merge((
+      width: 100%,
+      margin: (
+        margin: g('spacings.s') 0
+      )
+    ), g('_empty-message.box'));
+
+    display: none;
+    @include paragraph(g('_empty-message.paragraph'), $media);
+    @include box($boxEmptyMessage, $media);
+  }
+
+  .shopping-bag-item-list {
+    padding: 0;
+  }
+
+  .shoppable-item {
+    $productItem: merge((
+      margin: g('spacings.m') 0 0 0,
+      padding: (
+        padding-bottom: g('spacings.m')
+      )
+    ), g('_product-list.box'));
+
+    display: flex;
+    @include box($productItem, $media);
+  }
+
+  .image-holder {
+    position: relative;
+
+    $image: (
+      width: breakpoint(98px, 98px, 160px),
+      height: breakpoint(98px, 98px, 160px)
+    );
+
+    @include breakpoints {
+      @include box($image, $media);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .mod-object-fit  & {
+    .image-holder img {
+      position: static;
+      top: auto;
+      left: auto;
+      transform: none;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .info-holder {
+    @include media-query(mobile) {
+      display: flex;
+      flex-direction: column;
+    }
+    flex: 1;
+    margin: 0 0 0 g('spacings.s');
+
+    $productTitle: merge((
+      margin: 0
+    ), g('_info-holder._title.paragraph'));
+
+    h3 {
+      order: 0;
+      max-width: 445px;
+      @include breakpoints {
+        @include paragraph($productTitle, $media);
+      }
+    }
+
+    .detail-wrapper {
+      $productDetail: merge((
+        display: flex,
+        flex: (
+          justify-content: flex-start,
+          order: 1
+        ),
+        margin: (
+          margin: breakpoint(
+              g('spacings.s') 0 0 0,
+              g('spacings.s') 0 0 0,
+              0
+          )
+        )
+      ), g('_info-holder._details.paragraph'));
+
+      @include breakpoints {
+        @include paragraph($productDetail, $media);
+      }
+
+      .item-prop + .item-prop {
+        white-space: nowrap;
+
+        $infoDetail: merge((
+          side: before,
+          margin: (
+            margin-left: 8px,
+            margin-right: 8px
+          )
+        ), g('_info-holder._details.line'));
+
+        @include line($infoDetail, $media);
+      }
+    }
+
+    .qtd-subtotal-wrapper {
+      $qtdSubtotalBox: merge((
+        display: flex,
+        flex: (
+          justify-content: breakpoint((mobile: space-between, tablet-min: flex-end)),
+          order: 3
+        ),
+        margin: (
+          margin: breakpoint(
+              g('spacings.s') 0 0 0,
+              g('spacings.s') 0 0 0,
+              -5px 0
+          )
+        ),
+      ), g('_info-holder._qtd-subtotal-wrapper.box'));
+
+      $qtdSubtotalText: merge((
+        text-align: breakpoint(left, left, right)
+      ), g('_info-holder._qtd-subtotal-wrapper.text'));
+
+      @include breakpoints {
+        @include box($qtdSubtotalBox, $media);
+        @include text($qtdSubtotalText, $media);
+      }
+
+      .item-subtotal {
+        display: inline-block;
+        margin: 0;
+
+        @include breakpoints {
+          @include text(g('_info-holder._subtotal.text'), $media);
+        }
+      }
+
+      .select-wrapper {
+        position: relative;
+        &::after {
+          position: absolute;
+          top: 50%;
+          right: g('spacings.s');
+          transform: translateY(-50%);
+        }
+
+        $qtd: merge((
+          box-sizing: border-box,
+          display: inline-block,
+          width: 85px,
+          height: 50px,
+          margin: (
+            margin-right: g('spacings.m')
+          ),
+        ), g('_info-holder._qtd.button'));
+
+        @include button($qtd, $media);
+      }
+
+      .select-item-qty {
+        -moz-appearance: window;
+        -webkit-appearance: none;
+        text-align-last: center;
+        margin-right: 10px;
+        background: color('white');
+        width: 75px;
+        height: 48px;
+        border: 0;
+        &:focus {
+          outline: 0;
+        }
+
+        &::-ms-expand {
+          display: none;
+        }
+      }
+
+      @include icon(g('_info-holder._qtd.icon'), $media);
+    }
+    .buttons-wrapper {
+      order: 2;
+      margin: 0;
+
+      @include media-query (mobile, tablet) {
+        margin: g('spacings.s') 0 0 0;
+      }
+
+      .btn-secondary {
+          @include button(g('_single-links.button'), $media);
+      }
+      .item-remove {
+        margin-left: g('spacings.xl');
+      }
+    }
+  }
+
+  $boxSummary: merge((
+    margin: (
+      margin: 0 0  g('spacings.m') 0
+    ),
+    padding: (
+      padding-bottom: g('spacings.m')
+    )
+  ), g('_resume.box'));
+
+  .shopping-bag-summary {
+    margin: g('spacings.m') 0 g('spacings.xxl') 0;
+
+    .summary-container {
+      text-align: right;
+
+      .shopping-bag-subtotal-label {
+        $subtotal: merge((
+          margin: (
+            margin: 0 0 g('spacings.xs') 0
+          )
+        ), g('_resume._subtotal.paragraph'));
+
+        @include paragraph($subtotal, $media);
+      }
+      .shopping-bag-subtotal {
+        $amount: merge((
+          margin: (
+            margin: g('spacings.xs') 0
+          )
+        ), g('_resume._amount.paragraph'));
+
+        @include paragraph($amount, $media);
+      }
+      .shopping-bag-price-disclaimer {
+        $disclaimer: merge((
+          margin: (
+            margin: g('spacings.xs') 0 g('spacings.m') 0
+          ),
+          padding: (
+            padding-bottom: g('spacings.m')
+          )
+        ), g('_resume._disclaimer.box'));
+
+        @include breakpoints {
+          @include text(g('_resume._disclaimer.text'), $media);
+          @include box($disclaimer, $media);
+        }
+      }
+    }
+
+    .shopping-bag-legal-terms {
+      margin: g('spacings.m') 0 0 0;
+      @include paragraph(g('_resume._terms.paragraph'), $media);
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+  $actionButton: merge((
+    max-width: breakpoint(100%, 215px, 215px) ,
+    width: 100%,
+    height: 50px,
+    margin: (
+      margin: 0,
+      margin-left: breakpoint(0, 0, g('spacings.xxl'))
+    ),
+    box-sizing: border-box,
+    padding: 17px g('spacings.xs') 19px g('spacings.xs'),
+  ), g('_action-buttons.button'));
+
+  &.shoppingbag-empty {
+    .shopping-bag-continue-link {
+      cursor: pointer;
+      @include breakpoints {
+        @include button($actionButton, $media);
+        margin-right: 0;
+      }
+    }
+  }
+
+  .shopping-bag-continue-link {
+    cursor: pointer;
+    @include button(g('_single-links.button'), $media);
+    @include media-query(mobile) {
+      display: block;
+      text-align: center;
+      margin: g('spacings.m') 0;
+      font-size: 18px;
+    }
+  }
+
+  .shopping-bag-checkout-link {
+    @include breakpoints {
+      @include button($actionButton, $media);
+    }
+
+    &.btn-primary {
+      float: right;
+    }
+  }
+
+  [data-bag-quantity]:after {
+    content: " [" attr(data-bag-quantity) "]";
+  }
+
+  [data-bag-quantity='']:after {
+    content: "";
+  }
+}

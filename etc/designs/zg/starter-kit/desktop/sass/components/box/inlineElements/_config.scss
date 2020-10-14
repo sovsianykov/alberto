@@ -1,0 +1,12 @@
+$inlineElements: (
+  spacings: common('spacings')
+);
+
+$inlineElements: merge($inlineElements, (
+  box: (
+    flex: (
+      flex-direction: breakpoint((tablet-max: column)),
+      flex-wrap: wrap
+    )
+  )
+));

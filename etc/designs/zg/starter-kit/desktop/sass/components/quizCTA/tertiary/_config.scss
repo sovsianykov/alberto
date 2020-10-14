@@ -1,0 +1,32 @@
+$buttonTertiary: (
+  spacings: common('spacings')
+);
+
+$buttonTertiary: merge($buttonTertiary, (
+  button: extend('_base.button', (
+    box-sizing: border-box,
+    display: inline-block,
+    margin: spacings('s') 0,
+    padding: breakpoint((mobile: 18px 0, tablet-min: 18px 18px, desktop-min: 18px 32px)),
+    width: breakpoint((mobile: 100%, tablet-min: auto)),
+    text: (
+      font-size: px(18),
+      font-weight: normal,
+      line-height: 1.22,
+      color: color('white'),
+      text-decoration: none
+    ),
+    border: (
+      border: 1px solid color('black'),
+      border-radius: 3px
+    ),
+    background: (
+      background-color: color('black')
+    ),
+    hover: (
+      background: (
+        background-color: rgba(color('black'), 0.8)
+      )
+    )
+  ))
+));

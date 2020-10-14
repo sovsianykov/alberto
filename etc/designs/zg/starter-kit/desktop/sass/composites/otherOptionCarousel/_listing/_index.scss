@@ -1,0 +1,10 @@
+@import '../../../components/listing/listingAsCarousel/utils';
+
+.listing--as-carousel {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($otherOptionCarouselListing, $a...);
+  }
+
+  @include common-rules($otherOptionCarouselListing);
+};

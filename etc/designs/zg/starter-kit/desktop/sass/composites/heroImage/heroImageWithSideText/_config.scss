@@ -1,0 +1,24 @@
+$heroImageWithSideText: (
+  box: (),
+  _text-wrapper: (
+    box: (),
+    _wrapper-content: (
+      box: (
+        max-width: breakpoint((tablet-max: 100%, desktop: 480px))
+      ),
+      _underlined-title: (
+        paragraph: extend('_underlined-hero-title.paragraph', (
+          //custom config here
+        ))
+      ),
+      _headline: (
+        paragraph: (
+          text: (
+            font-size: breakpoint((tablet-max: px('m'), tablet-min: px('l'))),
+            line-height: 1
+          )
+        )
+      )
+    )
+  )
+);

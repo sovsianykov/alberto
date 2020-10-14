@@ -1,0 +1,25 @@
+$recipeNutrients: (
+  box: (),
+  _list: (
+    box: (
+      margin: 0,
+    ),
+    _item: (
+      box: (
+        border: (
+          border-bottom: solid 1px color('neutral', 'light')
+        ),
+        padding: spacings('xs') 0
+      ),
+      _text: (
+        text: (
+          font-size: px(18),
+          line-height: 1.44
+        )
+      )
+    )
+  ),
+  _show-all: (
+    button: common('_view-all.button')
+  )
+);

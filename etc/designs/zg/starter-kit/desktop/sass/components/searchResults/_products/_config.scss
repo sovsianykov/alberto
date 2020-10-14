@@ -1,0 +1,131 @@
+@import '../config'; // import general results config
+
+$product: (
+  spacings: spacings(),
+  _grid-view: extend('_product-default-view', (
+    _content-box: (
+      _link: (
+        link: (
+          hover: (
+            text: (
+              color: color('neutral', 'dark')
+            )
+          )
+        )
+      )
+    ),
+    _image-wrapper: (
+      box: ()
+    )
+  )),
+  _list-view: (
+    box: ()
+  ),
+  _list-item: (
+    box: (),
+    _image: (
+      box: ()
+    ),
+    _details-box: (
+      box: (),
+      _title: (
+        paragraph: (
+          text: (
+            text-align: left,
+            font-size: breakpoint((mobile: px('s'), tablet-min: px('m')))
+          )
+        )
+      ),
+      _description-box: (
+        box: ()
+      ),
+      _description: (
+        paragraph: (
+          text: (
+            text-align: left,
+            font-size: breakpoint((mobile: 18px, tablet-min: px('xxs'))),
+            line-height: 1.2
+          )
+        )
+      ),
+      _buttons-outer-box: (
+        box: ()
+      ),
+      _buttons-inner-box: (
+        box: (),
+      ),
+      _buy-it-now-wrapper: (
+        box: (),
+        _buy-it-now: (
+          button: (
+            display: block
+          )
+        )
+      ),
+      _find-in-store-wrapper: (
+        box: (),
+        _find-in-store: (
+          button: ()
+        )
+      ),
+      _read-more-wrapper: (
+        box: ()
+      ),
+      _read-more-link: (
+        button: ()
+      )
+    )
+  ),
+  _quick-view-button: (
+    button: extend('_base.button', (
+      padding: 10px,
+      margin: (
+        margin-top: 10px,
+      ),
+      width:100%,
+      text: (
+        font-size: px(18),
+        font-weight: bold,
+        line-height: 1.22,
+        color: color('black'),
+        text-decoration: none
+      ),
+      border: (
+        border: 1px solid color('neutral', 'light'),
+        border-radius: 3px
+      ),
+      background: (
+        background-color: color('white')
+      ),
+      hover: (
+        background: (
+          background-color: rgba(color('neutral', 'light'), 0.2)
+        )
+      )
+    ))
+  ),
+  _buy-it-now: (
+    button: extend('_primary.button', (
+      min-width: 188px,
+      display: block    //overriding default property from button type
+    ))
+  ),
+  _find-in-store: (
+    button: extend('_tertiary.button', (
+      min-width: auto
+    ))
+  ),
+  _ratings: (
+    _count: (
+      paragraph: (
+        text: (
+          color: black,
+          line-height: 1.5,
+          letter-spacing: 0.3px,
+          font-weight: bold,
+          text-decoration: none,
+        )
+      )
+    )
+  )
+);

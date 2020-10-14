@@ -1,0 +1,44 @@
+$search-overlay: (
+  _background-overlay: (
+    box: (
+      background: (
+        background-color: breakpoint((
+          tablet-max: color('neutral', 'lighter'),
+          desktop-min: transparentize(color('neutral', 'lighter'), 0.05)
+        ))
+      )
+    ),
+    transition: (
+      speed: 2s
+    )
+  ),
+  _close: (
+    button: (
+      background: color('black'),
+      border: (
+        border-radius: 50%
+      ),
+      height: 30px,
+      position: absolute,
+      width: 30px,
+      text: (
+        color: color('white')
+      ),
+      icon: (
+        side: before,
+        content: common('icon.cross-small'),
+        color: color('white'),
+        font-size: px(9),
+        hover: (
+          color: color('black')
+        )
+      ),
+      hover: (
+        background: color('primary', 'dark'),
+        text: (
+          color: color('black')
+        )
+      )
+    )
+  )
+);

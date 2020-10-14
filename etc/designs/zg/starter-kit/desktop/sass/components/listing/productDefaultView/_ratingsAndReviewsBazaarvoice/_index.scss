@@ -1,0 +1,50 @@
+.ratingsandreviews .bazaarvoice {
+  @import 'config';
+  @function g($a...) { @return get-last($ratings-and-reviews, $a...); }
+  /*! @important(start) */
+  display: flex;
+  justify-content: center;
+  /*! @important(stop) */
+
+  // Overriding component styles
+  .bv-cv2-cleanslate .bv-core-container-135 .bv-inline-rating-container .bv-rating-stars-on,
+  .bv-cv2-cleanslate .bv-core-container-135 .bv-inline-rating-container .bv-rating-stars-off {
+    @include text(g('_star.text'), $media);
+  }
+
+  // Overriding component styles
+  .bv-cv2-cleanslate .bv-core-container-135 .bv-inline-rating-container .bv-rating-stars-on {
+    @include text(g('_star-on.text'), $media);
+  }
+
+  // Overriding component styles
+  .bv-cv2-cleanslate .bv-core-container-135 .bv-inline-rating-container .bv-rating-stars-off {
+    @include text(g('_star-off.text'), $media);
+  }
+
+  // hide average ratings and number of reviews
+  div[data-bv-show="inline_rating"] {
+    .bv_averageRating_component_container,
+    .bv_numReviews_component_container {
+      /*! @important(start) */
+      display: none;
+      /*! @important(stop) */
+    }
+  }
+
+  // Overriding component styles
+  .bv-cv2-cleanslate .bv-core-container-135 .bv-stars-container dd {
+    /*! @important(start) */
+    padding: 0;
+    /*! @important(stop) */
+
+    .bv-rating,
+    .bv-rating-label,
+    .bv-rating-ratio-number,
+    .bv-rating-ratio-count {
+      /*! @important(start) */
+      display: none;
+      /*! @important(stop) */
+    }
+  }
+}

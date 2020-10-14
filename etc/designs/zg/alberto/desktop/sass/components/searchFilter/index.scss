@@ -1,0 +1,137 @@
+@import '../../core/config';
+
+.searchFilter[class*=default-style] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($searchFilter, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  &.is-empty {
+    display: none;
+  }
+
+  .component-content {
+
+    &::after {
+      content: "";
+      @include breakpoints {
+        @include box(g('_content._separation.box'), $media);
+      }
+    }
+  }
+
+  // .accordion-item {}
+
+  .category-wrapper {
+    @include box(g('_content._wrapper.box'), $media);
+
+    .category-title {
+
+      h2, h3, h4 {
+        @include media-query(mobile) {
+          position: relative;
+
+          &::after {
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: transform .3s $ease-out;
+            transform: rotate(0deg);
+          }
+
+          @include icon(g('_content._title.icon'), $media);
+        }
+
+        @include breakpoints {
+          @include paragraph(g('_content._title.paragraph'), $media);
+        }
+        @include box(g('_content._title.box'), $media);
+      }
+
+      @include media-query(mobile) {
+        &.is-active {
+
+          &::after {
+            content: "";
+            @include breakpoints {
+              @include box(g('_content._separation.box'), $media);
+            }
+          }
+
+          h2, h3, h4 {
+
+            &::after {
+              transform: rotate(-180deg);
+            }
+          }
+        }
+      }
+    }
+
+    .filters-items {
+      @include box(g('_content._filters-items.box'), $media);
+
+      @include media-query(mobile) {
+        display: none;
+      }
+
+      &.is-active {
+        @include media-query(mobile) {
+          display: block;
+        }
+      }
+    }
+
+    .checkbox {
+      font-size: 0;
+      @include box(g('_content._checkbox.box'), $media);
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      input[type=checkbox] {
+        display: none;
+
+        &:checked ~ .filter-label {
+          @include button(g('_content._checkbox._filter-label-checked.button'), $media);
+        }
+      }
+
+      .filter-label {
+
+        &:before {
+          box-sizing: border-box;
+          cursor: pointer;
+          left: 0;
+          position: absolute;
+          top: 0;
+        }
+        @include breakpoints {
+          @include button(g('_content._checkbox._filter-label.button'), $media);
+        }
+      }
+
+      .filter-category-link {
+        text-decoration: none;
+        @include breakpoints {
+          @include paragraph(g('_content._checkbox._link.paragraph'), $media);
+        }
+      }
+
+      .filter-category-quantity {
+        @include text(g('_content._checkbox._quantity.text'), $media);
+        @include box(g('_content._checkbox._quantity.box'), $media);
+      }
+    }
+
+    .toggle-filters-link {
+      cursor: pointer;
+      @include breakpoints {
+        @include button(g('_content._toggle-filters-link.button'), $media);
+      }
+    }
+  }
+}

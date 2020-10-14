@@ -1,0 +1,36 @@
+.header-main {
+
+  @include breakpoints {
+    @include text(g('main.text'), $media);
+  }
+
+  transform: translate3d(0, 0, 0);
+  will-change: true;
+
+  > .component-content {
+    @include breakpoints {
+      @include box(merge((
+        display: flex,
+        flex: (
+          align-items: stretch
+        )
+      ), g('main.box')), $media);
+    }
+
+    > .content {
+      @include wrapper;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      @include media-query(auto, notebook) {
+        flex-grow: 1;
+      }
+    }
+
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
+}

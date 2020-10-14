@@ -1,0 +1,76 @@
+@import '../../core/config';
+
+.twitter {
+  > .component-content {
+    background-color: color('neutral','light');
+    border: solid 2px color('neutral','base');
+    padding: 13px;
+  }
+
+  &-feed {
+    @include clearfix;
+    display: block;
+    list-style-type: none;
+    margin: 10px 0;
+    padding-left: 55px;
+    position: relative;
+  }
+
+  &-content {
+    a {
+      &:hover {
+        strong {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  a:hover
+  &-sender-avatar {
+    left: 0;
+    position: absolute;
+    top: 3px;
+  }
+
+  &-date {
+    float: right;
+  }
+
+  &-actions {
+    float: right;
+    margin: 0;
+    padding: 0;
+  }
+
+  &-action {
+    display: inline;
+    list-style-type: none;
+  }
+}
+
+.feed-provider {
+  &-heading {
+    display: inline-block;
+    margin: 0 0 0 20px;
+
+    line-height: 30px;
+
+    &-image {
+      float: left;
+      width: 30px;
+      height: 30px;
+    }
+  }
+
+  &-description {
+    border-bottom: 1px solid color('black');
+    margin: 10px 0;
+    padding: 10px 0;
+  }
+
+  &-feeds {
+    margin: 0;
+    padding: 0;
+  }
+}

@@ -1,0 +1,94 @@
+
+.listingFilters.product-listing-filter {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($product-listing-filter, $a...);
+  }
+
+  $box: merge((
+    margin: (
+      margin-left: breakpoint((mobile: 20px, tablet-min: spacings('m'))),
+      margin-bottom: breakpoint((mobile: spacings('xs')))
+    )
+  ), g('box'));
+
+  @include breakpoints {
+    @include text(g('text'), $media);
+    @include box($box, $media);
+  }
+
+  .filter-form {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    @include box(g('_filter-form.box'), $media);
+
+    &.loading {
+      &:after {
+        background: url("/etc/designs/zg/starter-kit/desktop/assets/img/loader.gif") no-repeat;
+        content: "";
+        height: 31px;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 31px;
+        z-index: $z-index-layer;
+      }
+    }
+  }
+
+  .filter-wrapper {
+    @include box(g('_filter-wrapper.box'), $media);
+  }
+
+  .filter-quantity,
+  .filter-button {
+    display: none;
+  }
+
+  .filter-prefix {
+    @include media-query(mobile) {
+      display: none;
+    }
+
+    @include margin(g('_filter-prefix.margin'), $media);
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  // sort dropdown:
+  .filter-select {
+    position: relative;
+    @include breakpoints {
+      @include icon(g('_dropdown.icon'), $media);
+    }
+
+    $pseudo: safetype(g('_filter-form._dropdown-last.side'), 'after');
+    &:#{$pseudo} {
+      position: absolute;
+      right: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+
+      @include breakpoints {
+        @include box(g('_dropdown.box'), $media);
+        @include text(g('_dropdown.text'), $media);
+      }
+
+      &::-ms-expand {
+        display: none;
+      }
+    }
+  }
+}

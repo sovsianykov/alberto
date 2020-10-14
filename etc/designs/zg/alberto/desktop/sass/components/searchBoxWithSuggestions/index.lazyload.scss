@@ -1,0 +1,194 @@
+@import '../../core/config';
+
+.searchBoxWithSuggestions.initialized {
+  visibility: visible;
+}
+
+@include local-spacings();
+
+.searchBoxWithSuggestions {
+  @import 'config';
+  @function g($a...) { @return get-last($search-box-with-suggestions, $a...); }
+
+  $box: merge((
+  ), g('box'));
+
+  @include box($box, $media);
+
+  .form-search {
+    font-size: 0;
+
+    .searchBox-label {
+      margin-top: 21px;
+
+      $searchBox-label: merge((
+        display: block,
+        margin: (
+          margin-bottom: 90px
+        ),
+        width: 100%
+      ), g('_searchBox-label.box'));
+
+      @include box($searchBox-label, $media);
+      background: none;
+
+      &::before {
+        content: "";
+        display: block;
+        height: 100%;
+        left: calc(((100vw - 100%) / 2) * -1);
+        position: absolute;
+        top: 0;
+        width: 100vw;
+
+        $search-query-background: merge((
+        ), g('_search-query.background'));
+
+        @include background($search-query-background, $media);
+      }
+
+      .search-query {
+        box-sizing: content-box;
+        margin-left: 40px;
+        padding: 25px 0;
+        position: relative;
+
+        $search-query: merge((
+        ), g('_search-query.input'));
+
+        @include input($search-query, $media);
+
+        background: rgba(216,216,216,0.2);
+        height: 44px;
+        padding: 10px 44px;
+        border-radius: 22px;
+        box-sizing: border-box;
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+        font-size: px(20);
+        line-height: 20px;
+        font-family: font-family('primary');
+        color: #000000;
+        &::placeholder {
+          font-size: px(20);
+        }
+        @include breakpoints(mobile) {
+          font-size: px(19);
+          border-radius: 5px;
+          border: solid 1px #c1c1c1;
+          background: inherit;
+          line-height: 8px;
+          &::placeholder {
+            font-size: px(19);
+          }
+        }
+
+        &:focus {
+          outline: 0;
+        }
+
+        &::-ms-clear {
+          display: none;
+        }
+      }
+
+      .searchBox-title {
+        bottom: -60px;
+        display: block;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+
+        $search-query-text: merge((
+        ), g('_search-query.text'));
+
+        @include breakpoints() {
+          @include text($search-query-text, $media);
+        }
+      }
+    }
+
+    .searchBox-suggestions {
+      list-style: none;
+
+      $suggestions: merge((
+        padding: 0
+      ), g('_suggestions.box'));
+
+      @include box($suggestions, $media);
+
+      li {
+
+        $suggestions: merge((
+          margin: spacings('xs') auto
+        ), g('_suggestions._item-holder.box'));
+
+        @include box($suggestions, $media);
+
+        &:first-child {
+          margin-top: 0;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      .searchBox-suggestion {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        padding: 0;
+
+        $suggestions: merge((
+        ), g('_suggestions.link'));
+
+        @include link($suggestions, $media);
+
+        b {
+
+          $suggestions-highlight: merge((
+          ), g('_suggestions.text'));
+
+          @include text($suggestions-highlight, $media);
+        }
+      }
+    }
+
+    button[type="submit"] {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      cursor: pointer;
+      left: 0;
+      padding: 0;
+      position: absolute;
+      top: 32px;
+
+      $submit: merge((
+      ), g('_submit.button'));
+
+      @include button($submit, $media);
+
+      &:before {
+        color: color("primary", "base");
+        position: relative;
+        top: 2px;
+        left: 15px;
+        @include breakpoints(mobile) {
+          top: 1px;
+          left: 12px;
+        }
+      }
+    }
+  }
+}
+
+@import 'search-overlay';
+@import '_search-box-advanced-suggestions';

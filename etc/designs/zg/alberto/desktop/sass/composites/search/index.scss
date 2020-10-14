@@ -1,0 +1,149 @@
+@import '../../core/config';
+
+// Search page holders and wrappers
+.search-content-wrapper {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($search, $a...);
+  }
+
+  $box: merge((
+    margin: (
+      margin: breakpoint(
+          spacings('xs') 0 20px,
+          spacings('s') 0 spacings('m'),
+          spacings('m') 0 60px
+      )
+    )
+  ));
+
+  @include breakpoints() {
+    @include box(g('box'), $media);
+  }
+
+  > .component-content > .content {
+    display: flex;
+
+    @include box(g('_content-wrapper.box'), $media);
+  }
+
+  .search-filters {
+    $filtersColumn: merge((
+      box-sizing: border-box,
+      flex: (
+        flex-shrink: 0
+      ),
+      width: breakpoint((
+        tablet-max: 100%,
+        desktop: 220px
+      )),
+      margin: (
+        margin: breakpoint((
+          tablet-max: 0 0 0 0,
+          desktop: 0 60px 0 0
+        ))
+      ),
+      padding: (
+        padding: breakpoint((
+          tablet-max: 20px,
+          desktop: 0 60px 0 0
+        ))
+      ),
+      position: breakpoint((
+        tablet-max: fixed,
+        desktop: relative
+      )),
+      z-index: breakpoint((
+        tablet-max: $z-index-fixed,
+        desktop: $z-index-content
+      ))
+    ), g('_content-wrapper._filters-column.box'));
+
+    @include breakpoints() {
+      @include box($filtersColumn, $media);
+    }
+
+    @include media-query(mobile, notebook) {
+      display: none;
+      left: 0;
+      height: 100%;
+      overflow: hidden;
+      overflow-y: auto;
+      top: 0;
+
+      .button-clear-filters {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        $buttonSpacing: merge((
+          margin: 12px 20px 0 0
+        ), g('_content-wrapper._button-clear-filters.margin'));
+
+        @include margin($buttonSpacing, $media);
+      }
+    }
+
+    .component-content {
+      display: none;
+    }
+
+    &.is-not-empty .component-content {
+      display: block;
+    }
+
+    [dir="rtl"] & {
+      $rtl: (
+        border: (
+            border-right: 0,
+            border-left: breakpoint((
+              mobile: 0,
+              tablet-min: solid 1px color('neutral', 'light')
+            ))
+        ),
+        margin: (
+          margin: breakpoint(
+              0 0 0 0,
+              0 0 0 20px,
+              0 0 0 60px !important
+          )
+        ),
+        padding: (
+          padding: breakpoint(
+              20px,
+              0 0 0 20px,
+              0 0 0 60px
+          )
+        )
+      );
+        
+      @include breakpoints() {
+        @include box($rtl, $media);
+      }
+    }
+
+  }
+
+  .search-results-wrapper {
+    $results: merge((
+      overflow: breakpoint((tablet-min: hidden)),   //fix for search results wrapper
+      box-sizing: border-box,
+      width: 100%,
+      max-width: 100%,
+      flex: (
+        flex-grow: 1
+      ),
+      margin: (
+        margin: breakpoint((mobile: -10px 0))
+      )
+    ), g('_content-wrapper._results-wrapper.box'));
+
+    @include breakpoints() {
+      @include box($results, $media);
+    }
+  }
+}
+
+.no-results .reference-icon-link .back-to-top {
+  display: none;
+}

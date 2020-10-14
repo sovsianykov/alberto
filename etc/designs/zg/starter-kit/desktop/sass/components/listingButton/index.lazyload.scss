@@ -1,0 +1,29 @@
+@import '../../core/config';
+
+.listingButton.initialized {
+   visibility: visible;
+}
+
+.listingButton {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($showMoreBtn, $a...);
+  }
+
+  $box: merge((
+    display: flex,
+    flex: (
+      justify-content: center
+    )
+  ), g('_main.box'));
+
+  @include box($box, $media);
+
+  .show-more {
+    appearance: none;
+    cursor: pointer;
+    border: 0;
+
+    @include button(g('_load-more.button'), $media);
+  }
+}

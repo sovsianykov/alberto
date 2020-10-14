@@ -1,0 +1,88 @@
+$advanced-suggestions: (
+  spacings: common('spacings')
+);
+
+$advanced-suggestions: merge($advanced-suggestions, (
+  box: (
+    background: transparent
+  ),
+  _suggestions-section-contents: (
+    box: (
+      background: transparent,
+      border: (
+        border-top: solid 1px color('neutral', 'light')
+      )
+    )
+  ),
+  _suggestions-item: (
+    box: (
+      background: transparent
+    ),
+    hover: (
+      background: (
+        background: color('primary', 'light')
+      )
+    ),
+    _suggestions-title: (
+      box: (),
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-size: px(16),
+          font-weight: bold,
+          line-height: 1.33,
+          text-align: center
+        )
+      ),
+      link: (
+        text: (
+          color: color('black'),
+          text-decoration: none
+        ),
+        hover: ()
+      )
+    ),
+    _suggestions-picture: (
+      box: (),
+      _holder-image: (
+        box: ()
+      )
+    )
+  ),
+  _title: (
+    paragraph: (
+      text: (
+        color: color('black'),
+        font-size: px(26),
+        font-weight: bold,
+        line-height: 1.15
+      )
+    )
+  ),
+  _results-count: (
+    paragraph: (
+      text: (
+        color: color('black'),
+        font-size: px(18),
+        line-height: 1.15
+      )
+    )
+  ),
+  _view-all: (
+    link: (
+      text: (
+        color: color('black'),
+        font-size: px(18),
+        font-weight: bold,
+        line-height: 1.15,
+        text-decoration: none,
+        text-transform: uppercase
+      ),
+      hover: (
+        text: (
+          text-decoration: underline
+        )
+      )
+    )
+  )
+));

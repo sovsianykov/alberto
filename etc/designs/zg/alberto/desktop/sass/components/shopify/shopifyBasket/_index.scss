@@ -1,0 +1,30 @@
+@import '../../../core/config';
+
+.shopify-basket {
+  padding: 0 spacings('xs');
+
+  &__link {
+    align-items: center;
+    display: flex;
+    font-size: px(14);
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    z-index: 1;
+    font-family: font-family('primary');
+
+    &:before {
+      content: common('icon.button-bag');
+      font-size: 1.8em;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -58%);
+      font-family: icons;
+    }
+  }
+
+  &.hidden {
+    visibility: hidden;
+  }
+}

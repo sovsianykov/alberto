@@ -1,0 +1,126 @@
+@import 'config';
+
+.shoppable-thank-you {
+  @function g($a...) {
+    @return get-last($thank-you, $a...);
+  }
+
+  #content {
+    $contentBox: merge((
+      margin: (
+        margin: breakpoint(
+          spacings('l') 0,
+          spacings('l') 0,
+          spacings('xxl') 0
+        )
+      )
+    ), g('_content.box'));
+    @include breakpoints {
+      @include box($contentBox, $media)
+    }
+  }
+
+  h1 {
+    $title: merge((
+      margin: (
+        margin: 0 0 spacings('xxs') 0
+      )
+    ), g('_title.paragraph'));
+    @include breakpoints() {
+      @include paragraph($title, $media);
+    }
+  }
+
+  .right-side-holder {
+    $right-side-box: merge((
+      margin: (
+        margin-top: breakpoint((mobile: 25px))
+      )
+    ), g('_side-box.box'));
+
+    @include breakpoints {
+      @include box($right-side-box, $media);
+    }
+
+    &:before {
+      @include media-query(mobile, tablet) {
+        height: 0;
+      }
+      height: 210px;
+    }
+    @include breakpoints {
+      @include line(g('_side-box._vertical-line.line'), $media);
+    }
+
+    .thank-you-shoppable-info {
+      $boxRight: merge((
+        padding: (
+          padding: breakpoint(0, 0, spacings('xxxl') 0 0 spacings('xl'))
+        )
+      ), g('_side-box._content.box'));
+
+      @include breakpoints {
+        @include box($boxRight, $media);
+      }
+    }
+  }
+
+  .thank-you-shoppable-info {
+    @include breakpoints {
+      @include text(g('_regular-text.text'), $media);
+    }
+
+    .text-shoppable-order-title {
+      display: block;
+      $orderTitle: merge((
+        margin: spacings('xl') 0 spacings('xs') 0
+      ),g('_order._title.paragraph'));
+
+      @include breakpoints {
+        @include paragraph($orderTitle, $media);
+      }
+    }
+
+    .text-shoppable-order-number {
+      $boxOrderNumber: merge((
+        padding: (
+          padding-right: spacings('m'),
+          padding-bottom: spacings('xxs')
+        )
+      ), g('_order._number.box'));
+      @include text(g('_order._number.text'), $media);
+      @include box($boxOrderNumber, $media);
+    }
+
+    .email-to {
+      $email: merge((
+        display: block,
+        margin: (
+          margin-top: spacings('xxs'),
+          margin-bottom: 20px
+        )
+      ), g('_regular-text._email.paragraph'));
+
+      @include breakpoints {
+        @include paragraph($email, $media);
+      }
+    }
+
+    a {
+      @include text(g('_regular-text._faq.text'), $media);
+    }
+  }
+
+  a.button-secondary {
+    $button: merge((
+      width: breakpoint((mobile: 100%)),
+      margin: (
+        margin-top: breakpoint((tablet-max: 25px, desktop: spacings('xs')))
+      )
+    ), g('_back-button.button'));
+
+    @include breakpoints() {
+      @include button($button, $media);
+    }
+  }
+}

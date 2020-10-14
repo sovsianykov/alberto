@@ -1,0 +1,25 @@
+@include local-spacings();
+
+$form-legal-info: (
+  box: (),
+  paragraph: (
+    text: (
+      color: color('black'),
+      font-family: 'body',
+      font-size: px(18),
+      line-height: 1.33
+    )
+  ),
+  link: (
+    text: (
+      color: color('black'),
+      font-family: 'primary',
+      text-transform: uppercase,
+    ),
+    hover: (
+      text: (
+        color: color('neutral', 'base')
+      )
+    )
+  )
+);

@@ -1,0 +1,20 @@
+// The global headers inherit all the CSS of NASK header,
+// here is only overlap changes of CSS to achieve the
+// specific behaviours of the global headers.
+
+// This is only to reset the margin in the
+// "tabs component tabs-main-navigation" in the header.
+// Is because in the headers global we don't have the
+// buttons "Where to buy" and "Cart" in the tablet and mobile.
+
+@import '../../../core/config';
+
+[class*=reference-header-global] {
+
+  .header-main .tabs-main-navigation {
+
+    @include media-query(mobile) {
+      margin: 0;
+    }
+  }
+}

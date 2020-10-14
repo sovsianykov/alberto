@@ -1,0 +1,12 @@
+a.button-tertiary {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($buttonTertiary, $a...);
+  }
+
+  box-sizing: border-box;
+
+  @include breakpoints() {
+    @include button(g('button'),  $media);
+  }
+}

@@ -1,0 +1,225 @@
+$storeLocator-results: (
+  spacings: common('spacings')
+);
+
+// product item
+$storeLocator-results: merge($storeLocator-results, (
+  _product-item: (
+    box: (
+      display: flex,
+      flex: (
+        flex-wrap: nowrap,
+        justify-content: flex-start,
+        align-items: flex-start
+      ),
+      padding: breakpoint(
+        get($storeLocator-results, 'spacings.m') get($storeLocator-results, 'spacings.xs'),
+        get($storeLocator-results, 'spacings.m') get($storeLocator-results, 'spacings.s'),
+        get($storeLocator-results, 'spacings.m')
+      ),
+    ),
+    _image: (
+      size: (
+        width: 130px,
+      )
+    ),
+    _details: (
+      box: (
+        padding: 0 get($storeLocator-results, 'spacings.m'),
+      ),
+      _title: (
+        paragraph: (
+          text: (
+            font-size: px(18),
+            font-weight: bold,
+            line-height: 1.22,
+          )
+        )
+      ),
+      _product-size: (
+        paragraph: (
+          margin: get($storeLocator-results, 'spacings.xxs') 0
+        )
+      )
+    )
+  )
+));
+
+// location results
+$storeLocator-results: merge($storeLocator-results, (
+  _results-message: (
+    paragraph: (
+      text: (
+        font-size: px(14),
+        text-align: left,
+        letter-spacing: 0.2px,
+      ),
+      margin: (
+        margin: 20px,
+      ),
+    )
+  ),
+  _result-item: (
+    box:(
+      padding: (
+        padding: get($storeLocator-results, 'spacings.xs') 20px get($storeLocator-results, 'spacings.xs') 50px,
+      ),
+    ),
+    text: (
+      font-size: px('xxs'),
+      line-height: 1.57,
+    ),
+    _counter: (
+      box: (
+        position: absolute,
+        background: (
+          background-color: color('neutral', 'light'),
+        ),
+        border: (
+          border-radius: 50%,
+        ),
+        display: flex,
+        flex: (
+          justify-content: center,
+          align-items: center,
+        ),
+        width: 25px,
+        height: 25px,
+      ),
+      text: (
+        font-weight: bold,
+      )
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          font-weight: bold,
+          line-height: 1,
+          font-size: breakpoint(px(18), px(18), px('s')),
+        ),
+        margin: (
+          margin-top: 0,
+          margin-bottom: get($storeLocator-results, 'spacings.xs'),
+        )
+      )
+    ),
+    _distance: (
+      paragraph: (
+        margin: (
+          margin: breakpoint(
+            0,
+            0,
+            get($storeLocator-results, 'spacings.xxs') 0
+          )
+        )
+      )
+    ),
+    _address: (
+      paragraph: (
+        margin: (
+          margin: breakpoint(
+            0 0 get($storeLocator-results, 'spacings.xxs'),
+            0 0 get($storeLocator-results, 'spacings.xxs'),
+            get($storeLocator-results, 'spacings.xxs') 0 get($storeLocator-results, 'spacings.s')
+          )
+        )
+      )
+    ),
+    _phone-number: (
+      button: (
+        text: (
+          font-weight: bold,
+          font-size: breakpoint(px(14), px(14), px(18)),
+          text-decoration: none,
+          line-height: 1,
+          font-family: primary,
+        ),
+        margin: (
+          margin-right: get($storeLocator-results, 'spacings.l'),
+        ),
+        line: (
+          border: (
+            border-bottom: 2px solid color('black')
+          ),
+          width: 100%,
+          margin: (
+            margin-top: -3px,
+          )
+        )
+      )
+    ),
+    _directions: (
+      button: (
+        text: (
+          font-weight: bold,
+          font-size: breakpoint(px(14), px(14), px(18)),
+          text-transform: uppercase,
+          text-decoration: none,
+          line-height: 1,
+          font-family: primary
+        ),
+        line: (
+          border: (
+            border-bottom: 2px solid color('black')
+          ),
+          width: 100%,
+          margin: (
+            margin-top: -3px,
+          )
+        )
+      )
+    )
+  ),
+  _result-item-active: (
+    box:(
+      background: (
+        background-color: color('neutral', 'lighter'),
+      )
+    ),
+    _counter: (
+      box: (
+        position: absolute,
+        background: (
+          background-color: color('primary', 'dark'),
+        )
+      )
+    )
+  ),
+  _results-load-more: (
+    button: common('_load-more.button')
+  )
+));
+
+// "buy it now" tab
+$storeLocator-results: merge($storeLocator-results, (
+  _buy-now: (
+    _message: (
+      paragraph: (
+        text: (
+          text-align: center,
+          font-weight: bold,
+          font-size: px(18),
+        ),
+        margin: (
+          margin: get($storeLocator-results, 'spacings.xl') 0 get($storeLocator-results, 'spacings.s'),
+        )
+      )
+    ),
+    _buy-button: (
+      button: extend('_base.button', (
+        background: (
+          background-color: color('primary', 'dark'),
+        ),
+        text: (
+          color: color('black'),
+          font-size: px(18),
+          letter-spacing: 0.4px,
+          text-decoration: none,
+        ),
+        height: 50px,
+        width: breakpoint(100%, 100%, 215px),
+        box-sizing: border-box,
+      ))
+    )
+  )
+));

@@ -1,0 +1,49 @@
+$common: () !default;
+
+$common: merge($common, (
+  _tabs-nav: (
+    _item: (
+      button: (
+        text: (
+          font-family: 'primary',
+          text-transform: uppercase,
+          text-decoration: none,
+          font-size: px(18),
+          line-height: breakpoint((
+            tablet-max: 1.22,
+            desktop: 1.44
+          ))
+        ),
+        line: (
+          side: after,
+          width: 100%,
+          margin: (
+            margin: 0
+          ),
+          transform: (
+            transform: scaleX(0),
+            transform-origin: 0 0
+          ),
+          border: (
+            border-top: 4px solid color('black')
+          ),
+          hover: ()
+        )
+      )
+    )
+  )
+));
+
+$common: merge($common, (
+  _tabs-nav: (
+    _item-active: (
+      button: merge(get($common, '_tabs-nav._item.button'), (
+        line: (
+          transform: (
+            transform: scaleX(1)
+          )
+        )
+      ))
+    )
+  )
+));

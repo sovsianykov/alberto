@@ -1,0 +1,21 @@
+.box.box-product-share {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($shareLabel, $a...);
+  }
+
+  .content {
+    display: flex;
+    align-items: center;
+
+    @include media-query(mobile) {
+      justify-content: center;
+    }
+  }
+
+  .richText p {
+    @include breakpoints() {
+      @include paragraph(g('_share-label.paragraph'), $media);
+    }
+  }
+}

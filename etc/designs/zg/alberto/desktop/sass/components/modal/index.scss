@@ -1,0 +1,178 @@
+@import '../../core/config';
+
+$fade-duration: 0.3s;
+
+.modal {
+  background-color: color('white');
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: $z-index-modal;
+
+  @include media-query(tablet, wide) {
+    animation: modalFadeIn $fade-duration linear 1 forwards;
+    background-color: rgba(0,0,0,.5);
+  }
+
+  &__close {
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 1;
+  }
+
+  &__popup {
+    background-color: color('white');
+    height: 100vh;
+    position: relative;
+    z-index: 2;
+
+    @include media-query(tablet, wide) {
+      box-shadow: 0 4px 30px 0 rgba(0,0,0,.3);
+      height: auto;
+      left: 50%;
+      margin: 0 auto;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      width: calc(100% - #{spacings(xxl)});
+    }
+  }
+
+  &__content {
+    background-color: inherit;
+
+    @include media-query(tablet, wide) {
+      height: 100%;
+      max-height: 100%;
+      overflow: auto;
+    }
+  }
+
+  &__panel {
+    padding: spacings(s);
+  }
+
+  &__close-button {
+    background-color: color('black');
+    border-radius: 50%;
+    color: color('white');
+    cursor: pointer;
+    height: 30px;
+    font-size: 0;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    transition: background 0.3s cubic-bezier(0.55, 0, 0.1, 1) 0s, color 0.3s cubic-bezier(0.55, 0, 0.1, 1) 0s, opacity 0.3s cubic-bezier(0.55, 0, 0.1, 1) 0s, transform 0.3s cubic-bezier(0.55, 0, 0.1, 1) 0s;
+    width: 30px;
+    z-index: 3;
+
+    @include media-query(tablet, wide) {
+      right: -15px;
+      top: -15px;
+    }
+
+    &::before {
+      color: color('white');
+      content: common('icon.cross-small');
+      display: block;
+      font-family: 'icons';
+      font-size: px('xxxs');
+      left: 50%;
+      line-height: 1;
+      position: absolute;
+      speak: none;
+      text-align: center;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: interit;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    &:hover {
+      background-color: color('primary','dark');
+      color: color('black');
+    }
+  }
+
+  &.is-closing {
+    @include media-query(tablet, wide) {
+      animation: modalFadeOut $fade-duration linear 1 forwards;
+    }
+  }
+
+  input::placeholder {
+    // by default we are using form labels
+    // remove / override this to show placeholder text
+    color: transparent;
+  }
+}
+
+
+// variants
+
+.modal--two-col-tablet {
+  // side by side, tablet and bigger
+  // popup content contains two panels;
+  // (<div class="modal__content"><div class="modal__panel" /><div class="modal__panel" /></div>)
+  .modal__content {
+    @include media-query(tablet, wide) {
+      display: grid;
+      grid-gap: 0;
+      grid-template-columns: 50% 50%;
+    }
+  }
+  .modal__panel {
+    @include media-query(tablet, wide) {
+      &:last-of-type {
+        padding-right: spacings(xxl);
+      }
+    }
+  }
+  .modal__popup {
+    @include media-query(tablet, wide) {
+      max-width: $bp-wide-min;
+      min-height: 0;
+    }
+  }
+}
+
+
+.ua-webkit .modal__close-button:focus {
+  outline: -webkit-focus-ring-color auto 5px;
+}
+
+body.has-open-modal {
+  // to stop the body scrolling under the modal
+  // whilst keeping the scrollbar (to prevent content shifting to the right)
+  max-height: 100vh;
+  overflow-y: scroll;
+
+  #wrapper {
+    max-height: 100vh;
+    overflow: hidden;
+  }
+}
+
+@keyframes modalFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

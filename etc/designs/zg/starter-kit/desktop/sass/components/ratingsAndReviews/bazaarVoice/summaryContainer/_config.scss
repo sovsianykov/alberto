@@ -1,0 +1,60 @@
+$summary-container: (
+  _main: (
+    box: (),
+    _ratings: (
+      box: ()
+    ),
+    _number: (
+      button: (
+        text: (
+          font-family: 'body',
+        ),
+        hover: (
+          text: (
+            font-family: 'body',
+          )
+        )
+      )
+    ),
+    _buttons-wrapper: (
+      box: ()
+    ),
+    _review-button: (
+      button: (
+        text: (
+          font-family: 'primary',
+          font-size: px('xxxs'),
+          font-weight: bold,
+          text-transform: uppercase,
+          color: color('black'),
+          text-decoration: none,
+          line-height: breakpoint((
+            mobile: 1.36,
+            tablet-min: 1.83
+          ))
+        ),
+        padding: 0px 20px,
+        border: (
+          border-right: 2px solid color('neutral', 'light')
+        ),
+        hover: (
+          text: (
+            font-family: 'primary',
+            text-transform: uppercase,
+            color: color('neutral', 'dark')
+          )
+        )
+      )
+    )
+  )
+);
+
+$summary-container: merge($summary-container, (
+  _main: (
+    _last-review-button: (
+      button: merge(get($summary-container, '_main._review-button.button'), (
+        border: none
+      ))
+    )
+  )
+));

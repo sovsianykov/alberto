@@ -1,0 +1,36 @@
+$filterCloud: (
+  box: (),
+  _filter-item: (
+    _label: (
+      paragraph: (
+        text: (
+          line-height: 1.1
+        )
+      )
+    ),
+    button: (
+      background: color('neutral', 'light'),
+      text: (
+        font-family: 'body',
+        font-size: px('xxs')
+      ),
+      border: (
+        border-radius: 25px,
+      ),
+      icon: (
+        side: after,
+        content: common('icon.cross'),
+        color: color('black'),
+        font-size: px(10),
+        margin: (
+          margin-left: 10px,
+          margin-right: 10px,
+          margin-top: 1px
+        )
+      ),
+      hover: (
+        background: color('primary', 'base')
+      )
+    )
+  ),
+);

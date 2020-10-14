@@ -1,0 +1,45 @@
+@import '../config';
+
+$breadcrumbs-floating: merge($pageBreadcrumbs, (
+  _main: (
+    box: (
+      background: rgba(color('white'), 0.4),
+      margin: (
+        margin-bottom: 0,
+        margin-top: 0,
+      ),
+      padding: (
+        padding-top: 7px,
+        padding-bottom: 8px,
+      ),
+      position: absolute
+    ),
+    icon: (
+      color: color('black')
+    ),
+    _content: (
+      // box: (),
+      _list: (
+        // box: (),
+      ),
+      _link: (
+        link: (
+          text: (
+            color: color('black'),
+            font-size: px(12),
+            line-height: 1.33,
+            text-decoration: none
+          ),
+          hover: (
+            text: (
+              text-decoration: underline
+            )
+          )
+        )
+      ),
+      _link-current: (
+        // link: ()
+      )
+    )
+  )
+));

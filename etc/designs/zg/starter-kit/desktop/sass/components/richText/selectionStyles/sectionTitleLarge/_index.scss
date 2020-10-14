@@ -1,0 +1,12 @@
+.richText-content {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($section-title-large, $a...);
+  }
+
+  .section-title-large {
+    @include breakpoints() {
+      @include paragraph(g('paragraph'), $media);
+    }
+  }
+}

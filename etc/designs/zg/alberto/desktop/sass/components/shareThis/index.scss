@@ -1,0 +1,42 @@
+@import '../../core/config';
+
+.shareThis {
+  &-list {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    li {
+      float: left;
+      width: auto;
+      height: 26px;
+      margin: 0 10px 10px 0;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &-item {
+    a {
+      display: block;
+      height: 26px;
+
+      transition: all .3s;
+
+      &:hover {
+        img {
+          opacity: 1;
+        }
+      }
+    }
+
+    img {
+      opacity: 0.7;
+      transition: opacity .2s ease-in-out;
+    }
+  }
+}

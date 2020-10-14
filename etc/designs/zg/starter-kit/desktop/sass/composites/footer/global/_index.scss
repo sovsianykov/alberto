@@ -1,0 +1,80 @@
+// The global footer inherit all the CSS of NASK footer,
+// here is only overlap changes of CSS to achieve the
+// specific behaviours of the global footer.
+
+.countrylanguageselector__select,
+.form.country-selector-dropdown {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($countrySelectorDropdown, $a...);
+  }
+
+  .control-label {
+    $label: merge((
+      margin: (
+        margin-bottom: 1px
+      )
+    ), g('_label.paragraph'));
+
+    @include paragraph($label, $media);
+  }
+
+  .controls {
+    position: relative;
+
+    $dropdownWrapper: merge((
+      display: block
+    ), g('_dropdown-wrapper.button'));
+
+    @include button($dropdownWrapper, $media);
+
+    $pseudo: safetype(g('_dropdown-wrapper.side'), 'after');
+    &:#{$pseudo} {
+      position: absolute;
+      right: spacings('xxs');
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+  }
+  select {
+
+    appearance: none;
+    box-shadow: none;
+    cursor: pointer;
+    height: auto;
+
+    $select: merge((
+      display: flex,
+      margin: (
+        margin-top: breakpoint((tablet-max: spacings('xs'), desktop: spacings('xxs')))
+      ),
+      padding: 0 26px 0 0
+    ), g('_dropdown-wrapper._select.button'));
+
+    @include breakpoints {
+      @include button($select, $media);
+    }
+
+    &::-ms-expand {
+      display: none;
+    }
+
+    &:focus {
+      .ua-webkit & {
+        outline: auto 5px -webkit-focus-ring-color;
+      }
+    }
+  }
+  .controls.disabled {
+    pointer-events: none;
+    $pseudo: safetype(g('_dropdown-wrapper.side'), 'after');
+    &:#{$pseudo} {
+      display: none;
+    }
+  }
+}
+
+.countrylanguageselec .control-label {
+  display: none;
+}

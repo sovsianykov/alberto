@@ -1,0 +1,79 @@
+.TT3IAContainer {
+  // answer item
+  .TT3ansArea {
+    @include breakpoints() {
+      @include box(g('_answer.box'), $media);
+    }
+  }
+
+  // "vote for" message
+  .TT4answVoteCall {
+    @include breakpoints() {
+      @include box(g('_vote-for.box'), $media);
+      @include text(g('_vote-for.text'), $media);
+    }
+
+    .TT4answVoteCallArrow {
+      background: none;
+      height: auto;
+      width: auto;
+
+      @include breakpoints() {
+        @include icon(g('_vote-for.icon'), $media);
+      }
+    }
+  }
+
+  // voting icons
+  .TT3yesVote {
+    background: none;
+    height: auto;
+    width: auto;
+
+    @include breakpoints() {
+      @include icon(g('_vote-icons._off.icon'), $media);
+    }
+
+    &.TT3tmbOn {
+      @include breakpoints() {
+        @include icon(g('_vote-icons._on.icon'), $media);
+      }
+    }
+  }
+
+  .TT3vcntUp {
+    display: inline-block;
+  }
+}
+
+// add answer
+#TurnToContent .TT3answersBlock,
+#TurnToContent .TT3replyInputBlock {
+  @include breakpoints() {
+    @include box(g('_add-answer.box'), $media);
+
+    textarea {
+      @include input(g('_add-answer.input'), $media);
+    }
+  }
+
+  .TT4answerInstructions {
+    float: none;
+    height: auto;
+    @include breakpoints {
+      @include paragraph(g('_add-answer._instruction-msg.paragraph'), $media);
+    }
+  }
+
+  .TTanswerMiqaHelpText {
+    @include breakpoints {
+      @include paragraph(g('_add-answer._help-text.paragraph'), $media);
+    }
+  }
+
+  .TTanswerMiqaHelpArrow {
+    @include breakpoints {
+      @include paragraph(g('_add-answer._help-text.paragraph'), $media);
+    }
+  }
+}

@@ -1,0 +1,122 @@
+@import '../../core/config';
+
+.plp-wrapper {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($template-product-landing-page, $a...);
+  }
+
+  $box: merge((
+      margin: (
+        margin: breakpoint(
+            0 0 spacings('xxl'),
+            spacings('xl') 0 spacings('xxl'),
+            spacings('xl') 0 spacings('xxl')
+        )
+      )
+    ), g('box'));
+
+  @include breakpoints {
+    @include box($box, $media);
+  }
+
+  > .component-content > .content {
+    display: flex;
+  }
+
+  .product-filters-and-category-navigation {
+    $sideNav: merge((
+      box-sizing: border-box,
+      flex: (
+        flex-shrink: 0
+      ),
+      padding: (
+        padding: breakpoint((
+            tablet-max: 0 20px,
+            desktop: 0 60px 0 0
+        ))
+      )
+    ), g('_side-nav.box'));
+
+    @include breakpoints {
+      @include box($sideNav, $media);
+    }
+
+    .mobile-buttons-wrapper {
+      display: none;
+    }
+
+    @include media-query(auto, notebook) {
+      display: none;
+
+      &.show-filter,
+      &.show-category {
+        box-sizing: border-box;
+        display: block;
+        left: 0;
+        height: 100%;
+        overflow: hidden;
+        overflow-y: auto;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: $z-index-fixed;
+
+        .mobile-buttons-wrapper {
+          display: block;
+        }
+      }
+
+      &.show-filter {
+
+        @include background(g('_show-filter.background'), $media);
+
+        .navigation {
+          display: none;
+        }
+      }
+
+      &.show-category {
+
+        @include background(g('_show-category.background'), $media);
+
+        .listingCheckBoxesFilter {
+          display: none;
+        }
+      }
+    }
+}
+
+  .product-results-wrapper {
+    box-sizing: border-box;
+    flex-shrink: 1;
+    max-width: 100%;
+
+    @include breakpoints {
+      @include box(g('_results.box'), $media);
+    }
+
+    .link-read-more {
+      display: none;
+    }
+    &.display-list .link-read-more {
+      display: inline-block;
+    }
+  }
+
+  // Visually hide 'Buy It Now' buttons on grid view.
+  .display-grid {
+    .buyitnow {
+      height: 0;
+      overflow: hidden;
+      position: absolute;
+      width: 0;
+    }
+  }
+
+  @import '_listing/index';
+  @import '_listingListView/index';
+  @import '_mobileButtonsAndSortByWrapper/index';
+  @import '_mobileButtonsWrapper/index';
+  @import '_sidebarNavigation/index';
+}

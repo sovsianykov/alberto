@@ -1,0 +1,98 @@
+.ratingsandreviews .bazaarvoice div[data-bv-show="rating_summary"] {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($summary-container, $a...);
+  }
+
+  .bv_main_container {
+    $box: merge((
+      margin: 0 0 spacings('s'),
+      flex: (
+        flex-direction: column
+      )
+    ), g('_main.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($box, $media);
+      /*! @important(stop) */
+    }
+
+    .bv_stars_button_container {
+      $ratings: merge((
+        padding: (
+          padding: 0
+        ),
+        margin: (
+          margin-right: 8px
+        )
+      ), g('_main._ratings.box'));
+
+      @include breakpoints {
+        /*! @important(start) */
+        @include box($ratings, $media);
+        /*! @important(stop) */
+      }
+    }
+  }
+
+  .bv_avgRating,
+  .bv_numReviews_text {
+    @include breakpoints {
+      /*! @important(start) */
+      @include button(g('_main._number.button'), $media);
+      /*! @important(stop) */
+
+      &:hover {
+        /*! @important(start) */
+        @include hover(g('_main._number.button.hover'), $media);
+        /*! @important(stop) */
+      }
+    }
+  }
+
+  .bv_main_container_row_split:last-of-type,
+  .bv_main_container_row_flex:last-of-type {
+    $wrapper: merge((
+      margin: 8px -20px,
+      display: inline-flex,
+    ), g('_main._button-wrapper.box'));
+
+    @include breakpoints {
+      /*! @important(start) */
+      @include box($wrapper, $media);
+      /*! @important(stop) */
+    }
+
+    .bv_main_container_row_flex {
+      margin: 0 !important;   //overriding 3rd party styles
+    }
+  }
+
+  // Link to Tab Item is a custom block component added to this markup via js
+  // to reflect NASK designs.
+  .reference-link_to_tab_item .link-to-tab-item,
+  .bv_writeAReview_buttonMinimalist,
+  .bv_button_buttonMinimalist {
+    @include breakpoints {
+      /*! @important(start) */
+      @include button(g('_main._review-button.button'), $media);
+      /*! @important(stop) */
+
+      &:hover {
+        /*! @important(start) */
+        @include hover(g('_main._review-button.button.hover'), $media);
+        /*! @important(stop) */
+      }
+    }
+  }
+
+  .bv_cta_button:last-of-type .bv_writeAReview_buttonMinimalist,
+  .reference-link_to_tab_item:last-of-type .link-to-tab-item {
+    @include breakpoints {
+      /*! @important(start) */
+      @include button(g('_main._last-review-button.button'), $media);
+      /*! @important(stop) */
+    }
+  }
+}

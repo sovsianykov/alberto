@@ -1,0 +1,562 @@
+@function gl($a...) { @return get-last($header, 'main._navigation', $a...); }
+
+// reset and remove unecessary elements
+.navigation-mobile-menu {
+  display: none;
+}
+
+.navigation-root {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tabs-nav-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+// common styles
+.tabs-main-navigation {
+  position: relative;
+  // space between elements
+  .tabs-nav {
+    @include breakpoints {
+      $space: safetype(gl('_category-nav._space-between', $media), 0);
+      margin: $space * -0.5;
+
+      .tabs-nav-item {
+        margin: ($space * 0.3) ($space * 0.5);
+      }
+    }
+
+    @include media-query(desktop, auto) {
+      position: relative;
+      z-index: $z-index-layer + 2;
+    }
+  }
+
+  .tabs-nav-list {
+    @include breakpoints {
+      @include box(gl('_category-nav.box'), $media);
+    }
+  }
+
+  .tabs-nav-item {
+    // reset link as tabMenuItem received button type
+    > a {
+      display: block;
+      text-decoration: none;
+    }
+  }
+
+  .tabMenuItem {
+    .text-wrapper {
+      display: block;
+    }
+
+    @include breakpoints {
+      @include classlist(gl('_category-nav.classlist')) {
+        @include button(get($curr, 'button'), $media);
+      }
+    }
+  }
+
+  .is-enabled .tabMenuItem {
+    @include breakpoints {
+      @include hover(gl('_category-nav.classlist.defaults.button.hover'), $media);
+    }
+
+    $pseudo: safetype(gl('_category-nav.classlist.defaults.button.line.side'), 'before');
+    &:#{$pseudo} {
+      @include breakpoints {
+        @include hover(gl('_category-nav.classlist.defaults.button.line.hover'), $media);
+      }
+    }
+  }
+
+  // navigation inside tab content
+  .navigation-item-title {
+    display: block;
+    text-decoration: none;
+  }
+
+  @include media-query(desktop, auto) {
+    .navigation-level1 {
+      > .navigation-item > .navigation-item-title {
+        @include button(gl('_desktop._category-box._navigation._title.button'), 'desktop');
+      }
+
+      + .navigation-level1 {
+        @include margin(gl('_desktop._category-box._navigation.margin'), 'desktop');
+      }
+    }
+
+    .navigation-level2 {
+      > .navigation-item > .navigation-item-title {
+        @include button(gl('_desktop._category-box._navigation._link.button'), 'desktop');
+      }
+    }
+  }
+
+  // "hide first child" navigation variant
+  // hide "all haircare" etc. links to categories that are required on mobile, but not on desktop
+  .hide-first-child ul.navigation-level2 {
+    li:first-of-type {
+      @include media-query(notebook, auto) {
+        display: none;
+      }
+    }
+  }
+
+  .tabs-content {
+    box-sizing: border-box;
+
+    @include media-query(desktop, auto) {
+      @include box(gl('_desktop._category-box.box'), 'desktop');
+      @include transition(g('_desktop._category-box.transition'), (
+        'transform', 'opacity', 'visibility'
+      ), 'desktop');
+    }
+
+    .tabContent > .content {
+      > div {
+        box-sizing: content-box;
+        float: none;
+        width: auto;
+        margin: 0;
+      }
+    }
+
+    @include media-query(desktop, auto) {
+      position: absolute;
+      left: 0;
+      top: 100%;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(-10px);
+      z-index: $z-index-behind - 4;
+      min-width: 100%;
+
+      @if (gl('_desktop._category-box._is-fullscreen')) {
+        box-shadow: 0 -100vw 0 100vw color('white');
+      }
+
+      .tabContent > .content {
+        display: flex;
+        margin: $gutter * -0.5;
+
+        > div {
+          flex-basis: auto;
+          flex-shrink: 0;
+          flex-grow: 0;
+          margin: $gutter * 0.5;
+          opacity: 0;
+          transform: translateY(-10px);
+          @include size(gl('_desktop._category-box._nav-holder.box'), 'desktop');
+          @include transition(gl('_desktop._category-box.transition'), (
+            'transform', 'opacity'
+          ), 'desktop');
+        }
+      }
+
+      &.is-enabled {
+        transition-delay: 0s;
+        transform: translateY(0);
+        visibility: visible;
+        opacity: 1;
+        z-index: $z-index-behind - 4;
+
+        .tabContent > .content > div {
+          opacity: 1;
+          transform: translateY(0);
+
+          @for $i from 1 through 5 {
+            &:nth-child(#{$i + 1}) {
+              @include stagger($i, 'base', 'desktop'); // only makes sense to desktop
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// NAVIGATION INSIDE HEADER BAR
+// (on mobile version some items navigation are hidden and copied to mobile nav)
+.header-main {
+  .tabs-main-navigation {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex-grow: 2;
+    // position: relative;
+
+    @include breakpoints(mobile, tablet) {
+      margin-left: safetype(gl('_header-main._space-between', $media), 0);
+    }
+
+    // on mobile version only special items shows on main header
+    @include media-query(auto, notebook) {
+      order: 2;
+      flex-grow: 0;
+
+      .tabs-nav,
+      .tabs-nav-item {
+        margin: 0;
+      }
+    }
+
+    .tabMenuItem {
+      @include breakpoints {
+        @include classlist(gl('_header-main._category-nav.classlist')) {
+          @include button(get($curr, 'button'), $media);
+        }
+      }
+    }
+  }
+
+  .tabs-nav-list {
+    @include breakpoints {
+      @include box(merge((
+        display: flex
+      ), gl('_header-main._category-nav.box')), $media);
+    }
+  }
+
+  .tabs-content {
+    @include media-query(auto, notebook) {
+      display: none;
+    }
+  }
+}
+
+// NAVIGATION INSIDE MOBILE OUT-OF-THE-SCREEN HOLDER
+// (this holders are created using JS)
+
+
+// GIGYA MENU
+.navigation-gigya {
+
+  .gigya-logged-in-links[aria-hidden="true"] {
+    display: none;
+  }
+  .gigya-login-link[aria-hidden="true"] {
+    opacity: 0.3;
+    a {
+      cursor: default;
+    }
+  }
+  .gigya-logged-in-links {
+    position: relative;
+  }
+  .navigation-root.navigation-level2 {
+    align-items: stretch;
+    flex-direction: column;
+    position: absolute;
+    min-width: 100%;
+  }
+  .navigation-item.navigation-level2 {
+    background-color: color('black');
+    border-top: 1px solid color('neutral', 'light');
+    white-space: nowrap;
+  }
+  .navigation-item.navigation-level2:before {
+    display: none;
+  }
+  .navigation-root.navigation-level2 {
+    display: none;
+  }
+  .navigation-item.is-active .navigation-root.navigation-level2 {
+    display: block;
+  }
+
+}
+
+// GIGYA ON MOBILE VIEW
+.nav-mobile {
+  .navigation-gigya .navigation-root.navigation-level2 {
+    display: block;
+    position: static;
+  }
+  .navigation-gigya .navigation-level2 {
+    border-radius: 5px;
+  }
+  .navigation-gigya .navigation-item.navigation-level2 {
+    margin-bottom: 20px;
+  }
+}
+
+
+  // general animation for main holders
+.nav-mobile-viewport {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: $z-index-layer;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translateX(0);
+}
+
+.nav-mobile-wrapper {
+  display: flex;
+  align-items: flex-start;
+  position: absolute;
+  transform: translateX(100%);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  overflow: hidden;
+  pointer-events: auto;
+
+  &,
+  .tabs,
+  .tabs-main-navigation .tabs-content,
+  .tabContent > .content,
+  .navigation-root {
+    @include breakpoints(mobile, tablet) {
+      @include transition(gl('_mobile.transition'), (
+        'transform', 'opacity', 'visibility'
+      ), $media);
+    }
+  }
+
+  &.is-active {
+    transform: translateX(0);
+  }
+
+  .tabs-main-navigation .tabs-content {
+    visibility: hidden;
+
+    &.is-enabled {
+      visibility: visible;
+      transition-delay: 0s;
+    }
+  }
+
+  &.level-2,
+  &.level-3 {
+    &,
+    .tabs,
+    .navigation-root.navigation-level1,
+    .tabContent > .content {
+      transition-delay: 0s;
+    }
+
+    .tabs-main-navigation {
+      transform: translateX(-100%);
+    }
+  }
+
+  &.level-3 {
+    .navigation-root.navigation-level2 {
+      transition-delay: 0s;
+    }
+
+    .tabContent > .content {
+      transform: translateX(-100%);
+    }
+  }
+}
+
+.nav-mobile {
+  @include breakpoints(mobile, tablet) {
+    @include box(merge((
+      min-height: 100vh,
+      overflow: hidden,
+      display: flex,
+      flex: (
+        flex-grow: 2,
+        flex-direction: column,
+        justify-content: space-between,
+      )
+    ), gl('_mobile.box')), $media);
+
+    @include transition(gl('_mobile.transition'), (
+      'transform', 'min-height'
+    ), $media);
+  }
+
+  .tabs-main-navigation {
+    > .component-content {
+      @include breakpoints(mobile, tablet) {
+        @include box(gl('_mobile._nav-holder.box'), $media);
+      }
+
+      @include media-query(tablet, notebook) {
+        position: static;
+      }
+    }
+
+    .tabs-nav-list {
+      @include breakpoints(mobile, tablet) {
+        @include box(gl('_mobile._category-nav.box'), $media);
+      }
+    }
+
+    .tabMenuItem {
+      @include breakpoints(mobile, tablet) {
+        @include classlist(gl('_mobile._category-nav.classlist')) {
+          @include button(get($curr, 'button'), $media);
+        }
+      }
+    }
+
+    .back-button {
+      cursor: pointer;
+
+      @include breakpoints(mobile, tablet) {
+        @include button(gl('_mobile._back.button'), $media);
+      }
+    }
+
+    .navigation-level2 .back-button {
+      @include breakpoints(mobile, tablet) {
+        @include button(gl('_mobile._back-level-2.button'), $media);
+      }
+    }
+
+    .back-button-wrapper,
+    .navigation-item {
+      @include media-query(auto, mobile) {
+        @include padding(gl('_mobile._nav-holder.box.padding'), 'mobile');
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+      @include media-query(tablet, notebook) {
+        $width: gl('_mobile._nav-holder.box.max-width', 'tablet');
+        @if (typeof($width) != 'map') {
+          max-width: $width;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+
+    .navigation-item {
+      .navigation-item-title {
+        @include breakpoints(mobile, tablet) {
+          @include button(gl('_mobile._category-box._navigation.button'), $media);
+        }
+      }
+
+      > .navigation-item-title:after {
+        display: none;
+      }
+
+      &.has-children {
+        > .navigation-item-title:after {
+          display: block;
+        }
+      }
+
+      .navigation-root {
+        visibility: hidden;
+      }
+
+      &.is-active .navigation-root {
+        visibility: visible;
+      }
+    }
+
+    .navigation-level2 {
+      &.navigation-root {
+        left: 100%;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    .tabs-content {
+      @include breakpoints(mobile, tablet) {
+        @include padding(gl('_mobile._nav-holder.box.padding'), $media);
+        padding-left: 0;
+        padding-right: 0;
+      }
+      position: absolute;
+      left: 100%;
+      top: 0;
+      width: 100%;
+    }
+  }
+
+  .countrylanguageselector {
+    &__mobile-menu{
+      background: transparent;
+      border: 0 none;
+      display: block;
+      font-size: px('xxs');
+      font-weight: bold;
+      margin: 0 0 spacings('xs') 0;
+      padding: 0;
+    }
+    &__root {
+      margin-bottom: spacings('xxs');
+    }
+  }
+}
+
+.nav-button {
+  @include breakpoints(mobile, tablet) {
+    @include button(merge((
+        display: flex,
+        margin: (
+          margin-right: -$gutter,
+          margin-left: safetype(gl('_header-main._space-between', $media), 0)
+        ),
+        flex: (
+          align-items: center,
+          justify-content: center,
+          align-self: stretch,
+          flex-shrink: 0,
+          order: 5
+        )
+      ), gl('_mobile._open.button')), $media);
+  }
+
+  @include media-query(desktop, auto) {
+    display: none;
+  }
+}
+
+.nav-button-close {
+  cursor: pointer;
+
+  @include breakpoints(mobile, tablet) {
+    @include button(merge((
+      display: flex,
+      flex: (
+        align-items: center,
+        justify-content: center,
+        flex-shrink: 0,
+      )
+    ),gl('_mobile._close.button')), $media);
+  }
+
+  &:after {
+    background: transparent;
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 53px;
+  }
+
+  @include media-query(desktop, auto) {
+    display: none;
+  }
+}
+
+@include media-query(desktop, auto) {
+  .nav-mobile {
+    display: none;
+  }
+}
+

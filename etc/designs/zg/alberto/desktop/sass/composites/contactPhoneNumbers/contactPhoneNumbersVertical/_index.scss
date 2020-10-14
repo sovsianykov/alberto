@@ -1,0 +1,59 @@
+&.composite-variation-contact_phone_numbers_vetical {
+  @import 'config';
+  @function g($a...) { @return get-last($contact-phone-numbers-vertical, $a...); }
+
+  padding: 0;
+  margin: 0 0 60px;
+
+  .content {
+    padding: 0;
+  }
+
+  .richText {
+    margin: 60px 0;
+
+    @include media-query(mobile) {
+      display: block !important; // overwriting default composite
+      margin: 60px 0 spacings('xs');
+    }
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &.grid_6 {
+      width: 100%;
+    }
+
+    h2, h3 {
+      $title: merge((
+        margin: (
+          margin-bottom: spacings('xs')
+        ),
+        line: (
+          margin: (
+            margin-top: spacings('xs')
+          )
+        )
+      ), g('_title.paragraph'));
+
+      @include paragraph($title, $media);
+    }
+
+    p {
+      margin: 0;
+
+      span {
+        float: none;
+
+        &.phone-number {
+          margin: 0 0 spacings('xxs');
+
+          @include media-query(mobile) {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

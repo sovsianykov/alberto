@@ -1,0 +1,275 @@
+// Step 2 of "where to buy"
+.box-store-locator-step-2 .listing-product-list  {
+  @import 'config-whereToBuy-step2';
+  @function g($a...) {
+    @return get-last($storeLocator, $a...);
+  }
+
+  .component.storelocator {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    z-index: 1;
+
+    > .component-content,
+    .storelocator-toggle {
+      height: 100%;
+    }
+
+    button {
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+  }
+
+  .storelocator-form-wrapper {
+    display: none;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: $z-index-content;
+
+    form {
+      box-sizing: border-box;
+
+      @include breakpoints() {
+        @include box(g('_form.box'), $media);
+      }
+
+      @include media-query(mobile) {
+        width: 100%;
+      }
+
+      .arrow {
+        top: 0;
+        position: absolute;
+        transform: translate(-50%, -100%);
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 12px 10px;
+        border-color: inherit;
+      }
+
+      .storelocator-product-size-wrapper {
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-start;
+      }
+    }
+
+    .storelocator-prefix {
+      @include breakpoints() {
+        @include paragraph(g('_form._label.paragraph'), $media);
+      }
+    }
+
+    &.is-active {
+      display: block;
+    }
+  }
+
+  .storelocator-product-size-wrapper,
+  .storelocator-zipcode-wrapper,
+  .storelocator-radius-wrapper,
+  .storelocator-button-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    &:first-of-type {
+      .storelocator-prefix {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .storelocator-zipcode-wrapper,
+  .storelocator-radius-wrapper,
+  .storelocator-button-wrapper {
+    display: none;
+
+    &.active {
+      display: flex;
+    }
+  }
+
+
+  .storelocator-product-size-wrapper {
+    .storelocator-prefix {
+      white-space: nowrap;
+    }
+
+    @include breakpoints {
+      @include box(g('_form._size.box'), $media);
+
+      .storelocator-prefix {
+        @include paragraph(g('_form._size._label.paragraph'), $media);
+      }
+    }
+  }
+
+  .storelocator-product-size {
+    margin-top: g('spacings.xxs') * -1;
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 2;
+
+    label {
+      margin-top: g('spacings.xxs');
+      display: inline-flex;
+      vertical-align: top;
+      width: percentage(1/5);
+
+      @include media-query(mobile) {
+        width: percentage(1/3);
+      }
+
+      @include media-query(small) {
+        width: percentage(1/2);
+      }
+
+      @include media-query(tablet) {
+        width: percentage(1/2);
+      }
+
+      @include media-query(notebook) {
+        width: percentage(1/3);
+      }
+
+      input {
+        visibility: hidden;
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+
+        &:checked + .custom-radio {
+          @include breakpoints {
+            @include button(g('_form._size._radio-active.button'), $media);
+          }
+        }
+      }
+
+      .custom-radio {
+        box-sizing: border-box;
+        flex-shrink: 0;
+
+        @include breakpoints {
+          @include button(g('_form._size._radio.button'), $media);
+        }
+
+        + span {
+          @include breakpoints {
+            @include paragraph(g('_form._size._radio.paragraph'), $media);
+          }
+        }
+      }
+
+    }
+  }
+
+  .storelocator-zipcode-wrapper {
+    position: relative;
+
+    .storelocator-input {
+      position: relative;
+      display: block;
+      height: get($storeLocator, 'spacings.xl');
+
+      .icon-gps {
+        @include breakpoints() {
+          @include icon(g('_form._zipcode.icon'), $media);
+        }
+
+        &:after {
+          position: absolute;
+          right: 14px;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer;
+        }
+      }
+
+      input {
+        height: 100%;
+
+        @include breakpoints() {
+          @include input(g('_form._zipcode.input'), $media);
+        }
+
+        &::placeholder {
+           @include text(g('_form._zipcode._placeholder.text'), $media);
+        }
+      }
+    }
+
+    .error-msg {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      white-space: nowrap;
+      opacity: 0;
+
+      @include breakpoints {
+        @include paragraph(g('_form._zipcode-with-error._error-message.paragraph'), $media);
+      }
+    }
+
+    &.error {
+      .error-msg {
+        opacity: 1;
+      }
+
+      input {
+        @include breakpoints {
+          @include input(g('_form._zipcode-with-error.input'), $media);
+        }
+      }
+    }
+  }
+
+  .storelocator-select-radius {
+    position: relative;
+    font-size: 0;
+
+    @include breakpoints() {
+      @include icon(g('_form._dropdown.icon'), $media);
+    }
+
+    &:after {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    > select {
+      appearance: none;
+      cursor: pointer;
+
+      &::-ms-expand {
+        display: none;
+      }
+
+      @include breakpoints() {
+        @include box(g('_form._dropdown.box'), $media);
+        @include text(g('_form._dropdown.text'), $media);
+      }
+    }
+  }
+
+  .storelocator-button-wrapper {
+    button {
+      @include breakpoints() {
+        @include button(g('_form._find-button.button'), $media);
+      }
+    }
+  }
+}

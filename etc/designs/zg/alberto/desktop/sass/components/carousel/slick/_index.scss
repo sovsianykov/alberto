@@ -1,0 +1,167 @@
+.carousel-slick {
+  @import "config";
+  @function g($a...) {
+    @return get-last($carousel-slick, $a...);
+  }
+
+  .carousel-slides {
+    $box: merge(
+      (
+        overflow: hidden,
+        margin: 0,
+        padding: 0
+      ),
+      g("_carousel-slides.box")
+    );
+
+    @include breakpoints {
+      @include box($box, $media);
+    }
+
+    list-style: none;
+  }
+
+  &.is-ready {
+    .composite-hero-image .box > .component-content {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+    }
+
+    .carousel-slide {
+      position: static;
+    }
+  }
+
+  .carousel-slide {
+    $carousel-slide: merge(
+      (
+        width: 100%,
+        position: absolute
+      ),
+      g("_carousel-slides._carousel-slide.box")
+    );
+
+    @include breakpoints {
+      @include box($carousel-slide, $media);
+    }
+
+    &.is-active {
+      display: block;
+    }
+
+    .image-and-content {
+      overflow: hidden;
+    }
+
+    .no-content .carousel-cover,
+    .no-image .carousel-content {
+      float: none;
+      width: 100%;
+    }
+  }
+
+  .carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style-type: none;
+
+    @include breakpoints {
+      @include box(g("_carousel-nav.box"), $media);
+    }
+
+    .carousel-nav-item {
+      display: none;
+    }
+
+    .carousel-nav-prev,
+    .carousel-nav-next {
+      @include media-query(mobile) {
+        display: inline-block;
+      }
+
+      a {
+        @include breakpoints {
+          @include button(g("_carousel-nav._nav-item.button"), $media);
+        }
+
+        color: transparent;
+        position: relative;
+
+        $pseudo: safetype(g("_carousel-nav._nav-item.button"), "after");
+        &:#{$pseudo} {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+    }
+
+    .carousel-nav-prev a {
+      @include breakpoints {
+        @include button(g("_carousel-nav._nav-item._prev.button"), $media);
+      }
+
+      [dir="rtl"] & {
+        @include breakpoints {
+          @include button(g("_carousel-nav._nav-item._next.button"), $media);
+        }
+      }
+    }
+
+    .carousel-nav-next a {
+      @include breakpoints {
+        @include button(g("_carousel-nav._nav-item._next.button"), $media);
+      }
+
+      [dir="rtl"] & {
+        @include breakpoints {
+          @include button(g("_carousel-nav._nav-item._prev.button"), $media);
+        }
+      }
+    }
+  }
+}
+
+// three items showing
+.carousel.carousel-slick--variant-1 {
+  .carousel-slide {
+    width: 25%;
+    display: inline-block;
+    font-size: 1rem;
+    img {
+      opacity: 0.4;
+    }
+  }
+  .carousel-slides {
+    background-color: black;
+    display: block;
+    font-size: 0;
+  }
+  .carousel-slide.is-active {
+    img {
+      opacity: 1;
+    }
+  }
+}
+
+// four items showing
+.carousel.carousel-slick--variant-2 {
+  .carousel-slide {
+    width: 20%;
+    display: inline-block;
+    font-size: 1rem;
+  }
+  .carousel-slides {
+    display: block;
+    font-size: 0;
+  }
+  .carousel-slide.is-active {
+    opacity: 1;
+  }
+}
+
+

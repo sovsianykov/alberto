@@ -1,0 +1,12 @@
+@import "../../core/config";
+
+.ratingsandreviews.initialized {
+   visibility: visible;
+}
+
+@import "bazaarVoice/reviews/index";
+@import "bazaarVoice/summaryContainer/index";
+@import "bazaarVoice/writeReviewOverlay/index";
+@import "kritique/summary/index";
+@import "kritique/readPanel/index";
+@import "kritique/seoOnly/index";

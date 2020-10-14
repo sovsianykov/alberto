@@ -1,0 +1,40 @@
+@import '../../core/config';
+
+.composite-related_articles {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($relatedArticles, $a...);
+  }
+
+  $wrapper: merge((
+    margin: (
+      margin: breakpoint((
+        tablet-max: spacings('m') 0 spacings('xxl'),
+        desktop: spacings('l') 0 spacings('xxl'),
+      ))
+    )
+  ), g('_composite-wrapper.box'));
+
+  @include breakpoints() {
+    @include box($wrapper, $media);
+  }
+
+  .listing-items {
+    @include box(g('_items-wrapper.box'), $media);
+
+    .listing-item {
+      @include media-query(desktop, wide) {
+        width: auto;
+        flex-basis: 0;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  > .content > .richText:last-of-type {
+    // button wrapper
+    @include wrapper;
+  }
+}
+
+@import '_listing/index';

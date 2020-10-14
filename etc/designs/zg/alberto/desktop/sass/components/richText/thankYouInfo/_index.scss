@@ -1,0 +1,71 @@
+@import 'config';
+
+@function g($a...) {
+  @return get-last($thankYouInfo, $a...);
+}
+
+.richText.thank-you-info {
+  $box: merge((
+    margin: (
+      margin-top: breakpoint(
+          60px,
+          60px,
+          96px
+      ),
+      margin-right: breakpoint((mobile: 0)),
+      margin-bottom: breakpoint((mobile: 96px))
+    )
+  ), g('box'));
+
+  @include breakpoints {
+    @include box($box, $media);
+  }
+
+  h1,h2,h3 {
+    @include paragraph(g('_title.paragraph'), $media);
+  }
+}
+
+.contact-us-thank-you-text {
+  text-align: center;
+  h1 {
+    text-transform: uppercase;
+    + p {
+      font-family: font-family("primary");
+      @include breakpoints(mobile) {
+        font-size: px(20);
+      }
+      @include breakpoints(tablet) {
+        font-size: px(21);
+      }
+      @include breakpoints(desktop) {
+        font-size: px(22);
+      }
+    }
+  }
+  @include breakpoints(mobile) {
+    padding: 30px 20px;
+  }
+  @include breakpoints(tablet) {
+    padding: 60px 30px;
+  }
+  @include breakpoints(desktop) {
+    padding: 120px 30px;
+  }
+  p:last-child {
+    @include breakpoints(mobile) {
+      line-height: 1;
+    }
+  }
+  .button-secondary {
+    margin-right: 20px;
+    height: 52px;
+    font-size: px(18);
+    padding-left: 50px;
+    padding-right: 50px;
+    @include breakpoints(mobile) {
+      width: 100%;
+      margin-bottom: -15px;
+    }
+  }
+}

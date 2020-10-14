@@ -1,0 +1,142 @@
+@import '../../core/config';
+@import 'utils';
+
+.box-recipe-image-and-meta,
+.box-recipe-ingredients-and-directions {
+
+  &.box {
+    margin-left: 0;
+  }
+
+  > .component-content > .content {
+    @include wrapper;
+
+    $outerWrapper: merge((
+      overflow: hidden,
+      box-sizing: border-box,
+      display: breakpoint((tablet-max: block, desktop: flex)),
+      flex: (
+        flex-wrap: wrap
+      )
+    ), g('_image-and-meta-wrapper.box'));
+
+    @include breakpoints() {
+      @include box($outerWrapper, $media);
+    }
+
+    > .section {
+      $section: merge((
+        width: breakpoint((tablet-max: 100%)),
+        box-sizing: border-box
+      ), g('_section.box'));
+
+      @include breakpoints() {
+        @include box($section, $media);
+      }
+    }
+  }
+}
+
+.box-recipe-image-and-meta {
+  $imageAndMetaWrapper: merge((
+    margin: (
+      margin-bottom: breakpoint((desktop: 60px))
+    )
+  ), g('_image-and-meta-wrapper.box'));
+
+  @include breakpoints {
+    @include box($imageAndMetaWrapper, $media);
+  }
+
+  > .component-content > .content {
+    @import 'config';
+    @function g($a...) {
+      @return get-last($default, $a...);
+    }
+    @include box-two-columns('.image', 7, '.composite-recipe-meta-details', 5);
+
+    @include breakpoints {
+      @include box(g('_top-container.box'), $media);
+    }
+
+    > .image {
+      $imageContainer: merge((
+        width: breakpoint((tablet-max: 100%)),
+        height: 100%
+      ), g('_top-container._image-wrapper.box'));
+
+      @include breakpoints {
+        @include box($imageContainer, $media);
+      }
+
+      img {
+        $image: merge((
+          width: breakpoint((tablet-max: calc(100% + 40px))),
+          max-width: breakpoint((tablet-max: none)),
+          margin: (
+            margin: breakpoint((tablet-max: 0 -20px))
+          )
+        ), g('_top-container._image-wrapper._image.box'));
+
+        @include breakpoints {
+          @include box($image, $media);
+        }
+      }
+    }
+
+    > .composite-recipe-meta-details {
+      $metaDetailsWrapper: merge((
+        padding: (
+          padding-left: breakpoint((desktop: 95px))
+        )
+      ), g('_top-container._meta.box'));
+
+      @include breakpoints {
+        @include box($metaDetailsWrapper, $media);
+      }
+    }
+  }
+}
+
+.box-recipe-ingredients-and-directions {
+  $box: merge((
+    margin: (
+      margin-bottom: breakpoint((tablet-max: 60px, desktop: spacings('xxxl')))
+    )
+  ), g('_recipe-ingredients-wrapper.box'));
+
+  @include breakpoints {
+    @include box($box, $media);
+  }
+
+  > .component-content > .content {
+    @import 'config';
+    @function g($a...) {
+      @return get-last($default, $a...);
+    }
+
+    @include box-two-columns('.composite-recipe-ingredients-details', 5, '.recipeDirections', 7);
+
+    @include breakpoints {
+      @include box(g('_bottom-container.box'), $media);
+    }
+
+    > .composite-recipe-ingredients-details {
+      @include breakpoints {
+        @include box(g('_bottom-container._ingredients.box'), $media);
+      }
+    }
+
+    > .recipeDirections {
+      $directionsWrapper: merge((
+        padding: (
+          padding-left: breakpoint((desktop: 95px))
+        )
+      ), g('_bottom-container._directions.box'));
+
+      @include breakpoints {
+        @include box($directionsWrapper, $media);
+      }
+    }
+  }
+}

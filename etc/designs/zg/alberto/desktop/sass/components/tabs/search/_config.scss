@@ -1,0 +1,35 @@
+$searchTabs: (
+  spacings: common('spacings'),
+  background: (
+    background-color: color('white')
+  ),
+  tabItem: (
+    inactive: extend('_base.button', (
+      background: (
+        background-color: color('white')
+      ),
+      text: (
+        font-size: breakpoint((all: px(16))),
+      ),
+      border: (
+        border: 2px solid color('neutral', 'lighter'),
+        border-radius: 0,
+      ),
+      padding: common('spacings.s')
+    )),
+    active: extend('_base.button', (
+      background: (
+        background-color: color('white')
+      ),
+      text: (
+        font-size: breakpoint(px(18), px(16), px(16)),
+        font-weight: bold
+      ),
+      border: (
+        border: 2px solid color('primary', 'dark'),
+        border-radius: 0,
+      ),
+      padding: common('spacings.s')
+    ))
+  ),
+)

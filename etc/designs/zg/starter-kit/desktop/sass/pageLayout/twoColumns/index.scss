@@ -1,0 +1,130 @@
+@import '../../core/config';
+@import 'utils';
+
+#two-columns-wrapper {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($twoColumns, $a...);
+  }
+
+  font-size: 0;
+
+  $box: merge((
+    overflow: hidden,
+    display: flex,
+    flex: (
+      justify-content: center
+    ),
+    margin: (
+      margin: 0 auto
+    )
+  ), g('box'));
+
+  @include box($box, $media);
+
+  &::after {
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 0;
+    left: 0;
+    position: absolute !important;
+    width: 100%;
+
+    @include box(g('_separator.box'), $media);
+  }
+
+  .grid_12 {
+    display: flex;
+
+    &.left-side-holder,
+    &.right-side-holder {
+      box-sizing: border-box;
+    }
+
+    &.left-side-holder {
+      $leftSideHolder: merge((
+        flex: (
+          justify-content: flex-end
+        )
+      ), g('_left-side-holder.box'));
+
+      @include box($leftSideHolder, $media);
+
+      .left-side {
+        $leftSideBox: merge((
+          padding: (
+            padding: 0 $gutter
+          )
+        ), g('_left-side-holder._left-side.box'));
+
+        @include box($leftSideBox, $media);
+
+        .image-bleeding {
+          $image: merge((
+            margin: (
+              margin-right: breakpoint((desktop-min: 20px))
+            )
+          ), g('_left-side-holder, _left-side._image.box'));
+
+          @include breakpoints() {
+            @include box($image, $media);
+          }
+        }
+      }
+
+      .breadcrumbs {
+        .component-content {
+          padding: 0;
+          width: auto;
+        }
+      }
+    }
+
+    &.right-side-holder {
+      $rightSideHolder: merge((
+        flex: (
+          justify-content: flex-start
+        )
+      ), g('_right-side-holder.box'));
+
+      .right-side {
+        $rightSideBox: merge((
+          padding: (
+            padding: 0 $gutter
+          )
+        ), g('_right-side-holder._right-side.box'));
+
+        @include box($rightSideBox, $media);
+
+        .image-bleeding {
+          margin: 0 calc(#{$gutter} * -1);
+        }
+      }
+
+      .breadcrumbs {
+        .component-content {
+          padding: 0;
+          width: auto;
+        }
+      }
+    }
+
+    .paragraphSystem {
+      box-sizing: border-box;
+      font-size: 1rem;
+      height: 100%;
+      position: relative;
+      width: 100%;
+
+      &.fields {
+        font-size: 0;
+      }
+    }
+  }
+
+  @import 'emailUs/index';
+  @import 'signUp/index';
+  @import 'shoppableThankYou/index';
+  @import 'shopifyCustomerForm/index';
+}

@@ -1,0 +1,41 @@
+.composite-variation-hero_image_with_richtextbelow {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($heroImageWithRichTextBelow, $a...);
+  }
+
+  img {
+    width: 100%;
+  }
+
+  > .content {
+    @include box(g('box'), $media);
+
+    > .richText {
+      @include wrapper;
+
+      $box: merge((
+        margin: (
+          margin-top: breakpoint((tablet-max: -20px, desktop: -60px)),
+          margin-bottom: breakpoint((tablet-max: 16px, desktop: 64px))
+        )
+      ), g('_text-wrapper.box'));
+
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+
+      .richText-content {
+        $box: merge((
+          padding: (
+            padding: breakpoint((tablet-max: 26px 16px 32px, desktop: 38px 104px 48px))
+          )
+        ), g('_text-wrapper._wrapper-content.box'));
+
+        @include breakpoints() {
+          @include box($box, $media);
+        }
+      }
+    }
+  }
+}

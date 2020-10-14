@@ -1,0 +1,126 @@
+@import '../../core/config';
+.searchBoxWithSuggestions.initialized {
+  visibility: visible;
+}
+@include local-spacings();
+.searchBoxWithSuggestions {
+  @import 'config';
+  @function g($a...) { @return get-last($search-box-with-suggestions, $a...); }
+  $box: merge((
+  ), g('box'));
+  @include box($box, $media);
+  .form-search {
+    font-size: 0;
+    .searchBox-label {
+      $searchBox-label: merge((
+        display: block,
+        margin: (
+          margin-bottom: 90px
+        ),
+        width: 100%
+      ), g('_searchBox-label.box'));
+      @include box($searchBox-label, $media);
+      &::before {
+        content: "";
+        display: block;
+        height: 100%;
+        left: calc(((100vw - 100%) / 2) * -1);
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        $search-query-background: merge((
+        ), g('_search-query.background'));
+        @include background($search-query-background, $media);
+      }
+      .search-query {
+        box-sizing: content-box;
+        margin-left: 40px;
+        padding: 25px 0;
+        position: relative;
+        $search-query: merge((
+        ), g('_search-query.input'));
+        @include input($search-query, $media);
+        &:focus {
+          outline: 0;
+        }
+        &::-ms-clear {
+          display: none;
+        }
+      }
+      .searchBox-title {
+        bottom: -60px;
+        display: block;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100%;
+        $search-query-text: merge((
+        ), g('_search-query.text'));
+        @include breakpoints() {
+          @include text($search-query-text, $media);
+        }
+        .barscan-enabled & {
+          display: none;
+        }
+      }
+      .barscan-enabled & {
+          margin-bottom: 0
+      }
+    }
+    .searchBox-suggestions {
+      list-style: none;
+      $suggestions: merge((
+        padding: 0
+      ), g('_suggestions.box'));
+      @include box($suggestions, $media);
+      li {
+        $suggestions: merge((
+          margin: spacings('xs') auto
+        ), g('_suggestions._item-holder.box'));
+        @include box($suggestions, $media);
+        &:first-child {
+          margin-top: 0;
+        }
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .searchBox-suggestion {
+        appearance: none;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        padding: 0;
+        $suggestions: merge((
+        ), g('_suggestions.link'));
+        @include link($suggestions, $media);
+        b {
+          $suggestions-highlight: merge((
+          ), g('_suggestions.text'));
+          @include text($suggestions-highlight, $media);
+        }
+      }
+      .barscan-enabled & {
+        display: none;
+      }
+    }
+    button[type="submit"] {
+      appearance: none;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      cursor: pointer;
+      left: 0;
+      padding: 0;
+      position: absolute;
+      top: 32px;
+      $submit: merge((
+      ), g('_submit.button'));
+      @include button($submit, $media);
+    }
+  }
+}
+@import 'search-overlay';
+@import '_search-box-advanced-suggestions';

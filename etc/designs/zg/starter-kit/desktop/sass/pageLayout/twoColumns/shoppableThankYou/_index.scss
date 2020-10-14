@@ -1,0 +1,42 @@
+.shoppable-thank-you & {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($shoppable-thank-you, $a...);
+  }
+  @include two-columns-wrapper(5, 7);
+
+  @include breakpoints {
+    @include box(g('box'), $media);
+  }
+
+  &::after {
+
+    @include box(g('_separator.box'), $media);
+  }
+
+  .grid_12 {
+
+    &.left-side-holder {
+
+      @include box(g('_left-side-holder.box'), $media);
+    }
+
+    &.right-side-holder {
+
+      @include box(g('_right-side-holder.box'), $media);
+    }
+
+    .paragraphSystem {
+
+      &.left-side {
+
+        @include box(g('_left-side-holder._left-side.box'), $media);
+      }
+
+      &.right-side {
+
+        @include box(g('_right-side-holder._right-side.box'), $media);
+      }
+    }
+  }
+}

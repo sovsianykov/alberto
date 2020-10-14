@@ -1,0 +1,20 @@
+//
+// Setup
+//
+@import 'config';
+@import '../vendor/normalize';
+@import '../vendor/overrides';
+@import '../vendor/pickadate-js/classic';
+@import '../vendor/pickadate-js/classic-date';
+//
+// Structure
+//
+@import '../structure/browserSupport';
+@import '../structure/captcha';
+@import '../structure/cookiePolicy';
+@import '../structure/countrySelector';
+@import '../structure/exitNotification';
+@import '../structure/global';
+@import '../structure/grid';
+@import '../structure/overlay';
+@import '../structure/pageVariants/index';

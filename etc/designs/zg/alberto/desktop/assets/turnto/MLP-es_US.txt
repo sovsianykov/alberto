@@ -1,0 +1,28 @@
+
+<!DOCTYPE  HTML  PUBLIC  "-­//W3C//DTD  HTML  4.01//EN"  "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Staples | TurnTo Mobile Page</title>
+<meta name="viewport" content="width=device-width,  initial-scale=1.0, maximum-scale=1.0,  user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+<script type="text/javascript">
+	var turnToConfig  = {
+		locale:"es_US",
+		siteKey:  "aUsP992nCvvAK4lsite",
+		setupType:"mobileTT",
+		skipCssLoad: true  
+	};
+</script>
+
+<link rel="stylesheet" href="//static.www.turnto.com/tra4_3/tra-es_US.css" />
+<script type="text/javascript" src="//static.www.turnto.com/tra4_3/mobile-landing.js"></script>
+
+</head>
+<body>
+	<div id="mobileTT-content"></div>
+
+</body>
+</html>

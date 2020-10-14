@@ -1,0 +1,28 @@
+.richText-underlined-title {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($underlinedTitle, $a...);
+  }
+
+  $wrapper: merge((
+    max-width: breakpoint((tablet-max: 335px, desktop: 380px)),
+    margin: (
+      margin-top: breakpoint((tablet-max: spacings('m'), desktop: spacings('s'))),
+      margin-bottom: breakpoint((tablet-max: spacings('m'), desktop: 60px))
+    )
+  ), g('_wrapper.box'));
+
+  @include breakpoints() {
+    @include box($wrapper, $media);
+  }
+
+  h1 {
+    $title: merge((
+      margin: 0
+    ), g('_title.paragraph'));
+
+    @include breakpoints() {
+      @include paragraph($title, $media);
+    }
+  }
+}

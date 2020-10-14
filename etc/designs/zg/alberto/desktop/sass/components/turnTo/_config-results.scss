@@ -1,0 +1,260 @@
+// Turn to search results
+$turnTo: merge($turnTo, (
+  _search-results: (
+    box: (
+      background: none,
+      border: none,
+      box-shadow: none,
+      padding: none,
+    ),
+    _results-info: (
+      paragraph: (
+        text: (
+          font-size: px(18),
+        )
+      )
+    )
+  ),
+  _results-items-wrapper: (
+    box:(
+      margin: (
+        margin-top: 30px,
+      )
+    )
+  ),
+  _results-item: (
+    box: (
+      background: none,
+      border: (
+        border-left: 0,
+        border-top: 2px solid color('neutral', 'light'),
+        border-right: 0,
+        border-bottom: 2px solid color('neutral', 'light')
+      ),
+      margin: (
+        margin-top: -2px,
+        margin-bottom: 0,
+      )
+    ),
+    _title: (
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-size: px(18),
+          font-weight: bold,
+        )
+      )
+    ),
+    _subtitle: (
+      paragraph: (
+        text: (
+          color: color('black'),
+          font-size: px(18)
+        )
+      )
+    ),
+    _go-to-link: (
+      button: (
+        text: (
+          color: color('secondary'),
+          text-transform: uppercase,
+          font-family: 'primary',
+          font-weight: bold,
+          font-size: px('xxs'),
+          text-align: breakpoint((tablet-min: center))
+        ),
+        margin: (
+          margin-left: 0,
+        ),
+        width: 100%,
+        icon: (
+          content: common('icon.arrow-right'),
+          font-size: 10px,
+          color: color('secondary'),
+          side: after,
+          margin: (
+            margin-left: 10px,
+          )
+        ),
+        line: (
+          width: calc(100% - 15px),
+          side: before,
+          border: (
+            border-top: 1px solid color('secondary')
+          ),
+        )
+      ),
+    ),
+    _answers-link: (
+      button: (
+        text: (
+          color: color('secondary'),
+          text-transform: uppercase,
+          font-family: 'primary',
+          font-weight: bold,
+          font-size: px('xxs'),
+          text-align: breakpoint((tablet-min: center))
+        ),
+        margin: (
+          margin-left: 0,
+        ),
+        width: 100%,
+        icon: (
+          content: common('icon.arrow-right'),
+          font-size: 10px,
+          color: color('secondary'),
+          side: after,
+          margin: (
+            margin-left: 10px,
+          )
+        ),
+        line: (
+          width: calc(100% - 15px),
+          side: before,
+          border: (
+            border-top: 1px solid color('secondary')
+          ),
+        )
+      ),
+    ),
+    _single-image: (
+      box: (
+        margin: (
+          margin-top: 4px,
+        ),
+        position: absolute,
+      )
+    )
+  ),
+  _results-question: (
+    _item: (
+      box: get($turnTo, '_questions-asked._item.box'),
+      _question-wrapper: (
+        box: get($turnTo, '_questions-asked._item._question-wrapper.box'),
+      ),
+      _title: (
+        paragraph: get($turnTo, '_questions-asked._item._title.paragraph'),
+      ),
+      _asked-by: (
+        paragraph: get($turnTo, '_questions-asked._item._asked-by.paragraph'),
+      ),
+      _user-type: (
+        text: get($turnTo, '_questions-asked._item._user-type.text'),
+      ),
+      _timestamp: (
+        text: get($turnTo, '_questions-asked._item._timestamp.text'),
+      ),
+      _best-answer-label: (
+        paragraph: get($turnTo, '_questions-asked._item._best-answer-label.paragraph'),
+      ),
+      _best-answer: (
+        paragraph: get($turnTo, '_questions-asked._item._best-answer.paragraph'),
+      ),
+      _answer-links: (
+        button: (
+          text: (
+            font-size: px('xxxs'),
+            text-decoration: none,
+            color: color('black'),
+          ),
+          line: (
+            width: 100%,
+            border: (
+              border-top: 1px solid color('black')
+            ),
+            transform: (
+              transform: scaleX(1)
+            )
+          ),
+          hover: (
+            text: (
+              color: color('neutral', 'dark'),
+            ),
+            line: (
+              border: (
+                border-top: 1px solid color('neutral', 'dark')
+              ),
+            )
+          )
+        )
+      ),
+      _question-links: (
+        box: (
+          margin: (
+            margin-top: 20px,
+          )
+        ),
+        button: get($turnTo, '_questions-asked._item._question-links.button'),
+        _helpful: (
+          button: get($turnTo, '_questions-asked._item._question-links._helpful.button'),
+        ),
+        _add-answer: (
+          button: get($turnTo, '_questions-asked._item._question-links._add-answer.button'),
+        )
+      )
+    )
+  )
+));
+
+// results answers
+$turnTo: merge($turnTo, (
+  _results-answers: (
+    _answer: (
+      box: (
+        border: (
+          border-left: none,
+          border-right: none,
+          border-bottom: none,
+          border-top: 1px solid color('neutral', 'light')
+        ),
+        padding: (
+          padding: breakpoint((mobile-max: get($turnTo, 'spacings.xs') 0))
+        )
+      )
+    ),
+    _vote-for: (
+      box: (
+        border: none,
+        background: (
+          background-color: color('white')
+        ),
+        margin: (
+          margin: 10px 0,
+        ),
+        padding: (
+          padding-bottom: get($turnTo, 'spacings.xs'),
+          padding-top: get($turnTo, 'spacings.xs')
+        )
+      ),
+      text: get($turnTo, '_vote-for.text'),
+      icon: get($turnTo, '_vote-for.icon')
+    ),
+    _vote-icons: (
+      _off: get($turnTo, '_vote-icons._off.icon'),
+      _on: get($turnTo, '_vote-icons._on.icon'),
+    ),
+    _add-answer: (
+      box: (
+        border: (
+          border-width: 0,
+        ),
+        background: (
+          background-color: color('white')
+        ),
+        padding: (
+          padding: get($turnTo, 'spacings.xs'),
+        ),
+        margin: (
+          margin: get($turnTo, 'spacings.xs') 0,
+        )
+      ),
+      input: get($turnTo, '_add-answer.input'),
+      _instruction-msg: (
+        paragraph: get($turnTo, '_add-answer._instruction-msg.paragraph'),
+      ),
+      _help-text: (
+        paragraph: get($turnTo, '_add-answer._help-text.paragraph')
+      )
+    )
+  )
+));

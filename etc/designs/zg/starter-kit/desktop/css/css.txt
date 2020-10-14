@@ -1,0 +1,135 @@
+{mergeOff}
+
+#
+# Setup
+#
+
+core/icon-fonts.css
+core/main.css
+
+#
+# Maintain in alphabetical order to avoid duplicates
+#
+
+#
+# Components
+#
+
+components/accordion/index.css
+components/addThis/index.css
+# components/articleList/index.css
+components/backToTop/index.css
+components/blocks/index.css
+components/box/index.css
+components/breadcrumbs/index.css
+components/buyItNow/index.css
+components/carousel/index.css
+components/channelAdvisor/index.css
+components/container/index.css
+components/countryLanguageSelector/index.css
+components/divider/index.css
+# components/fileList/index.css
+components/favourite/index.css
+components/facebookmessenger/index.css
+components/form/index.css
+components/gigya/index.css
+components/image/index.css
+components/imageGallery/index.css
+components/linkToTabItem/index.css
+components/listing/index.css
+components/listingButton/index.css
+components/listingCheckBoxesFilter/index.css
+components/listingFilters/index.css
+# components/map/index.css
+components/modal/index.css
+# components/navigation/index.css
+components/productQuickView/index.css
+components/productVariantList/index.css
+components/ratingsAndReviews/index.css
+components/recipeContext/index.css
+components/recipeCookingInfo/index.css
+components/recipeDirections/index.css
+components/recipeIngredients/index.css
+components/recipeListing/index.css
+components/recipeNutrients/index.css
+components/refineSearchBox/index.css
+components/richText/index.css
+components/searchBox/index.css
+components/searchBoxWithSuggestions/index.css
+components/searchFilter/index.css
+components/searchResults/index.css
+components/searchTabNavigation/index.css
+# components/shareThis/index.css
+components/shopalyst/index.css
+components/shopify/index.css
+components/shoppable/index.css
+components/sitemap/index.css
+components/smartLabel/index.css
+# components/smartLink/index.css
+components/storelocator/index.css
+# components/table/index.css
+components/tabs/index.css
+components/tagList/index.css
+components/title/index.css
+components/turnTo/index.css
+# components/twitter/index.css
+components/video/index.css
+# components/videoGallery/index.css
+
+#
+# Composites
+#
+
+composites/aboutIcons/index.css
+composites/articleImages/index.css
+composites/centeredFeaturedContent/index.css
+composites/contactPhoneNumbers/index.css
+composites/contactUsBoxes/index.css
+composites/emailUs/index.css
+composites/featuredArticles/index.css
+composites/filteredArticles/index.css
+composites/faq/index.css
+composites/footer/index.css
+composites/header/index.css
+composites/heroImage/index.css
+composites/heroImageWithRichTextBelow/index.css
+composites/heroImageWithSideText/index.css
+composites/newsletter/index.css
+composites/newsletterGlobal/index.css
+composites/otherOptionCarousel/index.css
+composites/productCarousel/index.css
+composites/productLanding/index.css
+composites/quickView/index.css
+components/quiz/index.css
+components/quizCTA/index.css
+components/quizML/index.css
+composites/recipeFinder/index.css
+composites/recipeIngredientsDetails/index.css
+composites/recipeMetaDetails/index.css
+composites/relatedArticles/index.css
+composites/search/index.css
+composites/secondaryHeaderSection/index.css
+composites/signUp/index.css
+composites/singleFeaturedArticle/index.css
+composites/singleFeaturedContent/index.css
+composites/subcategorySection/index.css
+composites/topicList/index.css
+composites/tutorialStep/index.css
+composites/videoWithHeading/index.css
+composites/virtualAgent/index.css
+composites/whatIsInOutSection/index.css
+composites/whereToBuy/index.css
+
+#
+# Page Layout
+#
+
+pageLayout/twoColumns/index.css
+pageLayout/recipe/index.css
+
+#
+# Print Styles
+#
+
+utils/print/recipe.css
+utils/print/storeLocator.css

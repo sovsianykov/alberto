@@ -1,0 +1,9 @@
+.box.wrapper {
+  > .component-content > .content {
+    @include wrapper;
+  }
+
+  &.box-full-width {
+    width: 100%;
+  }
+}

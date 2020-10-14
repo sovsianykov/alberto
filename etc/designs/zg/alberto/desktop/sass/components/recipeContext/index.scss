@@ -1,0 +1,29 @@
+@import '../../core/_config';
+
+.recipeContext {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($recipeContext, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  .recipeContext-error-message {
+    @include wrapper;
+
+    $box: merge((
+      margin: (
+        margin-top: breakpoint((mobile: spacings('xxl'), tablet-min: spacings('xxxl'))),
+        margin-bottom: breakpoint((mobile: spacings('xxl'), tablet-min: spacings('xxxl')))
+      )
+    ), g('_error-message-wrapper.box'));
+
+    @include breakpoints() {
+      @include box($box, $media);
+    }
+
+    p {
+      @include paragraph(g('_error-message-wrapper._error-message.paragraph'), $media);
+    }
+  }
+}

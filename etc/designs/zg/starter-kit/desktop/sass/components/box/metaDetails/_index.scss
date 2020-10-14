@@ -1,0 +1,44 @@
+.box.box-meta-details {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($metaDetails, $a...);
+  }
+
+  @include breakpoints() {
+    @include box(g('_main.box'), $media);
+  }
+
+  .richText-tertiary-header {
+    h2 {
+      @include breakpoints() {
+        @include paragraph(g('_main._header.paragraph'), $media);
+      }
+    }
+  }
+
+  .richText p {
+    @include breakpoints() {
+      @include paragraph(g('_main.paragraph'), $media);
+    }
+  }
+
+  .box-inline-elements .content {
+    @include breakpoints() {
+      @include box(g('_main._buttons-wrapper.box'), $media)
+    }
+
+    .richText-content p {
+      margin: 0;
+    }
+
+    .button-tertiary {
+      @include breakpoints() {
+        @include button(g('_main._buttons-wrapper._find-in-store.button'), $media);
+      }
+    }
+  }
+
+  .reference-link_to_tab_item {
+    display: none;    //hide elements until they will be moved by js and fully loaded
+  }
+}

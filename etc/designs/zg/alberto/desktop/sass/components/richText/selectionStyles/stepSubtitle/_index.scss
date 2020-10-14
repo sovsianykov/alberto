@@ -1,0 +1,12 @@
+.richText-content {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($stepSubtitle, $a...);
+  }
+
+  .step-subtitle {
+    @include breakpoints() {
+      @include paragraph(g('_step-subtitle.paragraph'), $media);
+    }
+  }
+}

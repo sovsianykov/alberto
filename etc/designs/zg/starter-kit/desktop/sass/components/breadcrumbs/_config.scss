@@ -1,0 +1,30 @@
+$pageBreadcrumbs: (
+  spacings: common('spacings')
+);
+
+$pageBreadcrumbs: merge($pageBreadcrumbs, (
+  _main: (
+    box: (
+      margin: (
+        margin-top: get($pageBreadcrumbs, 'spacings.s'),
+        margin-bottom: get($pageBreadcrumbs, 'spacings.m')
+      )
+    ),
+    text: (
+      font-size: px('xxxs'),
+    ),
+    icon: (
+      content: '/',
+      color: color('neutral', 'darker'),
+      font-size: px(15),
+      display: inline-block,
+      margin-left: get($pageBreadcrumbs, 'spacings.xxs'),
+      margin-right: get($pageBreadcrumbs, 'spacings.xxs')
+    ),
+    link: extend('_links._base.link', (
+      text: (
+        font-size: px('xxxs')
+      )
+    ))
+  )
+));

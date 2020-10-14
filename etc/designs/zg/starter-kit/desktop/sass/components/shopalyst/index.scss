@@ -1,0 +1,5 @@
+// The width and height values specified below are necessary to make sure that the iframe obtained from Shopalyst is visible and has a non-zero size
+.shopalyst .component-content div {
+	width: 220px;
+	height: 165px;
+}

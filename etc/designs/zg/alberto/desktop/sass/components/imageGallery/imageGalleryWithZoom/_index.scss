@@ -1,0 +1,99 @@
+@import '../../core/config';
+@import 'config';
+
+.imageGallery-with-zoom { // only needed if button is going to be absolutely placed
+  position: relative;
+}
+
+.imageGallery-with-zoom__button {
+
+  @function g($a...) {
+    @return get-last($galleryWithZoom, $a...);
+  }
+  $zoom-button: (
+    right: breakpoint(5px, 20px, 10px),
+    top: breakpoint(5px, 20px, 10px),
+  );
+  @include breakpoints() {
+    @include button(g('_zoom.button'), $media);
+    @include attr($zoom-button, ('right','top'), $media);
+  }
+  cursor: pointer;
+  overflow: hidden;
+  position: absolute;
+  z-index: $z-index-content;
+
+  &:before {
+    content: common('icon.zoom');
+    font-family: 'icons';
+    speak: none;
+    font-size: 28px;
+    font-weight: normal;
+  }
+  &:after {
+    content: "zoom";
+    left: -1000px;
+    position: absolute;
+  }
+
+  .ua-mobile-iphone.ua-safari & {
+    &:before {
+      display: inline-block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
+.imageGallery-with-zoom__overlay {
+  background-color: color('white');
+  bottom:0;
+  left:0;
+  opacity:0;
+  overflow: auto;
+  position: fixed;
+  right:0;
+  top:0;
+  transition: opacity 1s;
+  z-index: $z-index-modal;
+
+  &:before {
+    @function g($a...) {
+      @return get-last($galleryWithZoom, $a...);
+    }
+    @include breakpoints() {
+      @include button(g('_zoom.button'), $media);
+    }
+    // is the close button needed at all?
+    // content: common('icon.cross');
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 3;
+  }
+
+  &.is-active {
+    cursor: url("../../assets/img/button-close.svg"), auto;
+  }
+
+}
+
+.imageGallery-with-zoom__image {
+
+  $zoom-image: (
+    left: breakpoint(0, 50%, 50%),
+    position: breakpoint(static, absolute, absolute),
+    transform: breakpoint(none, translateX(-50%), translateX(-50%)),
+  );
+
+  @include breakpoints() {
+    @include attr($zoom-image, ('left','position','transform'), $media);
+  }
+
+  height: auto;
+  top: 0;
+  z-index: 1;
+}
+

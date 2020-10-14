@@ -1,0 +1,30 @@
+.image {
+  .right {
+    text-align: right;
+  }
+
+  .left {
+    text-align: left;
+  }
+
+  .middle {
+    text-align: center;
+  }
+
+  figure {
+    margin: 0;
+  }
+}
+
+.grid-aem {
+  .image.fixed-width {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+}

@@ -1,0 +1,80 @@
+.composite.composite-variation-hero_image_with_side_text {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($heroImageWithSideText, $a...);
+  }
+
+  .image {
+    width: 100%;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  > .content {
+    @include box(g('box'), $media);
+
+    > .richText {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      $box: merge((
+        padding: (
+          padding-top: breakpoint((tablet-max: spacings('m'))),
+          padding-bottom: breakpoint((tablet-max: 60px))
+        ),
+        background: (
+          background-color: breakpoint((tablet-max: color('neutral', 'lighter')))
+        ),
+        position: breakpoint((desktop: absolute))
+      ), g('_text-wrapper.box'));
+
+      @include media-query(mobile, notebook) {
+        top: 0;
+        left: 0;
+        transform: translate(0, 0);
+      }
+
+      @include wrapper;
+      @include breakpoints() {
+        @include box($box, $media);
+      }
+
+      .richText-content {
+        $box: merge((
+          margin: (
+            margin-bototm: spacings('s') * -1
+          )
+        ), g('_text-wrapper._wrapper-content.box'));
+
+        @include breakpoints() {
+          @include box($box, $media);
+        }
+
+        h1 {
+          $paragraph: merge((
+            margin: 0
+          ), g('_text-wrapper._wrapper-content._underlined-title.paragraph'));
+
+          @include breakpoints() {
+            @include paragraph($paragraph, $media);
+          }
+        }
+
+        h3 {
+          $paragraph: merge((
+            margin: (
+              margin: 0 0 20px
+            )
+          ), g('_text-wrapper._wrapper-content._headline.paragraph'));
+
+          @include breakpoints() {
+            @include paragraph($paragraph, $media);
+          }
+        }
+      }
+    }
+  }
+}

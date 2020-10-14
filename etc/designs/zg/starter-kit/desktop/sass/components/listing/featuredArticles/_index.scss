@@ -1,0 +1,46 @@
+.listing.listing-featured-articles {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($featured-articles, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  .listing-items {
+    @include breakpoints() {
+      @include box(g('_listing-items.box'), $media);
+    }
+  }
+
+  .listing-item {
+    @include breakpoints() {
+      @include box(g('_item.box'), $media);
+    }
+  }
+
+  .image {
+    @include breakpoints() {
+      @include paragraph(g('_item._image.box'), $media);
+    }
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .richText {
+    h2, h3 {
+      @include breakpoints() {
+        @include paragraph(g('_item._title.paragraph'), $media);
+      }
+    }
+
+    @include paragraph(g('_item._description.paragraph'), $media);
+
+    .button-secondary {
+      @include breakpoints() {
+        @include button(g('_item._link.button'), $media);
+      }
+    }
+  }
+}

@@ -1,0 +1,92 @@
+// RAW styles
+
+$modal-width: 900px !default;
+$modal-mobile-margin: 20px !default;
+$modal-padding: 20px;
+
+.browsersupport {
+  background: rgba(color('neutral', 'dark'), 0.5);
+  bottom: 0;
+  display: none;
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: $z-index-modal;
+
+  &.is-open {
+    display: block;
+  }
+  .image[class*=default-style] img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.browsersupport-dialog {
+  background: color('white');
+  border-radius: 5px;
+  border: 1px solid rgba(color('neutral', 'dark'), .2);
+  box-shadow: 0 5px 15px rgba(color('neutral', 'dark'), .5);
+  left: 50%;
+  max-width: calc(100% - #{2 * $modal-mobile-margin});
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: $modal-width;
+
+  p:first-child strong {
+    font-size: 1.75rem;
+  }
+
+  figcaption p {
+    font-size: 1rem;
+  }
+}
+
+.browsersupport-dialog-close {
+  background: none;
+  border: none;
+  outline: none;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+
+  span {
+    font-size: 0;
+
+    &:before {
+      color: color('neutral', 'dark');
+      content: common('icon.cross-small');
+      display: inline-block;
+      font-family: 'icons';
+      font-size: 25px;
+      opacity: 0.2;
+      position: relative;
+    }
+  }
+}
+
+.browsersupport-dialog-content {
+  padding: $modal-padding;
+}
+
+
+@include respond-to(mobile) {
+  .browsersupport {
+    position: absolute;
+
+    h1 {
+      font-size: 2.4rem;
+      margin-top: 60px;
+    }
+  }
+
+  .browsersupport-dialog {
+    position: absolute;
+    top: 20px;
+    transform: translate(-50%, 0);
+  }
+}

@@ -1,0 +1,86 @@
+&.composite-variation-contact_us_boxes_vertical {
+  @import 'config';
+  @function g($a...) { @return get-last($contact-us-boxes-vertical, $a...); }
+
+  padding: 0;
+
+  .content {
+    padding: 0;
+  }
+
+  .richText {
+    h2, h3, h4 {
+      $title: merge((
+        margin: 0,
+        line: (
+          display: block,
+          side: after,
+          width: 25px,
+          margin: (
+            margin-top: spacings('xs')
+          )
+        )
+      ), g('_title.paragraph'));
+
+      @include paragraph($title, $media);
+    }
+  }
+
+  .tiles-holder {
+    .component-content {
+      .content {
+        flex-direction: column;
+        margin: 0;
+
+        .richText,
+        .livechat {
+          margin: spacings('s') 0;
+          min-height: inherit;
+          flex-basis: auto;
+
+          .richText-content,
+          .livechat-offline,
+          .livechat-online {
+            box-sizing: border-box;
+            padding-left: spacings('xl');
+          }
+
+          h2, h3, h4,
+          .livechat-title {
+            margin-bottom: spacings('xs');
+
+            &::before {
+              display: inline-block;
+              left: 20px;
+              position: absolute;
+              top: 20px;
+
+              $icons-size: merge((
+              ), g('_icons-size.text'));
+
+              @include text($icons-size, $media);
+            }
+
+            &::after {
+              display: none;
+            }
+          }
+
+          p {
+            .button {
+              &::after {
+                opacity: 1;
+              }
+            }
+          }
+
+          button {
+            &::after {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}

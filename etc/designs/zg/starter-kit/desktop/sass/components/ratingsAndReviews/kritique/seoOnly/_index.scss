@@ -1,0 +1,6 @@
+.ratingsandreviews .kritique {
+  //Inside this div we have got SEO content within <noscript> tag. We don't want this to be displayed when JS is off
+  .kritique-seo {
+    display: none;
+  }
+}

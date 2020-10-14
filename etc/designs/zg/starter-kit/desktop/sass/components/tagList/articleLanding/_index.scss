@@ -1,0 +1,38 @@
+.taglist.article-landing-tag-list {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($article-landing-tag-list, $a...);
+  }
+
+  @include text(g('text'), $media);
+  @include box(g('box'), $media);
+
+  .component-content {
+    @include wrapper;
+  }
+
+  .taglist-heading {
+    @include breakpoints() {
+      @include paragraph(g('_taglist-heading.paragraph'), $media);
+      @include box(g('_taglist-heading.box'), $media);
+    }
+  }
+
+  .taglist-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    @include box(g('_list.box'), $media);
+
+    .taglist-tag {
+      @include box(g('_tag-holder.box'), $media);
+
+      .taglist-tag-link {
+        @include button(g('_list._list-item.button'), $media);
+      }
+    }
+  }
+}

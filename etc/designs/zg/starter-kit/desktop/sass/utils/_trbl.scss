@@ -1,0 +1,23 @@
+// receives a value or list and will return following the "top right bottom left" logic
+@function trbl($val) {
+  $val: if($val == null, 0, $val);
+  $val: if(length($val) == 0, 0, $val);
+
+  @if (length($val) == 1) {
+    @return ($val, $val, $val, $val);
+  }
+
+  @if (length($val) == 2) {
+    @return join($val, $val, 'comma');
+  }
+
+  @if (length($val) == 3) {
+    @return join($val, nth($val, 2), 'comma');
+  }
+
+  @if (length($val) >= 4) {
+    @return (nth($val, 1), nth($val, 2), nth($val, 3), nth($val, 4));
+  }
+
+  @return $val;
+}

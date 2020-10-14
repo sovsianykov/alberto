@@ -1,0 +1,37 @@
+$searchInput: (
+  spacings: common('spacings'),
+  border-bottom: 2px solid color('neutral', 'light'),
+  background: (
+    background-color: color('white')
+  ),
+  input: (
+    background: (
+      background-color: transparent,
+    ),
+    text: (
+      font-size: breakpoint(px(36), px(36), px('xl')),
+      font-weight: breakpoint((all: bold)),
+      color: common('text.body.color')
+    ),
+    border: (
+      border: 0,
+    ),
+    padding:  px(20) px(30) px(20) 0,
+    placeholder: (
+      color: color('neutral', 'light')
+    )
+  ),
+  search-button: (
+    background: (
+      background-color: transparent,
+    ),
+    border: (
+      border: 0,
+    ),
+  ),
+  search-icon: (
+    content: common('icon.search'),
+    color: common('text.body.color'),
+    font-size: 26px
+  )
+)

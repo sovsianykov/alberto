@@ -1,0 +1,42 @@
+$articleImages: (
+  spacings: common('spacings')
+);
+
+$articleImages: merge($articleImages, (
+  _main: (
+    box: (
+      display: flex,
+      flex: (
+        flex-direction: breakpoint((tablet-max: column, desktop: row)),
+        justify-content: flex-start,
+        align-items: flex-start
+      ),
+      margin: (
+        margin-top: get($articleImages, 'spacings.l'),
+        margin-bottom: breakpoint((desktop: get($articleImages, 'spacings.xxs')))
+      )
+    ),
+    _image: (
+      box: (
+        margin: (
+          margin: 0
+        )
+      ),
+      _title: (
+        paragraph: (
+          text: (
+            font-size: px(14),
+            line-height: 1.36
+          ),
+          margin: (
+            margin-top: get($articleImages, 'spacings.xs'),
+            margin-bottom: breakpoint((
+              tablet-max: 22px,
+              desktop: get($articleImages, 'spacings.xs')
+            ))
+          )
+        )
+      )
+    )
+  )
+));

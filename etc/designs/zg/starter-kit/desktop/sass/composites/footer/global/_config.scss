@@ -1,0 +1,45 @@
+$countrySelectorDropdown: (
+  _label: (
+    paragraph: (
+      text: (
+        font-size: px(18),
+        color: color('black'),
+        font-weight: bold,
+        line-height: 1.22,
+        font-family: 'body',
+        text-transform: none
+      )
+    )
+  ),
+  _dropdown-wrapper: (
+    button: (
+      icon: (
+        content: common('icon.arrow-down'),
+        font-size: px(6)
+      ),
+      hover: (
+        text: (
+          color: color('neutral', 'light')
+        )
+      )
+    ),
+    _select: (
+      button: (
+        background: transparent,
+        border: none,
+        width: 100%,
+        text: (
+          font-size: breakpoint((mobile: px(20), tablet-min: px(16))),
+          color: color('black'),
+          line-height: breakpoint(1.5, 1.38, 1.38),
+          font-family: 'body'
+        ),
+        hover: (
+          text: (
+            color: color('neutral', 'light')
+          )
+        )
+      )
+    )
+  )
+);

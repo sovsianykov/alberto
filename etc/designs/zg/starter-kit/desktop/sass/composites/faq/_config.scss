@@ -1,0 +1,66 @@
+$faq-section: (
+  box: (
+    padding: (
+      padding-top: spacings('l'),
+      padding-bottom: spacings('l')
+    )
+  ),
+  _accordion-item: (
+    box: (
+      border: (
+        border-bottom: 1px solid color('primary','dark')
+      ),
+      padding: 0,
+    ),
+    _panel-title: (
+      box: (
+        padding: spacings('s'),
+      ),
+      paragraph: (
+        text: (
+          line-height: 1,
+          text-decoration: none,
+          font-family: 'primary',
+          font-size: px('m'),
+          font-weight: normal,
+          text-transform: uppercase,
+        )
+      ),
+      icon: (
+        background: (
+          background-color: inherit,
+        ),
+        color: inherit,
+        content: common('icon.arrow-down'),
+        display: flex,
+        font-size: px(10),
+        flex: (
+          justify-content: center,
+          align-items: center
+        ),
+        margin-right: spacings('s')
+      )
+    ),
+    _panel-content: (
+      box: (
+        padding: (
+          padding-bottom: spacings('s'),
+          padding-left: spacings('s'),
+          padding-right: spacings('s'),
+          padding-top: 0,
+        ),
+        width: breakpoint(auto, 88%, 88%)
+      )
+    ),
+    _panel-title-open: (
+      box: (
+      ),
+      paragraph: (
+      ),
+      icon: (
+        content: common('icon.arrow-down'),
+        display: flex
+      )
+    )
+  )
+);

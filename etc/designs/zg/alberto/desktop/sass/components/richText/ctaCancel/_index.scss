@@ -1,0 +1,19 @@
+.cta-cancel {
+  @import 'config';
+  @function g($a...) {
+    @return get-last($cta-cancel, $a...);
+  }
+
+  @include box(g('box'), $media);
+
+  > .component-content {
+    > .richText-content {
+
+      @include button(g('button'), $media);
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+}
